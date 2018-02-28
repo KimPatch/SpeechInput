@@ -1,2 +1,2 @@
 # SpeechInput
-Speech Input add-ons and adjustments from Kim Patch
+Speech Input add-ons and adjustments
