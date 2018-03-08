@@ -1,1 +1,48 @@
 READme
+The 4 files in this directory Reword Intag commands using the same style of Human-Machine Grammar used in Utter Command.
+
+To install them, first make sure you have Intag installed.
+https://voiceteach.myshopify.com/collections/frontpage/products/intag_beta-home
+https://voiceteach.myshopify.com/collections/frontpage/products/intag-beta-business-government
+
+1. Download the .xml files from this folder. Put them in a backup folder on your computer for safekeeping. This is because may need to redo steps #6&7 if you reinstall Intag.
+2. Navigate to C:\ProgramData\VoiceTeach\Intag\Commands\Custom
+3. Make a new folder called ORIGINAL
+4. Move the four .xml files in the Custom directory that match the files in this folder to your new ORIGINAL folder.
+5. Copy the attached files
+6. Paste them in into C:\ProgramData\VoiceTeach\Intag\Commands\Custom. 
+7. Also paste them into C:\Program Files (x86)\VoiceTeach\Intag\help\VC_Files\Custom_files directory. You’ll be prompted to replace the existing files, say yes.
+8. Reboot your computer
+
+The Intag commands reworded to align with Utter Command should now work
+
+A cheat sheet of these commands follow. 
+There's also a copy in this folder (UC-Style Intagcheat sheet.rtf). 
+
+**Intag cheat sheet, UC style**
+(These commands work when the Utter Command Style wording for Intag is installed) 
+
+Say “Show Numbers” to put Intags on the clickable elements on your screen. 
+Say the number to click the element.
+
+**The Basics**
+“Show/Hide/Refresh  Numbers”  
+Say a number to click it: “1-300”
+
+**Mouse control**
+“1-300 Touch Twice/Touch Right/No Touch”
+“1-300 Shift Touch”
+“1-300 Drag to 1-300”
+
+**Select items on a list** (for example, files in Windows Explorer)
+“1-300 Control Touch”
+“1-300 1-300 Control Touch” (select two files at once)
+
+**Windows control**
+“Taskbar/Desktop/Start Menu  Numbers” 
+“Window Right/Left”
+“1-300   Menu/Open”
+This Monitor  One/Two
+
+**Files control**
+“1-300 Close/Cut/Copy/Paste/Delete”
