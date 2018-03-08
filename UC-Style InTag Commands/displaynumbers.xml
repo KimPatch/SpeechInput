@@ -1,0 +1,1557 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<menus>
+  <!-- global commands to bring up the show numbers overlay FOR Chrome -->
+  <menu name="ChromeShowNumbers" type="normal">
+    <requires>
+      <activeApp exe="chrome"></activeApp>
+    </requires>
+    <commands>
+      <command type="vp-script">
+        <name>
+          <![CDATA[<chromenumbers1>]]>
+        </name>
+        <actions>
+          <customoverlay action="close" />
+          <wait ms="500"/>
+            <numbers action="display" />
+        </actions>
+      </command>
+   <command type="vp-script">
+        <name>
+          <![CDATA[create intag report]]>
+        </name>
+        <actions>
+          <numbers action="display" record="true"/>
+        </actions>
+      </command>
+        <command type="vp-script">
+          <name>
+            <![CDATA[intag menu]]>
+          </name>
+          <actions>
+            <numbers action="display" controller="desktop" />
+          </actions>
+        </command>
+<command type="vp-script">
+   <name>
+    <![CDATA[intag startt menu]]>
+  </name>
+  <actions>
+    <numbers action="display" target="startmenu"/>
+  </actions>
+</command>
+<command type="vp-script">
+   <name>
+    <![CDATA[intag start menu]]>
+  </name>
+  <actions>
+    <numbers action="display" target="startmenu"/>
+  </actions>
+</command>
+<command type="vp-script">
+   <name>
+    <![CDATA[intag desktop]]>
+  </name>
+  <actions>
+   <mimic phrase="show desktop" />
+      <wait ms="100"/>
+   <mimic phrase="intag window" />
+  </actions>
+</command>
+        <command type="vp-script">
+          <name>
+            <![CDATA[close numbers]]>
+          </name>
+          <actions>
+          <numbers action="close" />
+          </actions>
+        </command>
+      </commands>
+      <lists>
+        <List>
+          <name>chromenumbers1</name>
+          <items>
+            <item>show numbers</item>
+            <item>intag that</item>
+            <item>intag it</item>
+            <item>show intags</item>
+            <item>intag window</item>
+            <item>show Chrome numbers</item>
+           <item>display numbers</item>
+          </items>
+        </List>
+      </lists>
+    </menu>
+  <!-- commands to bring up the show numbers overlay EXCEPT for Chrome -->
+  <menu name="VoiceComputerShowNumbers" type="normal">
+    <requires>
+      <inactiveApp exe="chrome"></inactiveApp>
+    </requires>
+     <commands>
+      <command type="vp-script">
+        <name>
+          <![CDATA[<shownumbers2>]]>
+        </name>
+        <actions>
+          <customoverlay action="close" />
+          <wait ms="500"/>
+          <numbers action="display" />
+        </actions>
+      </command>
+   <command type="vp-script">
+        <name>
+          <![CDATA[create intag report]]>
+        </name>
+        <actions>
+          <numbers action="display" record="true"/>
+        </actions>
+      </command>
+<command type="vp-script">
+   <name>
+    <![CDATA[intag startt menu]]>
+  </name>
+  <actions>
+    <numbers action="display" target="startmenu"/>
+  </actions>
+</command>
+<command type="vp-script">
+   <name>
+    <![CDATA[intag start menu]]>
+  </name>
+  <actions>
+    <numbers action="display" target="startmenu"/>
+  </actions>
+</command>
+<command type="vp-script">
+   <name>
+    <![CDATA[intag desktop]]>
+  </name>
+  <actions>
+   <mimic phrase="show desktop" />
+      <wait ms="100"/>
+   <mimic phrase="intag window" />
+  </actions>
+</command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[refresh numbers]]>
+        </name>
+        <actions>
+            <sendkeys mode="sync" string="{esc}"/>
+          <wait ms="500"/>
+     <numbers action="display" />
+        </actions>
+      </command>
+<!--          <numbers action="display" />  -->
+     <command type="vp-script">
+        <name>
+          <![CDATA[refresh thenumbers]]>
+        </name>
+        <actions>
+          <wait ms="500"/>
+          <wait ms="500"/>
+          <wait ms="500"/>
+          <wait ms="500"/>
+          <wait ms="500"/>
+     <mimic phrase="Intag window" />
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[display numbers]]>
+        </name>
+        <actions>
+          <numbers action="display" />
+        </actions>
+      </command>
+    <command type="legacy-script">
+      <name><![CDATA[Chrome numbers]]></name>
+      <actions>
+        <action><![CDATA[ShellExecute "XXYYZZscripts\Open_VP1.exe $*#*$b1x2y2z2g5"]]></action>
+      </actions>
+      <runtime_changes>
+        <replace>XXYYZZ, rootpath</replace>
+        <replace>x2y2z2, vtpath2transfer</replace>
+      </runtime_changes>
+    </command>
+         </commands>
+    <lists>
+    <List>
+        <name>shownumbers2</name>
+        <items>
+          <item>show numbers</item>
+          <item>intag that</item>
+          <item>intag it</item>
+          <item>show intags</item>
+          <item>intag window</item>
+         <item>display numbers</item>
+        </items>
+      </List>
+      </lists>
+  </menu>
+    <menu name="taskbarIntags" type="normal">
+      <commands>
+    <command type="vp-script">
+        <name>
+          <![CDATA[taskbar <1to50task>]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" numbers="_value1" />
+  <mimic phrase="show intags" />
+        </actions>
+      </command>
+    <command type="vp-script">
+        <name>
+          <![CDATA[task <1to50task>]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" numbers="_value1" />
+  <mimic phrase="show intags" />
+        </actions>
+      </command>
+    <command type="vp-script">
+        <name>
+          <![CDATA[right click taskbar <1to50task>]]>
+        </name>
+        <actions>
+   <overlaymouseaction action="rightclick" numbers="_value1" />
+  <mimic phrase="show intags" />
+         </actions>
+      </command>
+    <command type="vp-script">
+        <name>
+          <![CDATA[right click task <1to50task>]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="rightclick" numbers="_value1" />
+   <mimic phrase="show intags" />
+        </actions>
+      </command>
+    <command type="vp-script">
+        <name>
+          <![CDATA[taskbar <1to50task> center]]>
+        </name>
+        <actions>
+<mimic phrase="place this window center" />
+  <overlaymouseaction action="click" numbers="_value1"/>
+        </actions>
+      </command>
+    <command type="vp-script">
+        <name>
+          <![CDATA[task <1to50task> center]]>
+        </name>
+        <actions>
+<mimic phrase="place this window center" />
+  <overlaymouseaction action="click" numbers="_value1"/>
+         </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[taskbar <1to50task> left]]>
+        </name>
+        <actions>
+<mimic phrase="place this window left" />
+  <overlaymouseaction action="click" numbers="_value1"/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[task <1to50task> left]]>
+        </name>
+        <actions>
+<mimic phrase="place this window left" />
+  <overlaymouseaction action="click" numbers="_value1"/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[taskbar <1to50task> right]]>
+        </name>
+        <actions>
+<mimic phrase="place this window right" />
+  <overlaymouseaction action="click" numbers="_value1"/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[task <1to50task> right]]>
+        </name>
+        <actions>
+<mimic phrase="place this window right" />
+  <overlaymouseaction action="click" numbers="_value1"/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+   <![CDATA[taskbar <1to50task> monitor one]]>
+        </name>
+        <actions>
+<mimic phrase="place this monitorone" />
+     <overlaymouseaction action="click" numbers="_value1"/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+   <![CDATA[task <1to50task> monitor one]]>
+        </name>
+        <actions>
+<mimic phrase="place this monitorone" />
+     <overlaymouseaction action="click" numbers="_value1"/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+   <![CDATA[taskbar <1to50task> monitor two]]>
+        </name>
+        <actions>
+<mimic phrase="place this monitor two" />
+     <overlaymouseaction action="click" numbers="_value1"/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+   <![CDATA[task <1to50task> monitor two]]>
+        </name>
+        <actions>
+<mimic phrase="place this monitor two" />
+     <overlaymouseaction action="click" numbers="_value1"/>
+        </actions>
+      </command>
+ </commands>
+<lists>
+      <List>
+        <name>1to50task</name>
+        <items>
+          <item>-1\one</item>
+          <item>-2\two</item>
+          <item>-3\three</item>
+          <item>-4\four</item>
+          <item>-5\five</item>
+          <item>-6\six</item>
+          <item>-7\seven</item>
+          <item>-8\eight</item>
+          <item>-9\nine</item>
+          <item>-10\ten</item>
+          <item>-11\eleven</item>
+          <item>-12\twelve</item>
+          <item>-13\thirteen</item>
+          <item>-14\fourteen</item>
+          <item>-15\fifteen</item>
+          <item>-16\sixteen</item>
+          <item>-17\seventeen</item>
+          <item>-18\eighteen</item>
+          <item>-19\nineteen</item>
+          <item>-20\twenty</item>
+          <item>-21\twenty one</item>
+          <item>-22\twenty two</item>
+          <item>-23\twenty three</item>
+          <item>-24\twenty four</item>
+          <item>-25\twenty five</item>
+          <item>-26\twenty six</item>
+          <item>-27\twenty seven</item>
+          <item>-28\twenty eight</item>
+          <item>-29\twenty nine</item>
+          <item>-30\thirty</item>
+          <item>-31\thirty one</item>
+          <item>-32\thirty two</item>
+          <item>-33\thirty three</item>
+          <item>-34\thirty four</item>
+          <item>-35\thirty five</item>
+          <item>-36\thirty six</item>
+          <item>-37\thirty seven</item>
+          <item>-38\thirty eight</item>
+          <item>-39\thirty nine</item>
+          <item>-40\forty</item>
+          <item>-41\forty one</item>
+          <item>-42\forty two</item>
+          <item>-43\forty three</item>
+          <item>-44\forty four</item>
+          <item>-45\forty five</item>
+          <item>-46\forty six</item>
+          <item>-47\forty seven</item>
+          <item>-48\forty eight</item>
+          <item>-49\forty nine</item>
+          <item>-50\fifty</item>
+        </items>
+      </List>
+</lists>
+  </menu>
+    <menu name="ShNumAct" type="vplist">
+  <!-- commands that are active only when an overlay is being shown -->
+    <requires>
+     </requires>
+    <commands>
+    <command type="vp-script">
+        <name>
+          <![CDATA[<closenumbers1>]]>
+        </name>
+        <actions>
+          <numbers action="close" />
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+		<!-- Changed to UC style wording -->
+          <![CDATA[<1to300cf> Touch]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" numbers="_value1" stayopen="true" delay="1200" />
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[<1to300cf>]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" numbers="_value1" stayopen="true" delay="1200" />
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+		<!-- Changed to UC style wording -->
+          <![CDATA[<1to300cf> menu]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" numbers="_value1" stayopen="true" delay="1200" />
+      <wait ms="400"/>
+  <numbers action="display" controller="desktop" />
+        </actions>
+      </command>
+   <command type="vp-script">
+        <name>
+		<!-- Changed to UC style wording -->
+          <![CDATA[<1to300cf> copy]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" numbers="_value1" stayopen="true"/>
+          <wait ms="800"/>
+            <sendkeys mode="sync" string="^c"/>
+        </actions>
+      </command>
+   <command type="vp-script">
+        <name>
+		<!-- Changed to UC style wording -->
+          <![CDATA[<1to300cf> cut]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" numbers="_value1" stayopen="true"/>
+          <wait ms="800"/>
+            <sendkeys mode="sync" string="^x"/>
+        </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+		<!-- Changed to UC style wording -->
+          <![CDATA[<1to300cf> paste]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" numbers="_value1" stayopen="true"/>
+          <wait ms="800"/>
+            <sendkeys mode="sync" string="^v"/>
+        </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+		<!-- Changed to UC style wording -->
+          <![CDATA[<1to300cf> delete]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" numbers="_value1" stayopen="true"/>
+          <wait ms="800"/>
+            <sendkeys mode="sync" string="{delete}"/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+		<!-- Changed to UC style wording -->
+          <![CDATA[<1to300cf> no touch]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="move" numbers="_value1" stayopen="true" delay="1200" />
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+		<!-- Changed to UC style wording -->
+          <![CDATA[<1to300cf> right touch]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="rightclick" numbers="_value1" stayopen="true" delay="1200" />
+        </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+		<!-- Changed to UC style wording -->
+          <![CDATA[<1to300cf> touch twice]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="doubleclick" numbers="_value1" stayopen="true" delay="1200" />
+        </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+		<!-- Changed to UC style wording -->
+          <![CDATA[<1to300cf> open]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="doubleclick" numbers="_value1" stayopen="true" delay="1200" />
+        </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+          <![CDATA[double click <1to300cf>]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="doubleclick" numbers="_value1" stayopen="true" delay="1200" />
+        </actions>
+      </command>
+  <command type="vp-script">
+    <name>
+	<!-- Changed to UC style wording -->
+      <![CDATA[<1to300cf> drag to <1to300cf>]]>
+    </name>
+    <actions>
+      <overlaymouseaction action ="drag" numbers="_value1,_value2" stayopen="true" delay="2000" />
+    </actions>
+  </command>
+       <command type="vp-script">
+        <name>
+		<!-- Changed to UC style wording -->
+          <![CDATA[<1to300cf> shift touch]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" press="SHIFT" numbers="_value1"  stayopen="true" delay="1200" />
+        </actions>
+      </command>
+       <command type="vp-script">
+        <name>
+		<!-- Changed to UC style wording -->
+          <![CDATA[<1to300cf> control touch]]>
+        </name>
+        <actions>
+     <overlaymouseaction action="click" press="CONTROL" numbers="_value1" stayopen="true" delay="1200" />
+        </actions>
+      </command>
+
+      <command type="vp-script">
+        <name>
+          <![CDATA[<1to300cf> <1to300cf> control touch]]>
+        </name>
+        <actions>
+     <overlaymouseaction action="click" press="CONTROL" numbers="_value1,_value2" stayopen="true" delay="1200"  />
+        </actions>
+      </command>
+	  
+ <!-- Removed kp2018-01-22 
+	  <command type="vp-script">
+        <name>
+          <![CDATA[control click <1to300cf> <1to300cf> and <1to300cf>]]>
+        </name>
+        <actions>
+     <overlaymouseaction action="click" press="CONTROL" numbers="_value1,_value2,_value3" stayopen="true" delay="1200"/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[control click <1to300cf> <1to300cf> <1to300cf> and <1to300cf>]]>
+        </name>
+        <actions>
+     <overlaymouseaction action="click" press="CONTROL" numbers="_value1,_value2,_value3,_value4" stayopen="true" delay="1200"/>
+        </actions>
+      </command>
+	  -->
+	  
+      <command type="vp-script">
+        <name>
+          <![CDATA[toggle]]>
+        </name>
+        <actions>
+          <numbers action="close" />
+          <wait ms="500"/>
+          <wait ms="500"/>
+          <wait ms="500"/>
+          <numbers action="display" />
+        </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+          <![CDATA[page down]]>
+        </name>
+        <actions>
+          <mimic phrase="press page down" />
+          <wait ms="100"/>
+       <mimic phrase="intag that" />
+        </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+          <![CDATA[page up]]>
+        </name>
+        <actions>
+          <mimic phrase="press page up" />
+          <wait ms="100"/>
+       <mimic phrase="intag that" />
+        </actions>
+      </command>
+   <command type="vp-script">
+        <name>
+          <![CDATA[<gotopz>]]>
+        </name>
+        <actions>
+            <sendkeys mode="sync" string="^{home}"/>
+          <wait ms="300"/>
+     <mimic phrase="intag that" />
+        </actions>
+      </command>
+   <command type="vp-script">
+        <name>
+          <![CDATA[<gobottomz>]]>
+        </name>
+        <actions>
+            <sendkeys mode="sync" string="^{end}"/>
+          <wait ms="300"/>
+     <mimic phrase="intag that" />
+        </actions>
+      </command>
+  <!-- Custom commands section. Commands that are commented out. Just copy the commands you want from
+<command type  through
+</command>
+from this section into the non-commented out section.
+  default speed if not specified is 50
+     <command type="vp-script">
+        <name>
+          <![CDATA[click left <1to300cf>]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" numbers="_value1" stayopen="true" delay="1200" position="left" offsetx="18"/>
+     <bringtofront/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[left <1to300cf>]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" numbers="_value1" position="left" offsetx="18"/>
+     <bringtofront/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[click left <1to300cf>]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" numbers="_value1" offsetx="18" stayopen="true" delay="1200" />
+     <bringtofront/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+   <![CDATA[intag <1to300cf> left]]>
+        </name>
+        <actions>
+    <mimic phrase="place this window left" />
+    <wait ms="100"/>
+  <overlaymouseaction action="click" numbers="_value1"/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[intag <1to300cf> center]]>
+        </name>
+        <actions>
+<mimic phrase="place this window center" />
+    <wait ms="100"/>
+  <overlaymouseaction action="click" numbers="_value1"/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[intag <1to300cf> right]]>
+        </name>
+        <actions>
+<mimic phrase="place this window right" />
+    <wait ms="100"/>
+  <overlaymouseaction action="click" numbers="_value1"/>
+        </actions>
+      </command>
+<command type="vp-script">
+        <name>
+          <![CDATA[click <A-A> <1to100ad>]]>
+        </name>
+        <actions>
+          <overlaymouseaction action="click" id="_value1" percent="_value2" stayopen="true" />
+        </actions>
+      </command>
+<command type="vp-script">
+        <name>
+          <![CDATA[double click <A-A> <1to100ad>]]>
+        </name>
+        <actions>
+          <overlaymouseaction action="doubleclick" press="CONTROL"  id="_value1" percent="_value2" stayopen="true" />
+        </actions>
+      </command>
+<command type="vp-script">
+        <name>
+          <![CDATA[control click <A-A> <1to100ad>]]>
+        </name>
+        <actions>
+          <overlaymouseaction action="click" press="CONTROL"  id="_value1" percent="_value2" stayopen="true" />
+        </actions>
+      </command>
+<command type="vp-script">
+        <name>
+          <![CDATA[shift click <A-A> <1to100ad>]]>
+        </name>
+        <actions>
+          <overlaymouseaction action="click" press="SHIFT"  id="_value1" percent="_value2" stayopen="true" />
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[<1to300cf> finish]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" numbers="_value1" delay="1200" />
+        </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+          <![CDATA[follow <1to300cf>]]>
+        </name>
+        <actions>
+          <overlaymouseaction action="click" numbers="_value1" stayopen="true" delay="4000" />
+        </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+          <![CDATA[double follow <1to300cf>]]>
+        </name>
+        <actions>
+          <overlaymouseaction action="doubleclick" numbers="_value1" stayopen="true" delay="4000" />
+        </actions>
+      </command>
+<command type="vp-script">
+        <name>
+          <![CDATA[click <A-D> <1to100ad>]]>
+        </name>
+        <actions>
+          <overlaymouseaction action="click" id="_value1" percent="_value2" stayopen="true" />
+        </actions>
+      </command>
+<command type="vp-script">
+        <name>
+          <![CDATA[double click <A-D> <1to100ad>]]>
+        </name>
+        <actions>
+          <overlaymouseaction action="doubleclick" press="CONTROL"  id="_value1" percent="_value2" stayopen="true" />
+        </actions>
+      </command>
+<command type="vp-script">
+        <name>
+          <![CDATA[control click <A-D> <1to100ad>]]>
+        </name>
+        <actions>
+          <overlaymouseaction action="click" press="CONTROL"  id="_value1" percent="_value2" stayopen="true" />
+        </actions>
+      </command>
+<command type="vp-script">
+        <name>
+          <![CDATA[shift click <A-D> <1to100ad>]]>
+        </name>
+        <actions>
+          <overlaymouseaction action="click" press="SHIFT"  id="_value1" percent="_value2" stayopen="true" />
+        </actions>
+      </command>
+  <command type="vp-script">
+        <name>
+          <![CDATA[<1to300cf> page down]]>
+               </name>
+        <actions>
+   <overlaymouseaction action="click" numbers="_value1" />
+          <wait ms="500"/>
+        <mimic phrase="page down" />
+        </actions>
+      </command>
+   <command type="vp-script">
+        <name>
+          <![CDATA[<1to300cf> page up]]>
+        </name>
+        <actions>
+   <overlaymouseaction action="click" numbers="_value1" />
+          <wait ms="500"/>
+	        <mimic phrase="page up" />
+        </actions>
+      </command>
+   <command type="vp-script">
+        <name>
+          <![CDATA[<1to300cf> <down1_5>]]>
+        </name>
+        <actions>
+   <overlaymouseaction action="click" numbers="_value1" />
+          <wait ms="500"/>
+            <sendkeys mode="sync" string="_value2"/>
+          <wait ms="500"/>
+            <sendkeys mode="sync" string="{tab 2}"/>
+        </actions>
+      </command>
+   <command type="vp-script">
+        <name>
+          <![CDATA[<1to300cf> <cartruck1>]]>
+        </name>
+        <actions>
+   <overlaymouseaction action="click" numbers="_value1" />
+          <wait ms="500"/>
+      <wait ms="300"/>
+            <sendkeys mode="sync" string="_value2"/>
+          <wait ms="500"/>
+            <sendkeys mode="sync" string="{tab 2}"/>
+        </actions>
+      </command>
+   <command type="vp-script">
+        <name>
+          <![CDATA[<1to300cf> yes]]>
+        </name>
+        <actions>
+   <overlaymouseaction action="click" numbers="_value1" />
+          <wait ms="500"/>
+               <mimic phrase="yes" />
+          <wait ms="800"/>
+            <sendkeys mode="sync" string="{tab 2}"/>
+        </actions>
+      </command>
+   <command type="vp-script">
+        <name>
+          <![CDATA[<1to300cf> no]]>
+        </name>
+        <actions>
+   <overlaymouseaction action="click" numbers="_value1" />
+          <wait ms="500"/>
+               <mimic phrase="no" />
+          <wait ms="800"/>
+            <sendkeys mode="sync" string="{tab 2}"/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[Google search <1to40cf>]]>
+        </name>
+        <actions>
+            <wait ms="200" />
+            <mimic phrase="stop listening" />
+            <wait ms="800" />
+  <overlaymouseaction action="click" numbers="_value1" />
+     <bringtofront/>
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[left <1to300cf>]]>
+        </name>
+        <actions>
+  <overlaymouseaction action="click" numbers="_value1" position="left" offsetx="18"/>
+     <bringtofront/>
+        </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+          <![CDATA[double click <1to300cf>]]>
+        </name>
+        <actions>
+   <overlaymouseaction action="doubleclick" numbers="_value1"/>
+     <bringtofront/>
+        </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+          <![CDATA[double click left <1to300cf>]]>
+        </name>
+        <actions>
+   <overlaymouseaction action="doubleclick" numbers="_value1" position="left" offsetx="18" />
+     <bringtofront/>
+        </actions>
+      </command>
+       <command type="vp-script">
+        <name>
+          <![CDATA[control click <1to300cf>]]>
+        </name>
+        <actions>
+     <overlaymouseaction action="click" press="CONTROL" numbers="_value1"  stayopen="true" />
+        </actions>
+      </command>
+       <command type="vp-script">
+        <name>
+          <![CDATA[control click <1to300cf> and <1to300cf>]]>
+        </name>
+        <actions>
+     <overlaymouseaction action="click" press="CONTROL" numbers="_value1,_value2"  stayopen="true" />
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[control click <1to300cf> <1to300cf> and <1to300cf>]]>
+        </name>
+        <actions>
+     <overlaymouseaction action="click" press="CONTROL" numbers="_value1,_value2,_value3"  stayopen="true" />
+        </actions>
+      </command>
+  <command type="vp-script">
+    <name>
+      <![CDATA[custom <1to300cf>]]>
+    </name>
+    <actions>
+      <overlaymouseaction action="click" numbers="_value1" position="left" offsetx="18" stayopen="true" delay="1200"/>
+    </actions>
+  </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[click <1to300cf> and <1to300cf>]]>
+        </name>
+        <actions>
+     <overlaymouseaction action="click"  numbers="_value1,_value2"  stayopen="true" />
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[click <1to300cf> <1to300cf> and <1to300cf>]]>
+        </name>
+        <actions>
+     <overlaymouseaction action="click"  numbers="_value1,_value2,_value3"  stayopen="true" />
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[click <1to300cf> <1to300cf> <1to300cf> and <1to300cf>]]>
+        </name>
+        <actions>
+     <overlaymouseaction action="click"  numbers="_value1,_value2,_value3,_value4"  stayopen="true" />
+        </actions>
+      </command>
+     <command type="vp-script">
+        <name>
+          <![CDATA[click <1to300cf> <1to300cf> <1to300cf> and <1to300cf>]]>
+        </name>
+        <actions>
+     <overlaymouseaction action="click"  numbers="_value1,_value2,_value3,_value4"  stayopen="true" />
+        </actions>
+      </command>
+End of commented out custom commands
+-->
+    </commands>
+    <lists>
+    <List>
+        <name>closenumbers1</name>
+        <items>
+         <item>close numbers</item>
+          <item>close intags</item>
+          <item>hide intags</item>
+          <item>hide numbers</item>
+          <item>close show numbers</item>
+        </items>
+      </List>
+      <List>
+        <name>gotopz</name>
+        <items>
+          <item>go to top</item>
+           <item>go top</item>
+        </items>
+      </List>
+      <List>
+        <name>gobottomz</name>
+        <items>
+          <item>go to bottom</item>
+          <item>go bottom</item>
+        </items>
+      </List>
+        <List>
+          <name>leftright9</name>
+          <items>
+            <item>topleft\left</item>
+            <item>topright\right</item>
+            <item>topright\place right</item>
+          </items>
+        </List>
+    <List>
+        <name>down1_5</name>
+        <items>
+          <item>{down}\down 1</item>
+          <item>{down}\down one</item>
+          <item>{down 2}\down 2</item>
+          <item>{down 2}\down two</item>
+          <item>{down 3}\down 3</item>
+          <item>{down 3}\down three</item>
+          <item>{down 4}\down 4</item>
+          <item>{down 4}\down four</item>
+          <item>{down 5}\down 5</item>
+          <item>{down 5}\down five</item>
+        </items>
+      </List>
+    <List>
+        <name>cartruck1</name>
+        <items>
+          <item>car\car</item>
+          <item>trk\truck</item>
+          <item>SUV\S. U. V.</item>
+        </items>
+      </List>
+    <List>
+        <name>A-A</name>
+        <items>
+          <item>A\A.</item>
+          <item>A\ah</item>
+        </items>
+      </List>
+    <List>
+        <name>A-D</name>
+        <items>
+          <item>A\A.</item>
+          <item>A\ah</item>
+       <item>B\B</item>
+       <item>C\C</item>
+       <item>D\D</item>
+        </items>
+      </List>
+      <List>
+        <name>1to100ad</name>
+        <items>
+          <item>1\one</item>
+          <item>2\two</item>
+          <item>3\three</item>
+          <item>4\four</item>
+          <item>5\five</item>
+          <item>6\six</item>
+          <item>7\seven</item>
+          <item>8\eight</item>
+          <item>9\nine</item>
+          <item>10\ten</item>
+          <item>11\eleven</item>
+          <item>12\twelve</item>
+          <item>13\thirteen</item>
+          <item>14\fourteen</item>
+          <item>15\fifteen</item>
+          <item>16\sixteen</item>
+          <item>17\seventeen</item>
+          <item>18\eighteen</item>
+          <item>19\nineteen</item>
+          <item>20\twenty</item>
+          <item>21\twenty one</item>
+          <item>22\twenty two</item>
+          <item>23\twenty three</item>
+          <item>24\twenty four</item>
+          <item>25\twenty five</item>
+          <item>26\twenty six</item>
+          <item>27\twenty seven</item>
+          <item>28\twenty eight</item>
+          <item>29\twenty nine</item>
+          <item>30\thirty</item>
+          <item>31\thirty one</item>
+          <item>32\thirty two</item>
+          <item>33\thirty three</item>
+          <item>34\thirty four</item>
+          <item>35\thirty five</item>
+          <item>36\thirty six</item>
+          <item>37\thirty seven</item>
+          <item>38\thirty eight</item>
+          <item>39\thirty nine</item>
+          <item>40\forty</item>
+          <item>41\forty one</item>
+          <item>42\forty two</item>
+          <item>43\forty three</item>
+          <item>44\forty four</item>
+          <item>45\forty five</item>
+          <item>46\forty six</item>
+          <item>47\forty seven</item>
+          <item>48\forty eight</item>
+          <item>49\forty nine</item>
+          <item>50\fifty</item>
+          <item>51\fifty one</item>
+          <item>52\fifty two</item>
+          <item>53\fifty three</item>
+          <item>54\fifty four</item>
+          <item>55\fifty five</item>
+          <item>56\fifty six</item>
+          <item>57\fifty seven</item>
+          <item>58\fifty eight</item>
+          <item>59\fifty nine</item>
+          <item>60\sixty</item>
+          <item>61\sixty one</item>
+          <item>62\sixty two</item>
+          <item>63\sixty three</item>
+          <item>64\sixty four</item>
+          <item>65\sixty five</item>
+          <item>66\sixty six</item>
+          <item>67\sixty seven</item>
+          <item>68\sixty eight</item>
+          <item>69\sixty nine</item>
+          <item>70\seventy</item>
+          <item>71\seventy one</item>
+          <item>72\seventy two</item>
+          <item>73\seventy three</item>
+          <item>74\seventy four</item>
+          <item>75\seventy five</item>
+          <item>76\seventy six</item>
+          <item>77\seventy seven</item>
+          <item>78\seventy eight</item>
+          <item>79\seventy nine</item>
+          <item>80\eighty</item>
+          <item>81\eighty one</item>
+          <item>82\eighty two</item>
+          <item>83\eighty three</item>
+          <item>84\eighty four</item>
+          <item>85\eighty five</item>
+          <item>86\eighty six</item>
+          <item>87\eighty seven</item>
+          <item>88\eighty eight</item>
+          <item>89\eighty nine</item>
+          <item>90\ninety</item>
+          <item>91\ninety one</item>
+          <item>92\ninety two</item>
+          <item>93\ninety three</item>
+          <item>94\ninety four</item>
+          <item>95\ninety five</item>
+          <item>96\ninety six</item>
+          <item>97\ninety seven</item>
+          <item>98\ninety eight</item>
+          <item>99\ninety nine</item>
+          <item>100\one hundred</item>
+        </items>
+      </List>
+      <List>
+        <name>1to300cf</name>
+        <items>
+          <item>1\one</item>
+          <item>2\two</item>
+          <item>3\three</item>
+          <item>4\four</item>
+          <item>5\five</item>
+          <item>6\six</item>
+          <item>7\seven</item>
+          <item>8\eight</item>
+          <item>9\nine</item>
+          <item>10\ten</item>
+          <item>11\eleven</item>
+          <item>12\twelve</item>
+          <item>13\thirteen</item>
+          <item>14\fourteen</item>
+          <item>15\fifteen</item>
+          <item>16\sixteen</item>
+          <item>17\seventeen</item>
+          <item>18\eighteen</item>
+          <item>19\nineteen</item>
+          <item>20\twenty</item>
+          <item>21\twenty one</item>
+          <item>22\twenty two</item>
+          <item>23\twenty three</item>
+          <item>24\twenty four</item>
+          <item>25\twenty five</item>
+          <item>26\twenty six</item>
+          <item>27\twenty seven</item>
+          <item>28\twenty eight</item>
+          <item>29\twenty nine</item>
+          <item>30\thirty</item>
+          <item>31\thirty one</item>
+          <item>32\thirty two</item>
+          <item>33\thirty three</item>
+          <item>34\thirty four</item>
+          <item>35\thirty five</item>
+          <item>36\thirty six</item>
+          <item>37\thirty seven</item>
+          <item>38\thirty eight</item>
+          <item>39\thirty nine</item>
+          <item>40\forty</item>
+          <item>41\forty one</item>
+          <item>42\forty two</item>
+          <item>43\forty three</item>
+          <item>44\forty four</item>
+          <item>45\forty five</item>
+          <item>46\forty six</item>
+          <item>47\forty seven</item>
+          <item>48\forty eight</item>
+          <item>49\forty nine</item>
+          <item>50\fifty</item>
+          <item>51\fifty one</item>
+          <item>52\fifty two</item>
+          <item>53\fifty three</item>
+          <item>54\fifty four</item>
+          <item>55\fifty five</item>
+          <item>56\fifty six</item>
+          <item>57\fifty seven</item>
+          <item>58\fifty eight</item>
+          <item>59\fifty nine</item>
+          <item>60\sixty</item>
+          <item>61\sixty one</item>
+          <item>62\sixty two</item>
+          <item>63\sixty three</item>
+          <item>64\sixty four</item>
+          <item>65\sixty five</item>
+          <item>66\sixty six</item>
+          <item>67\sixty seven</item>
+          <item>68\sixty eight</item>
+          <item>69\sixty nine</item>
+          <item>70\seventy</item>
+          <item>71\seventy one</item>
+          <item>72\seventy two</item>
+          <item>73\seventy three</item>
+          <item>74\seventy four</item>
+          <item>75\seventy five</item>
+          <item>76\seventy six</item>
+          <item>77\seventy seven</item>
+          <item>78\seventy eight</item>
+          <item>79\seventy nine</item>
+          <item>80\eighty</item>
+          <item>81\eighty one</item>
+          <item>82\eighty two</item>
+          <item>83\eighty three</item>
+          <item>84\eighty four</item>
+          <item>85\eighty five</item>
+          <item>86\eighty six</item>
+          <item>87\eighty seven</item>
+          <item>88\eighty eight</item>
+          <item>89\eighty nine</item>
+          <item>90\ninety</item>
+          <item>91\ninety one</item>
+          <item>92\ninety two</item>
+          <item>93\ninety three</item>
+          <item>94\ninety four</item>
+          <item>95\ninety five</item>
+          <item>96\ninety six</item>
+          <item>97\ninety seven</item>
+          <item>98\ninety eight</item>
+          <item>99\ninety nine</item>
+          <item>100\one hundred</item>
+          <item>101\one hundred one</item>
+          <item>102\one hundred two</item>
+          <item>103\one hundred three</item>
+          <item>104\one hundred four</item>
+          <item>105\one hundred five</item>
+          <item>106\one hundred six</item>
+          <item>107\one hundred seven</item>
+          <item>108\one hundred eight</item>
+          <item>109\one hundred nine</item>
+          <item>110\one hundred ten</item>
+          <item>101\one oh one</item>
+          <item>101\oneoh one</item>
+          <item>102\one oh two</item>
+          <item>103\one oh three</item>
+          <item>104\one oh four</item>
+          <item>105\one oh five</item>
+          <item>106\one oh six</item>
+          <item>107\one oh seven</item>
+          <item>108\one oh eight</item>
+          <item>109\one oh nine</item>
+          <item>110\one ten</item>
+          <item>111\one eleven</item>
+          <item>112\one twelve</item>
+          <item>113\one thirteen</item>
+          <item>114\one fourteen</item>
+          <item>115\one fifteen</item>
+          <item>116\one sixteen</item>
+          <item>117\one seventeen</item>
+          <item>118\one eighteen</item>
+          <item>119\one nineteen</item>
+          <item>120\one twenty</item>
+          <item>121\one twenty one</item>
+          <item>122\one twenty two</item>
+          <item>123\one twenty three</item>
+          <item>124\one twenty four</item>
+          <item>125\one twenty five</item>
+          <item>126\one twenty six</item>
+          <item>127\one twenty seven</item>
+          <item>128\one twenty eight</item>
+          <item>129\one twenty nine</item>
+          <item>130\one thirty</item>
+          <item>131\one thirty one</item>
+          <item>132\one thirty two</item>
+          <item>133\one thirty three</item>
+          <item>134\one thirty four</item>
+          <item>135\one thirty five</item>
+          <item>136\one thirty six</item>
+          <item>137\one thirty seven</item>
+          <item>138\one thirty eight</item>
+          <item>139\one thirty nine</item>
+          <item>140\one forty</item>
+          <item>141\one forty one</item>
+          <item>142\one forty two</item>
+          <item>143\one forty three</item>
+          <item>144\one forty four</item>
+          <item>145\one forty five</item>
+          <item>146\one forty six</item>
+          <item>147\one forty seven</item>
+          <item>148\one forty eight</item>
+          <item>149\one forty nine</item>
+          <item>150\one fifty</item>
+          <item>151\one fifty one</item>
+          <item>152\one fifty two</item>
+          <item>153\one fifty three</item>
+          <item>154\one fifty four</item>
+          <item>155\one fifty five</item>
+          <item>156\one fifty six</item>
+          <item>157\one fifty seven</item>
+          <item>158\one fifty eight</item>
+          <item>159\one fifty nine</item>
+          <item>160\one sixty</item>
+          <item>161\one sixty one</item>
+          <item>162\one sixty two</item>
+          <item>163\one sixty three</item>
+          <item>164\one sixty four</item>
+          <item>165\one sixty five</item>
+          <item>166\one sixty six</item>
+          <item>167\one sixty seven</item>
+          <item>168\one sixty eight</item>
+          <item>169\one sixty nine</item>
+          <item>170\one seventy</item>
+          <item>171\one seventy one</item>
+          <item>172\one seventy two</item>
+          <item>173\one seventy three</item>
+          <item>174\one seventy four</item>
+          <item>175\one seventy five</item>
+          <item>176\one seventy six</item>
+          <item>177\one seventy seven</item>
+          <item>178\one seventy eight</item>
+          <item>179\one seventy nine</item>
+          <item>180\one eighty</item>
+          <item>181\one eighty one</item>
+          <item>182\one eighty two</item>
+          <item>183\one eighty three</item>
+          <item>184\one eighty four</item>
+          <item>185\one eighty five</item>
+          <item>186\one eighty six</item>
+          <item>187\one eighty seven</item>
+          <item>188\one eighty eight</item>
+          <item>189\one eighty nine</item>
+          <item>190\one ninety</item>
+          <item>191\one ninety one</item>
+          <item>192\one ninety two</item>
+          <item>193\one ninety three</item>
+          <item>194\one ninety four</item>
+          <item>195\one ninety five</item>
+          <item>196\one ninety six</item>
+          <item>197\one ninety seven</item>
+          <item>198\one ninety eight</item>
+          <item>199\one ninety nine</item>
+          <item>200\two hundred</item>
+          <item>201\two hundred one</item>
+          <item>202\two hundred two</item>
+          <item>203\two hundred three</item>
+          <item>204\two hundred four</item>
+          <item>205\two hundred five</item>
+          <item>206\two hundred six</item>
+          <item>207\two hundred seven</item>
+          <item>208\two hundred eight</item>
+          <item>209\two hundred nine</item>
+          <item>210\two hundred ten</item>
+          <item>201\two oh one</item>
+          <item>202\twooh two</item>
+          <item>202\two oh two</item>
+          <item>203\two oh three</item>
+          <item>204\two oh four</item>
+          <item>205\two oh five</item>
+          <item>206\two oh six</item>
+          <item>207\two oh seven</item>
+          <item>208\two oh eight</item>
+          <item>209\two oh nine</item>
+          <item>210\two ten</item>
+          <item>211\two eleven</item>
+          <item>212\two twelve</item>
+          <item>213\two thirteen</item>
+          <item>214\two fourteen</item>
+          <item>215\two fifteen</item>
+          <item>216\two sixteen</item>
+          <item>217\two seventeen</item>
+          <item>218\two eighteen</item>
+          <item>219\two nineteen</item>
+          <item>220\two twenty</item>
+          <item>221\two twenty one</item>
+          <item>222\two twenty two</item>
+          <item>223\two twenty three</item>
+          <item>224\two twenty four</item>
+          <item>225\two twenty five</item>
+          <item>226\two twenty six</item>
+          <item>227\two twenty seven</item>
+          <item>228\two twenty eight</item>
+          <item>229\two twenty nine</item>
+          <item>230\two thirty</item>
+          <item>231\two thirty one</item>
+          <item>232\two thirty two</item>
+          <item>233\two thirty three</item>
+          <item>234\two thirty four</item>
+          <item>235\two thirty five</item>
+          <item>236\two thirty six</item>
+          <item>237\two thirty seven</item>
+          <item>238\two thirty eight</item>
+          <item>239\two thirty nine</item>
+          <item>240\two forty</item>
+          <item>241\two forty one</item>
+          <item>242\two forty two</item>
+          <item>243\two forty three</item>
+          <item>244\two forty four</item>
+          <item>245\two forty five</item>
+          <item>246\two forty six</item>
+          <item>247\two forty seven</item>
+          <item>248\two forty eight</item>
+          <item>249\two forty nine</item>
+          <item>250\two fifty</item>
+          <item>251\two fifty one</item>
+          <item>252\two fifty two</item>
+          <item>253\two fifty three</item>
+          <item>254\two fifty four</item>
+          <item>255\two fifty five</item>
+          <item>256\two fifty six</item>
+          <item>257\two fifty seven</item>
+          <item>258\two fifty eight</item>
+          <item>259\two fifty nine</item>
+          <item>260\two sixty</item>
+          <item>261\two sixty one</item>
+          <item>262\two sixty two</item>
+          <item>263\two sixty three</item>
+          <item>264\two sixty four</item>
+          <item>265\two sixty five</item>
+          <item>266\two sixty six</item>
+          <item>267\two sixty seven</item>
+          <item>268\two sixty eight</item>
+          <item>269\two sixty nine</item>
+          <item>270\two seventy</item>
+          <item>271\two seventy one</item>
+          <item>272\two seventy two</item>
+          <item>273\two seventy three</item>
+          <item>274\two seventy four</item>
+          <item>275\two seventy five</item>
+          <item>276\two seventy six</item>
+          <item>277\two seventy seven</item>
+          <item>278\two seventy eight</item>
+          <item>279\two seventy nine</item>
+          <item>280\two eighty</item>
+          <item>281\two eighty one</item>
+          <item>282\two eighty two</item>
+          <item>283\two eighty three</item>
+          <item>284\two eighty four</item>
+          <item>285\two eighty five</item>
+          <item>286\two eighty six</item>
+          <item>287\two eighty seven</item>
+          <item>288\two eighty eight</item>
+          <item>289\two eighty nine</item>
+          <item>290\two ninety</item>
+          <item>291\two ninety one</item>
+          <item>292\two ninety two</item>
+          <item>293\two ninety three</item>
+          <item>294\two ninety four</item>
+          <item>295\two ninety five</item>
+          <item>296\two ninety six</item>
+          <item>297\two ninety seven</item>
+          <item>298\two ninety eight</item>
+          <item>299\two ninety nine</item>
+          <item>300\three hundred</item>
+          </items>
+      </List>
+    </lists>
+  </menu>
+<menu name="VP_showdocs2" type="normal">
+      <requires>
+    </requires>
+<commands>
+      <command type="legacy-script">
+        <name><![CDATA[show <files3>]]></name>
+        <actions>
+       <action><![CDATA[Wait 10]]></action>
+     <action><![CDATA[num1$ = mid$(_arg1, 0, instr(_arg1, "\") - 1)]]></action>
+     <action><![CDATA[Wait 10]]></action>
+          <action><![CDATA[ShellExecute "XXYYZZscripts\Open_VP1.exe $*#*$a1x2y2z2" + num1$]]></action>
+        </actions>
+        <runtime_changes>
+          <replace>XXYYZZ, rootpath</replace>
+          <replace>x2y2z2, vtpath2transfer</replace>
+        </runtime_changes>
+      </command>
+      <command type="legacy-script">
+        <name><![CDATA[show <type3> files]]></name>
+        <actions>
+      <action><![CDATA[Wait 10]]></action>
+      <action><![CDATA[_arg1 = mid$(_arg1, 0, instr(_arg1, "\") - 1)]]></action>
+          <action><![CDATA[Wait 300]]></action>
+          <action><![CDATA[sendkeys "f3"]]></action>
+          <action><![CDATA[Wait 100]]></action>
+          <action><![CDATA[sendkeys "{backspace}"]]></action>
+          <action><![CDATA[Wait 1000]]></action>
+          <action><![CDATA[Wait 300]]></action>
+          <action><![CDATA[sendkeys _arg1]]></action>
+          <action><![CDATA[Wait 300]]></action>
+          <action><![CDATA[sendkeys "{enter}"]]></action>
+        </actions>
+        <runtime_changes>
+          <replace>XXYYZZ, rootpath</replace>
+          <replace>x2y2z2, vtpath2transfer</replace>
+        </runtime_changes>
+      </command>
+      <command type="legacy-script">
+        <name><![CDATA[<savetofav1>]]></name>
+        <actions>
+          <action><![CDATA[ShellExecute "XXYYZZscripts\Open_VP1.exe $*#*$b1x2y2z2j2"]]></action>
+         <action><![CDATA[Wait 1000]]></action>
+          <action><![CDATA[Wait 300]]></action>
+        <action><![CDATA[HeardWord "intag","that"]]></action>
+        </actions>
+        <runtime_changes>
+          <replace>XXYYZZ, rootpath</replace>
+          <replace>x2y2z2, vtpath2transfer</replace>
+        </runtime_changes>
+      </command>
+      <command type="legacy-script">
+        <name><![CDATA[<openfromfav1>]]></name>
+        <actions>
+          <action><![CDATA[ShellExecute "XXYYZZscripts\Open_VP1.exe $*#*$b1x2y2z2j3"]]></action>
+         <action><![CDATA[Wait 1000]]></action>
+          <action><![CDATA[Wait 300]]></action>
+        <action><![CDATA[HeardWord "intag","that"]]></action>
+        </actions>
+        <runtime_changes>
+          <replace>XXYYZZ, rootpath</replace>
+          <replace>x2y2z2, vtpath2transfer</replace>
+        </runtime_changes>
+      </command>
+</commands>
+    <lists>
+  <List>
+        <name>savetofav1</name>
+        <items>
+          <item>save to favorites</item>
+          <item>save file to favorites</item>
+          <item>save document to favorites</item>
+        </items>
+      </List>
+    <List>
+        <name>openfromfav1</name>
+        <items>
+          <item>open from favorites</item>
+          <item>open file from favorites</item>
+          <item>open document from favorites</item>
+        </items>
+      </List>
+    <List>
+        <name>files3</name>
+        <items>
+           <item>w7\my favorites</item>
+          <item>w8\my history</item>
+          <item>w9\my templates</item>
+          <item>x1\my pictures</item>
+          <item>x2\my videos</item>
+          <item>x3\my music</item>
+          <item>x4\my documents</item>
+          <item>x5\web favorites</item>
+          <item>x6\recent files</item>
+        </items>
+      </List>
+    <List>
+        <name>type3</name>
+        <items>
+          <item>.doc\word</item>
+          <item>.xls\excel</item>
+          <item>.txt\text</item>
+          <item>.pdf\pdf</item>
+          <item>{backspace}\all</item>
+          <item>.ppt\powerpoint</item>
+        </items>
+      </List>
+    </lists>
+  </menu>
+</menus>
+
