@@ -1,0 +1,2202 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+ 
+	STATE "Global Commands" GLOBAL {
+################## Sec. 10: Utilities
+#10a Speech Clipboard
+#10b Date and Time
+#10c Timer
+#10d Break Timer
+#10e Break and Time
+#10f Reminders
+#10g Sound System
+#10h Monitor
+#10i Cell
+ 
+#In b
+#10j Native commands: common dialog boxes (native formatting in 7b)
+#10k Native commands: common menu commands (native formatting in 7b)
+#10l Restart and Shut Down
+ 
+##################
+ 
+#See section 4 for user Keyword macros
+#10a.  Speech Clipboard
+ 
+		COMMAND "<1-20> <FilePathFPFBottom>" {
+			SCRIPT {
+				' SClipFile at 72
+				IF _arg2 = "File" XOR _arg2 = "File Bottom" THEN DllCall "UttC.dll", 72, _arg1
+				IF _arg2 = "Path" XOR _arg2 = "File Path" THEN SendKeys "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\" + _arg1 + ".txt"
+				IF _arg2 = "File Bottom" THEN 
+				Wait 500
+				SendKeys "{Ctrl+END}"
+				END IF
+			}
+		}
+ 
+		COMMAND "List <1-20> <FilePathFPBottomFB>" {
+			SCRIPT {
+				p$ = "List " + _arg1
+				' SClipFile at 72
+				IF _arg2 = "File" XOR _arg2 = "File Bottom" XOR _arg2 = "Bottom" THEN DllCall "UttC.dll", 72, p$
+				IF _arg2 = "Path" XOR _arg2 = "File Path" THEN SendKeys "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\List " + _arg1 + ".txt"
+				IF _arg2 = "File Bottom" XOR _arg2 = "Bottom" THEN 
+				Wait 500
+				SendKeys "{Ctrl+END}"
+				END IF
+			}
+		}
+		COMMAND "<Alpha-Zulu> <FilePathFPBottomFB>" {
+			SCRIPT {
+				' SClipFile at 72
+				IF _arg2 = "File" XOR _arg2 = "File Bottom" XOR _arg2 = "Bottom" THEN DllCall "UttC.dll", 72, _arg1
+				IF _arg2 = "Path" XOR _arg2 = "File Path" THEN SendKeys "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\" + _arg1 + ".rtf"
+				IF _arg2 = "File Bottom" XOR _arg2 = "Bottom" THEN 
+				Wait 500
+				SendKeys "{Ctrl+END}"
+				END IF
+			}
+		}
+		COMMAND "Doc <1-20> <FilePathFPBottomFB>" {
+			SCRIPT {
+				IF _arg2 = "File" XOR _arg2 = "File Bottom" XOR _arg2 = "Bottom" THEN
+				p$ = "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\Doc " + _arg1 + ".doc"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				END IF
+				IF _arg2 = "Path" XOR _arg2 = "File Path" THEN SendKeys "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\Doc " + _arg1 + ".doc"
+				IF _arg2 = "File Bottom" XOR _arg2 = "Bottom" THEN 
+				Wait 500
+				SendKeys "{Ctrl+END}"
+				END IF
+			}
+		}
+		LIST "FilePathFPFBottom" {
+			"File"  "File Path"  "Path"  "File Bottom"
+		}
+		LIST "FilePathFPBottomFB" {
+			"File"  "File Path"  "Path"  "Bottom" "File Bottom"
+		}
+ 
+		COMMAND "<CopyCutWLGCAllC> To <1-20> <FileEnterFEReturnStayFRS>" {
+			SCRIPT {
+				IF _arg1 = "All Copy" THEN SendKeys "{Ctrl+a}{Ctrl+c}"
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Letter Copy" THEN SendKeys "{Shift+Right}{Ctrl+c}"
+				IF _arg1 = "Letter Cut" THEN SendKeys "{Shift+Right}{Ctrl+x}"
+				IF _arg1 = "Word Copy" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Word Top Copy" THEN SendKeys "{Shift+Ctrl+Left}{Ctrl+c}"
+				IF _arg1 = "Word Bottom Copy" THEN SendKeys "{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Line Top Copy" THEN SendKeys "{Shift+Home}{Ctrl+c}"
+				IF _arg1 = "Line Bottom Copy" THEN SendKeys "{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Top Copy" THEN SendKeys "{Shift+Ctrl+Up}{Ctrl+c}"
+				IF _arg1 = "Graph Bottom Copy" THEN SendKeys "{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Word Cut" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+x}"
+				IF _arg1 = "Word Top Cut" THEN SendKeys "{Shift+Ctrl+Left}{Ctrl+x}"
+				IF _arg1 = "Word Bottom Cut" THEN SendKeys "{Shift+Ctrl+Right}{Ctrl+x}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Line Top Cut" THEN SendKeys "{Shift+Home}{Ctrl+x}"
+				IF _arg1 = "Line Bottom Cut" THEN SendKeys "{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Top Cut" THEN SendKeys "{Shift+Ctrl+Up}{Ctrl+x}"
+				IF _arg1 = "Graph Bottom Cut" THEN SendKeys "{Shift+Ctrl+Down}{Ctrl+x}"
+				Wait 10
+				
+				' param1$ is the target file.
+				param1$ = "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\" + _arg2+".txt"
+				' number at the end of the line is the text buffer -- changed from 512 9/27/06 KCP (MD found the bug)
+				param4$ = DllCall$( "UttC.dll", "PasteFromClipboard", "", 32768 ) 
+				'MsgBoxConfirm param4$, 64, "Wrenz Diagnostics"
+				param$ = param1$ + "|" +  param4$
+				' jwh - 12/01/05 param$ = param1$ + "|"
+				
+				' At this point param$ looks something like:
+				' "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\" + _arg2+".txt" + [return value from DllCall; not used!?]
+ 
+				' SetFileData at 79
+				DllCall "UttC.dll", 79, param$
+ 
+				' Text-to-Speech utility.
+				IF _arg3 = "Stay" XOR _arg3 = "File Stay" XOR _arg3 = "Enter" XOR _arg3 = "File Enter" THEN
+				Wait 500
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, _arg2
+				Wait 100
+				SendKeys "{Ctrl+End}"
+				IF _arg3 = "Enter" XOR _arg3 = "File Enter" THEN SendKeys "{Enter}"
+				ELSE 
+				TTSPlayString "" + _arg1 + " to " + _arg2 + " File"
+				END IF
+			}
+		}
+		LIST "CopyCutWLGCAllC" {
+			"Copy"  "Cut"  "All Copy"  
+			"Letter Copy"  "Word Copy"  "Line Copy"  "Graph Copy"
+			"Word Top Copy"  "Line Top Copy"  "Graph Top Copy"
+			"Word Bottom Copy"  "Line Bottom Copy"  "Graph Bottom Copy"
+			"Word Cut"  "Line Cut"  "Graph Cut"
+			"Word Top Cut"  "Line Top Cut"  "Graph Top Cut"
+			"Word Bottom Cut"  "Line Bottom Cut"  "Graph Bottom Cut"
+		}
+ 
+		COMMAND "Add To <1-20>" {
+			SCRIPT {
+				SendKeys "{Ctrl+c}"
+				Wait 10
+				'requires 3 input params.
+				'param1$ = full path to text file |
+				'param2$ = data to insert in file |
+				'param3$ = line to insert data. If the line number is greater than lines of data, the data will be placed on the last line
+				param1$ = "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\" + _arg1 +".txt"
+				param2$ = "blah" 
+				param4$ = DllCall$( "UttC.dll", "PasteFromClipboard", "", 32768 ) 
+				param3$ = "10000"
+				'MsgBoxConfirm param1$, 52, param4$
+				param$ = param1$ + "|" +  param4$ + "|" + param3$
+				' SetFileDataByLine at 80
+				DllCall "UttC.dll",80, param$
+				wait 50
+				TTSPlayString "Add to " + _arg1 + ""
+			}
+		}
+		COMMAND "Add To <1-20> <FileEnterFEReturnStayFRS>" {
+			SCRIPT {
+				SendKeys "{Ctrl+c}"
+				Wait 10
+				param1$ = "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\" + _arg1 +".txt"
+				param2$ = "blah" 
+				param4$ = DllCall$( "UttC.dll", "PasteFromClipboard", "", 32768 ) 
+				param3$ = "10000"
+				'MsgBoxConfirm param1$, 52, param4$
+				param$ = param1$ + "|" +  param4$ + "|" + param3$
+				' SetFileDataByLine at 80
+				DllCall "UttC.dll",80, param$
+				wait 50
+				IF _arg2 = "Stay" XOR _arg2 = "File Stay" XOR _arg2 = "Enter" XOR _arg2 = "File Enter" THEN				
+				Wait 500
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, _arg1
+				Wait 100
+				SendKeys "{Ctrl+End}"
+				IF _arg2 = "Enter" XOR _arg2 = "File Enter" THEN SendKeys "{Enter}"				 
+				ELSE
+				TTSPlayString "Add to " + _arg1 + " File"
+				END IF
+			}
+		}
+		COMMAND "Address <Copy> To <List> <1-20>" {
+			SCRIPT {
+				SendKeys "{Alt+d}"
+				SendKeys "{Ctrl+c}"
+				Wait 100
+				p$ = _arg2 + " " + _arg3
+				param1$ = "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\" + p$
+				if _arg2 = "List" then param1$=param1$+".txt"
+				if _arg2 = "Doc" then param1$=param1$+".doc"
+				param2$ = "blah" 
+				param4$ = DllCall$( "UttC.dll", "PasteFromClipboard", "", 32768 ) 
+				param3$ = "10000"
+				'MsgBoxConfirm param1$, 52, param4$
+				param$ = param1$ + "|" +  param4$ + "|" + param3$
+				' SetFileDataByLine at 80
+				DllCall "UttC.dll",80, param$
+				wait 50
+				TTSPlayString "Address " + _arg1 + " to " + _arg2 + " " + _arg3 + " "
+			}
+		}
+		COMMAND "Address <Copy> To <List> <1-20> <FileEnterFEReturnStayFRS>" {
+			SCRIPT {
+				SendKeys "{Alt+d}"
+				SendKeys "{Ctrl+c}"
+				Wait 100
+				p$ = _arg2 + " " + _arg3
+				param1$ = "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\" + p$
+				if _arg2 = "List" then param1$=param1$+".txt"
+				if _arg2 = "Doc" then param1$=param1$+".doc"
+				param2$ = "blah" 
+				param4$ = DllCall$( "UttC.dll", "PasteFromClipboard", "", 32768 ) 
+				param3$ = "10000"
+				param$ = param1$ + "|" +  param4$ + "|" + param3$
+				' SetFileDataByLine at 80
+				DllCall "UttC.dll",80, param$
+				Wait 50
+				IF _arg4 = "Stay" XOR _arg4 = "File Stay" XOR _arg4 = "Enter" XOR _arg4 = "File Enter" THEN
+				Wait 500 
+				p$ = "List " + _arg3
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, p$
+				Wait 100
+				SendKeys "{Ctrl+End}"
+				Wait 500
+				SendKeys "{Ctrl+End}"
+				IF _arg4 = "Enter" XOR _arg4 = "File Enter" THEN SendKeys "{Enter}"
+				ELSE				 
+				TTSPlayString "Address " + _arg1 + " to " + _arg2 + " " + _arg3 + " " + _arg4 + ""
+				END IF
+			}
+		}
+		LIST "Copy" {
+			"Copy"
+		}		
+		COMMAND "<CopyCutAddWLGCAllC> To <List> <1-20>" {
+			SCRIPT {
+				IF _arg1 = "All Copy" THEN SendKeys "{Ctrl+a}{Ctrl+c}"
+				IF _arg1 = "Copy" XOR _arg1 = "Add" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Letter Copy" THEN SendKeys "{Shift+Right}{Ctrl+c}"
+				IF _arg1 = "Letter Cut" THEN SendKeys "{Shift+Right}{Ctrl+x}"
+				IF _arg1 = "Word Copy" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Word Top Copy" THEN SendKeys "{Shift+Ctrl+Left}{Ctrl+c}"
+				IF _arg1 = "Word Bottom Copy" THEN SendKeys "{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Line Top Copy" THEN SendKeys "{Shift+Home}{Ctrl+c}"
+				IF _arg1 = "Line Bottom Copy" THEN SendKeys "{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Top Copy" THEN SendKeys "{Shift+Ctrl+Up}{Ctrl+c}"
+				IF _arg1 = "Graph Bottom Copy" THEN SendKeys "{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Word Cut" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+x}"
+				IF _arg1 = "Word Top Cut" THEN SendKeys "{Shift+Ctrl+Left}{Ctrl+x}"
+				IF _arg1 = "Word Bottom Cut" THEN SendKeys "{Shift+Ctrl+Right}{Ctrl+x}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Line Top Cut" THEN SendKeys "{Shift+Home}{Ctrl+x}"
+				IF _arg1 = "Line Bottom Cut" THEN SendKeys "{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Top Cut" THEN SendKeys "{Shift+Ctrl+Up}{Ctrl+x}"
+				IF _arg1 = "Graph Bottom Cut" THEN SendKeys "{Shift+Ctrl+Down}{Ctrl+x}"
+				Wait 10
+				p$ = _arg2 + " " + _arg3
+				'requires 3 input params.
+				'param1$ = full path to text file |
+				'param2$ = data to insert in file |
+				'param3$ = line to insert data. If the line number is greater than lines of data, 
+				'the data will be placed on the last line
+				param1$ = "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\" + p$
+				if _arg2 = "List" then param1$=param1$+".txt"
+				if _arg2 = "Doc" then param1$=param1$+".doc"
+				param2$ = "blah" 
+				param4$ = DllCall$( "UttC.dll", "PasteFromClipboard", "", 32768 ) 
+				param3$ = "10000"
+				'MsgBoxConfirm param1$, 52, param4$
+				param$ = param1$ + "|" +  param4$ + "|" + param3$
+				'
+				'Param$ will look something like:
+				'C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\List 1.txt|+pastebuffer+|10000
+				'
+				' SetFileDataByLine at 80
+				DllCall "UttC.dll",80, param$
+				wait 50
+				TTSPlayString "" + _arg1 + " to " + _arg2 + " " + _arg3 + " "
+			}
+		}
+		COMMAND "<CopyCutAddWLGCAllC> To <List> <1-20> <FileEnterFEReturnStayFRS>" {
+			SCRIPT {
+				IF _arg1 = "All Copy" THEN SendKeys "{Ctrl+a}{Ctrl+c}"
+				IF _arg1 = "Copy" XOR _arg1 = "Add" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Letter Copy" THEN SendKeys "{Shift+Right}{Ctrl+c}"
+				IF _arg1 = "Letter Cut" THEN SendKeys "{Shift+Right}{Ctrl+x}"
+				IF _arg1 = "Word Copy" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Word Top Copy" THEN SendKeys "{Shift+Ctrl+Left}{Ctrl+c}"
+				IF _arg1 = "Word Bottom Copy" THEN SendKeys "{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Line Top Copy" THEN SendKeys "{Shift+Home}{Ctrl+c}"
+				IF _arg1 = "Line Bottom Copy" THEN SendKeys "{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Top Copy" THEN SendKeys "{Shift+Ctrl+Up}{Ctrl+c}"
+				IF _arg1 = "Graph Bottom Copy" THEN SendKeys "{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Word Cut" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+x}"
+				IF _arg1 = "Word Top Cut" THEN SendKeys "{Shift+Ctrl+Left}{Ctrl+x}"
+				IF _arg1 = "Word Bottom Cut" THEN SendKeys "{Shift+Ctrl+Right}{Ctrl+x}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Line Top Cut" THEN SendKeys "{Shift+Home}{Ctrl+x}"
+				IF _arg1 = "Line Bottom Cut" THEN SendKeys "{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Top Cut" THEN SendKeys "{Shift+Ctrl+Up}{Ctrl+x}"
+				IF _arg1 = "Graph Bottom Cut" THEN SendKeys "{Shift+Ctrl+Down}{Ctrl+x}"
+				Wait 10
+				p$ = _arg2 + " " + _arg3
+				param1$ = "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\" + p$
+				if _arg2 = "List" then param1$=param1$+".txt"
+				if _arg2 = "Doc" then param1$=param1$+".doc"
+				param2$ = "blah" 
+				param4$ = DllCall$( "UttC.dll", "PasteFromClipboard", "", 32768 ) 
+				param3$ = "10000"
+				param$ = param1$ + "|" +  param4$ + "|" + param3$
+				' SetFileDataByLine at 80
+				DllCall "UttC.dll",80, param$
+				Wait 50
+				IF _arg4 = "Stay" XOR _arg4 = "File Stay" XOR _arg4 = "Enter" XOR _arg4 = "File Enter" THEN
+				Wait 500 
+				p$ = "List " + _arg3
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, p$
+				Wait 100
+				SendKeys "{Ctrl+End}"
+				Wait 500
+				SendKeys "{Ctrl+End}"
+				IF _arg4 = "Enter" XOR _arg4 = "File Enter" THEN SendKeys "{Enter}"
+				ELSE				 
+				TTSPlayString "" + _arg1 + " to " + _arg2 + " " + _arg3 + " " + _arg4 + ""
+				END IF
+			}
+		}
+		LIST "List" {
+			"List"
+		}		
+		COMMAND "<CopyCutAddWLGCAllC> To <Alpha-Zulu>" {
+			SCRIPT {
+				window$ = DllCall$("UttC.dll", "GetForegroundWindowDVC", "", 1200 )
+				IF _arg1 = "All Copy" THEN SendKeys "{Ctrl+a}{Ctrl+c}"
+				IF _arg1 = "Copy" XOR _arg1 = "Add" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Letter Copy" THEN SendKeys "{Shift+Right}{Ctrl+c}"
+				IF _arg1 = "Letter Cut" THEN SendKeys "{Shift+Right}{Ctrl+x}"
+				IF _arg1 = "Word Copy" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Word Top Copy" THEN SendKeys "{Shift+Ctrl+Left}{Ctrl+c}"
+				IF _arg1 = "Word Bottom Copy" THEN SendKeys "{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Line Top Copy" THEN SendKeys "{Shift+Home}{Ctrl+c}"
+				IF _arg1 = "Line Bottom Copy" THEN SendKeys "{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Top Copy" THEN SendKeys "{Shift+Ctrl+Up}{Ctrl+c}"
+				IF _arg1 = "Graph Bottom Copy" THEN SendKeys "{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Word Cut" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+x}"
+				IF _arg1 = "Word Top Cut" THEN SendKeys "{Shift+Ctrl+Left}{Ctrl+x}"
+				IF _arg1 = "Word Bottom Cut" THEN SendKeys "{Shift+Ctrl+Right}{Ctrl+x}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Line Top Cut" THEN SendKeys "{Shift+Home}{Ctrl+x}"
+				IF _arg1 = "Line Bottom Cut" THEN SendKeys "{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Top Cut" THEN SendKeys "{Shift+Ctrl+Up}{Ctrl+x}"
+				IF _arg1 = "Graph Bottom Cut" THEN SendKeys "{Shift+Ctrl+Down}{Ctrl+x}"
+				Wait 10
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, _arg2
+				' FindWindowByCaption at 112
+				DllCall "UttC.dll", 112, _arg2 + ".rtf"
+				Wait 5
+				SendKeys "{Ctrl+End}{Enter}"
+				Wait 50
+				SendKeys "{Ctrl+v}"
+				Wait 500
+				' FindWindowByCaption at 112
+				DllCall "UttC.dll", 112, _arg2 + ".rtf"
+				Wait 100
+				SendKeys "{Alt+F4}"
+				SendKeys "y"
+				Wait 1000
+				' SetForegroundWindowDVC at 114
+				DllCall "UttC.dll",114, window$
+			}
+		}
+		COMMAND "<CopyCutAddWLGCAllC> To <Alpha-Zulu> <FileEnterFEReturnStayFRS>" {
+			SCRIPT {
+				window$ = DllCall$("UttC.dll", "GetForegroundWindowDVC", "", 1200 )
+				IF _arg1 = "All Copy" THEN SendKeys "{Ctrl+a}{Ctrl+c}"
+				IF _arg1 = "Copy" XOR _arg1 = "Add" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Letter Copy" THEN SendKeys "{Shift+Right}{Ctrl+c}"
+				IF _arg1 = "Letter Cut" THEN SendKeys "{Shift+Right}{Ctrl+x}"
+				IF _arg1 = "Word Copy" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Word Top Copy" THEN SendKeys "{Shift+Ctrl+Left}{Ctrl+c}"
+				IF _arg1 = "Word Bottom Copy" THEN SendKeys "{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Line Top Copy" THEN SendKeys "{Shift+Home}{Ctrl+c}"
+				IF _arg1 = "Line Bottom Copy" THEN SendKeys "{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Top Copy" THEN SendKeys "{Shift+Ctrl+Up}{Ctrl+c}"
+				IF _arg1 = "Graph Bottom Copy" THEN SendKeys "{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Word Cut" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+x}"
+				IF _arg1 = "Word Top Cut" THEN SendKeys "{Shift+Ctrl+Left}{Ctrl+x}"
+				IF _arg1 = "Word Bottom Cut" THEN SendKeys "{Shift+Ctrl+Right}{Ctrl+x}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Line Top Cut" THEN SendKeys "{Shift+Home}{Ctrl+x}"
+				IF _arg1 = "Line Bottom Cut" THEN SendKeys "{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Top Cut" THEN SendKeys "{Shift+Ctrl+Up}{Ctrl+x}"
+				IF _arg1 = "Graph Bottom Cut" THEN SendKeys "{Shift+Ctrl+Down}{Ctrl+x}"
+ 				Wait 10
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, _arg2
+				' FindWindowByCaption at 112
+				DllCall "UttC.dll", 112, _arg2 + ".rtf"
+				Wait 5
+				SendKeys "{Ctrl+End}{Enter}"
+				Wait 50
+				SendKeys "{Ctrl+v}"
+				Wait 500
+				' FindWindowByCaption at 112
+				DllCall "UttC.dll", 112, _arg2 + ".rtf"
+				IF _arg3 = "Enter" XOR _arg3 = "File Enter" THEN SendKeys "{Enter}"
+				IF _arg3 = "File" XOR _arg3 = "File Return" XOR _arg3 = "Return" XOR _arg3 = "Enter" XOR _arg3 = "File Enter" THEN 
+				Wait 100
+				SendKeys "{Alt+F4}"
+				SendKeys "y"
+				Wait 1000
+				' SetForegroundWindowDVC at 114
+				DllCall "UttC.dll",114, window$
+				END IF 
+			}
+		}
+		COMMAND "<CopyCutAddWLGCAllC> To Doc <1-20>" {
+			SCRIPT {
+				window$ = DllCall$("UttC.dll", "GetForegroundWindowDVC", "", 1200 )
+				IF _arg1 = "All Copy" THEN SendKeys "{Ctrl+a}{Ctrl+c}"
+				IF _arg1 = "Copy" XOR _arg1 = "Add" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Letter Copy" THEN SendKeys "{Shift+Right}{Ctrl+c}"
+				IF _arg1 = "Letter Cut" THEN SendKeys "{Shift+Right}{Ctrl+x}"
+				IF _arg1 = "Word Copy" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Word Top Copy" THEN SendKeys "{Shift+Ctrl+Left}{Ctrl+c}"
+				IF _arg1 = "Word Bottom Copy" THEN SendKeys "{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Line Top Copy" THEN SendKeys "{Shift+Home}{Ctrl+c}"
+				IF _arg1 = "Line Bottom Copy" THEN SendKeys "{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Top Copy" THEN SendKeys "{Shift+Ctrl+Up}{Ctrl+c}"
+				IF _arg1 = "Graph Bottom Copy" THEN SendKeys "{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Word Cut" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+x}"
+				IF _arg1 = "Word Top Cut" THEN SendKeys "{Shift+Ctrl+Left}{Ctrl+x}"
+				IF _arg1 = "Word Bottom Cut" THEN SendKeys "{Shift+Ctrl+Right}{Ctrl+x}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Line Top Cut" THEN SendKeys "{Shift+Home}{Ctrl+x}"
+				IF _arg1 = "Line Bottom Cut" THEN SendKeys "{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Top Cut" THEN SendKeys "{Shift+Ctrl+Up}{Ctrl+x}"
+				IF _arg1 = "Graph Bottom Cut" THEN SendKeys "{Shift+Ctrl+Down}{Ctrl+x}"
+				Wait 10
+				p$ = "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\Doc " + _arg2 + ".doc"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 50
+				' FindWindowByCaption at 112
+				DllCall "UttC.dll", 112, "Doc " + _arg2 + ".doc"
+				Wait 100
+				SendKeys "{Ctrl+End}{Enter}"
+				Wait 300
+				SendKeys "{Ctrl+v}"
+				Wait 500
+				' FindWindowByCaption at 112
+				DllCall "UttC.dll", 112, "Doc " + _arg2 + ".doc"
+				Wait 100
+				SendKeys "{Alt+F4}"
+				SendKeys "y"
+				Wait 1000
+				' SetForegroundWindowDVC at 114
+				DllCall "UttC.dll",114, window$
+			}
+		}
+		COMMAND "<CopyCutAddWLGCAllC> To Doc <1-20> <FileEnterFEReturnStayFRS>" {
+			SCRIPT {
+				window$ = DllCall$("UttC.dll", "GetForegroundWindowDVC", "", 1200 )
+				IF _arg1 = "All Copy" THEN SendKeys "{Ctrl+a}{Ctrl+c}"
+				IF _arg1 = "Copy" XOR _arg1 = "Add" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Letter Copy" THEN SendKeys "{Shift+Right}{Ctrl+c}"
+				IF _arg1 = "Letter Cut" THEN SendKeys "{Shift+Right}{Ctrl+x}"
+				IF _arg1 = "Word Copy" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Word Top Copy" THEN SendKeys "{Shift+Ctrl+Left}{Ctrl+c}"
+				IF _arg1 = "Word Bottom Copy" THEN SendKeys "{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Line Top Copy" THEN SendKeys "{Shift+Home}{Ctrl+c}"
+				IF _arg1 = "Line Bottom Copy" THEN SendKeys "{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Top Copy" THEN SendKeys "{Shift+Ctrl+Up}{Ctrl+c}"
+				IF _arg1 = "Graph Bottom Copy" THEN SendKeys "{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Word Cut" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+x}"
+				IF _arg1 = "Word Top Cut" THEN SendKeys "{Shift+Ctrl+Left}{Ctrl+x}"
+				IF _arg1 = "Word Bottom Cut" THEN SendKeys "{Shift+Ctrl+Right}{Ctrl+x}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Line Top Cut" THEN SendKeys "{Shift+Home}{Ctrl+x}"
+				IF _arg1 = "Line Bottom Cut" THEN SendKeys "{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Top Cut" THEN SendKeys "{Shift+Ctrl+Up}{Ctrl+x}"
+				IF _arg1 = "Graph Bottom Cut" THEN SendKeys "{Shift+Ctrl+Down}{Ctrl+x}"
+				Wait 10
+				p$ = "C:\Documents and Settings\All Users\Documents\UC Files\SpeechClipboard\Doc " + _arg2 + ".doc"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 50
+				' FindWindowByCaption at 112
+				DllCall "UttC.dll", 112, "Doc " + _arg2 + ".doc"
+				Wait 100
+				SendKeys "{Ctrl+End}{Enter}"
+				Wait 300
+				SendKeys "{Ctrl+v}"
+				Wait 500
+				' FindWindowByCaption at 112
+				DllCall "UttC.dll", 112, "Doc " + _arg2 + ".doc"
+				IF _arg3 = "Enter" XOR _arg3 = "File Enter" THEN SendKeys "{Enter}"
+				IF _arg3 = "File" XOR _arg3 = "File Return" XOR _arg3 = "Return" XOR _arg3 = "Enter" XOR _arg3 = "File Enter" THEN 
+				Wait 1000
+				SendKeys "{Alt+F4}"
+				SendKeys "y"
+				Wait 1000
+				' SetForegroundWindowDVC at 114
+				DllCall "UttC.dll",114, window$
+				END IF
+			}
+		}
+		LIST "CopyCutAddWLGCAllC" {
+			"Copy"  "Cut"  "Add"  "All Copy"  
+			"Letter Copy"  "Word Copy"  "Line Copy"  "Graph Copy"
+			"Word Top Copy"  "Line Top Copy"  "Graph Top Copy"
+			"Word Bottom Copy"  "Line Bottom Copy"  "Graph Bottom Copy"
+			"Word Cut"  "Line Cut"  "Graph Cut"
+			"Word Top Cut"  "Line Top Cut"  "Graph Top Cut"
+			"Word Bottom Cut"  "Line Bottom Cut"  "Graph Bottom Cut"
+		}
+		LIST "FileEnterFEReturnStayFRS" {
+			"File"  "Enter"  "File Enter"  "Return"  "File Return"  "Stay"  "File Stay"
+		}
+		COMMAND "<1-20> File Paste" {
+			SCRIPT {
+				window$ = DllCall$("UttC.dll", "GetForegroundWindowDVC", "", 1200 )
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, _arg1
+				Wait 150
+				' FocusOnWindowByTitleRE at 121
+				DllCall "UttC.dll", 121, _arg1 + ".txt"
+				isNotepad120$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", _arg1 + ".txt", 512 )
+				IF (instr(isNotepad120$,"true")) > 0 THEN
+				SendKeys "{Ctrl+Home}{Shift+Ctrl+End}{Shift+Left}"
+				SendKeys "{Ctrl+c}{Down}"
+				Wait 300				
+				SendKeys "{Alt+F4}"				
+				Wait 50
+				' SetForegroundWindowDVC at 114
+				DllCall "UttC.dll",114, window$
+				Wait 100
+				SendKeys "{Space}{Left}"				
+				SendKeys "{Ctrl+v}"
+				END IF
+			}
+		}
+		COMMAND "<List1-20> File Paste" {
+			SCRIPT {
+				window$ = DllCall$("UttC.dll", "GetForegroundWindowDVC", "", 1200 )
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, _arg1
+				Wait 150
+				' FocusOnWindowByTitleRE at 121
+				DllCall "UttC.dll", 121, _arg1 + ".txt"
+				isList120$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", _arg1 + ".txt", 512 )
+				IF (instr(isList120$,"true")) > 0 THEN
+				SendKeys "{Ctrl+Home}{Shift+Ctrl+End}{Shift+Left}"
+				SendKeys "{Ctrl+c}{Down}"
+				Wait 300				
+				SendKeys "{Alt+F4}"				
+				Wait 50
+				' SetForegroundWindowDVC at 114
+				DllCall "UttC.dll",114, window$
+				Wait 100
+				SendKeys "{Space}{Left}"				
+				SendKeys "{Ctrl+v}"
+				END IF
+			}
+		}
+		LIST "List1-20" {
+			"List 1"  "List 2"  "List 3"  "List 4"  "List 5"
+			"List 6"  "List 7"  "List 8"  "List 9"  "List 10"
+			"List 11"  "List 12"  "List 13"  "List 14"  "List 15"
+			"List 16"  "List 17"  "List 18"  "List 19"  "List 20"
+		}
+		COMMAND "<Alpha-Zulu> File Paste" {
+			SCRIPT {
+				window$ = DllCall$("UttC.dll", "GetForegroundWindowDVC", "", 1200 )
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, _arg1
+				Wait 150
+				' FocusOnWindowByTitleRE at 121
+				DllCall "UttC.dll", 121, _arg1 + ".txt"
+				isAZ$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", _arg1 + ".rtf", 512 )
+				IF (instr(isAZ$,"true")) > 0 THEN
+				SendKeys "{Ctrl+Home}{Shift+Ctrl+End}{Shift+Left}"
+				SendKeys "{Ctrl+c}{Down}"
+				Wait 300				
+				SendKeys "{Alt+F4}"				
+				Wait 50
+				' SetForegroundWindowDVC at 114
+				DllCall "UttC.dll",114, window$
+				Wait 100
+				SendKeys "{Space}{Left}"				
+				SendKeys "{Ctrl+v}"
+				END IF
+			}
+		}
+		COMMAND "<Doc1-20> File Paste" {
+			SCRIPT {
+				window$ = DllCall$("UttC.dll", "GetForegroundWindowDVC", "", 1200 )
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, _arg1
+				Wait 1000
+				isDoc120$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", _arg1 + ".doc", 512 )
+				IF (instr(isDoc120$,"true")) > 0 THEN
+				SendKeys "{Ctrl+Home}{Shift+Ctrl+End}{Shift+Left}"
+				SendKeys "{Ctrl+c}{Down}"
+				Wait 300				
+				SendKeys "{Alt+F4}"				
+				Wait 50
+				' SetForegroundWindowDVC at 114
+				DllCall "UttC.dll",114, window$
+				Wait 100
+				SendKeys "{Space}{Left}"				
+				SendKeys "{Ctrl+v}"
+				END IF
+			}
+		}
+		LIST "Doc1-20" {
+			"Doc 1"  "Doc 2"  "Doc 3"  "Doc 4"  "Doc 5"
+			"Doc 6"  "Doc 7"  "Doc 8"  "Doc 9"  "Doc 10"
+			"Doc 11"  "Doc 12"  "Doc 13"  "Doc 14"  "Doc 15"
+			"Doc 16"  "Doc 17"  "Doc 18"  "Doc 19"  "Doc 20"
+		}
+		COMMAND "<1-20> File Copy To Clipboard" {
+			SCRIPT {
+				p$ = _arg1
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, p$
+				Wait 201
+				SendKeys "{Ctrl+a}"
+				SendKeys "{Ctrl+c}"
+				SendKeys "{Alt+f}x"
+			}
+		}
+		COMMAND "<ListDoc> <1-20> <FileCopy> To Clipboard" {
+			SCRIPT {
+				p$ = _arg1 + " " + _arg2
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, p$
+				Wait 201
+				SendKeys "{Ctrl+a}"
+				SendKeys "{Ctrl+c}"
+				SendSystemKeys "{Alt+F4}"
+			}
+		}
+		COMMAND "Clipboard Copy To <1-20> File" {
+			SCRIPT {
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, _arg1
+				Wait 100
+				SendKeys "{Ctrl+a}"
+				SendKeys "{Del}"
+				SendKeys "{Ctrl+v}"
+				SendKeys "{Alt+F4}"
+				Wait 100
+				SendKeys "y"
+			}
+		}		
+		COMMAND "Clipboard Copy To <ListDoc> <1-20>" {
+			SCRIPT {
+				p$ = _arg1 + " " + _arg2
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, p$
+				Wait 100
+				SendSystemKeys "{Ctrl+End}"
+				wait 100
+				SendKeys "{Enter}"
+				SendKeys "{Ctrl+v}"
+				SendSystemKeys "{Alt+F4}"
+				Wait 100
+				SendKeys "y"
+			}
+		}
+		COMMAND "Clipboard Copy To <ListDoc> <1-20> File" {
+			SCRIPT {
+				p$ = _arg1 + " " + _arg2
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, p$
+				Wait 100
+				SendSystemKeys "{Ctrl+End}"
+				wait 100
+				SendKeys "{Enter}"
+				SendKeys "{Ctrl+v}"
+				SendSystemKeys "{Alt+F4}"
+				Wait 100
+				SendKeys "y"
+			}
+		}
+		LIST "ListDoc" {
+			"List"
+			"Doc"
+		}
+		COMMAND "<Alpha-Zulu> <FileCopy> To Clipboard" {
+			SCRIPT {
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, _arg1
+				Wait 201
+				SendKeys "{Ctrl+a}"
+				SendKeys "{Ctrl+c}"
+				SendKeys "{Alt+F4}"
+			}
+		}
+		LIST "FileCopy" {
+			"File Copy"  "Copy"
+		}		
+		COMMAND "Clipboard Copy To <Alpha-Zulu>" {
+			SCRIPT {
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, _arg1
+				Wait 100
+				SendKeys "{Ctrl+End}{Enter}"
+				SendKeys "{Ctrl+v}"
+				SendKeys "{Alt+F4}"
+				Wait 100
+				SendKeys "y"
+			}
+		}
+		COMMAND "Clipboard Copy To <Alpha-Zulu> File" {
+			SCRIPT {
+				' SClipFile at 72
+				DllCall "UttC.dll", 72, _arg1
+				Wait 100
+				SendKeys "{Ctrl+End}{Enter}"
+				SendKeys "{Ctrl+v}"
+				SendKeys "{Alt+F4}"
+				Wait 100
+				SendKeys "y"
+			}
+		}
+		LIST "Alpha-Zulu" {
+			"Alpha"  "Bravo"  "Charlie"  "Delta"  "Echo"  "Foxtrot"  "Golf"
+			"Hotel"  "India"  "Juliet"  "Kilo"  "Lima"  "Mike"  "November"
+			"Oscar"  "Papa"  "Quebec"  "Romeo"  "Sierra"  "Tango"  "Uniform"
+			"Victor"  "Whiskey"  "Xray"  "Yankee"  "Zulu"
+		}
+ 
+#10b. Date and Time
+ 
+		COMMAND "<TodayTime> <LongShort>" {
+			SCRIPT {
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg2 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg2 + "", 512 )
+				SendKeys tm$
+			}
+		}
+		COMMAND "<TodayTime> <LongShort> <EnterEPaste>" {
+			SCRIPT {
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg2 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg2 + "", 512 )
+				SendKeys tm$
+				IF _arg3 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg3 = "Enter Paste" THEN SendKeys "{Enter}{Ctrl+v}"
+			}
+		}
+		COMMAND "<TodayTime> <LongShort> <1-5>" {
+			SCRIPT {
+ 				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg2 + " " + _arg3 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg2 + " " + _arg3 + "", 512 )
+				SendKeys tm$
+			}
+		}
+		COMMAND "<TodayTime> <LongShort> <1-5> <EnterEPaste>" {
+			SCRIPT {
+ 				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg2 + " " + _arg3 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg2 + " " + _arg3 + "", 512 )
+				SendKeys tm$
+				IF _arg3 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg3 = "Enter Paste" THEN SendKeys "{Enter}{Ctrl+v}"
+			}
+		}
+		LIST "EnterEPaste" {
+			"Enter"  "Enter	Paste"
+		}
+		COMMAND "<TodayTime> <LongShort> <TodayTime> <LongShort>" {
+			SCRIPT {
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg2 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg2 + "", 512 )
+				SendKeys tm$
+				SendKeys "  "
+				if _arg3 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg4 + "", 512 )
+				if _arg3 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg4 + "", 512 )
+				SendKeys tm$
+			}
+		}
+		COMMAND "<TodayTime> <TodayTime> <LongShort>" {
+			SCRIPT {
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg3 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg3 + "", 512 )
+				SendKeys tm$
+				SendKeys "  "
+				if _arg2 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg3 + "", 512 )
+				if _arg2 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg3 + "", 512 )
+				SendKeys tm$
+			} 
+		}
+		COMMAND "<TodayTime> <TodayTime> <LongShort> <1-5>" {
+			SCRIPT {
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg3 + " " + _arg4 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg3 + " " + _arg4 + "", 512 )
+				SendKeys tm$
+				SendKeys " "
+				if _arg2 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg3 + " " + _arg4 + "", 512 )
+				if _arg2 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg3 + " " + _arg4 + "", 512 )
+				SendKeys tm$
+			}
+		}
+		COMMAND "<TodayTime> <LongShort> <1-5> <TodayTime> <LongShort> <1-5>" {
+			SCRIPT {
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg2 + " " + _arg3 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg2 + " " + _arg3 + "", 512 )
+				SendKeys tm$
+				SendKeys " "
+				if _arg4 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg5 + " " + _arg6 + "", 512 )
+				if _arg4 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg5 + " " + _arg6 + "", 512 )
+				SendKeys tm$
+			}
+		}
+		COMMAND "<TodayTime> <LongShort> <TodayTime> <LongShort> <1-5>" {
+			SCRIPT {
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg2 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg2 + "", 512 )
+				SendKeys tm$
+				SendKeys " "
+				if _arg3 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg4 + " " + _arg5 + "", 512 )
+				if _arg3 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg4 + " " + _arg5 + "", 512 )
+				SendKeys tm$
+			}
+		}
+		COMMAND "<TodayTime> <LongShort> <1-5> <TodayTime> <LongShort>" {
+			SCRIPT {
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg2 + " " + _arg3 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg2 + " " + _arg3 + "", 512 )
+				SendKeys tm$
+				SendKeys " "
+				if _arg4 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg5 + "", 512 )
+				if _arg4 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg5 + "", 512 )
+				SendKeys tm$
+			}
+		}
+#Space
+		COMMAND "<TodayTime> <LongShort> Space" {
+			SCRIPT {
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg2 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg2 + "", 512 )
+				SendKeys tm$
+				SendKeys "{Space}"
+			}
+		}
+		COMMAND "<TodayTime> <LongShort> <1-5> Space" {
+			SCRIPT {
+ 				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg2 + " " + _arg3 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg2 + " " + _arg3 + "", 512 )
+				SendKeys tm$
+				SendKeys "{Space}"
+			}
+		}
+		COMMAND "<TodayTime> <LongShort> <TodayTime> <LongShort> Space" {
+			SCRIPT {
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg2 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg2 + "", 512 )
+				SendKeys tm$
+				SendKeys "  "
+				if _arg3 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg4 + "", 512 )
+				if _arg3 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg4 + "", 512 )
+				SendKeys tm$
+				SendKeys "{Space}"
+			}
+		}
+		COMMAND "<TodayTime> <TodayTime> <LongShort> Space" {
+			SCRIPT {
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg3 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg3 + "", 512 )
+				SendKeys tm$
+				SendKeys "  "
+				if _arg2 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg3 + "", 512 )
+				if _arg2 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg3 + "", 512 )
+				SendKeys tm$
+				SendKeys "{Space}"
+			} 
+		}
+		COMMAND "<TodayTime> <TodayTime> <LongShort> <1-5> Space" {
+			SCRIPT {
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg3 + " " + _arg4 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg3 + " " + _arg4 + "", 512 )
+				SendKeys tm$
+				SendKeys " "
+				if _arg2 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg3 + " " + _arg4 + "", 512 )
+				if _arg2 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg3 + " " + _arg4 + "", 512 )
+				SendKeys tm$
+				SendKeys "{Space}"
+			}
+		}
+		COMMAND "<TodayTime> <LongShort> <1-5> <TodayTime> <LongShort> <1-5> Space" {
+			SCRIPT {
+				SendKeys "{Space}"
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg2 + " " + _arg3 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg2 + " " + _arg3 + "", 512 )
+				SendKeys tm$
+				SendKeys " "
+				if _arg4 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg5 + " " + _arg6 + "", 512 )
+				if _arg4 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg5 + " " + _arg6 + "", 512 )
+				SendKeys tm$
+				SendKeys "{Space}"
+			}
+		}
+		COMMAND "<TodayTime> <LongShort> <TodayTime> <LongShort> <1-5> Space" {
+			SCRIPT {
+				SendKeys "{Space}"
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg2 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg2 + "", 512 )
+				SendKeys tm$
+				SendKeys " "
+				if _arg3 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg4 + " " + _arg5 + "", 512 )
+				if _arg3 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg4 + " " + _arg5 + "", 512 )
+				SendKeys tm$
+				SendKeys "{Space}"
+			}
+		}
+		COMMAND "<TodayTime> <LongShort> <1-5> <TodayTime> <LongShort> Space" {
+			SCRIPT {
+				SendKeys "{Space}"
+				if _arg1 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg2 + " " + _arg3 + "", 512 )
+				if _arg1 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg2 + " " + _arg3 + "", 512 )
+				SendKeys tm$
+				SendKeys " "
+				if _arg4 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg5 + "", 512 )
+				if _arg4 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg5 + "", 512 )
+				SendKeys tm$
+				SendKeys "{Space}"
+			}
+		}
+ 
+#Spaces
+		COMMAND "<AnotherInsertSpaceSpaces> <TodayTime> <LongShort>" {
+			SCRIPT {
+				IF _arg1 = "Another" THEN SendKeys "{End}{Enter}"
+				IF _arg1 = "Insert" THEN SendKeys "{Home}{Enter}{Up}"
+				IF _arg1 = "Space" XOR _arg1 = "Spaces" THEN SendKeys "{Space}"
+				HeardWord _arg2, _arg3
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<AnotherInsertSpaceSpaces> <TodayTime> <LongShort> <1-5>" {
+			SCRIPT {
+				IF _arg1 = "Another" THEN SendKeys "{End}{Enter}"
+				IF _arg1 = "Insert" THEN SendKeys "{Home}{Enter}{Up}"
+				IF _arg1 = "Space" XOR _arg1 = "Spaces" THEN SendKeys "{Space}"
+ 				if _arg2 = "Today" then tm$ = DllCall$( "UttC.dll", "GetDate", "" + _arg3 + " " + _arg4 + "", 512 )
+				if _arg2 = "Time" then tm$ = DllCall$( "UttC.dll", "GetTime", "" + _arg3 + " " + _arg4 + "", 512 )
+				SendKeys tm$
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<AnotherInsertSpaceSpaces> <TodayTime> <LongShort> <TodayTime> <LongShort>" {
+			SCRIPT {
+				IF _arg1 = "Another" THEN SendKeys "{End}{Enter}"
+				IF _arg1 = "Insert" THEN SendKeys "{Home}{Enter}{Up}"
+				IF _arg1 = "Space" XOR _arg1 = "Spaces" THEN SendKeys "{Space}"
+				HeardWord _arg2, _arg3, _arg4, _arg5
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<AnotherInsertSpaceSpaces> <TodayTime> <TodayTime> <LongShort>" {
+			SCRIPT {
+				IF _arg1 = "Another" THEN SendKeys "{End}{Enter}"
+				IF _arg1 = "Insert" THEN SendKeys "{Home}{Enter}{Up}"
+				IF _arg1 = "Space" XOR _arg1 = "Spaces" THEN SendKeys "{Space}"
+				HeardWord _arg2, _arg3, _arg4
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<AnotherInsertSpaceSpaces> <TodayTime> <LongShort> <1-5> <TodayTime> <LongShort> " {
+			SCRIPT {
+				IF _arg1 = "Another" THEN SendKeys "{End}{Enter}"
+				IF _arg1 = "Insert" THEN SendKeys "{Home}{Enter}{Up}"
+				IF _arg1 = "Space" XOR _arg1 = "Spaces" THEN SendKeys "{Space}"
+				HeardWord _arg2, _arg3, _arg4, _arg5, _arg6
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<AnotherInsertSpaceSpaces> <TodayTime> <LongShort> <TodayTime> <LongShort> <1-5>" {
+			SCRIPT {
+				IF _arg1 = "Another" THEN SendKeys "{End}{Enter}"
+				IF _arg1 = "Insert" THEN SendKeys "{Home}{Enter}{Up}"
+				IF _arg1 = "Space" XOR _arg1 = "Spaces" THEN SendKeys "{Space}"
+				HeardWord _arg2, _arg3, _arg4, _arg5, _arg6
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<AnotherInsertSpaceSpaces> <TodayTime> <LongShort> <1-5> <TodayTime> <LongShort> <1-5>" {
+			SCRIPT {
+				IF _arg1 = "Another" THEN SendKeys "{End}{Enter}"
+				IF _arg1 = "Insert" THEN SendKeys "{Home}{Enter}{Up}"
+				IF _arg1 = "Space" XOR _arg1 = "Spaces" THEN SendKeys "{Space}"
+				HeardWord _arg2, _arg3, _arg4, _arg5, _arg6, _arg7
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<AnotherInsertSpaceSpaces> <TodayTime> <LongShort> <1-5> <TodayTime> <LongShort>" {
+			SCRIPT {
+				IF _arg1 = "Another" THEN SendKeys "{End}{Enter}"
+				IF _arg1 = "Insert" THEN SendKeys "{Home}{Enter}{Up}"
+				IF _arg1 = "Space" XOR _arg1 = "Spaces" THEN SendKeys "{Space}"
+				HeardWord _arg2, _arg3, _arg4, _arg5, _arg6
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+ 
+			}
+		}
+		COMMAND "<AnotherInsertSpaceSpaces> <TodayTime> <TodayTime> <LongShort> <1-5>" {
+			SCRIPT {
+				IF _arg1 = "Another" THEN SendKeys "{End}{Enter}"
+				IF _arg1 = "Insert" THEN SendKeys "{Home}{Enter}{Up}"
+				IF _arg1 = "Space" XOR _arg1 = "Spaces" THEN SendKeys "{Space}"
+				HeardWord _arg2, _arg3, _arg4, _arg5
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		LIST "AnotherInsertSpaceSpaces" {
+			"Another"  "Insert"
+			"Space"  "Spaces"
+		}	
+		LIST "TodayTime" {
+			"Today"
+			"Time"  			
+		}
+		LIST "LongShort" {
+			"Long"
+			"Short"
+		}
+#10c. Timer
+ 
+		COMMAND "<1-60> <MinutesSeconds> <Time>" {
+			SCRIPT {
+				TTSPlayString "" + _arg1 + " " + _arg2 + " " + _arg3 + ""
+				IF _arg2 = "Seconds" THEN Wait Val(_arg1)*1000
+				IF _arg2 = "Minutes" THEN Wait Val(_arg1)*60000
+				Beep
+				TTSPlayString "Finished" + _arg1 + " " + _arg2 + " " + _arg3 + ""
+			}
+		}
+		COMMAND "<1-60> <Minutes> <1-60> <Seconds> <Time>" {
+			SCRIPT {
+				TTSPlayString "" + _arg1 + " " + _arg2 + " " + _arg3 + " " + _arg4 + " " + _arg5 + ""
+				Wait Val(_arg1)*60000
+				Wait Val(_arg3)*1000
+				Beep
+				TTSPlayString "Finished " + _arg1 + " " + _arg2 + " " + _arg3 + " " + _arg4 + " " + _arg5 + ""
+			}
+		}
+		COMMAND "<1-60> <MinutesSeconds> <Time> <Repeat> <1-10>" {
+			SCRIPT {
+				TTSPlayString "" + _arg1 + " " + _arg2 + " " + _arg3 + " " + _arg4 + " " + _arg5 + ""
+				count& = Val(0)
+				loop& = Val(_arg5)
+				while ( loop& )				
+				IF _arg2 = "Seconds" THEN Wait Val(_arg1)*1000
+				IF _arg2 = "Minutes" THEN Wait Val(_arg1)*60000
+				Beep
+				TTSPlayString "Finished" + _arg1 + " " + _arg2 + " " + _arg3 + ""
+				count& = Val(count&) +1
+				TTSPlayString count&
+				TTSPlayString "of " + _arg5 + ""
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<1-60> <Minutes> <1-60> <Seconds> <Time> <Repeat> <1-10>" {
+			SCRIPT {
+				TTSPlayString "" + _arg1 + " " + _arg2 + " " + _arg3 + " " + _arg4 + " " + _arg5 + " " + _arg6 + " " + _arg7 + ""
+				count& = Val(0)
+				loop& = Val(_arg7)
+				while ( loop& )
+				Wait Val(_arg1)*60000
+				Wait Val(_arg3)*1000
+				Beep
+				TTSPlayString "Finished" + _arg1 + " " + _arg2 + " " + _arg3 + " " + _arg4 + " " + _arg5 + ""
+				count& = Val(count&) +1
+				TTSPlayString count&
+				TTSPlayString "of " + _arg7 + ""
+				loop& = loop& - 1
+				wend
+			}
+		}
+		LIST "1-10" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+		}
+ 
+#10d. Break Timer
+		COMMAND "<1-60> <MinutesSeconds> <Break>" {
+			SCRIPT {
+				SetMicrophone 0
+				TTSPlayString "" + _arg1 + " " + _arg2 + " " + _arg3 + ""
+				IF _arg2 = "Minutes" THEN Wait Val(_arg1)*60000
+				IF _arg2 = "Seconds" THEN Wait Val(_arg1)*1000
+				SetMicrophone 1
+				Wait 500
+				TTSPlayString "I'm Back"
+			}
+		}
+		COMMAND "<1-60> <Minutes> <1-60> <Seconds> <Break>" {
+			SCRIPT {
+				SetMicrophone 0
+				TTSPlayString "" + _arg1 + " " + _arg2 + " " + _arg3 + " " + _arg4 + " " + _arg5 + ""
+				Wait Val(_arg1)*60000
+				Wait Val(_arg3)*1000
+				SetMicrophone 1
+				Wait 500
+				TTSPlayString "I'm Back"
+			}
+		}
+		COMMAND "<1-60> <MinutesSeconds> <Break> <Wait> <1-60> <MinutesSeconds> <Repeat> <1-20>" {
+			SCRIPT {
+				TTSPlayString "" + _arg1 + " " + _arg2 + " " + _arg3 + " " + _arg4 + " " + _arg5 + " " + _arg6 + " " + _arg7 + " " + _arg8 + ""
+				count& = Val(0)
+				loop& = Val(_arg8)
+				while ( loop& )
+				TTSPlayString "" + _arg1 + " " + _arg2 + " " + _arg3 + ""
+				count& = Val(count&) +1
+				TTSPlayString count&
+				TTSPlayString "of " + _arg8 + ""
+				SetMicrophone 0
+				IF _arg2 = "Minutes" THEN Wait Val(_arg1)*60000
+				IF _arg2 = "Seconds" THEN Wait Val(_arg1)*1000
+				SetMicrophone 1
+				Wait 500
+				TTSPlayString "I'm Back" 
+				IF _arg6 = "Minutes" THEN Wait Val(_arg5)*60000
+				IF _arg6 = "Seconds" THEN Wait Val(_arg5)*1000
+				loop& = loop& - 1
+				wend
+			}
+		}
+		LIST "Wait" {
+			"Wait"
+		}
+		LIST "Repeat" {
+			"Repeat"
+		}
+#10e. Break and Time
+ 
+		COMMAND "<1-60> <MinutesSeconds> <Break> <1-60> <MinutesSeconds> <Time>" {
+			SCRIPT {
+				SetMicrophone 0
+				TTSPlayString "" + _arg1 + " " + _arg2 + " " + _arg3 + ""
+				IF _arg2 = "Minutes" THEN Wait Val(_arg1)*60000
+				IF _arg2 = "Seconds" THEN Wait Val(_arg1)*1000
+				SetMicrophone 1
+				Wait 500
+				TTSPlayString "I'm Back"
+				Wait 1000
+				HeardWord _arg4, _arg5, _arg6
+			}
+		}
+		COMMAND "<1-60> <Minutes> <1-60> <Seconds> <Break> <1-60> <MinutesSeconds> <Time>" {
+			SCRIPT {
+				SetMicrophone 0
+				TTSPlayString "" + _arg1 + " " + _arg2 + " " + _arg3 + " " + _arg4 + " " + _arg5 + ""
+				Wait Val(_arg1)*60000
+				Wait Val(_arg3)*1000
+				SetMicrophone 1
+				Wait 500
+				TTSPlayString "I'm Back"
+				Wait 100
+				HeardWord _arg6, _arg7, _arg8
+			}
+		}
+		LIST "1-60" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40" "41" "42" "43" "44" "45" "46" "47" "48" "49"
+			 "50" "51" "52" "53" "54" "55" "56" "57" "58" "59"
+			 "60"  
+		}
+		LIST "Minutes" {
+			"Minutes"
+		}
+		LIST "Seconds" {
+			"Seconds"
+		}
+		LIST "Break" {
+			"Break"
+		}
+		LIST "MinutesSeconds" {
+			"Minutes"
+			"Seconds"
+		}
+		LIST "Time" {
+			"Time"
+		}
+#10g. Sound System
+		COMMAND "<Volume> <0-100>" {
+			SCRIPT {
+				TTSPlayString "Changing to"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll",119, _arg2
+				TTSPlayString "" + _arg1 + " " + _arg2 + ""
+			}
+		}
+		COMMAND "All <Volume> <0-100>" {
+			SCRIPT {
+				TTSPlayString "Changing to"
+				AppBringUp "SNDVOL"
+				Wait 100
+				SendKeys "{Ctrl+End}"
+				SendKeys "{Up " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Esc}"
+				TTSPlayString "" + _arg1 + " " + _arg2 + ""
+			}
+		}
+		LIST "0-100" {
+			"0"  "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40" "41" "42" "43" "44" "45" "46" "47" "48" "49"
+			 "50" "51" "52" "53" "54" "55" "56" "57" "58" "59"
+			 "60" "61" "62" "63" "64" "65" "66" "67" "68" "69"
+			 "70" "71" "72" "73" "74" "75" "76" "77" "78" "79"
+			 "80" "81" "82" "83" "84" "85" "86" "87" "88" "89"
+			 "90" "91" "92" "93" "94" "95" "96" "97" "98" "99"  "100"
+		}
+		LIST "Volume" {
+			"Volume"
+		}
+		COMMAND "Media <PausePlayStop>" {
+			SCRIPT {
+				' Media at 53
+				DllCall "UttC.dll", 53, _arg1
+			}
+		}
+		LIST "PausePlayStop" {
+			"Pause"  "Play"  "Stop"
+		}
+		COMMAND "Media <AfterBeforeUpDown>" {
+			SCRIPT {
+				' Media at 53
+				DllCall "UttC.dll", 53, _arg1
+			}
+		}
+		COMMAND "Media <1-20> <AfterBeforeUpDown>" {
+			SCRIPT {
+			    IF _arg2 = "Up" THEN  _arg2 = "Before"
+				IF _arg2 = "Down" THEN  _arg2 = "After"
+			    vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				loop& = Val(_arg1)
+				while ( loop& )
+				Wait 750
+				' Media at 53
+				DllCall "UttC.dll", 53, _arg2
+				loop& = loop& - 1
+				wend
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+			}
+		}
+		LIST "1-20" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+		}
+		LIST "AfterBeforeUpDown" {
+			"Before"  "After"  "Up" "Down"	
+		}
+ 
+#10i. Cell
+		COMMAND "<CellEnterUndoTabEscape> <Alph> <1-100>" {
+			SCRIPT {
+				IF _arg1 = "Enter" XOR _arg1 = "Enter Cell" THEN SendKeys "{Enter}"
+				IF _arg1 = "Undo" XOR _arg1 = "Undo Cell" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Tab" XOR _arg1 = "Tab Cell" THEN SendKeys "{Tab}"
+				IF _arg1 = "Escape" XOR _arg1 = "Escape Cell" THEN SendKeys "{Esc}"
+				SendKeys "{Ctrl+Home}"
+				wait 50
+				loop& = Val(_arg3) -1
+				while ( loop& )
+				SendKeys "{Down}"
+				loop& = loop& - 1
+				wend
+				_arg2 = MID$(_arg2,0,1)
+				IF _arg2 = "b" THEN SendKeys "{Tab}"
+				IF _arg2 = "c" THEN SendKeys "{Tab 2}"
+				IF _arg2 = "d" THEN SendKeys "{Tab 3}"
+				IF _arg2 = "e" THEN SendKeys "{Tab 4}"
+				IF _arg2 = "f" THEN SendKeys "{Tab 5}"
+				IF _arg2 = "g" THEN SendKeys "{Tab 6}"
+				IF _arg2 = "h" THEN SendKeys "{Tab 7}"
+				IF _arg2 = "i" THEN SendKeys "{Tab 8}"
+				IF _arg2 = "j" THEN SendKeys "{Tab 9}"
+				IF _arg2 = "k" THEN SendKeys "{Tab 10}"
+				IF _arg2 = "l" THEN SendKeys "{Tab 11}"
+				IF _arg2 = "m" THEN SendKeys "{Tab 12}"
+				IF _arg2 = "n" THEN SendKeys "{Tab 13}"
+				IF _arg2 = "o" THEN SendKeys "{Tab 14}"
+				IF _arg2 = "p" THEN SendKeys "{Tab 15}"
+				IF _arg2 = "q" THEN SendKeys "{Tab 16}"
+				IF _arg2 = "r" THEN SendKeys "{Tab 17}"
+				IF _arg2 = "s" THEN SendKeys "{Tab 18}"
+				IF _arg2 = "t" THEN SendKeys "{Tab 19}"
+				IF _arg2 = "u" THEN SendKeys "{Tab 20}"
+				IF _arg2 = "v" THEN SendKeys "{Tab 21}"
+				IF _arg2 = "w" THEN SendKeys "{Tab 22}"
+				IF _arg2 = "x" THEN SendKeys "{Tab 23}"
+				IF _arg2 = "y" THEN SendKeys "{Tab 24}"
+				IF _arg2 = "z" THEN SendKeys "{Tab 25}"
+			}
+		}
+		COMMAND "<CellEnterUndoTabEscape> <Alph> <0-9> <0-9>" {
+			SCRIPT {
+				IF _arg1 = "Enter" XOR _arg1 = "Enter Cell" THEN SendKeys "{Enter}"
+				IF _arg1 = "Undo" XOR _arg1 = "Undo Cell" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Tab" XOR _arg1 = "Tab Cell" THEN SendKeys "{Tab}"
+				SendKeys "{Ctrl+Home}"
+				wait 50
+				SendKeys "{Down " + _arg3 + "" + _arg4 + "}{Up}"
+				_arg2 = MID$(_arg2,0,1)
+				IF _arg2 = "b" THEN SendKeys "{Tab}"
+				IF _arg2 = "c" THEN SendKeys "{Tab 2}"
+				IF _arg2 = "d" THEN SendKeys "{Tab 3}"
+				IF _arg2 = "e" THEN SendKeys "{Tab 4}"
+				IF _arg2 = "f" THEN SendKeys "{Tab 5}"
+				IF _arg2 = "g" THEN SendKeys "{Tab 6}"
+				IF _arg2 = "h" THEN SendKeys "{Tab 7}"
+				IF _arg2 = "i" THEN SendKeys "{Tab 8}"
+				IF _arg2 = "j" THEN SendKeys "{Tab 9}"
+				IF _arg2 = "k" THEN SendKeys "{Tab 10}"
+				IF _arg2 = "l" THEN SendKeys "{Tab 11}"
+				IF _arg2 = "m" THEN SendKeys "{Tab 12}"
+				IF _arg2 = "n" THEN SendKeys "{Tab 13}"
+				IF _arg2 = "o" THEN SendKeys "{Tab 14}"
+				IF _arg2 = "p" THEN SendKeys "{Tab 15}"
+				IF _arg2 = "q" THEN SendKeys "{Tab 16}"
+				IF _arg2 = "r" THEN SendKeys "{Tab 17}"
+				IF _arg2 = "s" THEN SendKeys "{Tab 18}"
+				IF _arg2 = "t" THEN SendKeys "{Tab 19}"
+				IF _arg2 = "u" THEN SendKeys "{Tab 20}"
+				IF _arg2 = "v" THEN SendKeys "{Tab 21}"
+				IF _arg2 = "w" THEN SendKeys "{Tab 22}"
+				IF _arg2 = "x" THEN SendKeys "{Tab 23}"
+				IF _arg2 = "y" THEN SendKeys "{Tab 24}"
+				IF _arg2 = "z" THEN SendKeys "{Tab 25}"
+			}
+		}
+		COMMAND "<CellEnterUndoTabEscape> <Alph> <1-5> <0-9> <0-9>" {
+			SCRIPT {
+				IF _arg1 = "Enter" XOR _arg1 = "Enter Cell" THEN SendKeys "{Enter}"
+				IF _arg1 = "Undo" XOR _arg1 = "Undo Cell" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Tab" XOR _arg1 = "Tab Cell" THEN SendKeys "{Tab}"
+				IF _arg1 = "Escape" XOR _arg1 = "Escape Cell" THEN SendKeys "{Esc}"
+				SendKeys "{Ctrl+Home}"
+				wait 50
+				SendKeys "{Down " + _arg3 + "" + _arg4 + "" + _arg5 + "}{Up}"
+				_arg2 = MID$(_arg2,0,1)
+				IF _arg2 = "b" THEN SendKeys "{Tab}"
+				IF _arg2 = "c" THEN SendKeys "{Tab 2}"
+				IF _arg2 = "d" THEN SendKeys "{Tab 3}"
+				IF _arg2 = "e" THEN SendKeys "{Tab 4}"
+				IF _arg2 = "f" THEN SendKeys "{Tab 5}"
+				IF _arg2 = "g" THEN SendKeys "{Tab 6}"
+				IF _arg2 = "h" THEN SendKeys "{Tab 7}"
+				IF _arg2 = "i" THEN SendKeys "{Tab 8}"
+				IF _arg2 = "j" THEN SendKeys "{Tab 9}"
+				IF _arg2 = "k" THEN SendKeys "{Tab 10}"
+				IF _arg2 = "l" THEN SendKeys "{Tab 11}"
+				IF _arg2 = "m" THEN SendKeys "{Tab 12}"
+				IF _arg2 = "n" THEN SendKeys "{Tab 13}"
+				IF _arg2 = "o" THEN SendKeys "{Tab 14}"
+				IF _arg2 = "p" THEN SendKeys "{Tab 15}"
+				IF _arg2 = "q" THEN SendKeys "{Tab 16}"
+				IF _arg2 = "r" THEN SendKeys "{Tab 17}"
+				IF _arg2 = "s" THEN SendKeys "{Tab 18}"
+				IF _arg2 = "t" THEN SendKeys "{Tab 19}"
+				IF _arg2 = "u" THEN SendKeys "{Tab 20}"
+				IF _arg2 = "v" THEN SendKeys "{Tab 21}"
+				IF _arg2 = "w" THEN SendKeys "{Tab 22}"
+				IF _arg2 = "x" THEN SendKeys "{Tab 23}"
+				IF _arg2 = "y" THEN SendKeys "{Tab 24}"
+				IF _arg2 = "z" THEN SendKeys "{Tab 25}"
+			}
+		}
+		COMMAND "<CellEnterUndoTabEscape> <a-i> <Alph> <1-100>" {
+			SCRIPT {
+				IF _arg1 = "Enter" XOR _arg1 = "Enter Cell" THEN SendKeys "{Enter}"
+				IF _arg1 = "Undo" XOR _arg1 = "Undo Cell" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Tab" XOR _arg1 = "Tab Cell" THEN SendKeys "{Tab}"
+				IF _arg1 = "Escape" XOR _arg1 = "Escape Cell" THEN SendKeys "{Esc}"
+				SendKeys "{Ctrl+Home}"
+				wait 50
+				loop& = Val(_arg4) -1
+				while ( loop& )
+				SendKeys "{Down}"
+				loop& = loop& - 1
+				wend
+				_arg2 = MID$(_arg2,0,1)
+				IF _arg2 = "a" THEN SendKeys "{Tab 26}"
+				IF _arg2 = "b" THEN SendKeys "{Tab 52}"
+				IF _arg2 = "c" THEN SendKeys "{Tab 78}"
+				IF _arg2 = "d" THEN SendKeys "{Tab 104}"
+				IF _arg2 = "e" THEN SendKeys "{Tab 130}"
+				IF _arg2 = "f" THEN SendKeys "{Tab 156}"
+				IF _arg2 = "g" THEN SendKeys "{Tab 182}"
+				IF _arg2 = "h" THEN SendKeys "{Tab 208}"
+				IF _arg2 = "i" THEN SendKeys "{Tab 234}"
+				_arg3 = MID$(_arg3,0,1)
+				IF _arg3 = "b" THEN SendKeys "{Tab}"
+				IF _arg3 = "c" THEN SendKeys "{Tab 2}"
+				IF _arg3 = "d" THEN SendKeys "{Tab 3}"
+				IF _arg3 = "e" THEN SendKeys "{Tab 4}"
+				IF _arg3 = "f" THEN SendKeys "{Tab 5}"
+				IF _arg3 = "g" THEN SendKeys "{Tab 6}"
+				IF _arg3 = "h" THEN SendKeys "{Tab 7}"
+				IF _arg3 = "i" THEN SendKeys "{Tab 8}"
+				IF _arg3 = "j" THEN SendKeys "{Tab 9}"
+				IF _arg3 = "k" THEN SendKeys "{Tab 10}"
+				IF _arg3 = "l" THEN SendKeys "{Tab 11}"
+				IF _arg3 = "m" THEN SendKeys "{Tab 12}"
+				IF _arg3 = "n" THEN SendKeys "{Tab 13}"
+				IF _arg3 = "o" THEN SendKeys "{Tab 14}"
+				IF _arg3 = "p" THEN SendKeys "{Tab 15}"
+				IF _arg3 = "q" THEN SendKeys "{Tab 16}"
+				IF _arg3 = "r" THEN SendKeys "{Tab 17}"
+				IF _arg3 = "s" THEN SendKeys "{Tab 18}"
+				IF _arg3 = "t" THEN SendKeys "{Tab 19}"
+				IF _arg3 = "u" THEN SendKeys "{Tab 20}"
+				IF _arg3 = "v" THEN SendKeys "{Tab 21}"
+				IF _arg3 = "w" THEN SendKeys "{Tab 22}"
+				IF _arg3 = "x" THEN SendKeys "{Tab 23}"
+				IF _arg3 = "y" THEN SendKeys "{Tab 24}"
+				IF _arg3 = "z" THEN SendKeys "{Tab 25}"
+			}
+		}
+		COMMAND "<CellEnterUndoTabEscape> <a-i> <Alph> <0-9> <0-9>" {
+			SCRIPT {
+				IF _arg1 = "Enter" XOR _arg1 = "Enter Cell" THEN SendKeys "{Enter}"
+				IF _arg1 = "Undo" XOR _arg1 = "Undo Cell" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Tab" XOR _arg1 = "Tab Cell" THEN SendKeys "{Tab}"
+				IF _arg1 = "Escape" XOR _arg1 = "Escape Cell" THEN SendKeys "{Esc}"
+				SendKeys "{Ctrl+Home}"
+				wait 50
+				SendKeys "{Down " + _arg4 + "" + _arg5 + "}{Up}"
+				_arg2 = MID$(_arg2,0,1)
+				IF _arg2 = "a" THEN SendKeys "{Tab 26}"
+				IF _arg2 = "b" THEN SendKeys "{Tab 52}"
+				IF _arg2 = "c" THEN SendKeys "{Tab 78}"
+				IF _arg2 = "d" THEN SendKeys "{Tab 104}"
+				IF _arg2 = "e" THEN SendKeys "{Tab 130}"
+				IF _arg2 = "f" THEN SendKeys "{Tab 156}"
+				IF _arg2 = "g" THEN SendKeys "{Tab 182}"
+				IF _arg2 = "h" THEN SendKeys "{Tab 208}"
+				IF _arg2 = "i" THEN SendKeys "{Tab 234}"
+				_arg3 = MID$(_arg3,0,1)
+				IF _arg3 = "b" THEN SendKeys "{Tab}"
+				IF _arg3 = "c" THEN SendKeys "{Tab 2}"
+				IF _arg3 = "d" THEN SendKeys "{Tab 3}"
+				IF _arg3 = "e" THEN SendKeys "{Tab 4}"
+				IF _arg3 = "f" THEN SendKeys "{Tab 5}"
+				IF _arg3 = "g" THEN SendKeys "{Tab 6}"
+				IF _arg3 = "h" THEN SendKeys "{Tab 7}"
+				IF _arg3 = "i" THEN SendKeys "{Tab 8}"
+				IF _arg3 = "j" THEN SendKeys "{Tab 9}"
+				IF _arg3 = "k" THEN SendKeys "{Tab 10}"
+				IF _arg3 = "l" THEN SendKeys "{Tab 11}"
+				IF _arg3 = "m" THEN SendKeys "{Tab 12}"
+				IF _arg3 = "n" THEN SendKeys "{Tab 13}"
+				IF _arg3 = "o" THEN SendKeys "{Tab 14}"
+				IF _arg3 = "p" THEN SendKeys "{Tab 15}"
+				IF _arg3 = "q" THEN SendKeys "{Tab 16}"
+				IF _arg3 = "r" THEN SendKeys "{Tab 17}"
+				IF _arg3 = "s" THEN SendKeys "{Tab 18}"
+				IF _arg3 = "t" THEN SendKeys "{Tab 19}"
+				IF _arg3 = "u" THEN SendKeys "{Tab 20}"
+				IF _arg3 = "v" THEN SendKeys "{Tab 21}"
+				IF _arg3 = "w" THEN SendKeys "{Tab 22}"
+				IF _arg3 = "x" THEN SendKeys "{Tab 23}"
+				IF _arg3 = "y" THEN SendKeys "{Tab 24}"
+				IF _arg3 = "z" THEN SendKeys "{Tab 25}"
+			}
+		}
+		COMMAND "<CellEnterUndoTabEscape> <a-i> <Alph> <1-5> <0-9> <0-9>" {
+			SCRIPT {
+				IF _arg1 = "Enter" XOR _arg1 = "Enter Cell" THEN SendKeys "{Enter}"
+				IF _arg1 = "Undo" XOR _arg1 = "Undo Cell" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Tab" XOR _arg1 = "Tab Cell" THEN SendKeys "{Tab}"
+				IF _arg1 = "Escape" XOR _arg1 = "Escape Cell" THEN SendKeys "{Esc}"
+				SendKeys "{Ctrl+Home}"
+				wait 50
+				SendKeys "{Down " + _arg4 + "" + _arg5 + "" + _arg6 + "}{Up}"
+				_arg2 = MID$(_arg2,0,1)
+				IF _arg2 = "a" THEN SendKeys "{Tab 26}"
+				IF _arg2 = "b" THEN SendKeys "{Tab 52}"
+				IF _arg2 = "c" THEN SendKeys "{Tab 78}"
+				IF _arg2 = "d" THEN SendKeys "{Tab 104}"
+				IF _arg2 = "e" THEN SendKeys "{Tab 130}"
+				IF _arg2 = "f" THEN SendKeys "{Tab 156}"
+				IF _arg2 = "g" THEN SendKeys "{Tab 182}"
+				IF _arg2 = "h" THEN SendKeys "{Tab 208}"
+				IF _arg2 = "i" THEN SendKeys "{Tab 234}"
+				_arg3 = MID$(_arg3,0,1)
+				IF _arg3 = "b" THEN SendKeys "{Tab}"
+				IF _arg3 = "c" THEN SendKeys "{Tab 2}"
+				IF _arg3 = "d" THEN SendKeys "{Tab 3}"
+				IF _arg3 = "e" THEN SendKeys "{Tab 4}"
+				IF _arg3 = "f" THEN SendKeys "{Tab 5}"
+				IF _arg3 = "g" THEN SendKeys "{Tab 6}"
+				IF _arg3 = "h" THEN SendKeys "{Tab 7}"
+				IF _arg3 = "i" THEN SendKeys "{Tab 8}"
+				IF _arg3 = "j" THEN SendKeys "{Tab 9}"
+				IF _arg3 = "k" THEN SendKeys "{Tab 10}"
+				IF _arg3 = "l" THEN SendKeys "{Tab 11}"
+				IF _arg3 = "m" THEN SendKeys "{Tab 12}"
+				IF _arg3 = "n" THEN SendKeys "{Tab 13}"
+				IF _arg3 = "o" THEN SendKeys "{Tab 14}"
+				IF _arg3 = "p" THEN SendKeys "{Tab 15}"
+				IF _arg3 = "q" THEN SendKeys "{Tab 16}"
+				IF _arg3 = "r" THEN SendKeys "{Tab 17}"
+				IF _arg3 = "s" THEN SendKeys "{Tab 18}"
+				IF _arg3 = "t" THEN SendKeys "{Tab 19}"
+				IF _arg3 = "u" THEN SendKeys "{Tab 20}"
+				IF _arg3 = "v" THEN SendKeys "{Tab 21}"
+				IF _arg3 = "w" THEN SendKeys "{Tab 22}"
+				IF _arg3 = "x" THEN SendKeys "{Tab 23}"
+				IF _arg3 = "y" THEN SendKeys "{Tab 24}"
+				IF _arg3 = "z" THEN SendKeys "{Tab 25}"
+			}
+		}
+		COMMAND "<CellEnterCUndoCTabCEscape> <Alph>" {
+			SCRIPT {
+				IF _arg1 = "Enter" XOR _arg1 = "Enter Cell" THEN SendKeys "{Enter}"
+				IF _arg1 = "Undo" XOR _arg1 = "Undo Cell" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Tab" XOR _arg1 = "Tab Cell" THEN SendKeys "{Tab}"
+				SendKeys "{Ctrl+Left}"
+				wait 50
+				_arg2 = MID$(_arg2,0,1)
+				IF _arg2 = "b" THEN SendKeys "{Tab}"
+				IF _arg2 = "c" THEN SendKeys "{Tab 2}"
+				IF _arg2 = "d" THEN SendKeys "{Tab 3}"
+				IF _arg2 = "e" THEN SendKeys "{Tab 4}"
+				IF _arg2 = "f" THEN SendKeys "{Tab 5}"
+				IF _arg2 = "g" THEN SendKeys "{Tab 6}"
+				IF _arg2 = "h" THEN SendKeys "{Tab 7}"
+				IF _arg2 = "i" THEN SendKeys "{Tab 8}"
+				IF _arg2 = "j" THEN SendKeys "{Tab 9}"
+				IF _arg2 = "k" THEN SendKeys "{Tab 10}"
+				IF _arg2 = "l" THEN SendKeys "{Tab 11}"
+				IF _arg2 = "m" THEN SendKeys "{Tab 12}"
+				IF _arg2 = "n" THEN SendKeys "{Tab 13}"
+				IF _arg2 = "o" THEN SendKeys "{Tab 14}"
+				IF _arg2 = "p" THEN SendKeys "{Tab 15}"
+				IF _arg2 = "q" THEN SendKeys "{Tab 16}"
+				IF _arg2 = "r" THEN SendKeys "{Tab 17}"
+				IF _arg2 = "s" THEN SendKeys "{Tab 18}"
+				IF _arg2 = "t" THEN SendKeys "{Tab 19}"
+				IF _arg2 = "u" THEN SendKeys "{Tab 20}"
+				IF _arg2 = "v" THEN SendKeys "{Tab 21}"
+				IF _arg2 = "w" THEN SendKeys "{Tab 22}"
+				IF _arg2 = "x" THEN SendKeys "{Tab 23}"
+				IF _arg2 = "y" THEN SendKeys "{Tab 24}"
+				IF _arg2 = "z" THEN SendKeys "{Tab 25}"
+			}
+		}
+		COMMAND "<CellEnterCUndoCTabCEscape> <a-i> <Alph>" {
+			SCRIPT {
+				IF _arg1 = "Enter" XOR _arg1 = "Enter Cell" THEN SendKeys "{Enter}"
+				IF _arg1 = "Undo" XOR _arg1 = "Undo Cell" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Tab" XOR _arg1 = "Tab Cell" THEN SendKeys "{Tab}"
+				IF _arg1 = "Escape" XOR _arg1 = "Escape Cell" THEN SendKeys "{Esc}"
+				SendKeys "{Ctrl+Left}"
+				wait 50
+				_arg2 = MID$(_arg2,0,1)
+				IF _arg2 = "a" THEN SendKeys "{Tab 26}"
+				IF _arg2 = "b" THEN SendKeys "{Tab 52}"
+				IF _arg2 = "c" THEN SendKeys "{Tab 78}"
+				IF _arg2 = "d" THEN SendKeys "{Tab 104}"
+				IF _arg2 = "e" THEN SendKeys "{Tab 130}"
+				IF _arg2 = "f" THEN SendKeys "{Tab 156}"
+				IF _arg2 = "g" THEN SendKeys "{Tab 182}"
+				IF _arg2 = "h" THEN SendKeys "{Tab 208}"
+				IF _arg2 = "i" THEN SendKeys "{Tab 234}"
+				_arg3 = MID$(_arg3,0,1)
+				IF _arg3 = "b" THEN SendKeys "{Tab}"
+				IF _arg3 = "c" THEN SendKeys "{Tab 2}"
+				IF _arg3 = "d" THEN SendKeys "{Tab 3}"
+				IF _arg3 = "e" THEN SendKeys "{Tab 4}"
+				IF _arg3 = "f" THEN SendKeys "{Tab 5}"
+				IF _arg3 = "g" THEN SendKeys "{Tab 6}"
+				IF _arg3 = "h" THEN SendKeys "{Tab 7}"
+				IF _arg3 = "i" THEN SendKeys "{Tab 8}"
+				IF _arg3 = "j" THEN SendKeys "{Tab 9}"
+				IF _arg3 = "k" THEN SendKeys "{Tab 10}"
+				IF _arg3 = "l" THEN SendKeys "{Tab 11}"
+				IF _arg3 = "m" THEN SendKeys "{Tab 12}"
+				IF _arg3 = "n" THEN SendKeys "{Tab 13}"
+				IF _arg3 = "o" THEN SendKeys "{Tab 14}"
+				IF _arg3 = "p" THEN SendKeys "{Tab 15}"
+				IF _arg3 = "q" THEN SendKeys "{Tab 16}"
+				IF _arg3 = "r" THEN SendKeys "{Tab 17}"
+				IF _arg3 = "s" THEN SendKeys "{Tab 18}"
+				IF _arg3 = "t" THEN SendKeys "{Tab 19}"
+				IF _arg3 = "u" THEN SendKeys "{Tab 20}"
+				IF _arg3 = "v" THEN SendKeys "{Tab 21}"
+				IF _arg3 = "w" THEN SendKeys "{Tab 22}"
+				IF _arg3 = "x" THEN SendKeys "{Tab 23}"
+				IF _arg3 = "y" THEN SendKeys "{Tab 24}"
+				IF _arg3 = "z" THEN SendKeys "{Tab 25}"
+			}
+		}
+		COMMAND "<CellEnterCUndoCTabCEscape> <1-100>" {
+			SCRIPT {
+				IF _arg1 = "Enter" XOR _arg1 = "Enter Cell" THEN SendKeys "{Enter}"
+				IF _arg1 = "Undo" XOR _arg1 = "Undo Cell" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Tab" XOR _arg1 = "Tab Cell" THEN SendKeys "{Tab}"
+				IF _arg1 = "Escape" XOR _arg1 = "Escape Cell" THEN SendKeys "{Esc}"
+				SendKeys "{Ctrl+Up}"
+				loop& = Val(_arg2) -1
+				while ( loop& )
+				SendKeys "{Down}"
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<CellEnterCUndoCTabCEscape> <0-9> <0-9>" {
+			SCRIPT {
+				IF _arg1 = "Enter" XOR _arg1 = "Enter Cell" THEN SendKeys "{Enter}"
+				IF _arg1 = "Undo" XOR _arg1 = "Undo Cell" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Tab" XOR _arg1 = "Tab Cell" THEN SendKeys "{Tab}"
+				IF _arg1 = "Escape" XOR _arg1 = "Escape Cell" THEN SendKeys "{Esc}"
+				SendKeys "{Ctrl+Up}"
+				SendKeys "{Down " + _arg2 + "" + _arg3 + "}{Up}"
+			}
+		}
+		COMMAND "<CellEnterCUndoCTabCEscape> <1-5> <0-9> <0-9>" {
+			SCRIPT {
+				IF _arg1 = "Enter" XOR _arg1 = "Enter Cell" THEN SendKeys "{Enter}"
+				IF _arg1 = "Undo" XOR _arg1 = "Undo Cell" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Tab" XOR _arg1 = "Tab Cell" THEN SendKeys "{Tab}"
+				IF _arg1 = "Escape" XOR _arg1 = "Escape Cell" THEN SendKeys "{Esc}"
+				SendKeys "{Ctrl+Up}"
+				SendKeys "{Down " + _arg2 + "" + _arg3 + "" + _arg4 + "}{Up}"
+			}
+		}
+		LIST "CellEnterCUndoCTabCEscape" {
+			"Cell"  "Enter Cell"  "Undo Cell"  "Tab Cell" "Escape Cell"
+		}
+		COMMAND "<Factors> <Alph> <1-100>" {
+			SCRIPT {
+				IF _arg1 = "Equals" THEN  _arg1 = "="
+				IF _arg1 = "Equals Open" THEN  _arg1 = "=("
+				IF _arg1 = "Plus" THEN  _arg1 = "+"
+				IF _arg1 = "Minus" THEN  _arg1 = "-"
+				IF _arg1 = "Times" THEN  _arg1 = "*"
+				IF _arg1 = "Divided By" THEN  _arg1 = "/"
+				IF _arg1 = "Through" THEN  _arg1 = ":"
+				IF _arg1 = "Open" XOR _arg1 = "Open Paren" THEN  _arg1 = "("
+				IF _arg1 = "Close" XOR _arg1 = "Close Paren" THEN  _arg1 = ")"
+				IF _arg1 = "Enter" THEN  _arg1 = "{Enter}"
+				IF _arg1 = "Tab" THEN  _arg1 = "{Tab}"
+				IF _arg1 = "Shift Tab" THEN  _arg1 = "{Shift+Tab}"
+				IF _arg1 = "Comma" THEN  _arg1 = ","
+				IF _arg1 = "Ampersand" THEN  _arg1 = "&"
+				IF _arg1 = "Less Than" THEN  _arg1 = "<"
+				IF _arg1 = "Greater Than" THEN  _arg1 = ">"
+				IF _arg1 = "Carat" THEN  _arg1 = "^"
+				IF _arg1 = "Percent" THEN  _arg1 = "%"
+				IF _arg1 = "Dollar" THEN  _arg1 = "$"
+				
+				SendKeys _arg1
+				SendKeys "{Shift+"+MID$(_arg2,0,1)+"}"
+				SendKeys _arg3
+ 
+			}
+		}
+		COMMAND "<Factors> <Alph> <0-9> <0-9>" {
+			SCRIPT {
+				IF _arg1 = "Equals" THEN  _arg1 = "="
+				IF _arg1 = "Equals Open" XOR _arg1 = "Equals Open Paren" THEN  _arg1 = "=("
+				IF _arg1 = "Plus" THEN  _arg1 = "+"
+				IF _arg1 = "Minus" THEN  _arg1 = "-"
+				IF _arg1 = "Times" THEN  _arg1 = "*"
+				IF _arg1 = "Divided By" THEN  _arg1 = "/"
+				IF _arg1 = "Through" XOR _arg1 = "Colon" THEN  _arg1 = ":"
+				IF _arg1 = "Close" XOR _arg1 = "Close Paren" THEN  _arg1 = ")"
+				IF _arg1 = "Enter" THEN  _arg1 = "{Enter}"
+				IF _arg1 = "Tab" THEN  _arg1 = "{Tab}"
+				IF _arg1 = "Shift Tab" THEN  _arg1 = "{Shift+Tab}"
+				IF _arg1 = "Comma" THEN  _arg1 = ","
+				IF _arg1 = "Ampersand" THEN  _arg1 = "&"
+				IF _arg1 = "Less Than" THEN  _arg1 = "<"
+				IF _arg1 = "Greater Than" THEN  _arg1 = ">"
+				IF _arg1 = "Carat" THEN  _arg1 = "^"
+				IF _arg1 = "Percent" THEN  _arg1 = "%"
+				IF _arg1 = "Dollar" THEN  _arg1 = "$"
+				
+				SendKeys _arg1
+				SendKeys "{Shift+"+MID$(_arg2,0,1)+"}"
+				SendKeys "" + _arg3 + "" + _arg4 + ""				
+			}
+		}
+		COMMAND "<Factors> <Alph> <1-5> <0-9> <0-9>" {
+			SCRIPT {
+				IF _arg1 = "Equals" THEN  _arg1 = "="
+				IF _arg1 = "Equals Open" XOR _arg1 = "Equals Open Paren" THEN  _arg1 = "=("
+				IF _arg1 = "Plus" THEN  _arg1 = "+"
+				IF _arg1 = "Minus" THEN  _arg1 = "-"
+				IF _arg1 = "Times" THEN  _arg1 = "*"
+				IF _arg1 = "Divided By" THEN  _arg1 = "/"
+				IF _arg1 = "Through" XOR _arg1 = "Colon" THEN  _arg1 = ":"
+				IF _arg1 = "Close" XOR _arg1 = "Close Paren" THEN  _arg1 = ")"
+				IF _arg1 = "Enter" THEN  _arg1 = "{Enter}"
+				IF _arg1 = "Tab" THEN  _arg1 = "{Tab}"
+				IF _arg1 = "Shift Tab" THEN  _arg1 = "{Shift+Tab}"
+				IF _arg1 = "Comma" THEN  _arg1 = ","
+				IF _arg1 = "Ampersand" THEN  _arg1 = "&"
+				IF _arg1 = "Less Than" THEN  _arg1 = "<"
+				IF _arg1 = "Greater Than" THEN  _arg1 = ">"
+				IF _arg1 = "Carat" THEN  _arg1 = "^"
+				IF _arg1 = "Percent" THEN  _arg1 = "%"
+				IF _arg1 = "Dollar" THEN  _arg1 = "$"
+				
+				SendKeys _arg1
+				SendKeys "{Shift+"+MID$(_arg2,0,1)+"}"
+				SendKeys "" + _arg3 + "" + _arg4 + "" + _arg5 + ""				
+			}
+		}
+		COMMAND "<Alph> <1-100> <Factors>" {
+			SCRIPT {
+				IF _arg3 = "Equals" THEN  _arg3 = "="
+				IF _arg3 = "Equals Open" THEN  _arg3 = "=("
+				IF _arg3 = "Plus" THEN  _arg3 = "+"
+				IF _arg3 = "Minus" THEN  _arg3 = "-"
+				IF _arg3 = "Times" THEN  _arg3 = "*"
+				IF _arg3 = "Divided By" THEN  _arg3 = "/"
+				IF _arg3 = "Through" XOR _arg3 = "Colon" THEN  _arg3 = ":"
+				IF _arg3 = "Open" XOR _arg3 = "Open Paren" THEN  _arg3 = "("
+				IF _arg3 = "Close" XOR _arg3 = "Close Paren" THEN  _arg3 = ")"
+				IF _arg3 = "Enter" THEN  _arg3 = "{Enter}"
+				IF _arg3 = "Tab" THEN  _arg3 = "{Tab}"
+				IF _arg3 = "Shift Tab" THEN  _arg3 = "{Shift+Tab}"
+				IF _arg3 = "Comma" THEN  _arg3 = ","
+				IF _arg3 = "Ampersand" THEN  _arg3 = "&"
+				IF _arg3 = "Less Than" THEN  _arg3 = "<"
+				IF _arg3 = "Greater Than" THEN  _arg3 = ">"
+				IF _arg3 = "Carat" THEN  _arg3 = "^"
+				IF _arg3 = "Percent" THEN  _arg3 = "%"
+				IF _arg3 = "Dollar" THEN  _arg3 = "$"
+				SendKeys "{Shift+"+MID$(_arg1,0,1)+"}"
+				SendKeys _arg2
+				SendKeys _arg3
+ 
+			}
+		}
+		COMMAND "<Alph> <0-9> <0-9> <Factors>" {
+			SCRIPT {
+				IF _arg4 = "Equals" THEN  _arg4 = "="
+				IF _arg4 = "Equals Open" THEN  _arg4 = "=("
+				IF _arg4 = "Plus" THEN  _arg4 = "+"
+				IF _arg4 = "Minus" THEN  _arg4 = "-"
+				IF _arg4 = "Times" THEN  _arg4 = "*"
+				IF _arg4 = "Divided By" THEN  _arg4 = "/"
+				IF _arg4 = "Through" XOR _arg4 = "Colon" THEN  _arg4 = ":"
+				IF _arg4 = "Open" XOR _arg4 = "Open Paren" THEN  _arg4 = "("
+				IF _arg4 = "Close" XOR _arg4 = "Close Paren" THEN  _arg4 = ")"
+				IF _arg4 = "Enter" THEN  _arg4 = "{Enter}"
+				IF _arg4 = "Tab" THEN  _arg4 = "{Tab}"
+				IF _arg4 = "Shift Tab" THEN  _arg4 = "{Shift+Tab}"
+				IF _arg4 = "Comma" THEN  _arg4 = ","
+				IF _arg4 = "Ampersand" THEN  _arg4 = "&"
+				IF _arg4 = "Less Than" THEN  _arg4 = "<"
+				IF _arg4 = "Greater Than" THEN  _arg4 = ">"
+				IF _arg4 = "Carat" THEN  _arg4 = "^"
+				IF _arg4 = "Percent" THEN  _arg4 = "%"
+				
+				SendKeys "{Shift+"+MID$(_arg1,0,1)+"}"
+				SendKeys "" + _arg2 + "" + _arg3 + ""
+				SendKeys _arg4				
+			}
+		}
+		COMMAND "<Alph> <1-5> <0-9> <0-9> <Factors>" {
+			SCRIPT {
+				IF _arg5 = "Equals" THEN  _arg5 = "="
+				IF _arg5 = "Equals Open" THEN  _arg5 = "=("
+				IF _arg5 = "Plus" THEN  _arg5 = "+"
+				IF _arg5 = "Minus" THEN  _arg5 = "-"
+				IF _arg5 = "Times" THEN  _arg5 = "*"
+				IF _arg5 = "Divided By" THEN  _arg5 = "/"
+				IF _arg5 = "Through" XOR _arg5 = "Colon" THEN  _arg5 = ":"
+				IF _arg5 = "Open" XOR _arg5 = "Open Paren" THEN  _arg5 = "("
+				IF _arg5 = "Close" XOR _arg5 = "Close Paren" THEN  _arg5 = ")"
+				IF _arg5 = "Enter" THEN  _arg5 = "{Enter}"
+				IF _arg5 = "Tab" THEN  _arg5 = "{Tab}"
+				IF _arg5 = "Shift Tab" THEN  _arg5 = "{Shift+Tab}"
+				IF _arg5 = "Comma" THEN  _arg5 = ","
+				IF _arg5 = "Ampersand" THEN  _arg5 = "&"
+				IF _arg5 = "Less Than" THEN  _arg5 = "<"
+				IF _arg5 = "Greater Than" THEN  _arg5 = ">"
+				IF _arg5 = "Carat" THEN  _arg5 = "^"
+				IF _arg5 = "Percent" THEN  _arg5 = "%"
+				IF _arg5 = "Dollar" THEN  _arg5 = "$"
+				
+				SendKeys "{Shift+"+MID$(_arg1,0,1)+"}"
+				SendKeys "" + _arg2 + "" + _arg3 + "" + _arg4 + ""
+				SendKeys _arg5				
+			}
+		}
+		LIST "0-9" {
+			"0"  "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9" 
+		}
+		COMMAND "<Factors> <Alph> <1-100> <Factors>" {
+			SCRIPT {
+				IF _arg1 = "Equals" THEN  _arg1 = "="
+				IF _arg1 = "Equals Open" XOR _arg1 = "Equals Open Paren" THEN  _arg1 = "=("
+				IF _arg1 = "Plus" THEN  _arg1 = "+"
+				IF _arg1 = "Minus" THEN  _arg1 = "-"
+				IF _arg1 = "Times" THEN  _arg1 = "*"
+				IF _arg1 = "Divided By" THEN  _arg1 = "/"
+				IF _arg1 = "Through" XOR _arg1 = "Colon" THEN  _arg1 = ":"
+				IF _arg1 = "Open" XOR _arg1 = "Open Paren" THEN  _arg1 = "("
+				IF _arg1 = "Close" XOR _arg1 = "Close Paren" THEN  _arg1 = ")"
+				IF _arg1 = "Enter" THEN  _arg1 = "{Enter}"
+				IF _arg1 = "Tab" THEN  _arg1 = "{Tab}"
+				IF _arg1 = "Shift Tab" THEN  _arg1 = "{Shift+Tab}"
+				IF _arg1 = "Comma" THEN  _arg1 = ","
+				IF _arg1 = "Ampersand" THEN  _arg1 = "&"
+				IF _arg1 = "Less Than" THEN  _arg1 = "<"
+				IF _arg1 = "Greater Than" THEN  _arg1 = ">"
+				IF _arg1 = "Carat" THEN  _arg1 = "^"
+				IF _arg1 = "Percent" THEN  _arg1 = "%"
+				IF _arg1 = "Dollar" THEN  _arg1 = "$"
+				IF _arg4 = "Plus" THEN  _arg4 = "+"
+				IF _arg4 = "Minus" THEN  _arg4 = "-"
+				IF _arg4 = "Times" THEN  _arg4 = "*"
+				IF _arg4 = "Divided By" THEN  _arg4 = "/"
+				IF _arg4 = "Through" XOR _arg4 = "Colon" THEN  _arg4 = ":"
+				IF _arg4 = "Open" XOR _arg4 = "Open Paren" THEN  _arg4 = "("
+				IF _arg4 = "Close" XOR _arg4 = "Close Paren" THEN  _arg4 = ")"
+				IF _arg4 = "Enter" THEN  _arg4 = "{Enter}"
+				IF _arg4 = "Tab" THEN  _arg4 = "{Tab}"
+				IF _arg4 = "Shift Tab" THEN  _arg4 = "{Shift+Tab}"
+				IF _arg4 = "Comma" THEN  _arg4 = ","
+				IF _arg4 = "Ampersand" THEN  _arg4 = "&"
+				IF _arg4 = "Less Than" THEN  _arg4 = "<"
+				IF _arg4 = "Greater Than" THEN  _arg4 = ">"
+				IF _arg4 = "Carat" THEN  _arg4 = "^"
+				IF _arg4 = "Percent" THEN  _arg4 = "%"
+				IF _arg4 = "Dollar" THEN  _arg4 = "$"
+				
+				SendKeys _arg1
+				SendKeys "{Shift+"+MID$(_arg2,0,1)+"}"
+				SendKeys _arg3
+				SendKeys _arg4
+			}
+		}
+		LIST "Factors" {
+			"Equals" "Equals Open" "Enter" "Tab" "Shift Tab"
+			"Plus"  "Minus"  "Divided By"  "Times" "Through" "Colon"
+			"Ampersand" "Carat" "Comma"  "Less Than"  "Greater Than" "Percent"   
+			"Open Paren"  "Close Paren"  "Open"  "Close"  "Dollar"
+ 
+		}
+		LIST "EnterTabShiftT" {
+			"Enter"  "Tab"  "Shift Tab"
+		}
+		LIST "1-5" {
+			"1"  "2" "3"  "4"  "5"
+		}	
+		COMMAND "<CellEnterUndoTabEscape> <Alph> <1-100> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				IF _arg1 = "Enter" XOR _arg1 = "Enter Cell" THEN SendKeys "{Enter}"
+				IF _arg1 = "Undo" XOR _arg1 = "Undo Cell" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Tab" XOR _arg1 = "Tab Cell" THEN SendKeys "{Tab}"
+				IF _arg1 = "Escape" XOR _arg1 = "Escape Cell" THEN SendKeys "{Esc}"
+				SendKeys "{Ctrl+Home}"
+				wait 50
+				_arg2 = MID$(_arg2,0,1)
+				IF _arg2 = "b" THEN SendKeys "{Tab}"
+				IF _arg2 = "c" THEN SendKeys "{Tab 2}"
+				IF _arg2 = "d" THEN SendKeys "{Tab 3}"
+				IF _arg2 = "e" THEN SendKeys "{Tab 4}"
+				IF _arg2 = "f" THEN SendKeys "{Tab 5}"
+				IF _arg2 = "g" THEN SendKeys "{Tab 6}"
+				IF _arg2 = "h" THEN SendKeys "{Tab 7}"
+				IF _arg2 = "i" THEN SendKeys "{Tab 8}"
+				IF _arg2 = "j" THEN SendKeys "{Tab 9}"
+				IF _arg2 = "k" THEN SendKeys "{Tab 10}"
+				IF _arg2 = "l" THEN SendKeys "{Tab 11}"
+				IF _arg2 = "m" THEN SendKeys "{Tab 12}"
+				IF _arg2 = "n" THEN SendKeys "{Tab 13}"
+				IF _arg2 = "o" THEN SendKeys "{Tab 14}"
+				IF _arg2 = "p" THEN SendKeys "{Tab 15}"
+				IF _arg2 = "q" THEN SendKeys "{Tab 16}"
+				IF _arg2 = "r" THEN SendKeys "{Tab 17}"
+				IF _arg2 = "s" THEN SendKeys "{Tab 18}"
+				IF _arg2 = "t" THEN SendKeys "{Tab 19}"
+				IF _arg2 = "u" THEN SendKeys "{Tab 20}"
+				IF _arg2 = "v" THEN SendKeys "{Tab 21}"
+				IF _arg2 = "w" THEN SendKeys "{Tab 22}"
+				IF _arg2 = "x" THEN SendKeys "{Tab 23}"
+				IF _arg2 = "y" THEN SendKeys "{Tab 24}"
+				IF _arg2 = "z" THEN SendKeys "{Tab 25}"
+				loop& = Val(_arg3) -1
+				while ( loop& )
+				SendKeys "{Down}"
+				loop& = loop& - 1
+				wend
+				IF _arg4 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg4
+				END IF
+			}
+		}
+		COMMAND "<Cell> <Alph> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				SendKeys "{Ctrl+Left}"
+				wait 50
+				_arg2 = MID$(_arg2,0,1)
+				IF _arg2 = "b" THEN SendKeys "{Tab}"
+				IF _arg2 = "c" THEN SendKeys "{Tab 2}"
+				IF _arg2 = "d" THEN SendKeys "{Tab 3}"
+				IF _arg2 = "e" THEN SendKeys "{Tab 4}"
+				IF _arg2 = "f" THEN SendKeys "{Tab 5}"
+				IF _arg2 = "g" THEN SendKeys "{Tab 6}"
+				IF _arg2 = "h" THEN SendKeys "{Tab 7}"
+				IF _arg2 = "i" THEN SendKeys "{Tab 8}"
+				IF _arg2 = "j" THEN SendKeys "{Tab 9}"
+				IF _arg2 = "k" THEN SendKeys "{Tab 10}"
+				IF _arg2 = "l" THEN SendKeys "{Tab 11}"
+				IF _arg2 = "m" THEN SendKeys "{Tab 12}"
+				IF _arg2 = "n" THEN SendKeys "{Tab 13}"
+				IF _arg2 = "o" THEN SendKeys "{Tab 14}"
+				IF _arg2 = "p" THEN SendKeys "{Tab 15}"
+				IF _arg2 = "q" THEN SendKeys "{Tab 16}"
+				IF _arg2 = "r" THEN SendKeys "{Tab 17}"
+				IF _arg2 = "s" THEN SendKeys "{Tab 18}"
+				IF _arg2 = "t" THEN SendKeys "{Tab 19}"
+				IF _arg2 = "u" THEN SendKeys "{Tab 20}"
+				IF _arg2 = "v" THEN SendKeys "{Tab 21}"
+				IF _arg2 = "w" THEN SendKeys "{Tab 22}"
+				IF _arg2 = "x" THEN SendKeys "{Tab 23}"
+				IF _arg2 = "y" THEN SendKeys "{Tab 24}"
+				IF _arg2 = "z" THEN SendKeys "{Tab 25}"
+				IF _arg3 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg3
+				END IF
+			}
+		}
+		COMMAND "<Cell> <a-i> <Alph> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				SendKeys "{Ctrl+Left}"
+				wait 50
+				_arg2 = MID$(_arg2,0,1)
+				IF _arg2 = "a" THEN SendKeys "{Tab 26}"
+				IF _arg2 = "b" THEN SendKeys "{Tab 52}"
+				IF _arg2 = "c" THEN SendKeys "{Tab 78}"
+				IF _arg2 = "d" THEN SendKeys "{Tab 104}"
+				IF _arg2 = "e" THEN SendKeys "{Tab 130}"
+				IF _arg2 = "f" THEN SendKeys "{Tab 156}"
+				IF _arg2 = "g" THEN SendKeys "{Tab 182}"
+				IF _arg2 = "h" THEN SendKeys "{Tab 208}"
+				IF _arg2 = "i" THEN SendKeys "{Tab 234}"
+				_arg3 = MID$(_arg3,0,1)
+				IF _arg3 = "b" THEN SendKeys "{Tab}"
+				IF _arg3 = "c" THEN SendKeys "{Tab 2}"
+				IF _arg3 = "d" THEN SendKeys "{Tab 3}"
+				IF _arg3 = "e" THEN SendKeys "{Tab 4}"
+				IF _arg3 = "f" THEN SendKeys "{Tab 5}"
+				IF _arg3 = "g" THEN SendKeys "{Tab 6}"
+				IF _arg3 = "h" THEN SendKeys "{Tab 7}"
+				IF _arg3 = "i" THEN SendKeys "{Tab 8}"
+				IF _arg3 = "j" THEN SendKeys "{Tab 9}"
+				IF _arg3 = "k" THEN SendKeys "{Tab 10}"
+				IF _arg3 = "l" THEN SendKeys "{Tab 11}"
+				IF _arg3 = "m" THEN SendKeys "{Tab 12}"
+				IF _arg3 = "n" THEN SendKeys "{Tab 13}"
+				IF _arg3 = "o" THEN SendKeys "{Tab 14}"
+				IF _arg3 = "p" THEN SendKeys "{Tab 15}"
+				IF _arg3 = "q" THEN SendKeys "{Tab 16}"
+				IF _arg3 = "r" THEN SendKeys "{Tab 17}"
+				IF _arg3 = "s" THEN SendKeys "{Tab 18}"
+				IF _arg3 = "t" THEN SendKeys "{Tab 19}"
+				IF _arg3 = "u" THEN SendKeys "{Tab 20}"
+				IF _arg3 = "v" THEN SendKeys "{Tab 21}"
+				IF _arg3 = "w" THEN SendKeys "{Tab 22}"
+				IF _arg3 = "x" THEN SendKeys "{Tab 23}"
+				IF _arg3 = "y" THEN SendKeys "{Tab 24}"
+				IF _arg3 = "z" THEN SendKeys "{Tab 25}"
+				IF _arg4 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg4
+				END IF
+			}
+		}
+		COMMAND "<Cell> <1-100> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				SendKeys "{Ctrl+Up}"
+				wait 50
+				loop& = Val(_arg2) -1
+				while ( loop& )
+				SendKeys "{Down}"
+				loop& = loop& - 1
+				wend
+				IF _arg3 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg3
+				END IF
+			}
+		}
+		COMMAND "<CellEnterUndoTabEscape> <a-i> <Alph> <1-100> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				IF _arg1 = "Enter" XOR _arg1 = "Enter Cell" THEN SendKeys "{Enter}"
+				IF _arg1 = "Undo" XOR _arg1 = "Undo Cell" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Tab" XOR _arg1 = "Tab Cell" THEN SendKeys "{Tab}"
+				IF _arg1 = "Escape" XOR _arg1 = "Escape Cell" THEN SendKeys "{Esc}"
+				SendKeys "{Ctrl+Home}"
+				wait 50
+				_arg2 = MID$(_arg2,0,1)
+				IF _arg2 = "a" THEN SendKeys "{Tab 26}"
+				IF _arg2 = "b" THEN SendKeys "{Tab 52}"
+				IF _arg2 = "c" THEN SendKeys "{Tab 78}"
+				IF _arg2 = "d" THEN SendKeys "{Tab 104}"
+				IF _arg2 = "e" THEN SendKeys "{Tab 130}"
+				IF _arg2 = "f" THEN SendKeys "{Tab 156}"
+				IF _arg2 = "g" THEN SendKeys "{Tab 182}"
+				IF _arg2 = "h" THEN SendKeys "{Tab 208}"
+				IF _arg2 = "i" THEN SendKeys "{Tab 234}"
+				_arg3 = MID$(_arg3,0,1)
+				IF _arg3 = "b" THEN SendKeys "{Tab}"
+				IF _arg3 = "c" THEN SendKeys "{Tab 2}"
+				IF _arg3 = "d" THEN SendKeys "{Tab 3}"
+				IF _arg3 = "e" THEN SendKeys "{Tab 4}"
+				IF _arg3 = "f" THEN SendKeys "{Tab 5}"
+				IF _arg3 = "g" THEN SendKeys "{Tab 6}"
+				IF _arg3 = "h" THEN SendKeys "{Tab 7}"
+				IF _arg3 = "i" THEN SendKeys "{Tab 8}"
+				IF _arg3 = "j" THEN SendKeys "{Tab 9}"
+				IF _arg3 = "k" THEN SendKeys "{Tab 10}"
+				IF _arg3 = "l" THEN SendKeys "{Tab 11}"
+				IF _arg3 = "m" THEN SendKeys "{Tab 12}"
+				IF _arg3 = "n" THEN SendKeys "{Tab 13}"
+				IF _arg3 = "o" THEN SendKeys "{Tab 14}"
+				IF _arg3 = "p" THEN SendKeys "{Tab 15}"
+				IF _arg3 = "q" THEN SendKeys "{Tab 16}"
+				IF _arg3 = "r" THEN SendKeys "{Tab 17}"
+				IF _arg3 = "s" THEN SendKeys "{Tab 18}"
+				IF _arg3 = "t" THEN SendKeys "{Tab 19}"
+				IF _arg3 = "u" THEN SendKeys "{Tab 20}"
+				IF _arg3 = "v" THEN SendKeys "{Tab 21}"
+				IF _arg3 = "w" THEN SendKeys "{Tab 22}"
+				IF _arg3 = "x" THEN SendKeys "{Tab 23}"
+				IF _arg3 = "y" THEN SendKeys "{Tab 24}"
+				IF _arg3 = "z" THEN SendKeys "{Tab 25}"
+				loop& = Val(_arg4) -1
+				while ( loop& )
+				SendKeys "{Down}"
+				loop& = loop& - 1
+				wend
+				IF _arg5 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg5
+				END IF
+			}
+		}
+		LIST "Cell" {
+			"Cell"
+		}
+		LIST "CellEnterUndoTabEscape" {
+			"Cell"  "Enter"  "Undo"  "Enter Cell"  "Undo Cell"  "Tab"  "Tab Cell" "Escape"  "Escape Cell"
+		}
+		LIST "Alph" {
+			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+		}
+		LIST "a-i" {
+			"a" "b" "c" "d" "e" "f" "g" "h" "i"
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  
+			}
+		LIST "CutCopyPasteDeleteBoldItalicTouch" {
+			"Cut"  "Copy"	"Paste"	"Delete"  "Bold"  "Italic"   "Touch"
+ 
+		}
+		COMMAND "Zoom <1-100>"{
+			SCRIPT {
+				isOpenOffice$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "OpenOffice.org", 512 )
+				IF (instr(isOpenOffice$,"true")) > 0 THEN
+				SendKeys "{Alt+v}"
+				SendKeys "z"				
+				Wait 100
+				SendKeys "v"
+				SendKeys "{Home+Shift+End}"
+				ELSE
+				isWord$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Word", 512 )
+				IF (instr(isWord$,"true")) > 0 THEN
+				SendKeys "{Alt+v}"
+				SendKeys "z"				
+				Wait 100
+				SendKeys "e"
+				ELSE
+				isReader$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Reader", 512 )
+				IF (instr(isReader$,"true")) > 0 THEN
+				SendKeys "{Ctrl+y}"
+				ELSE
+				isProject$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Project", 512 )
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Excel", 512 )
+				IF (instr(isProject$,"true")) > 0 XOR (instr(isExcel$,"true")) > 0 THEN
+				SendKeys "{Alt+v}"
+				SendKeys "z"				
+				Wait 100
+				SendKeys "c"
+				ELSE			
+				SendKeys "{Alt+v}"
+				SendKeys "z"				
+				Wait 100
+				END IF			
+				END IF			
+				END IF			
+				END IF
+				Wait 300
+				SendKeys "" + _arg1 + ""
+				Wait 10
+				SendKeys "{Enter}"
+			}
+		}		
+		COMMAND "Go <1-100>"{
+			SCRIPT {
+			SendKeys "{Ctrl+g}"
+			Wait 200
+			SendKeys "" + _arg1 + ""
+			Wait 200
+			SendKeys "{Enter}"			
+			}
+		}
+		LIST "1-100" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40" "41" "42" "43" "44" "45" "46" "47" "48" "49"
+			 "50" "51" "52" "53" "54" "55" "56" "57" "58" "59"
+			 "60" "61" "62" "63" "64" "65" "66" "67" "68" "69"
+			 "70" "71" "72" "73" "74" "75" "76" "77" "78" "79"
+			 "80" "81" "82" "83" "84" "85" "86" "87" "88" "89"
+			 "90" "91" "92" "93" "94" "95" "96" "97" "98" "99"  "100"
+		}
+ 
+	}
+}
+ 

@@ -1,0 +1,1017 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+ 
+	STATE "Global Commands" GLOBAL {
+################# 
+#2l Moving and Sizing Windows -- in 2b
+#2m Moving and Sizing Windows By By -- in 2b
+################# 
+ 
+#2l. Moving and Sizing Windows
+		COMMAND "<WindowSizeWS> <0-100> By <0-100>" {
+			SCRIPT {
+				p$ = _arg3 + " " + _arg2
+				' SizeAWindow at 84
+				IF _arg1 = "Size" XOR _arg1 = "Window Size" THEN DllCall "UttC.dll", 84, p$
+				' MoveAWindow at 58
+				IF _arg1 = "Window" THEN DllCall "UttC.dll", 58, p$
+			}
+		}
+		COMMAND "<WindowSizeWS> <0-100> <DULR>" {
+			SCRIPT {
+				p$ = _arg3 + " " + _arg2
+				' SizeAWindowByOneDirection at 86
+				IF _arg1 = "Size" XOR _arg1 = "Window Size" THEN DllCall "UttC.dll", 86, p$
+				' MoveAWindowByOneDirection at 60
+				IF _arg1 = "Window" THEN DllCall "UttC.dll", 60, p$
+			}
+		}
+		COMMAND "<WindowSizeWS> <0-100> Point <0-9> <DULR>" {
+			SCRIPT {
+				p$ = _arg2 + "." + _arg3 + " " + _arg4 
+				' SizeAWindowByOneDirection at 86
+				IF _arg1 = "Size" XOR _arg1 = "Window Size" THEN DllCall "UttC.dll", 86, p$
+				' MoveAWindowByOneDirection at 60
+				IF _arg1 = "Window" THEN DllCall "UttC.dll", 60, p$
+			}
+		}
+		COMMAND "<WindowSizeWS> Point <0-9> <DULR>" {
+			SCRIPT {
+				p$ = _arg3 + " 0" + "." + _arg2
+				' SizeAWindowByOneDirection at 86
+				IF _arg1 = "Size" XOR _arg1 = "Window Size" THEN DllCall "UttC.dll", 86, p$
+				' MoveAWindowByOneDirection at 60
+				IF _arg1 = "Window" THEN DllCall "UttC.dll", 60, p$
+			}
+		}
+		COMMAND "<WindowSizeWS> By <0-100>" {
+			SCRIPT {
+				IF  _arg1 = "Size" XOR _arg1 = "Window Size" THEN 
+				p$ = "Y" + " " + _arg2
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				END IF			
+				IF _arg1 = "Window" THEN 
+				p$ = "Y" + " " + _arg2
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+				END IF
+			}
+		}
+		COMMAND "<WindowSizeWS> <0-100> By" {
+			SCRIPT {
+				IF _arg1 = "Size" XOR _arg1 = "Window Size" THEN 
+				p$ = "X" + " " + _arg2
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				END IF
+				IF _arg1 = "Window" THEN 
+				p$ = "X" + " " + _arg2
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+				END IF
+			}
+		}
+		COMMAND "<WindowSizeWS> By <0-100> Point <0-9>" {
+			SCRIPT {
+				IF _arg1 = "Size" XOR _arg1 = "Window Size" THEN 
+				p$ = "Y" + " " + _arg2 + "." + _arg3 
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				END IF
+				
+				IF _arg1 = "Window" THEN 
+				p$ = "Y" + " " + _arg2 + "." + _arg3
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+				END IF				
+			}
+		}
+		COMMAND "<WindowSizeWS> <0-100> Point <0-9> By" {
+			SCRIPT {
+				IF _arg1 = "Size" XOR _arg1 = "Window Size" THEN 
+				p$ = "X" + " " + _arg2 + "." + _arg3
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				END IF
+				
+				IF _arg1 = "Window" THEN 
+				p$ = "X" + " " + _arg2 + "." + _arg3
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+				END IF				
+			}
+		}
+		COMMAND "<WindowSizeWS> By Point <0-9>" {
+			SCRIPT {
+				IF _arg1 = "Size" XOR _arg1 = "Window Size" THEN 
+				p$ = "Y" + " " + "." + _arg2 
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				END IF
+ 
+				IF _arg1 = "Window" THEN 
+				p$ = "Y" + " " + "." + _arg2 
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+				END IF
+			}
+		}
+		COMMAND "<WindowSizeWS> Point <0-9> By" {
+			SCRIPT {
+				IF _arg1 = "Size" XOR _arg1 = "Window Size" THEN 
+				p$ = "X" + " " + "." + _arg2 
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				END IF
+ 
+				IF _arg1 = "Window" THEN 
+				p$ = "X" + " " + "." + _arg2  
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+				END IF				
+			}
+		}
+		LIST "WindowSizeWS" {
+			"Window"  "Size" "Window Size"
+		}
+ 
+		COMMAND "<Programs> <0-100> By <0-100>" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = _arg3 + " " + _arg2
+				' MoveAWindow at 58
+				DllCall "UttC.dll", 58, p$
+			}
+		}
+		COMMAND "<Programs> Window <0-100> <DULR>" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = _arg2 + " " + _arg3
+				' MoveAWindowByOneDirection at 60
+				DllCall "UttC.dll", 60, p$
+			}
+		}
+		COMMAND "<Programs> <0-100> Point <0-9> <DULR>" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = _arg4 + " " + _arg2 + "." + _arg3
+				' MoveAWindowByOneDirection at 60
+				DllCall "UttC.dll", 60, p$
+			}
+		}
+		COMMAND "<Programs> Point <0-9> <DULR>" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = _arg3 + " 0" + "." + _arg2
+				' MoveAWindowByOneDirection at 60
+				DllCall "UttC.dll", 60, p$
+			}
+		}
+		COMMAND "<Programs> <OpenSizeOS> <0-100> By <0-100>" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = _arg3 + " " + _arg4
+				IF _arg2 = "Size" THEN 
+				' SizeAWindow at 84
+				DllCall "UttC.dll", 84, p$
+				Else
+				' MoveAWindow at 58
+				DllCall "UttC.dll", 58, p$
+				END IF
+			}
+		}
+		COMMAND "<Programs> <OpenSizeOS> <0-100> <DULR>" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = _arg4 + " " + _arg3
+				IF _arg2 = "Size" THEN 
+				' SizeAWindowByOneDirection at 86
+				DllCall "UttC.dll", 86, p$
+				ELSE
+				' MoveAWindowByOneDirection at 60
+				DllCall "UttC.dll", 60, p$
+				END IF
+			}
+		}
+		COMMAND "<Programs> <OpenSizeOS> <0-100> Point <0-9> <DULR>" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = _arg5 + " " + _arg3 + "." + _arg4
+				IF _arg2 = "Size" THEN 
+				' SizeAWindowByOneDirection at 86
+				DllCall "UttC.dll", 86, p$
+				ELSE
+				' MoveAWindowByOneDirection at 60
+				DllCall "UttC.dll", 60, p$
+				END IF
+			}
+		}
+		COMMAND "<Programs> <OpenSizeOS> Point <0-9> <DULR>" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = _arg4 + " 0" + "." + _arg3
+				IF _arg2 = "Size" THEN 
+				' SizeAWindowByOneDirection at 86
+				DllCall "UttC.dll", 86, p$
+				ELSE
+				' MoveAWindowByOneDirection at 60
+				DllCall "UttC.dll", 60, p$
+				END IF
+			}
+		}
+ 
+		COMMAND "<Programs> By <0-100>" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = "Y" + " " + _arg2
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		COMMAND "<Programs> <0-100> By" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = "X" + " " + _arg2
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		COMMAND "<Programs> <OpenSizeOS> By <0-100>" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = "Y" + " " + _arg3
+				IF _arg2 = "Open" THEN
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+				ELSE 
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				END IF
+ 
+			}
+		}
+		COMMAND "<Programs> <OpenSizeOS> <0-100> By" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = "X" + " " + _arg3
+				IF _arg2 = "Open" THEN 
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+				ELSE 
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				END IF
+			}
+		}
+		LIST "OpenSizeOS" {
+			"Open"  "Size"  "Open Size"
+		}
+ 
+		COMMAND "Window <1-20> <0-100> By <0-100>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				Wait 100
+				p$ = _arg3 + " " + _arg2
+				' MoveAWindow at 58
+				DllCall "UttC.dll", 58, p$
+			}
+		}
+		COMMAND "Window <1-20> Window <0-100> <DULR>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				Wait 100
+				p$ = _arg3 + " " + _arg2
+				' MoveAWindowByOneDirection at 60
+				DllCall "UttC.dll", 60, p$
+			}
+		}
+		COMMAND "Window <1-20> <0-100> Point <0-9> <DULR>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				Wait 100
+				p$ = _arg4 + " " + _arg2 + "." + _arg3
+				' MoveAWindowByOneDirection at 60
+				DllCall "UttC.dll", 60, p$
+			}
+		}
+		COMMAND "Window <1-20> Point <0-9> <DULR>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				Wait 100
+				p$ = _arg3 + " 0" + "." + _arg2		
+				' MoveAWindowByOneDirection at 60
+				DllCall "UttC.dll", 60, p$
+			}
+		}
+		COMMAND "Window <1-20> Size <0-100> By <0-100>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				Wait 100
+				p$ = _arg3 + " " + _arg2
+				' SizeAWindow at 84
+				DllCall "UttC.dll", 84, p$
+			}
+		}
+		COMMAND "Window <1-20> Size <0-100> <DULR>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				Wait 100
+				p$ = _arg3 + " " + _arg2
+				' SizeAWindowByOneDirection at 86
+				DllCall "UttC.dll", 86, p$
+			}
+		}
+		COMMAND "Window <1-20> Size <0-100> Point <0-9> <DULR>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				Wait 100
+				p$ = _arg4 + " " + _arg2 + "." + _arg3
+				' SizeAWindowByOneDirection at 86
+				DllCall "UttC.dll", 86, p$
+			}
+		}
+		COMMAND "Window <1-20> Size Point <0-9> <DULR>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				Wait 100
+				p$ = _arg3 + " 0" + "." + _arg2
+				' SizeAWindowByOneDirection at 86
+				DllCall "UttC.dll", 86, p$
+			}
+		}
+		LIST "DULR" {
+			"Up"  "Down"  "Left"  "Right"
+		}
+		COMMAND "Window <1-20> Window By <0-100>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "Y" + " " + _arg2
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		COMMAND "Window <1-20> <0-100> By" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "X" + " " + _arg2
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+				END IF
+			}
+		}
+		COMMAND "Window <1-20> Size By <0-100>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "Y" + " " + _arg2
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+			}
+		}
+		COMMAND "Window <1-20> Size <0-100> By" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "X" + " " + _arg2
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+			}
+		}
+		COMMAND "Window <1-20> By Point <0-9>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "Y" + " " + "." + _arg2 
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		COMMAND "Window <1-20> Window Point <0-9> By" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "X" + " " + "." + _arg2  
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		COMMAND "Window <1-20> Size By Point <0-9>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "Y" + " " + "." + _arg2 
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+			}
+		}
+		COMMAND "Window <1-20> Size Point <0-9> By" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "X" + " " + "." + _arg2 
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+			}
+		}
+		COMMAND "Window <1-20> Window By <0-100> Point <0-9>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "Y" + " " + _arg2 + "." + _arg3
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		COMMAND "Window <1-20> <0-100> Point <0-9> By" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "X" + " " + _arg2 + "." + _arg3
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		COMMAND "Window <1-20> Size By <0-100> Point <0-9>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "Y" + " " + _arg2 + "." + _arg3 
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+			}
+		}
+		COMMAND "Window <1-20> Size <0-100> Point <0-9> By" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "X" + " " + _arg2 + "." + _arg3
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+			}
+		}
+ 
+#2m. Moving and sizing By By
+# Note: all By By commands start with Size -- cannot start
+# with Window because that would raise conflicts with Window 1 Commands
+ 
+		COMMAND "<SizeWS> By <0-100> By <0-100>" {
+			SCRIPT {
+				p$ = "Y" + " " + _arg2
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				p$ = "Y" + " " + _arg3
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+ 
+			}
+		}
+		COMMAND "<SizeWS> <0-100> By By <0-100>" {
+			SCRIPT {
+				p$ = "X" + " " + _arg2
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				p$ = "Y" + " " + _arg3
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+ 
+			}
+		}
+		COMMAND "<SizeWS> By <0-100> <0-100> By " {
+			SCRIPT {
+				p$ = "Y" + " " + _arg2
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				p$ = "X" + " " + _arg3
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		COMMAND "<SizeWS> <0-100> By <0-100> By" {
+			SCRIPT {
+				p$ = "X" + " " + _arg2
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				p$ = "X" + " " + _arg3
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+ 
+			}
+		}
+		LIST "SizeWS" {
+			"Size"  "Window Size"
+		}
+		COMMAND "<Programs> <SizeOS> By <0-100> <0-100> By" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = "Y" + " " + _arg3
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				p$ = "X" + " " + _arg4
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		COMMAND "<Programs> <SizeOS> <0-100> By <0-100> By" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = "X" + " " + _arg3
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				p$ = "X" + " " + _arg4
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		COMMAND "<Programs> <SizeOS> By <0-100> By <0-100>" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = "Y" + " " + _arg3
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				p$ = "Y" + " " + _arg4
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		COMMAND "<Programs> <SizeOS> <0-100> By By <0-100>" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				p$ = "X" + " " + _arg3
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				p$ = "Y" + " " + _arg4
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		LIST "Programs" {
+			"Access"  "Reader"  "Calculator" "Dreamweaver"
+			"Excel"  "Express"  "Eudora"
+			"Firefox"   "Internet"  "iTunes"  "InDesign"
+			"Media Player"	"Notepad"   "Outlook"  "Illustrator"
+			"Photoshop"  "Picasa"    "PowerPoint"
+			"Quicken" "Solitaire"   "Thunderbird"   "Visual" "Emacs"
+			"WordPad"  "Word"  
+			"DOS" "Base"  "Calc"  "Draw"  "Impress"  "Math"  "Writer"
+			"Paint" "Project"  "Visio"
+		}
+		LIST "SizeOS" {
+			"Size"  "Open Size"
+		}
+ 
+		COMMAND "Window <1-20> Size By <0-100> By <0-100>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "Y" + " " + _arg2
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				p$ = "Y" + " " + _arg3
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		COMMAND "Window <1-20> Size <0-100> By By <0-100>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "X" + " " + _arg2
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				p$ = "Y" + " " + _arg3
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		COMMAND "Window <1-20> Size By <0-100> <0-100> By" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "Y" + " " + _arg2
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				p$ = "X" + " " + _arg3
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		COMMAND "Window <1-20> Size <0-100> By <0-100> By" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				p$ = "X" + " " + _arg2
+				' SizeAWindowByOneCoord at 85
+				DllCall "UttC.dll", 85, p$
+				p$ = "X" + " " + _arg3
+				' MoveAWindowByOneCoord at 59
+				DllCall "UttC.dll", 59, p$
+			}
+		}
+		LIST "1-20" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+		}
+		LIST "0-100" {
+			"0"  "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40" "41" "42" "43" "44" "45" "46" "47" "48" "49"
+			 "50" "51" "52" "53" "54" "55" "56" "57" "58" "59"
+			 "60" "61" "62" "63" "64" "65" "66" "67" "68" "69"
+			 "70" "71" "72" "73" "74" "75" "76" "77" "78" "79"
+			 "80" "81" "82" "83" "84" "85" "86" "87" "88" "89"
+			 "90" "91" "92" "93" "94" "95" "96" "97" "98" "99"  "100"
+		}
+		LIST "0-9" {
+			"0"   "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"   
+		}
+	}
+}

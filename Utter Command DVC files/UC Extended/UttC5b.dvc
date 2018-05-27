@@ -1,0 +1,553 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+ 
+	STATE "Global Commands" GLOBAL {
+#6p. Go Commands
+		COMMAND "<0-100> Go"{
+			SCRIPT {
+				IF _arg1 = "0" THEN SendKeys "{NumKey0}"
+				IF _arg1 = "1" THEN SendKeys "{NumKey1}"
+				IF _arg1 = "2" THEN SendKeys "{NumKey2}"
+				IF _arg1 = "3" THEN SendKeys "{NumKey3}"
+				IF _arg1 = "4" THEN SendKeys "{NumKey4}"
+				IF _arg1 = "5" THEN SendKeys "{NumKey5}"
+				IF _arg1 = "6" THEN SendKeys "{NumKey6}"
+				IF _arg1 = "7" THEN SendKeys "{NumKey7}"
+				IF _arg1 = "8" THEN SendKeys "{NumKey8}"
+				IF _arg1 = "9" THEN SendKeys "{NumKey9}"
+				IF _arg1 = "10" THEN SendKeys "{NumKey1}{NumKey0}"
+				IF _arg1 = "11" THEN SendKeys "{NumKey1}{NumKey1}"
+				IF _arg1 = "12" THEN SendKeys "{NumKey1}{NumKey2}"
+				IF _arg1 = "13" THEN SendKeys "{NumKey1}{NumKey3}"
+				IF _arg1 = "14" THEN SendKeys "{NumKey1}{NumKey4}"
+				IF _arg1 = "15" THEN SendKeys "{NumKey1}{NumKey5}"
+				IF _arg1 = "16" THEN SendKeys "{NumKey1}{NumKey6}"
+				IF _arg1 = "17" THEN SendKeys "{NumKey1}{NumKey7}"
+				IF _arg1 = "18" THEN SendKeys "{NumKey1}{NumKey8}"
+				IF _arg1 = "19" THEN SendKeys "{NumKey1}{NumKey9}"
+				IF _arg1 = "20" THEN SendKeys "{NumKey2}{NumKey0}"
+				IF _arg1 = "21" THEN SendKeys "{NumKey2}{NumKey1}"
+				IF _arg1 = "22" THEN SendKeys "{NumKey2}{NumKey2}"
+				IF _arg1 = "23" THEN SendKeys "{NumKey2}{NumKey3}"
+				IF _arg1 = "24" THEN SendKeys "{NumKey2}{NumKey4}"
+				IF _arg1 = "25" THEN SendKeys "{NumKey2}{NumKey5}"
+				IF _arg1 = "26" THEN SendKeys "{NumKey2}{NumKey6}"
+				IF _arg1 = "27" THEN SendKeys "{NumKey2}{NumKey7}"
+				IF _arg1 = "28" THEN SendKeys "{NumKey2}{NumKey8}"
+				IF _arg1 = "29" THEN SendKeys "{NumKey2}{NumKey9}"
+				IF _arg1 = "30" THEN SendKeys "{NumKey3}{NumKey0}"
+				IF _arg1 = "31" THEN SendKeys "{NumKey3}{NumKey1}"
+				IF _arg1 = "32" THEN SendKeys "{NumKey3}{NumKey2}"
+				IF _arg1 = "33" THEN SendKeys "{NumKey3}{NumKey3}"
+				IF _arg1 = "34" THEN SendKeys "{NumKey3}{NumKey4}"
+				IF _arg1 = "35" THEN SendKeys "{NumKey3}{NumKey5}"
+				IF _arg1 = "36" THEN SendKeys "{NumKey3}{NumKey6}"
+				IF _arg1 = "37" THEN SendKeys "{NumKey3}{NumKey7}"
+				IF _arg1 = "38" THEN SendKeys "{NumKey3}{NumKey8}"
+				IF _arg1 = "39" THEN SendKeys "{NumKey3}{NumKey9}"
+				IF _arg1 = "40" THEN SendKeys "{NumKey4}{NumKey0}"
+				IF _arg1 = "41" THEN SendKeys "{NumKey4}{NumKey1}"
+				IF _arg1 = "42" THEN SendKeys "{NumKey4}{NumKey2}"
+				IF _arg1 = "43" THEN SendKeys "{NumKey4}{NumKey3}"
+				IF _arg1 = "44" THEN SendKeys "{NumKey4}{NumKey4}"
+				IF _arg1 = "45" THEN SendKeys "{NumKey4}{NumKey5}"
+				IF _arg1 = "46" THEN SendKeys "{NumKey4}{NumKey6}"
+				IF _arg1 = "47" THEN SendKeys "{NumKey4}{NumKey7}"
+				IF _arg1 = "48" THEN SendKeys "{NumKey4}{NumKey8}"
+				IF _arg1 = "49" THEN SendKeys "{NumKey4}{NumKey9}"
+				IF _arg1 = "50" THEN SendKeys "{NumKey5}{NumKey0}"
+				IF _arg1 = "51" THEN SendKeys "{NumKey5}{NumKey1}"
+				IF _arg1 = "52" THEN SendKeys "{NumKey5}{NumKey2}"
+				IF _arg1 = "53" THEN SendKeys "{NumKey5}{NumKey3}"
+				IF _arg1 = "54" THEN SendKeys "{NumKey5}{NumKey4}"
+				IF _arg1 = "55" THEN SendKeys "{NumKey5}{NumKey5}"
+				IF _arg1 = "56" THEN SendKeys "{NumKey5}{NumKey6}"
+				IF _arg1 = "57" THEN SendKeys "{NumKey5}{NumKey7}"
+				IF _arg1 = "58" THEN SendKeys "{NumKey5}{NumKey8}"
+				IF _arg1 = "59" THEN SendKeys "{NumKey5}{NumKey9}"
+				IF _arg1 = "60" THEN SendKeys "{NumKey6}{NumKey0}"
+				IF _arg1 = "61" THEN SendKeys "{NumKey6}{NumKey1}"
+				IF _arg1 = "62" THEN SendKeys "{NumKey6}{NumKey2}"
+				IF _arg1 = "63" THEN SendKeys "{NumKey6}{NumKey3}"
+				IF _arg1 = "64" THEN SendKeys "{NumKey6}{NumKey4}"
+				IF _arg1 = "65" THEN SendKeys "{NumKey6}{NumKey5}"
+				IF _arg1 = "66" THEN SendKeys "{NumKey6}{NumKey6}"
+				IF _arg1 = "67" THEN SendKeys "{NumKey6}{NumKey7}"
+				IF _arg1 = "68" THEN SendKeys "{NumKey6}{NumKey8}"
+				IF _arg1 = "69" THEN SendKeys "{NumKey6}{NumKey9}"
+				IF _arg1 = "70" THEN SendKeys "{NumKey7}{NumKey0}"
+				IF _arg1 = "71" THEN SendKeys "{NumKey7}{NumKey1}"
+				IF _arg1 = "72" THEN SendKeys "{NumKey7}{NumKey2}"
+				IF _arg1 = "73" THEN SendKeys "{NumKey7}{NumKey3}"
+				IF _arg1 = "74" THEN SendKeys "{NumKey7}{NumKey4}"
+				IF _arg1 = "75" THEN SendKeys "{NumKey7}{NumKey5}"
+				IF _arg1 = "76" THEN SendKeys "{NumKey7}{NumKey6}"
+				IF _arg1 = "77" THEN SendKeys "{NumKey7}{NumKey7}"
+				IF _arg1 = "78" THEN SendKeys "{NumKey7}{NumKey8}"
+				IF _arg1 = "79" THEN SendKeys "{NumKey7}{NumKey9}"
+				IF _arg1 = "80" THEN SendKeys "{NumKey8}{NumKey0}"
+				IF _arg1 = "81" THEN SendKeys "{NumKey8}{NumKey1}"
+				IF _arg1 = "82" THEN SendKeys "{NumKey8}{NumKey2}"
+				IF _arg1 = "83" THEN SendKeys "{NumKey8}{NumKey3}"
+				IF _arg1 = "84" THEN SendKeys "{NumKey8}{NumKey4}"
+				IF _arg1 = "85" THEN SendKeys "{NumKey8}{NumKey5}"
+				IF _arg1 = "86" THEN SendKeys "{NumKey8}{NumKey6}"
+				IF _arg1 = "87" THEN SendKeys "{NumKey8}{NumKey7}"
+				IF _arg1 = "88" THEN SendKeys "{NumKey8}{NumKey8}"
+				IF _arg1 = "89" THEN SendKeys "{NumKey8}{NumKey9}"
+				IF _arg1 = "90" THEN SendKeys "{NumKey9}{NumKey0}"
+				IF _arg1 = "91" THEN SendKeys "{NumKey9}{NumKey1}"
+				IF _arg1 = "92" THEN SendKeys "{NumKey9}{NumKey2}"
+				IF _arg1 = "93" THEN SendKeys "{NumKey9}{NumKey3}"
+				IF _arg1 = "94" THEN SendKeys "{NumKey9}{NumKey4}"
+				IF _arg1 = "95" THEN SendKeys "{NumKey9}{NumKey5}"
+				IF _arg1 = "96" THEN SendKeys "{NumKey9}{NumKey6}"
+				IF _arg1 = "97" THEN SendKeys "{NumKey9}{NumKey7}"
+				IF _arg1 = "98" THEN SendKeys "{NumKey9}{NumKey8}"
+				IF _arg1 = "99" THEN SendKeys "{NumKey9}{NumKey9}"
+				IF _arg1 = "100" THEN SendKeys "{NumKey1}{NumKey0}{NumKey0}"
+				
+				}
+		}
+		COMMAND "<0-100> <Go> <DownDropDEnter>"{
+			SCRIPT {
+				IF _arg1 = "0" THEN SendKeys "{NumKey0}"
+				IF _arg1 = "1" THEN SendKeys "{NumKey1}"
+				IF _arg1 = "2" THEN SendKeys "{NumKey2}"
+				IF _arg1 = "3" THEN SendKeys "{NumKey3}"
+				IF _arg1 = "4" THEN SendKeys "{NumKey4}"
+				IF _arg1 = "5" THEN SendKeys "{NumKey5}"
+				IF _arg1 = "6" THEN SendKeys "{NumKey6}"
+				IF _arg1 = "7" THEN SendKeys "{NumKey7}"
+				IF _arg1 = "8" THEN SendKeys "{NumKey8}"
+				IF _arg1 = "9" THEN SendKeys "{NumKey9}"
+				IF _arg1 = "10" THEN SendKeys "{NumKey1}{NumKey0}"
+				IF _arg1 = "11" THEN SendKeys "{NumKey1}{NumKey1}"
+				IF _arg1 = "12" THEN SendKeys "{NumKey1}{NumKey2}"
+				IF _arg1 = "13" THEN SendKeys "{NumKey1}{NumKey3}"
+				IF _arg1 = "14" THEN SendKeys "{NumKey1}{NumKey4}"
+				IF _arg1 = "15" THEN SendKeys "{NumKey1}{NumKey5}"
+				IF _arg1 = "16" THEN SendKeys "{NumKey1}{NumKey6}"
+				IF _arg1 = "17" THEN SendKeys "{NumKey1}{NumKey7}"
+				IF _arg1 = "18" THEN SendKeys "{NumKey1}{NumKey8}"
+				IF _arg1 = "19" THEN SendKeys "{NumKey1}{NumKey9}"
+				IF _arg1 = "20" THEN SendKeys "{NumKey2}{NumKey0}"
+				IF _arg1 = "21" THEN SendKeys "{NumKey2}{NumKey1}"
+				IF _arg1 = "22" THEN SendKeys "{NumKey2}{NumKey2}"
+				IF _arg1 = "23" THEN SendKeys "{NumKey2}{NumKey3}"
+				IF _arg1 = "24" THEN SendKeys "{NumKey2}{NumKey4}"
+				IF _arg1 = "25" THEN SendKeys "{NumKey2}{NumKey5}"
+				IF _arg1 = "26" THEN SendKeys "{NumKey2}{NumKey6}"
+				IF _arg1 = "27" THEN SendKeys "{NumKey2}{NumKey7}"
+				IF _arg1 = "28" THEN SendKeys "{NumKey2}{NumKey8}"
+				IF _arg1 = "29" THEN SendKeys "{NumKey2}{NumKey9}"
+				IF _arg1 = "30" THEN SendKeys "{NumKey3}{NumKey0}"
+				IF _arg1 = "31" THEN SendKeys "{NumKey3}{NumKey1}"
+				IF _arg1 = "32" THEN SendKeys "{NumKey3}{NumKey2}"
+				IF _arg1 = "33" THEN SendKeys "{NumKey3}{NumKey3}"
+				IF _arg1 = "34" THEN SendKeys "{NumKey3}{NumKey4}"
+				IF _arg1 = "35" THEN SendKeys "{NumKey3}{NumKey5}"
+				IF _arg1 = "36" THEN SendKeys "{NumKey3}{NumKey6}"
+				IF _arg1 = "37" THEN SendKeys "{NumKey3}{NumKey7}"
+				IF _arg1 = "38" THEN SendKeys "{NumKey3}{NumKey8}"
+				IF _arg1 = "39" THEN SendKeys "{NumKey3}{NumKey9}"
+				IF _arg1 = "40" THEN SendKeys "{NumKey4}{NumKey0}"
+				IF _arg1 = "41" THEN SendKeys "{NumKey4}{NumKey1}"
+				IF _arg1 = "42" THEN SendKeys "{NumKey4}{NumKey2}"
+				IF _arg1 = "43" THEN SendKeys "{NumKey4}{NumKey3}"
+				IF _arg1 = "44" THEN SendKeys "{NumKey4}{NumKey4}"
+				IF _arg1 = "45" THEN SendKeys "{NumKey4}{NumKey5}"
+				IF _arg1 = "46" THEN SendKeys "{NumKey4}{NumKey6}"
+				IF _arg1 = "47" THEN SendKeys "{NumKey4}{NumKey7}"
+				IF _arg1 = "48" THEN SendKeys "{NumKey4}{NumKey8}"
+				IF _arg1 = "49" THEN SendKeys "{NumKey4}{NumKey9}"
+				IF _arg1 = "50" THEN SendKeys "{NumKey5}{NumKey0}"
+				IF _arg1 = "51" THEN SendKeys "{NumKey5}{NumKey1}"
+				IF _arg1 = "52" THEN SendKeys "{NumKey5}{NumKey2}"
+				IF _arg1 = "53" THEN SendKeys "{NumKey5}{NumKey3}"
+				IF _arg1 = "54" THEN SendKeys "{NumKey5}{NumKey4}"
+				IF _arg1 = "55" THEN SendKeys "{NumKey5}{NumKey5}"
+				IF _arg1 = "56" THEN SendKeys "{NumKey5}{NumKey6}"
+				IF _arg1 = "57" THEN SendKeys "{NumKey5}{NumKey7}"
+				IF _arg1 = "58" THEN SendKeys "{NumKey5}{NumKey8}"
+				IF _arg1 = "59" THEN SendKeys "{NumKey5}{NumKey9}"
+				IF _arg1 = "60" THEN SendKeys "{NumKey6}{NumKey0}"
+				IF _arg1 = "61" THEN SendKeys "{NumKey6}{NumKey1}"
+				IF _arg1 = "62" THEN SendKeys "{NumKey6}{NumKey2}"
+				IF _arg1 = "63" THEN SendKeys "{NumKey6}{NumKey3}"
+				IF _arg1 = "64" THEN SendKeys "{NumKey6}{NumKey4}"
+				IF _arg1 = "65" THEN SendKeys "{NumKey6}{NumKey5}"
+				IF _arg1 = "66" THEN SendKeys "{NumKey6}{NumKey6}"
+				IF _arg1 = "67" THEN SendKeys "{NumKey6}{NumKey7}"
+				IF _arg1 = "68" THEN SendKeys "{NumKey6}{NumKey8}"
+				IF _arg1 = "69" THEN SendKeys "{NumKey6}{NumKey9}"
+				IF _arg1 = "70" THEN SendKeys "{NumKey7}{NumKey0}"
+				IF _arg1 = "71" THEN SendKeys "{NumKey7}{NumKey1}"
+				IF _arg1 = "72" THEN SendKeys "{NumKey7}{NumKey2}"
+				IF _arg1 = "73" THEN SendKeys "{NumKey7}{NumKey3}"
+				IF _arg1 = "74" THEN SendKeys "{NumKey7}{NumKey4}"
+				IF _arg1 = "75" THEN SendKeys "{NumKey7}{NumKey5}"
+				IF _arg1 = "76" THEN SendKeys "{NumKey7}{NumKey6}"
+				IF _arg1 = "77" THEN SendKeys "{NumKey7}{NumKey7}"
+				IF _arg1 = "78" THEN SendKeys "{NumKey7}{NumKey8}"
+				IF _arg1 = "79" THEN SendKeys "{NumKey7}{NumKey9}"
+				IF _arg1 = "80" THEN SendKeys "{NumKey8}{NumKey0}"
+				IF _arg1 = "81" THEN SendKeys "{NumKey8}{NumKey1}"
+				IF _arg1 = "82" THEN SendKeys "{NumKey8}{NumKey2}"
+				IF _arg1 = "83" THEN SendKeys "{NumKey8}{NumKey3}"
+				IF _arg1 = "84" THEN SendKeys "{NumKey8}{NumKey4}"
+				IF _arg1 = "85" THEN SendKeys "{NumKey8}{NumKey5}"
+				IF _arg1 = "86" THEN SendKeys "{NumKey8}{NumKey6}"
+				IF _arg1 = "87" THEN SendKeys "{NumKey8}{NumKey7}"
+				IF _arg1 = "88" THEN SendKeys "{NumKey8}{NumKey8}"
+				IF _arg1 = "89" THEN SendKeys "{NumKey8}{NumKey9}"
+				IF _arg1 = "90" THEN SendKeys "{NumKey9}{NumKey0}"
+				IF _arg1 = "91" THEN SendKeys "{NumKey9}{NumKey1}"
+				IF _arg1 = "92" THEN SendKeys "{NumKey9}{NumKey2}"
+				IF _arg1 = "93" THEN SendKeys "{NumKey9}{NumKey3}"
+				IF _arg1 = "94" THEN SendKeys "{NumKey9}{NumKey4}"
+				IF _arg1 = "95" THEN SendKeys "{NumKey9}{NumKey5}"
+				IF _arg1 = "96" THEN SendKeys "{NumKey9}{NumKey6}"
+				IF _arg1 = "97" THEN SendKeys "{NumKey9}{NumKey7}"
+				IF _arg1 = "98" THEN SendKeys "{NumKey9}{NumKey8}"
+				IF _arg1 = "99" THEN SendKeys "{NumKey9}{NumKey9}"
+				IF _arg1 = "100" THEN SendKeys "{NumKey1}{NumKey0}{NumKey0}"
+				Wait 1000
+				IF _arg3 = "Down" THEN SendKeys "{Down}"
+				IF _arg3 = "Drop Down" THEN SendKeys "{Alt+Down}"
+				}
+		}
+ 
+		COMMAND "<0-100> Go <0-100> Go"{
+			SCRIPT {
+				IF _arg1 = "0" THEN SendKeys "{NumKey0}"
+				IF _arg1 = "1" THEN SendKeys "{NumKey1}"
+				IF _arg1 = "2" THEN SendKeys "{NumKey2}"
+				IF _arg1 = "3" THEN SendKeys "{NumKey3}"
+				IF _arg1 = "4" THEN SendKeys "{NumKey4}"
+				IF _arg1 = "5" THEN SendKeys "{NumKey5}"
+				IF _arg1 = "6" THEN SendKeys "{NumKey6}"
+				IF _arg1 = "7" THEN SendKeys "{NumKey7}"
+				IF _arg1 = "8" THEN SendKeys "{NumKey8}"
+				IF _arg1 = "9" THEN SendKeys "{NumKey9}"
+				IF _arg1 = "10" THEN SendKeys "{NumKey1}{NumKey0}"
+				IF _arg1 = "11" THEN SendKeys "{NumKey1}{NumKey1}"
+				IF _arg1 = "12" THEN SendKeys "{NumKey1}{NumKey2}"
+				IF _arg1 = "13" THEN SendKeys "{NumKey1}{NumKey3}"
+				IF _arg1 = "14" THEN SendKeys "{NumKey1}{NumKey4}"
+				IF _arg1 = "15" THEN SendKeys "{NumKey1}{NumKey5}"
+				IF _arg1 = "16" THEN SendKeys "{NumKey1}{NumKey6}"
+				IF _arg1 = "17" THEN SendKeys "{NumKey1}{NumKey7}"
+				IF _arg1 = "18" THEN SendKeys "{NumKey1}{NumKey8}"
+				IF _arg1 = "19" THEN SendKeys "{NumKey1}{NumKey9}"
+				IF _arg1 = "20" THEN SendKeys "{NumKey2}{NumKey0}"
+				IF _arg1 = "21" THEN SendKeys "{NumKey2}{NumKey1}"
+				IF _arg1 = "22" THEN SendKeys "{NumKey2}{NumKey2}"
+				IF _arg1 = "23" THEN SendKeys "{NumKey2}{NumKey3}"
+				IF _arg1 = "24" THEN SendKeys "{NumKey2}{NumKey4}"
+				IF _arg1 = "25" THEN SendKeys "{NumKey2}{NumKey5}"
+				IF _arg1 = "26" THEN SendKeys "{NumKey2}{NumKey6}"
+				IF _arg1 = "27" THEN SendKeys "{NumKey2}{NumKey7}"
+				IF _arg1 = "28" THEN SendKeys "{NumKey2}{NumKey8}"
+				IF _arg1 = "29" THEN SendKeys "{NumKey2}{NumKey9}"
+				IF _arg1 = "30" THEN SendKeys "{NumKey3}{NumKey0}"
+				IF _arg1 = "31" THEN SendKeys "{NumKey3}{NumKey1}"
+				IF _arg1 = "32" THEN SendKeys "{NumKey3}{NumKey2}"
+				IF _arg1 = "33" THEN SendKeys "{NumKey3}{NumKey3}"
+				IF _arg1 = "34" THEN SendKeys "{NumKey3}{NumKey4}"
+				IF _arg1 = "35" THEN SendKeys "{NumKey3}{NumKey5}"
+				IF _arg1 = "36" THEN SendKeys "{NumKey3}{NumKey6}"
+				IF _arg1 = "37" THEN SendKeys "{NumKey3}{NumKey7}"
+				IF _arg1 = "38" THEN SendKeys "{NumKey3}{NumKey8}"
+				IF _arg1 = "39" THEN SendKeys "{NumKey3}{NumKey9}"
+				IF _arg1 = "40" THEN SendKeys "{NumKey4}{NumKey0}"
+				IF _arg1 = "41" THEN SendKeys "{NumKey4}{NumKey1}"
+				IF _arg1 = "42" THEN SendKeys "{NumKey4}{NumKey2}"
+				IF _arg1 = "43" THEN SendKeys "{NumKey4}{NumKey3}"
+				IF _arg1 = "44" THEN SendKeys "{NumKey4}{NumKey4}"
+				IF _arg1 = "45" THEN SendKeys "{NumKey4}{NumKey5}"
+				IF _arg1 = "46" THEN SendKeys "{NumKey4}{NumKey6}"
+				IF _arg1 = "47" THEN SendKeys "{NumKey4}{NumKey7}"
+				IF _arg1 = "48" THEN SendKeys "{NumKey4}{NumKey8}"
+				IF _arg1 = "49" THEN SendKeys "{NumKey4}{NumKey9}"
+				IF _arg1 = "50" THEN SendKeys "{NumKey5}{NumKey0}"
+				IF _arg1 = "51" THEN SendKeys "{NumKey5}{NumKey1}"
+				IF _arg1 = "52" THEN SendKeys "{NumKey5}{NumKey2}"
+				IF _arg1 = "53" THEN SendKeys "{NumKey5}{NumKey3}"
+				IF _arg1 = "54" THEN SendKeys "{NumKey5}{NumKey4}"
+				IF _arg1 = "55" THEN SendKeys "{NumKey5}{NumKey5}"
+				IF _arg1 = "56" THEN SendKeys "{NumKey5}{NumKey6}"
+				IF _arg1 = "57" THEN SendKeys "{NumKey5}{NumKey7}"
+				IF _arg1 = "58" THEN SendKeys "{NumKey5}{NumKey8}"
+				IF _arg1 = "59" THEN SendKeys "{NumKey5}{NumKey9}"
+				IF _arg1 = "60" THEN SendKeys "{NumKey6}{NumKey0}"
+				IF _arg1 = "61" THEN SendKeys "{NumKey6}{NumKey1}"
+				IF _arg1 = "62" THEN SendKeys "{NumKey6}{NumKey2}"
+				IF _arg1 = "63" THEN SendKeys "{NumKey6}{NumKey3}"
+				IF _arg1 = "64" THEN SendKeys "{NumKey6}{NumKey4}"
+				IF _arg1 = "65" THEN SendKeys "{NumKey6}{NumKey5}"
+				IF _arg1 = "66" THEN SendKeys "{NumKey6}{NumKey6}"
+				IF _arg1 = "67" THEN SendKeys "{NumKey6}{NumKey7}"
+				IF _arg1 = "68" THEN SendKeys "{NumKey6}{NumKey8}"
+				IF _arg1 = "69" THEN SendKeys "{NumKey6}{NumKey9}"
+				IF _arg1 = "70" THEN SendKeys "{NumKey7}{NumKey0}"
+				IF _arg1 = "71" THEN SendKeys "{NumKey7}{NumKey1}"
+				IF _arg1 = "72" THEN SendKeys "{NumKey7}{NumKey2}"
+				IF _arg1 = "73" THEN SendKeys "{NumKey7}{NumKey3}"
+				IF _arg1 = "74" THEN SendKeys "{NumKey7}{NumKey4}"
+				IF _arg1 = "75" THEN SendKeys "{NumKey7}{NumKey5}"
+				IF _arg1 = "76" THEN SendKeys "{NumKey7}{NumKey6}"
+				IF _arg1 = "77" THEN SendKeys "{NumKey7}{NumKey7}"
+				IF _arg1 = "78" THEN SendKeys "{NumKey7}{NumKey8}"
+				IF _arg1 = "79" THEN SendKeys "{NumKey7}{NumKey9}"
+				IF _arg1 = "80" THEN SendKeys "{NumKey8}{NumKey0}"
+				IF _arg1 = "81" THEN SendKeys "{NumKey8}{NumKey1}"
+				IF _arg1 = "82" THEN SendKeys "{NumKey8}{NumKey2}"
+				IF _arg1 = "83" THEN SendKeys "{NumKey8}{NumKey3}"
+				IF _arg1 = "84" THEN SendKeys "{NumKey8}{NumKey4}"
+				IF _arg1 = "85" THEN SendKeys "{NumKey8}{NumKey5}"
+				IF _arg1 = "86" THEN SendKeys "{NumKey8}{NumKey6}"
+				IF _arg1 = "87" THEN SendKeys "{NumKey8}{NumKey7}"
+				IF _arg1 = "88" THEN SendKeys "{NumKey8}{NumKey8}"
+				IF _arg1 = "89" THEN SendKeys "{NumKey8}{NumKey9}"
+				IF _arg1 = "90" THEN SendKeys "{NumKey9}{NumKey0}"
+				IF _arg1 = "91" THEN SendKeys "{NumKey9}{NumKey1}"
+				IF _arg1 = "92" THEN SendKeys "{NumKey9}{NumKey2}"
+				IF _arg1 = "93" THEN SendKeys "{NumKey9}{NumKey3}"
+				IF _arg1 = "94" THEN SendKeys "{NumKey9}{NumKey4}"
+				IF _arg1 = "95" THEN SendKeys "{NumKey9}{NumKey5}"
+				IF _arg1 = "96" THEN SendKeys "{NumKey9}{NumKey6}"
+				IF _arg1 = "97" THEN SendKeys "{NumKey9}{NumKey7}"
+				IF _arg1 = "98" THEN SendKeys "{NumKey9}{NumKey8}"
+				IF _arg1 = "99" THEN SendKeys "{NumKey9}{NumKey9}"
+				IF _arg1 = "100" THEN SendKeys "{NumKey1}{NumKey0}{NumKey0}"
+				Wait 1000
+				IF _arg1 = "0" THEN SendKeys "{NumKey0}"
+				IF _arg2 = "1" THEN SendKeys "{NumKey1}"
+				IF _arg2 = "2" THEN SendKeys "{NumKey2}"
+				IF _arg2 = "3" THEN SendKeys "{NumKey3}"
+				IF _arg2 = "4" THEN SendKeys "{NumKey4}"
+				IF _arg2 = "5" THEN SendKeys "{NumKey5}"
+				IF _arg2 = "6" THEN SendKeys "{NumKey6}"
+				IF _arg2 = "7" THEN SendKeys "{NumKey7}"
+				IF _arg2 = "8" THEN SendKeys "{NumKey8}"
+				IF _arg2 = "9" THEN SendKeys "{NumKey9}"
+				IF _arg2 = "10" THEN SendKeys "{NumKey1}{NumKey0}"
+				IF _arg2 = "11" THEN SendKeys "{NumKey1}{NumKey1}"
+				IF _arg2 = "12" THEN SendKeys "{NumKey1}{NumKey2}"
+				IF _arg2 = "13" THEN SendKeys "{NumKey1}{NumKey3}"
+				IF _arg2 = "14" THEN SendKeys "{NumKey1}{NumKey4}"
+				IF _arg2 = "15" THEN SendKeys "{NumKey1}{NumKey5}"
+				IF _arg2 = "16" THEN SendKeys "{NumKey1}{NumKey6}"
+				IF _arg2 = "17" THEN SendKeys "{NumKey1}{NumKey7}"
+				IF _arg2 = "18" THEN SendKeys "{NumKey1}{NumKey8}"
+				IF _arg2 = "19" THEN SendKeys "{NumKey1}{NumKey9}"
+				IF _arg2 = "20" THEN SendKeys "{NumKey2}{NumKey0}"
+				IF _arg2 = "21" THEN SendKeys "{NumKey2}{NumKey1}"
+				IF _arg2 = "22" THEN SendKeys "{NumKey2}{NumKey2}"
+				IF _arg2 = "23" THEN SendKeys "{NumKey2}{NumKey3}"
+				IF _arg2 = "24" THEN SendKeys "{NumKey2}{NumKey4}"
+				IF _arg2 = "25" THEN SendKeys "{NumKey2}{NumKey5}"
+				IF _arg2 = "26" THEN SendKeys "{NumKey2}{NumKey6}"
+				IF _arg2 = "27" THEN SendKeys "{NumKey2}{NumKey7}"
+				IF _arg2 = "28" THEN SendKeys "{NumKey2}{NumKey8}"
+				IF _arg2 = "29" THEN SendKeys "{NumKey2}{NumKey9}"
+				IF _arg2 = "30" THEN SendKeys "{NumKey3}{NumKey0}"
+				IF _arg2 = "31" THEN SendKeys "{NumKey3}{NumKey1}"
+				IF _arg2 = "32" THEN SendKeys "{NumKey3}{NumKey2}"
+				IF _arg2 = "33" THEN SendKeys "{NumKey3}{NumKey3}"
+				IF _arg2 = "34" THEN SendKeys "{NumKey3}{NumKey4}"
+				IF _arg2 = "35" THEN SendKeys "{NumKey3}{NumKey5}"
+				IF _arg2 = "36" THEN SendKeys "{NumKey3}{NumKey6}"
+				IF _arg2 = "37" THEN SendKeys "{NumKey3}{NumKey7}"
+				IF _arg2 = "38" THEN SendKeys "{NumKey3}{NumKey8}"
+				IF _arg2 = "39" THEN SendKeys "{NumKey3}{NumKey9}"
+				IF _arg2 = "40" THEN SendKeys "{NumKey4}{NumKey0}"
+				IF _arg2 = "41" THEN SendKeys "{NumKey4}{NumKey1}"
+				IF _arg2 = "42" THEN SendKeys "{NumKey4}{NumKey2}"
+				IF _arg2 = "43" THEN SendKeys "{NumKey4}{NumKey3}"
+				IF _arg2 = "44" THEN SendKeys "{NumKey4}{NumKey4}"
+				IF _arg2 = "45" THEN SendKeys "{NumKey4}{NumKey5}"
+				IF _arg2 = "46" THEN SendKeys "{NumKey4}{NumKey6}"
+				IF _arg2 = "47" THEN SendKeys "{NumKey4}{NumKey7}"
+				IF _arg2 = "48" THEN SendKeys "{NumKey4}{NumKey8}"
+				IF _arg2 = "49" THEN SendKeys "{NumKey4}{NumKey9}"
+				IF _arg2 = "50" THEN SendKeys "{NumKey5}{NumKey0}"
+				IF _arg2 = "51" THEN SendKeys "{NumKey5}{NumKey1}"
+				IF _arg2 = "52" THEN SendKeys "{NumKey5}{NumKey2}"
+				IF _arg2 = "53" THEN SendKeys "{NumKey5}{NumKey3}"
+				IF _arg2 = "54" THEN SendKeys "{NumKey5}{NumKey4}"
+				IF _arg2 = "55" THEN SendKeys "{NumKey5}{NumKey5}"
+				IF _arg2 = "56" THEN SendKeys "{NumKey5}{NumKey6}"
+				IF _arg2 = "57" THEN SendKeys "{NumKey5}{NumKey7}"
+				IF _arg2 = "58" THEN SendKeys "{NumKey5}{NumKey8}"
+				IF _arg2 = "59" THEN SendKeys "{NumKey5}{NumKey9}"
+				IF _arg2 = "60" THEN SendKeys "{NumKey6}{NumKey0}"
+				IF _arg2 = "61" THEN SendKeys "{NumKey6}{NumKey1}"
+				IF _arg2 = "62" THEN SendKeys "{NumKey6}{NumKey2}"
+				IF _arg2 = "63" THEN SendKeys "{NumKey6}{NumKey3}"
+				IF _arg2 = "64" THEN SendKeys "{NumKey6}{NumKey4}"
+				IF _arg2 = "65" THEN SendKeys "{NumKey6}{NumKey5}"
+				IF _arg2 = "66" THEN SendKeys "{NumKey6}{NumKey6}"
+				IF _arg2 = "67" THEN SendKeys "{NumKey6}{NumKey7}"
+				IF _arg2 = "68" THEN SendKeys "{NumKey6}{NumKey8}"
+				IF _arg2 = "69" THEN SendKeys "{NumKey6}{NumKey9}"
+				IF _arg2 = "70" THEN SendKeys "{NumKey7}{NumKey0}"
+				IF _arg2 = "71" THEN SendKeys "{NumKey7}{NumKey1}"
+				IF _arg2 = "72" THEN SendKeys "{NumKey7}{NumKey2}"
+				IF _arg2 = "73" THEN SendKeys "{NumKey7}{NumKey3}"
+				IF _arg2 = "74" THEN SendKeys "{NumKey7}{NumKey4}"
+				IF _arg2 = "75" THEN SendKeys "{NumKey7}{NumKey5}"
+				IF _arg2 = "76" THEN SendKeys "{NumKey7}{NumKey6}"
+				IF _arg2 = "77" THEN SendKeys "{NumKey7}{NumKey7}"
+				IF _arg2 = "78" THEN SendKeys "{NumKey7}{NumKey8}"
+				IF _arg2 = "79" THEN SendKeys "{NumKey7}{NumKey9}"
+				IF _arg2 = "80" THEN SendKeys "{NumKey8}{NumKey0}"
+				IF _arg2 = "81" THEN SendKeys "{NumKey8}{NumKey1}"
+				IF _arg2 = "82" THEN SendKeys "{NumKey8}{NumKey2}"
+				IF _arg2 = "83" THEN SendKeys "{NumKey8}{NumKey3}"
+				IF _arg2 = "84" THEN SendKeys "{NumKey8}{NumKey4}"
+				IF _arg2 = "85" THEN SendKeys "{NumKey8}{NumKey5}"
+				IF _arg2 = "86" THEN SendKeys "{NumKey8}{NumKey6}"
+				IF _arg2 = "87" THEN SendKeys "{NumKey8}{NumKey7}"
+				IF _arg2 = "88" THEN SendKeys "{NumKey8}{NumKey8}"
+				IF _arg2 = "89" THEN SendKeys "{NumKey8}{NumKey9}"
+				IF _arg2 = "90" THEN SendKeys "{NumKey9}{NumKey0}"
+				IF _arg2 = "91" THEN SendKeys "{NumKey9}{NumKey1}"
+				IF _arg2 = "92" THEN SendKeys "{NumKey9}{NumKey2}"
+				IF _arg2 = "93" THEN SendKeys "{NumKey9}{NumKey3}"
+				IF _arg2 = "94" THEN SendKeys "{NumKey9}{NumKey4}"
+				IF _arg2 = "95" THEN SendKeys "{NumKey9}{NumKey5}"
+				IF _arg2 = "96" THEN SendKeys "{NumKey9}{NumKey6}"
+				IF _arg2 = "97" THEN SendKeys "{NumKey9}{NumKey7}"
+				IF _arg2 = "98" THEN SendKeys "{NumKey9}{NumKey8}"
+				IF _arg2 = "99" THEN SendKeys "{NumKey9}{NumKey9}"
+				IF _arg2 = "100" THEN SendKeys "{NumKey1}{NumKey0}{NumKey0}"
+ 
+				}
+		}
+		LIST "0-100" {
+			"0"  "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40" "41" "42" "43" "44" "45" "46" "47" "48" "49"
+			 "50" "51" "52" "53" "54" "55" "56" "57" "58" "59"
+			 "60" "61" "62" "63" "64" "65" "66" "67" "68" "69"
+			 "70" "71" "72" "73" "74" "75" "76" "77" "78" "79"
+			 "80" "81" "82" "83" "84" "85" "86" "87" "88" "89"
+			 "90" "91" "92" "93" "94" "95" "96" "97" "98" "99"  "100"
+		}
+		COMMAND "<1-5> <0-9> <0-9> <Go> <1-5> <0-9> <0-9> <Go>"{
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				Wait 800
+				HeardWord _arg5, _arg6, _arg7, _arg8
+				}
+		}
+		COMMAND "<1-9> <0-9> <Go> <1-5> <0-9> <0-9> <Go>"{
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				Wait 800
+				HeardWord _arg4, _arg5, _arg6, _arg7
+				}
+		}
+		COMMAND "<1-5> <0-9> <0-9> <Go> <1-9> <0-9> <Go>"{
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				Wait 800
+				HeardWord _arg5, _arg6, _arg7
+				}
+		}
+		COMMAND "<1-9> <Go> <1-5> <0-9> <0-9> <Go>"{
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 800
+				HeardWord _arg3, _arg4, _arg5, _arg6
+				}
+		}
+		COMMAND "<1-5> <0-9> <0-9> <Go> <1-9> <Go>"{
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				Wait 800
+				HeardWord _arg5, _arg6
+				}
+		}
+		COMMAND "<0-9> <0-9> <Go> <1-9> <0-9> <Go>"{
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				Wait 800
+				HeardWord _arg4, _arg5, _arg6
+				}
+		}
+		COMMAND "<0-9> <Go> <1-9> <0-9> <Go>"{
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 800
+				HeardWord _arg3, _arg4, _arg5
+				}
+		}
+		COMMAND "<0-9> <0-9> <Go> <1-9> <Go>"{
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				Wait 800
+				HeardWord _arg4, _arg5
+				}
+		}
+		LIST "Go" {
+			"Go"
+		}		
+		COMMAND "<0-9> <0-9> Go"{
+			SCRIPT {
+				SendKeys "{NumKey" + _arg1 + "}{NumKey" + _arg2 + "}"
+				}
+		}
+		COMMAND "<0-5> <0-9> <0-9> Go"{
+			SCRIPT {
+				SendKeys "{NumKey" + _arg1 + "}{NumKey" + _arg2 + "}{NumKey" + _arg3 + "}"
+				}
+		}
+		COMMAND "<0-9> <0-9> Go <DownDropDEnter>"{
+			SCRIPT {
+				SendKeys "{NumKey" + _arg1 + "}{NumKey" + _arg2 + "}"
+				Wait 800
+				IF _arg3 = "Down" THEN SendKeys "{Down}"
+				IF _arg3 = "Alternate Down" THEN SendKeys "{Alt+Down}"
+				IF _arg3 = "Enter" THEN SendKeys "{Enter}"
+				}
+		}
+		LIST "1-9" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9" 
+		}
+		COMMAND "<0-5> <0-9> <0-9> Go <DownDropDEnter>"{
+			SCRIPT {
+				SendKeys "{NumKey" + _arg1 + "}{NumKey" + _arg2 + "}{NumKey" + _arg3 + "}"
+				SendKeys "{Enter}"
+				Wait 800
+				IF _arg4 = "Down" THEN SendKeys "{Down}"
+				IF _arg4 = "Alternate Down" THEN SendKeys "{Alt+Down}"
+				IF _arg3 = "Enter" THEN SendKeys "brace enter"
+				}
+		}
+		LIST "1-5" {
+			"1"  "2" "3"  "4"  "5"
+		}
+		LIST "0-5" {
+			"0"  "1"  "2" "3"  "4"  "5"
+		}
+		LIST "0-9" {
+			"0"   "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"   
+		}
+		LIST "DownDropDEnter" {
+			"Down"  "Drop Down"  "Enter"
+		}
+	}
+}

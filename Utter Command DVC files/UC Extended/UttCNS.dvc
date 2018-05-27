@@ -1,0 +1,601 @@
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+ 
+MENU "Global Commands" {
+	STATE "Asleep" GLOBAL SLEEPING {
+ 
+##########
+#1 Microphone while Asleep
+#2 Speech On while Asleep (see 0a for Speech On while Awake commands)
+#3 Speech while Asleep (see 0a for Speech while Awake commands)
+##########
+ 
+#1. Microphone while Asleep
+		COMMAND "<WakeUp>" {
+			SCRIPT {
+				WakeUp
+				Wait 500
+				TTSPlayString "Speech On"
+			}
+		}
+		COMMAND "Wake Up" {
+			SCRIPT {
+				WakeUp
+			}
+		}
+		COMMAND "Speech On And No Shirking" {
+			SCRIPT {
+				WakeUp
+			}
+		}
+ 
+#2. Speech On while Asleep
+# Note: all alternate short words in lists have been removed, but list names remain the same
+ 
+		COMMAND "<WakeUp> <Programs> <OpenCloseMaximize>" {
+			SCRIPT {
+				WakeUp
+				Wait 500
+				TTSPlayString "Speech On"
+				IF _arg2 = "Solitaire" THEN 
+				HeardWord "start", "Solitaire"
+				ELSE			
+				IF _arg2 = "Access" THEN  _arg2 = "MSACCESS"
+				IF _arg2 = "Base" THEN  _arg2 = "sbase.exe"
+				IF _arg2 = "Calc" THEN  _arg2 = "scalc.exe"
+				IF _arg2 = "Draw" THEN  _arg2 = "sdraw.exe"
+				IF _arg2 = "Calculator" THEN  _arg2 = "calc"
+				IF _arg2 = "Dos" THEN  _arg2 = "cmd"
+				IF _arg2 = "Express" THEN  _arg2 = "msimn"
+				IF _arg2 = "InDesign" THEN  _arg2 = "InDesign"
+				IF _arg2 = "Impress" THEN  _arg2 = "simpress.exe"
+				IF _arg2 = "Internet" THEN  _arg2 = "IEXPLORE"
+				IF _arg2 = "Math" THEN  _arg2 = "smath.exe"
+				IF _arg2 = "Media Player" THEN  _arg2 = "wmplayer"
+				IF _arg2 = "Outlook" THEN  _arg2 = "OUTLOOK"
+				IF _arg2 = "Paint" THEN  _arg2 = "mspaint.exe"
+				IF _arg2 = "Picasa" THEN  _arg2 = "Picasa3"
+				IF _arg2 = "Project" THEN _arg2 = "MSPROJ"
+				IF _arg2 = "PowerPoint" THEN  _arg2 = "Powerpnt"
+				IF _arg2 = "Publisher" THEN  _arg2 = "MSPUB"
+				IF _arg2 = "Reader" THEN  _arg2 = "AcroRd32"				
+				IF _arg2 = "Visual" THEN  _arg2 = "MSDEV"
+				IF _arg2 = "Word" THEN  _arg2 = "Winword"		
+				IF _arg2 = "Writer" THEN  _arg2 = "swriter.exe"
+				IF _arg3 = "New" THEN
+				ShellExecute "" + _arg2 + ""
+				ELSE
+				AppBringUp "" + _arg2 + ""
+				END IF
+				END IF
+				Wait 100  
+				IF _arg2 = "InDesign" AND _arg3 = "Minimize" XOR _arg3 = "Min" THEN 
+				param$ = "1 94"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				ELSE			
+				IF _arg3 = "Maximize" XOR _arg3 = "Minimize" XOR _arg3 = "Max" XOR _arg3 = "Min" XOR _arg3 = "Restore" THEN 
+				Wait 10
+				SendKeys "{Alt+Space}"
+				Wait 50
+				END IF
+				IF _arg3 = "Minimize" XOR _arg3 = "Min" then SendKeys "n"
+				END IF
+				
+				IF _arg2= "InDesign" AND _arg3 = "Restore" XOR _arg3 = "Maximize" XOR _arg3 = "Max" THEN 
+				param$ = "1 96"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				ELSE
+				IF _arg3 = "Maximize" XOR _arg3 = "Max" then SendKeys "x"
+				IF _arg3 = "Restore" then SendKeys "r"
+				END IF
+			
+				IF _arg3 = "Close" THEN 
+				isDOS$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "DOS", 512 )
+				Wait 100
+				IF (instr(isDOS$,"true")) > 0 THEN
+				param$ = "1.5 99"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				ELSE
+				SendKeys "{Alt+F4}"
+				END IF
+				END IF
+ 
+			}
+		}
+		LIST "OpenCloseMaximize" {
+			"Open"  "Close"  "Maximize"
+		}
+		COMMAND "<WakeUp> <Programs> Open Maximize" {
+			SCRIPT {
+				WakeUp
+				Wait 500
+				TTSPlayString "Speech On"
+				IF _arg2 = "Solitaire" THEN 
+				HeardWord "start", "Solitaire"
+				ELSE			
+				IF _arg2 = "Access" THEN  _arg2 = "MSACCESS"
+				IF _arg2 = "Base" THEN  _arg2 = "sbase.exe"
+				IF _arg2 = "Calc" THEN  _arg2 = "scalc.exe"
+				IF _arg2 = "Draw" THEN  _arg2 = "sdraw.exe"
+				IF _arg2 = "Calculator" THEN  _arg2 = "calc"
+				IF _arg2 = "Dos" THEN  _arg2 = "cmd"
+				IF _arg2 = "Express" THEN  _arg2 = "msimn"
+				IF _arg2 = "InDesign" THEN  _arg2 = "InDesign"
+				IF _arg2 = "Impress" THEN  _arg2 = "simpress.exe"
+				IF _arg2 = "Internet" THEN  _arg2 = "IEXPLORE"
+				IF _arg2 = "Math" THEN  _arg2 = "smath.exe"
+				IF _arg2 = "Media Player" THEN  _arg2 = "wmplayer"
+				IF _arg2 = "Outlook" THEN  _arg2 = "OUTLOOK"
+				IF _arg2 = "Paint" THEN  _arg2 = "mspaint.exe"
+				IF _arg2 = "Picasa" THEN  _arg2 = "Picasa3"
+				IF _arg2 = "Project" THEN _arg2 = "MSPROJ"
+				IF _arg2 = "PowerPoint" THEN  _arg2 = "Powerpnt"
+				IF _arg2 = "Publisher" THEN  _arg2 = "MSPUB"
+				IF _arg2 = "Reader" THEN  _arg2 = "AcroRd32"				
+				IF _arg2 = "Visual" THEN  _arg2 = "MSDEV"
+				IF _arg2 = "Word" THEN  _arg2 = "Winword"		
+				IF _arg2 = "Writer" THEN  _arg2 = "swriter.exe"
+				AppBringUp "" + _arg2 + ""
+				END IF
+				Wait 10
+				SendKeys "{Alt+Space}"
+				Wait 50
+				SendKeys "x"
+			}
+		}
+		COMMAND "<WakeUp> Window <1-20>" {
+			SCRIPT {
+				WakeUp
+				Wait 500
+				TTSPlayString "Speech On"
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg2
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg2
+			}
+		}
+		COMMAND "<WakeUp> Rulers <OnOffOpenClose>" {
+			SCRIPT {
+				WakeUp
+				TTSPlayString "Speech On"
+				' RulersOn at 71
+				IF _arg2 = "On" XOR _arg2 = "Open" THEN DllCall "UttC.dll",71,""
+				' _SendRulerMessage@4 at 1
+				IF _arg2 = "Off" XOR _arg2 = "Close" THEN DllCall "rulercom.dll", 1, "130"
+			}
+		}
+		LIST "WakeUp" {
+			"Speech On"
+			"Speech Open"
+		}
+ 
+#3. Speech while asleep
+# Note: all alternate short words in lists have been removed, but list names remain the same
+ 
+		COMMAND "Speech Screen <UpDown>" {
+			SCRIPT {
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				IF _arg1 = "Up" THEN SendKeys "{PgUp}"
+				IF _arg1 = "Down" THEN SendKeys "{PgDn}"
+			}
+		}
+		COMMAND "Speech <1-20> Screen <UpDown>" {
+			SCRIPT {
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				IF _arg2 = "Down" THEN SendKeys "{PgDn " + _arg1 + "}"
+				IF _arg2 = "Up" THEN SendKeys "{PgUp " + _arg1 + "}"
+			}
+		}
+		COMMAND "Speech Screen <0-100>" {
+			SCRIPT {
+				Arg1Minus = Val(_arg1) -1
+				Arg1Minus = Str$(Arg1Minus)
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				Wait 10
+				SendKeys "{Ctrl+Home}"
+				Wait 100
+				SendKeys "{PgDn " + Arg1Minus + "}"
+ 
+			}
+		}
+		COMMAND "Speech <DocumentWindow> <MaximizeMinimize>" {
+			SCRIPT {
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				Wait 20
+				IF _arg1 = "Document" XOR _arg1 = "Doc" AND _arg2 = "Close" THEN
+				SendKeys "{Ctrl+F4}"
+				ELSE
+				IF _arg1 = "Window" XOR _arg1 = "This" XOR _arg1 = "Win" AND _arg2 = "Close" THEN 
+				Wait 10
+				SendKeys "{Alt+F4}"
+				ELSE
+				IF _arg1 = "Document" then SendKeys "{Alt+-}"
+				IF _arg1 = "Window" then SendKeys "{Alt+Space}"
+				Wait 20
+				IF _arg2 = "Maximize" then SendKeys "x"
+				END IF
+				END IF
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+			}
+		}
+		LIST "DocumentWindow" {
+			"Document"  "Window"
+		}
+		COMMAND "Speech <Programs> <OpenMaximize>" {
+			SCRIPT {
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				IF _arg1 = "Solitaire" THEN 
+				HeardWord "start", "Solitaire"
+				ELSE			
+ 
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "sbase.exe"
+				IF _arg1 = "Calc" THEN  _arg1 = "scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "sdraw.exe"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "simpress.exe"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "smath.exe"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa3"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"				
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "swriter.exe"
+				AppBringUp "" + _arg1 + ""
+				IF _arg1 = "Outlook" THEN WaitForWindow  "*Outlook"
+				window$ = DllCall$("UttC.dll", "GetForegroundWindowDVC", "", 1200 )
+				Wait 100
+				' SetForegroundWindowDVC at 114
+				DllCall "UttC.dll",114, window$
+				END IF
+				Wait 10
+				IF _arg2 = "Maximize" THEN 
+				Wait 10
+				SendKeys "{Alt+Space}"
+				END IF
+				Wait 20
+				IF _arg2 = "Maximize" THEN SendKeys "x"
+				
+			}
+		}
+		LIST "OpenMaximize" {
+			"Open"  "Maximize"
+		}
+		COMMAND "Speech <Programs> Open Maximize" {
+			SCRIPT {
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sbase"
+				IF _arg1 = "Calc" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\sdraw"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\simpress"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\smath"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa3"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Solitaire" THEN  _arg1 = "sol"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "C:\Program Files\OpenOffice.org 2.4\program\swriter"
+				AppBringUp "" + _arg1 + ""
+				Wait 20
+				SendKeys "x"
+			}
+		}
+		LIST "Programs" {
+			"Access"  "Reader"  "Calculator" "Dreamweaver"
+			"Excel"  "Express"  "Eudora"
+			"Firefox"   "Internet"  "iTunes"  "InDesign"
+			"Media Player"	"Notepad"   "Outlook"  "Illustrator"
+			"Photoshop"  "Picasa"    "PowerPoint"
+			"Quicken" "Solitaire"   "Thunderbird"   "Visual" "Emacs"
+			"WordPad"  "Word"  
+			"DOS" "Base"  "Calc"  "Draw"  "Impress"  "Math"  "Writer"
+			"Paint" "Project"  "Visio"	"Kurzweil 3000"	
+		}
+		COMMAND "Speech Rulers <OnOffOpenClose>" {
+			SCRIPT {
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				' RulersOn at 71
+				IF _arg1 = "On" XOR _arg1 = "Open" THEN DllCall "UttC.dll",71,""
+				' _SendRulerMessage@4 at 1
+				IF _arg1 = "Off" XOR _arg1 = "Close" THEN DllCall "rulercom.dll", 1, "130"
+				GoToSleep
+			}
+		}
+		LIST "OnOffOpenClose" {
+			"On" "Off" "Open" "Close"
+		}
+		LIST "OpenNew" {
+			"Open"  "New"
+		}
+		LIST "MaximizeMinimize" {
+			"Maximize"  "Minimize"
+		}
+		COMMAND "Speech Window <1-20>" {
+			SCRIPT {
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+			}
+		}
+ 		COMMAND "Speech Window <1-20> Screen <1-40>" {
+			SCRIPT {
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				SendKeys "{Ctrl+Home}"
+				SendKeys "{PgDn " + _arg2 + "}"
+			}
+		}
+		LIST "1-40" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			 "11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+			 "21" "22" "23" "24" "25" "26" "27" "28" "29" "30" 
+			 "31" "32" "33" "34" "35" "36" "37" "38" "39" "40"
+		}
+		COMMAND "Speech Window <1-20> <1-20> Screen <UpDown>" {
+			SCRIPT {
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				IF _arg3 = "Down" THEN SendKeys "{PgDn " + _arg2 + "}"
+				IF _arg3 = "Up" THEN SendKeys "{PgUp " + _arg2 + "}"
+			}
+		}
+		COMMAND "Speech Window <1-20> Screen <UpDown>" {
+			SCRIPT {				
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				IF _arg2 = "Down" THEN SendKeys "{PgDn}"
+				IF _arg2 = "Up" THEN SendKeys "{PgUp}"
+				TTSPlayString "Speech"
+			}
+		}
+		LIST "UpDown" {
+			"Up"  "Down"
+		}
+		COMMAND "Speech <0-9> Enter Short" {
+			SCRIPT {
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				SendKeys "" + _arg1 + ""
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "Speech <0-9> <0-9> Enter Short" {
+			SCRIPT {
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				SendKeys "" + _arg1 + "" + _arg2 + ""
+				SendKeys "{Enter}"
+			}
+		}
+		LIST "0-9" {
+			"0"  "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"   
+		}
+		COMMAND "Speech <RedoUndo> That" {
+			SCRIPT {
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				IF _arg1 = "Undo" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Redo" THEN SendKeys "{Ctrl+y}"
+			}
+		}
+		LIST "RedoUndo" {
+			"Redo"  "Undo"
+		}
+ 		COMMAND "Speech <1-10> Enter" {
+			SCRIPT {
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				loop& = Val(_arg1)
+				while ( loop& )
+				SendKeys "{Enter}"				
+				loop& = loop& - 1
+				wend				 
+			}
+		}
+		COMMAND "Speech <1-10> Touch" {
+			SCRIPT {
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				loop& = Val(_arg1)
+				while ( loop& )
+				ButtonClick
+				Wait 500
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "Speech <Volume> <0-100>" {
+			SCRIPT {				
+				TTSPlayString "Changing to"
+				' VolumeAbsolute at 98
+				DllCall "UttC.dll",98, _arg2
+				TTSPlayString "" + _arg1 + " " + _arg2 + ""
+			}
+		}
+		LIST "Volume" {
+			"Volume"
+		}
+		LIST "0-100" {
+			"0"  "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40" "41" "42" "43" "44" "45" "46" "47" "48" "49"
+			 "50" "51" "52" "53" "54" "55" "56" "57" "58" "59"
+			 "60" "61" "62" "63" "64" "65" "66" "67" "68" "69"
+			 "70" "71" "72" "73" "74" "75" "76" "77" "78" "79"
+			 "80" "81" "82" "83" "84" "85" "86" "87" "88" "89"
+			 "90" "91" "92" "93" "94" "95" "96" "97" "98" "99"  "100"
+		}
+		COMMAND "Speech Media <PausePlayStop>" {
+			SCRIPT {
+				' Media at 53
+				DllCall "UttC.dll", 53, _arg1
+			}
+		}
+		LIST "PausePlayStop" {
+			"Pause"
+			"Play"
+			"Stop"
+		}
+		COMMAND "Speech Media <AfterBefore>" {
+			SCRIPT {
+				' Media at 53
+				DllCall "UttC.dll", 53, _arg1
+			}
+		}
+		COMMAND "Speech Media <1-20> <AfterBefore>" {
+			SCRIPT {
+				loop& = Val(_arg1)
+				while ( loop& )
+				Wait 750
+				' Media at 53
+				DllCall "UttC.dll", 53, _arg2
+				loop& = loop& - 1
+				wend
+			}
+		}
+		LIST "1-20" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+		}
+		LIST "AfterBefore" {
+			"Before"  "After"
+		}
+ 
+#3 Speech Time Commands		
+		COMMAND "Speech <1-10> Seconds" {
+			SCRIPT {
+				WakeUp
+				Wait 500
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "10"
+				TTSPlayString "Speech for " + _arg1 + " Seconds"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				Wait Val(_arg1)*1000
+				GoToSleep
+				Wait 500
+				TTSPlayString "Speech Off"
+			}
+		}
+		LIST "1-10" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10"   
+		}
+ 
+	}
+}
+ 

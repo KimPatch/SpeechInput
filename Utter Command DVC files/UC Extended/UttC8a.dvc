@@ -1,0 +1,130 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+ 
+	STATE "Global Commands" GLOBAL {
+		COMMAND "Add Alphabet Under <aAlpha>" {
+ 			SCRIPT {
+				_arg3 = "{Alt+a}"
+				isVE$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Vocabulary Editor", 512 )
+				IF (instr(isVE$,"true")) > 0 THEN		
+				SendKeys "{Alt+w}"
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "b"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "c"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "d"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "e"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "f"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "g"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "h"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "i"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "j"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "k"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "l"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "m"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "n"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "o"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "p"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "q"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "r"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "s"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "t"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "u"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "v"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "w"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "x"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "y"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "z"
+				SendKeys "" + _arg3 + ""
+				END IF
+			}
+		}
+		COMMAND "Add Functions Under <aAlpha>" {
+ 			SCRIPT {
+				_arg3 = "{Alt+a}"
+				isVE$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Vocabulary Editor", 512 )
+				IF (instr(isVE$,"true")) > 0 THEN		
+				SendKeys "{Alt+w}"
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "=SUM("
+				SendKeys "{Alt+s}"
+				SendKeys "Equals Sum"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "=PRODUCT("
+				SendKeys "{Alt+s}"
+				SendKeys "Equals Product"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "=HYPERLINK("
+				SendKeys "{Alt+s}"
+				SendKeys "Equals Hyperlink"
+				SendKeys "" + _arg3 + ""
+				SendKeys "{Home}{Shift+END}"
+				SendKeys "=AVERAGE("
+				SendKeys "{Alt+s}"
+				SendKeys "Equals Average"
+				SendKeys "" + _arg3 + ""
+				END IF
+			}
+		}
+		LIST "aAlpha" {
+			"a"  "Alpha"
+		}
+	}
+}

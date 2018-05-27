@@ -1,0 +1,893 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+ 
+	STATE "Global Commands" GLOBAL {
+ 
+#Tab 
+		COMMAND "<Tab List> <1-10> Tab" {
+			SCRIPT {
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg1, 512)
+				' At this point v$ is the PATH part of the list item
+				SendKeys v$
+				Wait 10
+				SendKeys "{Tab " + _arg2 + "}"
+			}
+		} 
+		COMMAND "<Tab List> Stay" {
+			SCRIPT {
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg1, 512)
+				SendKeys v$
+			}
+		} 
+		COMMAND "<1-10> Tab <Tab List> " {
+			SCRIPT {
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				SendKeys "{Tab " + _arg1 + "}"
+				Wait 10
+				SendKeys v$
+			}
+		}
+		COMMAND "<Tab List> <1-10> Tab <Tab List>" {
+			SCRIPT {
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg1, 512)
+				w$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg3, 512)
+				SendKeys v$
+				Wait 10
+				SendKeys "{Tab " + _arg2 + "}"
+				SendKeys w$
+			}
+		}
+		COMMAND "<Tab List> <1-10> Tab <Tab List> <1-10> Tab" {
+			SCRIPT {
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg1, 512)
+				w$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg3, 512)
+				SendKeys v$
+				Wait 10
+				SendKeys "{Tab " + _arg2 + "}"
+				SendKeys w$
+				Wait 10
+				SendKeys "{Tab " + _arg4 + "}"
+			}
+		}
+		COMMAND "<Punct> <Tab List> <1-10> Tab" {
+			SCRIPT {
+				IF _arg1 = "Comma" THEN SendKeys ", "
+				IF _arg1 = "Slash" THEN SendKeys "/"
+				IF _arg1 = "Period" THEN SendKeys ". "
+				IF _arg1 = "Space" XOR _arg1 = "Spaces" THEN SendKeys " "
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				SendKeys v$
+				IF _arg1 = "Spaces" THEN SendKeys " "
+				SendKeys "{Tab " + _arg3 + "}"
+ 
+			}
+		}
+		COMMAND "<Punct> <Tab List> Stay" {
+			SCRIPT {
+				IF _arg1 = "Comma" THEN SendKeys ", "
+				IF _arg1 = "Slash" THEN SendKeys "/"
+				IF _arg1 = "Period" THEN SendKeys ". "
+				IF _arg1 = "Space" XOR _arg1 = "Spaces" THEN SendKeys " "
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				SendKeys v$
+				IF _arg1 = "Spaces" THEN SendKeys " "
+			}
+		}
+		LIST "Punct" {
+			"Comma"  "Slash"  "Period"  "Space"  "Spaces"  "No Space"
+		}
+ 
+		COMMAND "<1-10> Tab <Tab List> <1-10> Tab <Tab List>" {
+			SCRIPT {
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				w$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg4, 512)
+				SendKeys "{Tab " + _arg1 + "}"
+				Wait 10
+				SendKeys v$
+				Wait 10
+				SendKeys "{Tab " + _arg3 + "}"
+				Wait 10
+				SendKeys w$
+			}
+		}
+		COMMAND "<1-10> Tab <Tab List> <1-10> Tab" {
+			SCRIPT {
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				SendKeys "{Tab " + _arg1 + "}"
+				Wait 10
+				SendKeys v$
+				Wait 10
+				SendKeys "{Tab " + _arg3 + "}"
+			}
+		}
+		COMMAND "<Tab List> <1-10> Tab <DA>" {
+			SCRIPT {
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg1, 512)
+				SendKeys v$
+				Wait 10
+				SendKeys "{Tab "+ _arg2 +"}"
+				Wait 100
+				IF _arg3 = "Down" THEN SendKeys "{Down}"
+				IF _arg3 = "Alternate Down" XOR _arg3 = "Drop Down" THEN SendKeys "{Alt+Down}"
+			}
+		}
+		COMMAND "<Tab List> <1-10> Tab <Tab List> <1-10> Tab <DA>" {
+			SCRIPT {
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg1, 512)
+				w$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg3, 512)
+				SendKeys v$
+				Wait 10
+				SendKeys "{Tab " + _arg2 + "}"
+				SendKeys w$
+				Wait 10
+				SendKeys "{Tab " + _arg4 + "}"
+				Wait 100
+				IF _arg5 = "Down" THEN SendKeys "{Down}"
+				IF _arg5 = "Alternate Down" XOR _arg5 = "Drop Down" THEN SendKeys "{Alt+Down}"
+			}
+		}
+		COMMAND "<1-10> Tab <Tab List> <DA>" {
+			SCRIPT {
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				SendKeys "{Tab "+ _arg1 +"}"
+				Wait 10
+				SendKeys v$
+				Wait 100
+				IF _arg3 = "Down" THEN SendKeys "{Down}"
+				IF _arg3 = "Alternate Down" XOR _arg3 = "Drop Down" THEN SendKeys "{Alt+Down}"
+			}
+		}
+		COMMAND "<1-10> Tab <Tab List> <1-10> Tab <DA>" {
+			SCRIPT {
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				SendKeys "{Tab " + _arg1 + "}"
+				Wait 10
+				SendKeys v$
+				Wait 10
+				SendKeys "{Tab " + _arg3 + "}"
+				Wait 100
+				IF _arg4 = "Down" THEN SendKeys "{Down}"
+				IF _arg4 = "Alternate Down" XOR _arg4 = "Drop Down" THEN SendKeys "{Alt+Down}"
+			}
+		}
+		LIST "DA" {
+			"Down"  "Drop Down"
+		}
+		LIST "1-10" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+		}
+#Enter 
+		COMMAND "<Enter List> Enter" {
+			SCRIPT {
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg1, 512)
+				SendKeys v$
+				Wait 200
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<Enter List> Stay" {
+			SCRIPT {
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg1, 512)
+				SendKeys v$
+			}
+		}
+		COMMAND "DOS <Enter List> Enter" {
+			SCRIPT {
+				AppBringUp "CMD"
+				Wait 100
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg1, 512)
+				SendKeys v$
+				Wait 200
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "DOS <Enter List> Stay" {
+			SCRIPT {
+				AppBringUp "CMD"
+				Wait 100
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg1, 512)
+				SendKeys v$
+			}
+		}
+		COMMAND "Window <1-20> <Enter List> Enter" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				Wait 100
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				SendKeys v$
+				Wait 200
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "Window <1-20> <Enter List> Stay" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				Wait 100
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				SendKeys v$
+			}
+		}
+		LIST "1-20" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+		}
+		COMMAND "Enter <Enter List>" {
+			SCRIPT {
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg1, 512)
+				SendKeys "{Enter}"
+				Wait 200
+				SendKeys v$
+			}
+		}
+#Touch
+		COMMAND "<Touch List> Touch" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+			}
+		}
+		COMMAND "<Touch List> Touch Paste" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+				Wait 100
+				SendKeys "{Ctrl+v}"
+			}
+		}
+		COMMAND "Touch <Touch List> Touch" {
+			SCRIPT {
+				ButtonClick
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+			}
+		}
+		COMMAND "<Touch List> No Touch" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentages at 56
+				DllCall "UttC.dll", 56, p$
+			}
+		}
+		COMMAND "<Touch List> Touch Right" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentages at 56
+				DllCall "UttC.dll", 56, p$
+				ButtonClick 2,1
+			}
+		}
+		COMMAND "<Touch List> Touch Twice" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentages at 56
+				DllCall "UttC.dll", 56, p$
+				ButtonClick 1, 2
+			}
+		}
+		COMMAND "Drag To <Touch List>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' DragArrowByPercentages at 18
+				DllCall "UttC.dll", 18, p$
+			}
+		}
+		COMMAND "Touch Drag To <Touch List>" {
+			SCRIPT {
+				ButtonClick
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' DragArrowByPercentages at 18
+				DllCall "UttC.dll", 18, p$
+			}
+		}
+		COMMAND "<Touch List> Touch Line" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+				SendKeys "{Home}{Shift+End}"
+			}
+		}
+		COMMAND "<Touch List> <Touch List> Touch" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)				
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+				Wait 100
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg2, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg2, 512)				
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+			}
+		}
+		COMMAND "<Touch List> <Touch List> No Touch" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)				
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentages at 56
+				DllCall "UttC.dll", 56, p$
+				Wait 100
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg2, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg2, 512)				
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentages at 56
+				DllCall "UttC.dll", 56, p$
+			}
+		}
+		COMMAND "<Touch List> No Touch <Touch List> Touch" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)				
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentages at 56
+				DllCall "UttC.dll", 56, p$
+				Wait 100
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg2, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg2, 512)				
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+			}
+		}
+		COMMAND "<Touch List> Touch <Touch List> No Touch" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)				
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+				Wait 100
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg2, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg2, 512)				
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentages at 56
+				DllCall "UttC.dll", 56, p$
+			}
+		}
+		COMMAND "<Touch List> Wait <Touch List> Touch" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)				
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+				Wait 1000
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg2, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg2, 512)				
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+			}
+		}
+		COMMAND "<Touch List> Wait <Touch List> No Touch" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)				
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentages at 56
+				DllCall "UttC.dll", 56, p$
+				Wait 1000
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg2, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg2, 512)				
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentages at 56
+				DllCall "UttC.dll", 56, p$
+			}
+		}
+		COMMAND "<Touch List> No Touch Wait <Touch List> Touch" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)				
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentages at 56
+				DllCall "UttC.dll", 56, p$
+				Wait 1000
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg2, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg2, 512)				
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+			}
+		}
+		COMMAND "<Touch List> Touch Wait <Touch List> No Touch" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)				
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+				Wait 1000
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg2, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg2, 512)				
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentages at 56
+				DllCall "UttC.dll", 56, p$
+			}
+		}
+		COMMAND "<Touch List> Touch <1-40> <DULR>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+				Wait 100
+				SendKeys "{"+ _arg3 + " "+ _arg2 + "}"
+			}
+		}
+		COMMAND "<Touch List> Touch <DULR> <EnterRight>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+				Wait 100
+				SendKeys "{"+ _arg2 + "}"
+				IF _arg3 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg3 = "Right" THEN SendKeys "{Right}"
+			}
+		}
+		COMMAND "<Touch List> Touch <1-40> <DULR> <EnterRight>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+				Wait 100
+				SendKeys "{"+ _arg3 + " "+ _arg2 + "}"
+				IF _arg4 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg4 = "Right" THEN SendKeys "{Right}"
+			}
+		}
+		COMMAND "<Touch List> Touch Letter <Alph>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+				Wait 100
+				SendKeys MID$(_arg2,0,1)
+			}
+		}
+		COMMAND "<Touch List> Touch <Alph>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+				Wait 100
+				SendKeys MID$(_arg2,0,1)
+			}
+		}
+		COMMAND "<Touch List> Touch Times <1-10>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				loop& = Val(_arg2)
+				while ( loop& )
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+				Wait 10
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<Touch List> Touch Times <1-10> Wait" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				loop& = Val(_arg2)
+				while ( loop& )
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+				Wait 1000
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<Touch List> Touch Times <1-10> Wait <1-10>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				loop& = Val(_arg2)
+				while ( loop& )
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll", 77, p$
+				Wait Val(_arg3)*1000
+				loop& = loop& - 1
+				wend
+			}
+		}
+ 
+#Local Touch
+		COMMAND "<Local Touch List> Local " {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+			}
+		}
+		COMMAND "<Local Touch List> Local Paste" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+			}
+		}
+		COMMAND "Touch <Local Touch List> Local" {
+			SCRIPT {
+				ButtonClick
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+			}
+		}
+		COMMAND "<Local Touch List> Local No Touch" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$				
+			}
+		}
+		COMMAND "<Local Touch List> Local Touch Right" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				ButtonClick 2,1
+			}
+		}
+		COMMAND "<Local Touch List> Local Touch Twice" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				ButtonClick 1,2
+			}
+		}
+		COMMAND "<Local Touch List> <Local Touch List> Local" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+				Wait 100
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg2, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg2, 512)
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+			}
+		}
+		COMMAND "<Local Touch List> Wait <Local Touch List> Local" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+				Wait 1000
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg2, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg2, 512)
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+			}
+		}
+		COMMAND "<Local Touch List> Local <1-40> <DULR>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+				Wait 100
+				SendKeys "{"+ _arg3 + " "+ _arg2 + "}"
+			}
+		} 
+		COMMAND "<Local Touch List> Local <DULR> <EnterRight>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+				Wait 100
+				SendKeys "{"+ _arg2 + "}"
+				IF _arg3 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg3 = "Right" THEN SendKeys "{Right}"
+			}
+		}
+		COMMAND "<Local Touch List> Local <1-40> <DULR> <EnterRight>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+				Wait 100
+				SendKeys "{"+ _arg3 + " "+ _arg2 + "}"
+				IF _arg4 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg4 = "Right" THEN SendKeys "{Right}"
+			}
+		} 
+		COMMAND "<Local Touch List> Local Times <1-10>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				loop& = Val(_arg2)
+				while ( loop& )
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+				Wait 10
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<Local Touch List> Local Times <1-10> Wait" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				loop& = Val(_arg2)
+				while ( loop& )
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+				Wait 1000
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<Local Touch List> Local Times <1-10> Wait <1-10>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				loop& = Val(_arg2)
+				while ( loop& )
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+				Wait Val(_arg3)*1000
+				loop& = loop& - 1
+				wend
+			}
+		}
+		LIST "1-40" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40"
+		}
+		LIST "DULR" {
+			"Down"  "Up"  "Left"  "Right"
+		}
+		LIST "EnterRight" {
+			"Enter"  "Right"
+		}
+		COMMAND "<Local Touch List> Local Letter <Alph>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+				Wait 100
+				SendKeys MID$(_arg2,0,1)
+			}
+		}
+		COMMAND "<Local Touch List> Local <Alph>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				' At this point x$ and y$ are the x-value and y-value parts
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+				Wait 100
+				SendKeys MID$(_arg2,0,1)
+			}
+		}
+		COMMAND "<Local Touch List> Local <Tab List>" {
+			SCRIPT {
+				x$ = DllCall$("UttC.dll", "ParseListItem", "N|1|" + _arg1, 512)
+				y$ = DllCall$("UttC.dll", "ParseListItem", "N|2|" + _arg1, 512)
+				p$ = y$ + " " + x$
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, p$
+				' Touch at 92
+				DllCall "UttC.dll", 92, "Touch"
+				Wait 100
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				SendKeys v$
+			}
+		}
+		LIST "Alph" {	  
+			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z" 
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+		}
+################## UttC0b List Lists #####################
+ 
+		LIST "Tab List" {
+			"Jon\\Jon"
+			"Stephanopoulos\\Stephanopoulos"
+			"Jonathan Q. Stephanopoulos\\Jon Long"
+			"Jon@bestprovider.com\\Jon at Best"
+			"23 West Side Highway\\Jon Address"
+			"23 West Side Highway, New York, NY\\Jon Address Long"
+			"02130\\Jon Zip"
+			"Santa\\Santa"
+			"Claus\\Claus"
+			"Santa Claus\\Santa Claus"
+			"List Maker, Toymaker, Pilot\\North Title"
+			"Far North\\Far North"
+			"1 North Pole, Suite 1\\North Address"
+			"00000\\North Zip"
+		}
+ 
+		LIST "Enter List" {
+			"Dir\\Directory"
+			"Help\\Help"
+			"cd ..\\CD"
+			"cd d:#5C\\Delta Drive"
+			"cd c:#5CBuild\\Build"
+		}
+ 
+		LIST "Touch List" {
+			"51|11\\High"
+			"50|88\\Low"
+			"35|11\\Sender"
+			"51|11\\Subject"
+			"84|11\\Date"
+			"131|19\\Color"
+			"139.7|28.5\\Blue"
+			"130|22.5\\Red"
+			"9|17\\First"
+			"29|18\\Last"
+			"7|29\\Address"
+			"14|22\\Test 1"
+			"14.5|22.5\\Test 2"
+			"14.59|22.59\\Test 3"
+		}
+ 
+		LIST "Local Touch List" {
+			"51|11\\High"
+			"50|88\\Low"
+			"35|11\\Sender"
+			"51|11\\Subject"
+			"84|11\\Date"
+			"37|19.5\\Color"
+			"47|24\\Blue"
+			"37.5|24\\Red"
+			"9|17\\First"
+			"29|18\\Last"
+			"7|29\\Address"
+			"10|10\\Main"
+			"20|10\\Tabs"
+			"30|10\\Content"
+			"50|10\\Applications"
+			"60|10\\Privacy"
+			"70|10\\Security"
+			"80|10\\Advanced"
+		}
+ 
+	}
+}

@@ -1,0 +1,402 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+ 
+	STATE "Global Commands" GLOBAL {
+ 
+#All Contents
+################## Sec. 0a:  Speech On, Speech while awake (see NS for Speech on, Speech while asleep)
+################## Sec. 0b:  Tab, Enter, Touch, Local Touch lists
+################## Sec. 1a:  Controlling NatSpeak (menus see NS#version) 
+################## Sec. 1b:  Controlling UC 
+################## Sec. 2ab: Windows
+################## Sec. 3a:  #2k. Tray, Menus, Menu Items
+################## Sec. 3b:  blank (menu/box control in lessons)
+################## Sec. 4a:  Mouse
+################## Sec. 5ab: Text (File in UttC1)
+################## Sec. 6ab: Key
+################## Sec. 7ab: Text (also 5ab)
+################## Sec. 8a:  Vocabulary (Email In UttC2)
+################## Sec. 8b:  blank (Email In UttC2)
+################## Sec. 9a:  blank (Web In UttC2)
+################## Sec. 9b:  blank (Web In UttC2)
+################## Sec. 10a: Utilities
+################## Sec. 10b: Common menu, dialog box, shutdown
+################## Sec. NS:  Speech On, Speech while asleep (see 0a for Speech on, Speech while awake)
+################## Sec. Ex:  RESERVED for custom for user
+ 
+ 
+ 
+################## Section 0: Speech 
+#0a Speech On while Awake (see UttCNS for Speech On commands)
+#0b Speech while Awake (see UttCNS for Speech asleep commands)
+##################
+ 
+#0a. WakeUp while awake (see UttCNS for WakeUp asleep commands)
+ 
+		COMMAND "<WakeUp> <Programs> <OpenCloseMaximize>" {
+			SCRIPT {
+				TTSPlayString "Already On"
+				HeardWord _arg2, _arg3
+			}
+		}
+		LIST "OpenCloseMaximize" {
+			"Open"  "Close"  "Maximize"
+		}
+		COMMAND "<WakeUp> <Programs> Open Maximize" {
+			SCRIPT {
+				TTSPlayString "Already On"
+				HeardWord _arg2, "Open", "Maximize"
+			}
+		}
+		COMMAND "<WakeUp> Window <1-20>" {
+			SCRIPT {
+				TTSPlayString "Already On"
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg2
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg2
+			}
+		}
+		COMMAND "<WakeUp> Rulers <OnOffOpenClose>" {
+			SCRIPT {
+				TTSPlayString "Already On"
+				' RulersOn at 71
+				IF _arg2 = "On" XOR _arg2 = "Open" THEN DllCall "UttC.dll",71,""
+				' _SendRulerMessage@4 at 1
+				IF _arg2 = "Off" XOR _arg2 = "Close" THEN DllCall "rulercom.dll", 1, "130"
+			}
+		}
+		LIST "WakeUp" {
+			"Speech On"
+			"Speech Open"
+		}
+ 
+#0b. Speech Commands while the microphone is awake (see UttCNS for Speech asleep commands)
+ 
+		COMMAND "Speech Screen <UpDown>" {
+			SCRIPT {
+				TTSPlayString "Speech"
+				IF _arg1 = "Up" THEN SendKeys "{PgUp}"
+				IF _arg1 = "Down" THEN SendKeys "{PgDn}"
+				GoToSleep
+			}
+		}
+		COMMAND "Speech <1-20> Screen <UpDown>" {
+			SCRIPT {
+				TTSPlayString "Speech"
+				IF _arg2 = "Down" THEN SendKeys "{PgDn " + _arg1 + "}"
+				IF _arg2 = "Up" THEN SendKeys "{PgUp " + _arg1 + "}"
+				GoToSleep
+			}
+		}
+		LIST "UpDown" {
+			"Up"
+			"Down"
+		}
+		COMMAND "Speech Screen <0-100>" {
+			SCRIPT {
+				Arg1Minus = Val(_arg1) -1
+				Arg1Minus = Str$(Arg1Minus)
+				TTSPlayString "Speech"
+				Wait 100
+				SendKeys "{Ctrl+Home}"
+				Wait 100			
+				SendKeys "{PgDn " + Arg1Minus + "}"
+				GoToSleep
+ 
+			}
+		}
+		COMMAND "Speech <DocumentWindow> <MaximizeMinimize>" {
+			SCRIPT {
+				IF _arg1 = "Document" XOR _arg1 = "Doc" AND _arg2 = "Close" THEN
+				SendKeys "{Ctrl+F4}"
+				ELSE
+				IF _arg1 = "Window" XOR _arg1 = "This" XOR _arg1 = "Win" AND _arg2 = "Close" THEN 
+				Wait 10
+				SendKeys "{Alt+F4}"
+				ELSE
+				IF _arg1 = "Document" XOR _arg1 = "Doc" then SendKeys "{Alt+-}"
+				IF _arg1 = "Window" XOR _arg1 = "Win" then SendKeys "{Alt+Space}"
+				Wait 20
+				IF _arg2 = "Minimize" XOR _arg2 = "Min" then SendKeys "n"
+				IF _arg2 = "Maximize" XOR _arg2 = "Max" then SendKeys "x"
+				END IF
+				END IF
+				GoToSleep
+			}
+		}
+		LIST "MaximizeMinimize" {
+			"Maximize"  "Minimize"
+		}
+		LIST "DocumentWindow" {
+			"Document"  "Window"
+		}
+		COMMAND "Speech <Programs> <OpenMaximize>" {
+			SCRIPT {
+				IF _arg1 = "Solitaire" THEN 
+				HeardWord "start", "Solitaire"
+				ELSE			
+ 
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "sbase.exe"
+				IF _arg1 = "Calc" THEN  _arg1 = "scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "sdraw.exe"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "simpress.exe"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "smath.exe"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa3"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"				
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "swriter.exe"
+				AppBringUp "" + _arg1 + ""
+				IF _arg1 = "Outlook" THEN WaitForWindow  "*Outlook"
+				window$ = DllCall$("UttC.dll", "GetForegroundWindowDVC", "", 1200 )
+				Wait 100
+				' SetForegroundWindowDVC at 114
+				DllCall "UttC.dll",114, window$
+				END IF
+				Wait 10
+				IF _arg2 = "Maximize" THEN 
+				Wait 10
+				SendKeys "{Alt+Space}"
+				END IF
+				Wait 20
+				IF _arg2 = "Maximize" THEN SendKeys "x"
+				GoToSleep
+				}
+		}
+		LIST "OpenMaximize" {
+			"Open"  "Maximize"
+		}
+		COMMAND "Speech <Programs> Open Maximize" {
+			SCRIPT {
+				IF _arg1 = "Solitaire" THEN 
+				HeardWord "start", "Solitaire"
+				ELSE			
+				
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "sbase.exe"
+				IF _arg1 = "Calc" THEN  _arg1 = "scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "sdraw.exe"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Dos" THEN  _arg1 = "cmd"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "simpress.exe"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "smath.exe"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa3"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Reader" THEN  _arg1 = "AcroRd32"				
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "swriter.exe"
+				AppBringUp "" + _arg1 + ""
+				IF _arg1 = "Outlook" THEN WaitForWindow  "*Outlook"
+				window$ = DllCall$("UttC.dll", "GetForegroundWindowDVC", "", 1200 )
+				Wait 100
+				' SetForegroundWindowDVC at 114
+				DllCall "UttC.dll",114, window$
+				END IF
+				Wait 10
+				SendKeys "{Alt+Space}"
+				Wait 20				
+				SendKeys "x"
+				GoToSleep
+ 
+			}
+		}
+		LIST "Programs" {
+			"Access"  "Acrobat" "Reader"  "Calculator" "Dreamweaver"
+			"Excel"  "Express"  "Eudora"
+			"Firefox"   "Internet"  "iTunes"  "InDesign"
+			"Media Player"	"Notepad"   "Outlook"  "Illustrator"
+			"Photoshop"  "Picasa"    "PowerPoint"
+			"Quicken" "Solitaire"   "Thunderbird"   "Visual" "Emacs"
+			"WordPad"  "Word"  
+			"DOS" "Base"  "Calc"  "Draw"  "Impress"  "Math"  "Writer"
+			"Paint" "Project"  "Visio" "Kurzweil 3000"
+		}
+		COMMAND "Speech Rulers <OnOffOpenClose>" {
+			SCRIPT {
+				TTSPlayString "Speech"
+				' RulersOn at 71
+				IF _arg1 = "On" XOR _arg1 = "Open" THEN DllCall "UttC.dll",71,""
+				' _SendRulerMessage@4 at 1
+				IF _arg1 = "Off" XOR _arg1 = "Close" THEN DllCall "rulercom.dll", 1, "130"
+				GoToSleep
+			}
+		}
+		LIST "OnOffOpenClose" {
+			"On" "Off" "Open" "Close"
+		}
+		COMMAND "Speech Window <1-20>" {
+			SCRIPT {
+				TTSPlayString "Speech"							
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg1
+				GoToSleep
+			}
+		}
+		COMMAND "Speech <0-9> Enter Short" {
+			SCRIPT {
+				TTSPlayString "Speech"
+				SendKeys "" + _arg1 + ""
+				SendKeys "{Enter}"
+				GoToSleep
+			}
+		}
+		COMMAND "Speech <0-9> <0-9> Enter Short" {
+			SCRIPT {
+				TTSPlayString "Speech"
+				SendKeys "" + _arg1 + "" + _arg2 + ""
+				SendKeys "{Enter}"
+				GoToSleep
+			}
+		}
+		LIST "0-9" {
+			"0"   "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"   
+		}
+		COMMAND "Speech <RedoUndo> That" {
+			SCRIPT {
+				TTSPlayString "Speech"
+				IF _arg1 = "Undo" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Redo" THEN SendKeys "{Ctrl+y}"
+				GoToSleep
+			}
+		}
+		COMMAND "Speech <1-10> Enter" {
+			SCRIPT {
+				TTSPlayString "Speech"
+				loop& = Val(_arg1)
+				while ( loop& )
+				IF _arg2 = "Enter" THEN SendKeys "{Enter}"			
+				loop& = loop& - 1
+				wend				 
+				GoToSleep
+			}
+		}
+		LIST "RedoUndo" {
+			"Redo"  "Undo"
+		}
+		LIST "TouchAllTouch" {
+			"Touch"  "Touch Twice"  "Touch Right"
+			"No Touch"
+			"Touch ex 1"  "Touch ex 2"
+			"Shift Touch"  "Control Touch"
+			"Shift Touch Twice"  "Control Touch Twice"			
+			"Shift Touch Right"  "Control Touch Right"
+		}
+		COMMAND "Speech <1-10> Touch" {
+			SCRIPT {
+				TTSPlayString "Speech"
+				loop& = Val(_arg1)
+				while ( loop& )
+				ButtonClick
+				Wait 500
+				loop& = loop& - 1
+				wend
+				GoToSleep
+			}
+		}
+		COMMAND "Speech <MediaVolume> <0-100>" {
+			SCRIPT {				
+				TTSPlayString "Changing to"
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll",119, _arg2
+				TTSPlayString "" + _arg1 + " " + _arg2 + ""
+				GoToSleep
+			}
+		}
+		LIST "MediaVolume" {
+			"Media"
+			"Volume"
+		}
+		LIST "0-100" {
+			"0"  "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40" "41" "42" "43" "44" "45" "46" "47" "48" "49"
+			 "50" "51" "52" "53" "54" "55" "56" "57" "58" "59"
+			 "60" "61" "62" "63" "64" "65" "66" "67" "68" "69"
+			 "70" "71" "72" "73" "74" "75" "76" "77" "78" "79"
+			 "80" "81" "82" "83" "84" "85" "86" "87" "88" "89"
+			 "90" "91" "92" "93" "94" "95" "96" "97" "98" "99"  "100"
+		}
+		COMMAND "Speech Media <PausePlayStop>" {
+			SCRIPT {
+				' Media at 53
+				DllCall "UttC.dll", 53, _arg1
+				GoToSleep      		
+			}
+		}
+		LIST "PausePlayStop" {
+			"Pause"  "Play"  "Stop"
+		}
+		COMMAND "Speech Media <AfterBeforeUpDown>" {
+			SCRIPT {
+				' Media at 53
+				DllCall "UttC.dll", 53, _arg1
+				GoToSleep     		
+			}
+		}
+		COMMAND "Speech Media <1-20> <AfterBeforeUpDown>" {
+			SCRIPT {
+				loop& = Val(_arg1)
+				while ( loop& )
+				Wait 750
+				' Media at 53
+				DllCall "UttC.dll", 53, _arg2
+				loop& = loop& - 1
+				wend
+				GoToSleep
+			}
+		}
+		LIST "1-20" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+		}
+		LIST "AfterBeforeUpDown" {
+			"Before"  "After"  "Up" "Down"	
+		}
+ 
+		COMMAND "Speech <1-10> Seconds" {
+			SCRIPT {
+				TTSPlayString "Speech for " + _arg1 + " Seconds"
+				Wait Val(_arg1)*1000
+				GoToSleep
+				Wait 500
+				TTSPlayString "Speech Off"
+			}
+		}
+ 
+		LIST "1-10" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			
+		}
+	}
+}

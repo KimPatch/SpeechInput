@@ -1,0 +1,1637 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+ 
+	STATE "Global Commands" GLOBAL {
+ 
+#7p Selecting letters
+#7q Selecting numbers
+ 
+#7r Copying, Cutting, Pasting, Deleting, Formatting -- basic
+#7s Selecting and Copying, Cutting, Pasting, Deleting, Formatting
+#7t Moving and Copying, Cutting, Pasting, Deleting Formatting
+#7u Moving and selecting and Copying, Cutting, Pasting, Deleting Formatting
+#7v Selecting letters and Copying, Cutting, Pasting, Deleting Formatting 
+#7w Selecting plus keyboard shortcut
+#7x Moving and selecting plus keyboard shortcut
+#7y Moving text
+ 
+#7z Spacing, Compounding, Undoing, Duplicating
+#7aa Standard Lists
+#7ab Distinguishing between forms -- short 
+#7ac Distinguishing between forms -- long 
+#7ad Distinguishing between forms -- To
+#7ae Font  
+##################
+ 
+#7p. Selecting letters
+# Removed - use spells (6a)
+ 
+#7q. Selecting numbers
+		COMMAND "Numbers <0-9SpaceHyphPerCom> <0-9SpaceHyphPerCom>" {
+			SCRIPT {
+				IF _arg1 = "Space" THEN  _arg1 = " "
+				IF _arg2 = "Space" THEN  _arg2 = " "
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys MID$(_arg1,0,1)
+				SendKeys MID$(_arg2,0,1)
+				Wait 100
+				SendKeys "{Enter}"
+				Wait 500
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+		COMMAND "Numbers <0-9SpaceHyphPerCom> <0-9SpaceHyphPerCom> <0-9SpaceHyphPerCom>" {
+ 			SCRIPT {
+				IF _arg1 = "Space" THEN  _arg1 = " "
+				IF _arg2 = "Space" THEN  _arg2 = " "
+				IF _arg3 = "Space" THEN  _arg3 = " "
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys MID$(_arg1,0,1)
+				SendKeys MID$(_arg2,0,1)
+				SendKeys MID$(_arg3,0,1)
+				Wait 100
+				SendKeys "{Enter}"
+				Wait 500
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+		COMMAND "Numbers <0-9SpaceHyphPerCom> <0-9SpaceHyphPerCom> <0-9SpaceHyphPerCom> <0-9SpaceHyphPerCom>" {
+			SCRIPT {
+				IF _arg1 = "Space" THEN  _arg1 = " "
+				IF _arg2 = "Space" THEN  _arg2 = " "
+				IF _arg3 = "Space" THEN  _arg3 = " "
+				IF _arg4 = "Space" THEN  _arg4 = " "
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys MID$(_arg1,0,1)
+				SendKeys MID$(_arg2,0,1)
+				SendKeys MID$(_arg3,0,1)
+				SendKeys MID$(_arg4,0,1)
+				Wait 100
+				SendKeys "{Enter}"
+				Wait 500
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+		COMMAND "Numbers <0-9SpaceHyphPerCom> <0-9SpaceHyphPerCom> <0-9SpaceHyphPerCom> <0-9SpaceHyphPerCom> <0-9SpaceHyphPerCom>" {
+			SCRIPT {
+				IF _arg1 = "Space" THEN  _arg1 = " "
+				IF _arg2 = "Space" THEN  _arg2 = " "
+				IF _arg3 = "Space" THEN  _arg3 = " "
+				IF _arg4 = "Space" THEN  _arg4 = " "
+				IF _arg5 = "Space" THEN  _arg5 = " "
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys MID$(_arg1,0,1)
+				SendKeys MID$(_arg2,0,1)
+				SendKeys MID$(_arg3,0,1)
+				SendKeys MID$(_arg4,0,1)
+				SendKeys MID$(_arg5,0,1)
+				Wait 100
+				SendKeys "{Enter}"
+				Wait 500
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+ 
+		LIST "0-9SpaceHyphPerCom" {
+			","  "."  "-"
+			"Space"
+			"0"   "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"   
+		}
+ 
+#7z. Spacing, Compounding, Undoing, Duplicating
+		COMMAND "<AnotherInsertNewLastNext> <Graph,Line>" {
+			SCRIPT {
+				p$ = _arg1 + " " + _arg2
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, p$
+			}
+		}
+		LIST "AnotherInsertNewLastNext" {
+			"Another"  "Insert"
+			"New"  "Last"  "Next"
+		}
+		LIST "Graph,Line" {
+			"Graph"
+			"Line"
+		}
+		COMMAND "<1-10> Compound" {
+			SCRIPT {
+				IF _arg1 = "1" THEN HeardWord "UseTwo"
+				loop& = Val(_arg1) -1
+				while ( loop& )
+				SendKeys "{Ctrl+Left}"
+				SendKeys "{Backspace}"
+				SendKeys "{Ctrl+Right}"
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<1-10> Befores <CompoundHyphenateUnderscore>" {
+			SCRIPT {
+				IF _arg1 = "1" THEN HeardWord "UseTwo"
+				loop& = Val(_arg1) -1
+				while ( loop& )
+				SendKeys "{Ctrl+Left}"
+				IF _arg2 = "Compound" THEN SendKeys "{Backspace}"
+				IF _arg2 = "Hyphenate" THEN SendKeys "{Backspace}{-}{Left}{Ctrl+Left}"
+				IF _arg2 = "Underscore" THEN SendKeys "{Backspace}{_}{Left}{Ctrl+Left}"
+				SendKeys "{Ctrl+Right}"
+				loop& = loop& - 1
+				wend
+				IF _arg2 = "Hyphenate" XOR _arg2 = "Underscore" THEN 
+				loop& = Val(_arg1)
+				while ( loop& )
+				SendKeys "{Ctrl+Right 2}"
+				loop& = loop& - 1
+				wend
+				END IF
+			}
+		}
+		COMMAND "<1-10> Afters <CompoundHyphenateUnderscore>" {
+			SCRIPT {
+				IF _arg1 = "1" THEN HeardWord "UseTwo"
+				loop& = Val(_arg1) -1
+				while ( loop& )
+				SendKeys "{Ctrl+Right}"
+				Wait 100
+				IF _arg2 = "Compound" THEN SendKeys "{Backspace}"
+				IF _arg2 = "Hyphenate" THEN SendKeys "{Backspace}{-}{Right}{Ctrl+Right}"
+				IF _arg2 = "Underscore" THEN SendKeys "{Backspace}{_}{Right}{Ctrl+Right}"
+				SendKeys "{Ctrl+Left}"
+				loop& = loop& - 1
+				wend
+				IF _arg2 = "Hyphenate" XOR _arg2 = "Underscore" THEN 
+				loop& = Val(_arg1)
+				while ( loop& )
+				SendKeys "{Ctrl+Left 2}"
+				loop& = loop& - 1
+				wend
+				END IF
+			}
+		}
+		COMMAND "UseTwo"{
+			SCRIPT {
+				SendKeys ""	
+			}
+		}
+		COMMAND "<1-10> <1-10> <CompoundHyphenateUnderscore>" {
+			SCRIPT {
+				loop& = Val(_arg1)
+				while ( loop& )
+				SendKeys "{Ctrl+Left}"
+				Wait 100
+				IF _arg3 = "Compound" THEN SendKeys "{Backspace}"
+				IF _arg3 = "Hyphenate" THEN SendKeys "{Backspace}{-}{Left}"
+				IF _arg3 = "Underscore" THEN SendKeys "{Backspace}{_}{Left}"
+				IF _arg3 = "Compound" THEN SendKeys "{Ctrl+Right}"
+				loop& = loop& - 1
+				wend
+				IF _arg1 = "Hyphenate" XOR _arg3 = "Underscore" THEN 
+				loop& = Val(_arg2)
+				while ( loop& )
+				SendKeys "{Ctrl+Right 2}"
+				loop& = loop& - 1
+				wend
+				END IF
+				SendKeys "{Ctrl+Left}"
+				loop& = Val(_arg2)
+				while ( loop& )
+				SendKeys "{Ctrl+Right}"
+				Wait 100
+				IF _arg3 = "Compound" THEN SendKeys "{Backspace}"
+				IF _arg3 = "Hyphenate" THEN SendKeys "{Backspace}{-}{Right}"
+				IF _arg3 = "Underscore" THEN SendKeys "{Backspace}{_}{Right}"
+				IF _arg3 = "Compound" THEN SendKeys "{Ctrl+Left}"
+				loop& = loop& - 1
+				wend
+				IF _arg1 = "Hyphenate" XOR _arg1 = "Underscore" THEN 
+				loop& = Val(_arg2)
+				while ( loop& )
+				SendKeys "{Ctrl+Left 2}"
+				loop& = loop& - 1
+				wend
+				END IF
+				IF _arg3 = "Compound" THEN SendKeys "{Ctrl+Right}"
+			}
+		}
+		LIST "1-10" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+		}
+		LIST "CompoundHyphenateUnderscore" {
+			"Compound"
+			"Hyphenate"
+			"Underscore"
+		}
+		COMMAND "<UndoRedo> That" {
+			SCRIPT {
+				IF _arg1 = "Undo" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Redo" THEN SendKeys "{Ctrl+y}"
+			}
+		}
+		COMMAND "<1-40> <UndoRedoScratch>" {
+			SCRIPT {
+				loop& = Val(_arg1)
+				while ( loop& )
+				IF _arg2 = "Undo" THEN SendKeys "{Ctrl+z}"
+				IF _arg2 = "Redo" THEN SendKeys "{Ctrl+y}"
+				IF _arg2 = "Scratch" THEN HeardWord "scratch","that"
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<UndoRedoScratch> Times <1-40>" {
+			SCRIPT {
+				loop& = Val(_arg2)
+				while ( loop& )
+				IF _arg1 = "Undo" THEN SendKeys "{Ctrl+z}"
+				IF _arg1 = "Redo" THEN SendKeys "{Ctrl+y}"
+				IF _arg1 = "Scratch" THEN HeardWord "scratch","that"
+				loop& = loop& - 1
+				wend
+			}
+		}
+		LIST "UndoRedoScratch" {
+			"Undo"  "Redo"  "Scratch"
+		}
+		LIST "1-40" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			 "11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+			 "21" "22" "23" "24" "25" "26" "27" "28" "29" "30" 
+			 "31" "32" "33" "34" "35" "36" "37" "38" "39" "40"
+		}
+		COMMAND "<UndoRedo> <UndoRedo>" {
+			SCRIPT {
+				IF _arg1 = "Redo" THEN  _arg1 = "Ctrl+y"
+				IF _arg1 = "Undo" THEN  _arg1 = "Ctrl+z"
+				IF _arg2 = "Redo" THEN _arg2 = "Ctrl+y"
+				IF _arg2 = "Undo" THEN  _arg2 = "Ctrl+z"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg2 + "}"
+			}
+		}
+		LIST "UndoRedo" {
+			"Undo"
+			"Redo"
+		}
+		COMMAND "<GLWthisAll> Duplicate" {
+			SCRIPT {
+				' GLWthisAllDuplicate at 49
+				DllCall "UttC.dll", 49, _arg1
+			}
+		}
+		COMMAND "<GLWthisAll> Duplicate Repeat <1-20>" {
+			SCRIPT {
+				' GLWthisAllDuplicate at 49
+				DllCall "UttC.dll", 49, _arg1
+				Wait 100
+				loop& = Val(_arg2) -1
+				SendKeys "{End}{Enter}"
+				while ( loop& )
+				SendKeys "{Ctrl+v}"
+				IF _arg1 = "Graph" XOR _arg1 = "Line" XOR _arg1 = "this" XOR _arg1 = "All" THEN SendKeys "{End}{Enter}"
+				Wait 100
+				loop& = loop& - 1
+				wend
+				IF _arg1 = "Line" THEN SendKeys "{Up " + _arg2 + "}{Up}{Home}"
+				IF _arg1 = "Graph" XOR _arg1 = "this" XOR _arg1 = "All" THEN SendKeys "{Up 2}{Home}"
+			}
+		}
+		LIST "GLWthisAll" {
+			"Word"
+			"Line"
+			"Graph"
+			"this"
+			"All"
+		}
+ 
+#7aa. Standard Lists
+		COMMAND "<DaysWeekdaysMonthsQuartersDWMQShort> <TabEnterCommaSlashPipeHomeEndEnter2-5EColonEHyphenDULR>" {
+			SCRIPT {
+				IF _arg2 = "Enter" XOR _arg2 = "Tab" XOR _arg2 = "Down" XOR _arg2 = "Up" XOR _arg2 = "Left" XOR _arg2 = "Right" THEN  _arg2 = "{" + _arg2 + "}"
+				IF _arg2 = "Home" THEN SendKeys "{Home}"
+				IF _arg2 = "End" THEN SendKeys "{End}{Space}"
+				IF _arg2 = "Slash" THEN  _arg2 = "/"
+				IF _arg2 = "Pipe" THEN  _arg2 = " | "
+				IF _arg2 = "Comma" THEN  _arg2 = ", "
+				IF _arg2 = "Home" THEN  _arg2 = "{Space}{Down}{Home}"
+				IF _arg2 = "End" THEN  _arg2 = "{Down}{End}{Space}"
+				IF _arg2 = "Enter" THEN  _arg2 = "{Enter}"
+				IF _arg2 = "Two Enter" THEN  _arg2 = "{Enter 2}"
+				IF _arg2 = "Three Enter" THEN  _arg2 = "{Enter 3}"
+				IF _arg2 = "Four Enter" THEN  _arg2 = "{Enter 4}"
+				IF _arg2 = "Five Enter" THEN  _arg2 = "{Enter 5}"
+				IF _arg2 = "Colon Enter" THEN  _arg2 = ":{Space}{Enter}"
+				IF _arg2 = "Hyphen Enter" THEN  _arg2 = "{Space}-{Space}{Enter}"
+				IF _arg2 = "/" XOR _arg2 = "," THEN 
+				IF _arg1 = "Days" THEN SendKeys "Sunday" + _arg2 + "Monday" + _arg2 + "Tuesday" + _arg2 + "Wednesday" + _arg2 + "Thursday" + _arg2 + "Friday" + _arg2 + "Saturday"
+				IF _arg1 = "Days Short" THEN SendKeys "Mon." + _arg2 + "Tues." + _arg2 + "Wed." + _arg2 + "Thurs." + _arg2 + "Fri." + _arg2 + "Sat." + _arg2 + "Sun."
+				IF _arg1 = "Weekdays" THEN SendKeys "Monday" + _arg2 + "Tuesday" + _arg2 + "Wednesday" + _arg2 + "Thursday" + _arg2 + "Friday"
+				IF _arg1 = "Weekdays Short" THEN SendKeys "Mon." + _arg2 + "Tues." + _arg2 + "Wed." + _arg2 + "Thurs." + _arg2 + "Fri."
+				IF _arg1 = "Months" THEN SendKeys "January" + _arg2 + "February" + _arg2 + "March" + _arg2 + "April" + _arg2 + "May" + _arg2 + "June" + _arg2 + "July" + _arg2 + "August" + _arg2 + "September" + _arg2 + "October" + _arg2 + "November" + _arg2 + "December"
+				IF _arg1 = "Months Short" THEN SendKeys "Jan." + _arg2 + "Feb." + _arg2 + "Mar." + _arg2 + "Apr." + _arg2 + "May" + _arg2 + "June" + _arg2 + "July" + _arg2 + "Aug." + _arg2 + "Sept." + _arg2 + "Oct." + _arg2 + "Nov." + _arg2 + "Dec."
+				IF _arg1 = "Quarters" THEN SendKeys "1st Quarter" + _arg2 + "2nd Quarter" + _arg2 + "3rd Quarter" + _arg2 + "4th Quarter"
+				IF _arg1 = "Quarters Short" THEN SendKeys "Q 1" + _arg2 + "Q 2" + _arg2 + "Q 3" + _arg2 + "Q 4"
+				ELSE
+				IF _arg1 = "Days" THEN SendKeys "Sunday" + _arg2 + "Monday" + _arg2 + "Tuesday" + _arg2 + "Wednesday" + _arg2 + "Thursday" + _arg2 + "Friday" + _arg2 + "Saturday" + _arg2
+				IF _arg1 = "Days Short" THEN SendKeys "Mon." + _arg2 + "Tues." + _arg2 + "Wed." + _arg2 + "Thurs." + _arg2 + "Fri." + _arg2 + "Sat." + _arg2 + "Sun." +_arg2
+				IF _arg1 = "Weekdays" THEN SendKeys "Monday" + _arg2 + "Tuesday" + _arg2 + "Wednesday" + _arg2 + "Thursday" + _arg2 + "Friday" +_arg2
+				IF _arg1 = "Weekdays Short" THEN SendKeys "Mon." + _arg2 + "Tues." + _arg2 + "Wed." + _arg2 + "Thurs." + _arg2 + "Fri." +_arg2
+				IF _arg1 = "Months" THEN SendKeys "January" + _arg2 + "February" + _arg2 + "March" + _arg2 + "April" + _arg2 + "May" + _arg2 + "June" + _arg2 + "July" + _arg2 + "August" + _arg2 + "September" + _arg2 + "October" + _arg2 + "November" + _arg2 + "December" +_arg2
+				IF _arg1 = "Months Short" THEN SendKeys "Jan." + _arg2 + "Feb." + _arg2 + "Mar." + _arg2 + "Apr." + _arg2 + "May" + _arg2 + "June" + _arg2 + "July" + _arg2 + "Aug." + _arg2 + "Sept." + _arg2 + "Oct." + _arg2 + "Nov." + _arg2 + "Dec." +_arg2
+				IF _arg1 = "Quarters" THEN SendKeys "1st Quarter" + _arg2 + "2nd Quarter" + _arg2 + "3rd Quarter" + _arg2 + "4th Quarter"+_arg2
+				IF _arg1 = "Quarters Short" THEN SendKeys "Q 1" + _arg2 + "Q 2" + _arg2 + "Q 3" + _arg2 + "Q 4"+_arg2
+				END IF
+			}
+		} 
+		COMMAND "<1-100> Through <1-100> <TabEnterCommaSlashPipeHomeEndEnter2-5EGraphGSPeriodEParenEPPHDULR>" {
+			SCRIPT {
+				IF _arg3 = "Down" XOR _arg3 = "Up" XOR _arg3 = "Left" XOR _arg3 = "Right" THEN  _arg3 = "{" + _arg3 + "}"
+				IF _arg3 = "Home" XOR _arg3 = "Paren Home" XOR _arg3 = "Period Home" THEN SendKeys "{Home}"
+				IF _arg3 = "End" THEN SendKeys "{End}{Space}"
+				IF _arg3 = "Graph" THEN  _arg3 = ".{Space}{Space}{Ctrl+Down}"
+				IF _arg3 = "Graph Space" THEN  _arg3 = ".{Space}{Space}{Ctrl+Down 2}"
+				IF _arg3 = "Paren Graph" XOR _arg3 = "Close Paren Graph" THEN  _arg3 = "){Space}{Space}{Ctrl+Down}"
+				IF _arg3 = "Paren Graph Space" XOR _arg3 = "Close Paren Graph Space" THEN  _arg3 = "){Space}{Space}{Ctrl+Down 2}"
+				IF _arg3 = "Period Enter" THEN  _arg3 = ".{Space}{Space}{Enter}"
+				IF _arg3 = "Paren Enter" XOR _arg3 = "Close-Paren Enter" THEN  _arg3 = "){Space}{Space}{Enter}"
+				IF _arg3 = "Comma" THEN  _arg3 = ", "
+				IF _arg3 = "Tab" THEN  _arg3 = "{Tab}"
+				IF _arg3 = "Slash" THEN  _arg3 = "/"
+				IF _arg3 = "Pipe" THEN  _arg3 = " | "
+				IF _arg3 = "Enter" THEN  _arg3 = "{Enter}"
+				IF _arg3 = "Two Enter" THEN  _arg3 = "{Enter 2}"
+				IF _arg3 = "Three Enter" THEN  _arg3 = "{Enter 3}"
+				IF _arg3 = "Four Enter" THEN  _arg3 = "{Enter 4}"
+				IF _arg3 = "Five Enter" THEN  _arg3 = "{Enter 5}"
+				IF _arg3 = "Home" THEN  _arg3 = "{Space}{Space}{Down}{Home}"
+				IF _arg3 = "Period Home" THEN  _arg3 = ".{Space}{Space}{Down}{Home}"
+				IF _arg3 = "Paren Home" XOR _arg3 = "Close Paren Home" THEN  _arg3 = "){Space}{Space}{Down}{Home}"
+				IF _arg3 = "End" THEN  _arg3 = "{Down}{End}{Space}"
+				If Val(_arg2) > Val(_arg1) THEN
+				loop& = Val(_arg2) - Val(_arg1)
+				while ( loop& )
+				SendKeys _arg1
+				SendKeys "" + _arg3 + ""
+				loop& =  loop& - 1
+				_arg1 = Val(_arg1) + 1
+				wend
+				SendKeys "" + _arg2 + ""
+				IF _arg3 = "Home" THEN SendKeys "{Space}"
+				END IF
+				If Val(_arg2) <  Val(_arg1) THEN
+				loop& = Val(_arg1)
+				Do
+				SendKeys _arg1
+				SendKeys "" + _arg3 + ""
+				loop& =  loop& - 1
+				_arg1 = Val(_arg1) - 1
+				LOOP UNTIL loop& <  Val(_arg2)  + 1
+				SendKeys _arg1				
+				END IF
+				IF _arg3 = ".{Space}{Space}{Enter}" XOR _arg3 = ".{Space}{Space}{Down}{Home}" THEN SendKeys ".{Space}{Space}"
+				IF _arg3 = "){Space}{Space}{Enter}" XOR _arg3 = "){Space}{Space}{Down}{Home}" THEN SendKeys "){Space}{Space}"
+				IF _arg3 = ".{Space}{Space}{Ctrl+Down 2}" XOR _arg3 = ".{Space}{Space}{Ctrl+Down}" THEN SendKeys ".{Space}{Space}"
+				IF _arg3 = "){Space}{Space}{Ctrl+Down 2}" XOR _arg3 = "){Space}{Space}{Ctrl+Down}" THEN SendKeys "){Space}{Space}"
+			}
+		}
+		LIST "1-100" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40" "41" "42" "43" "44" "45" "46" "47" "48" "49"
+			 "50" "51" "52" "53" "54" "55" "56" "57" "58" "59"
+			 "60" "61" "62" "63" "64" "65" "66" "67" "68" "69"
+			 "70" "71" "72" "73" "74" "75" "76" "77" "78" "79"
+			 "80" "81" "82" "83" "84" "85" "86" "87" "88" "89"
+			 "90" "91" "92" "93" "94" "95" "96" "97" "98" "99"  "100"
+		}
+		LIST "DaysWeekdaysMonthsQuartersDWMQShort" {
+			"Days"  "Weekdays"  "Months"  "Quarters"
+			"Days Short"  "Weekdays Short"  "Months Short"  "Quarters Short"
+		}
+ 
+		LIST "TabEnterCommaSlashPipeHomeEndEnter2-5EColonEHyphenDULR" {
+			"Tab"  "Enter"
+			"Two Enter"  "Three Enter"  "Four Enter"  "Five Enter"
+			"Comma"  "Slash"  "Pipe"
+			"Colon Enter"  "Hyphen Enter"
+			"Down"  "Up"  "Left"  "Right"  "Home"  "End"
+		}
+ 
+		LIST "TabEnterCommaSlashPipeHomeEndEnter2-5EGraphGSPeriodEParenEPPHDULR" {
+			"Enter"  "Tab"
+			"Two Enter"  "Three Enter"  "Four Enter"  "Five Enter"
+			"Comma"  "Slash"  "Pipe"
+			"Period Enter"  "Period Home"
+			"Paren Enter"  "Paren Home" "Close-Paren Enter"  "Close-Paren Home"
+			"Graph"  "Graph Space"
+			"Paren Graph"  "Paren Graph Space" "Close-Paren Graph"  "Close-Paren Graph Space"
+			"Down"  "Up"  "Left"  "Right"  "Home"  "End"
+		}
+#7ab. Distinguishing between forms -- short 
+		COMMAND "<0-100> <ShortSSpace>"{
+			SCRIPT {
+				SendKeys "" + _arg1 + ""	
+				IF _arg2 = "Short Space" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<SpaceSpaces> <0-100> Short" {
+			SCRIPT {
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+				IF _arg1 = "Space" THEN SendKeys "{Space}"
+				SendKeys "" + _arg2 + ""
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		LIST "0-100" {
+			"0"  "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40" "41" "42" "43" "44" "45" "46" "47" "48" "49"
+			 "50" "51" "52" "53" "54" "55" "56" "57" "58" "59"
+			 "60" "61" "62" "63" "64" "65" "66" "67" "68" "69"
+			 "70" "71" "72" "73" "74" "75" "76" "77" "78" "79"
+			 "80" "81" "82" "83" "84" "85" "86" "87" "88" "89"
+			 "90" "91" "92" "93" "94" "95" "96" "97" "98" "99"  "100"
+		}
+		COMMAND "<CharShort> <ShortSSpace>" {
+			SCRIPT {
+				IF _arg1 = "Ellipsis" THEN _arg1 = "..."
+				IF _arg1 = "Dash" THEN _arg1 = "--"
+				IF _arg1 = "Times" THEN _arg1 = "*"
+				IF _arg1 = "Star" THEN _arg1 = "*"
+				IF _arg1 = "minus sign" THEN _arg1 = "-"
+				IF _arg1 = "divided by" THEN _arg1 = "/"
+				IF _arg1 = "Grave" THEN  _arg1 = "`"
+				SendKeys "" + _arg1 + ""
+				IF _arg2 = "Short Space" THEN SendKeys "{Space}"
+				IF _arg2 = "Space Short" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<SpaceSpaces> <CharShort> Short" {
+			SCRIPT {
+				IF _arg2 = "Ellipsis" THEN _arg2 = "..."
+				IF _arg2 = "Dash" THEN _arg2 = "--"
+				IF _arg2 = "Times" THEN _arg2 = "*"
+				IF _arg2 = "Star" THEN _arg2 = "*"
+				IF _arg2 = "Minus sign" THEN _arg2 = "-"
+				IF _arg2 = "Divided by" THEN _arg2 = "/"
+				IF _arg2 = "Grave" THEN  _arg1 = "`"
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+				IF _arg1 = "Space" THEN SendKeys "{Space}"
+				SendKeys "" + _arg2 + ""
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		LIST "CharShort" {
+			"!"  "@"  "#"  "$"  "%"  "^"  "&"  "*"  "("  ")"  "--"
+			"`"  "~"  "-"  "_"  "="  "+"  "\\"  "|"  "["  "{"
+			"]"  "}"  ";"  ":"  "'"  "\""  ","  "<"  "."  ">"
+			"/"  "?"  "Ellipsis"  "Times"  "Minus sign"  "Divided by"  "Star"
+		}
+		COMMAND "<DaysMonthsStatesShort> <ShortSSpace>" {
+			SCRIPT {
+				IF _arg1 = "January" THEN _arg1 = "Jan."
+				IF _arg1 = "Sunday" THEN  _arg1 = "Sun."
+				IF _arg1 = "Alaska" THEN  _arg1 = "AK"
+				IF _arg1 = "Alabama" THEN  _arg1 = "AL"
+				IF _arg1 = "Arkansas" THEN  _arg1 = "AR"
+				IF _arg1 = "Arizona" THEN  _arg1 = "AZ"
+				IF _arg1 = "California" THEN  _arg1 = "CA"
+				IF _arg1 = "Colorado" THEN  _arg1 = "CO"
+				IF _arg1 = "Connecticut" THEN  _arg1 = "CT"
+				IF _arg1 = "Delaware" THEN  _arg1 = "DE"
+				IF _arg1 = "Florida" THEN  _arg1 = "FL"
+				IF _arg1 = "Georgia" THEN  _arg1 = "GA"
+				IF _arg1 = "Hawaii" THEN  _arg1 = "HI"
+				IF _arg1 = "Iowa" THEN  _arg1 = "IA"
+				IF _arg1 = "Idaho" THEN  _arg1 = "ID"
+				IF _arg1 = "Illinois" THEN  _arg1 = "IL"
+				IF _arg1 = "Indiana" THEN  _arg1 = "IN"
+				IF _arg1 = "Kansas" THEN  _arg1 = "KS"
+				IF _arg1 = "Kentucky" THEN  _arg1 = "KY"
+				IF _arg1 = "Louisiana" THEN  _arg1 = "LA"
+				IF _arg1 = "Massachusetts" THEN  _arg1 = "MA"
+				IF _arg1 = "Maryland" THEN  _arg1 = "MD"
+				IF _arg1 = "Maine" THEN  _arg1 = "ME"
+				IF _arg1 = "Michigan" THEN  _arg1 = "MI"
+				IF _arg1 = "Minnesota" THEN  _arg1 = "MN"
+				IF _arg1 = "Missouri" THEN  _arg1 = "MO"
+				IF _arg1 = "Mississippi" THEN  _arg1 = "MS"
+				IF _arg1 = "Montana" THEN  _arg1 = "MT"
+				IF _arg1 = "North Carolina" THEN  _arg1 = "NC"
+				IF _arg1 = "North Dakota" THEN  _arg1 = "ND"
+				IF _arg1 = "Nebraska" THEN  _arg1 = "NE"
+				IF _arg1 = "New Hampshire" THEN  _arg1 = "NH"
+				IF _arg1 = "New Jersey" THEN  _arg1 = "NJ"
+				IF _arg1 = "New Mexico" THEN  _arg1 = "NM"
+				IF _arg1 = "Nevada" THEN  _arg1 = "NV"
+				IF _arg1 = "New York" THEN  _arg1 = "NY"
+				IF _arg1 = "Ohio" THEN  _arg1 = "OH"
+				IF _arg1 = "Oklahoma" THEN  _arg1 = "OK"
+				IF _arg1 = "Oregon" THEN  _arg1 = "OR"
+				IF _arg1 = "Pennsylvania" THEN  _arg1 = "PA"
+				IF _arg1 = "Rhode Island" THEN  _arg1 = "RI"
+				IF _arg1 = "South Carolina" THEN  _arg1 = "SC"
+				IF _arg1 = "South Dakota" THEN  _arg1 = "SD"
+				IF _arg1 = "Tennessee" THEN  _arg1 = "TN"
+				IF _arg1 = "Texas" THEN  _arg1 = "TX"
+				IF _arg1 = "Utah" THEN  _arg1 = "UT"
+				IF _arg1 = "Virginia" THEN  _arg1 = "VA"
+				IF _arg1 = "Vermont" THEN  _arg1 = "VT"
+				IF _arg1 = "Washington" THEN  _arg1 = "WA"
+				IF _arg1 = "Wisconsin" THEN  _arg1 = "WI"
+				IF _arg1 = "West Virginia" THEN  _arg1 = "WV"
+				IF _arg1 = "Wyoming" THEN  _arg1 = "WY"
+				SendKeys "" + _arg1 + ""
+				IF _arg2 = "Short Space" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<SpaceSpaces> <DaysMonthsStatesShort> Short" {
+			SCRIPT {
+				IF _arg2 = "January" THEN _arg2 = "Jan."
+				IF _arg2 = "Sunday" THEN  _arg1 = "Sun."
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+				IF _arg1 = "Space" THEN SendKeys "{Space}"
+				SendKeys "" + _arg2 + ""
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		LIST "DaysMonthsStatesShort" {
+			"Jan."  "Feb."  "Mar."  "Apr."  "May"  "June"  "July"  "Aug."  "Sept."  "Oct."  "Nov."  "Dec." 
+            "Mon."  "Tues."  "Wed."  "Thurs."  "Fri."  "Sat."  "Sun."			
+			"January"  "Sunday"
+			"Alaska"  "Alaska"  "Alabama"  "Arkansas"  "Arizona"  "California"  "Colorado"  "Connecticut"  "District of Columbia"  "Washington DC"  "Delaware"  "Florida"  "Georgia"  "Hawaii"  "Iowa"  "Idaho"  "Illinois"  "Indiana"  "Kansas"  "Kentucky"  "Louisiana"  "Massachusetts"  "Maryland"  "Maine"  "Michigan"  "Minnesota"  "Missouri"  "Mississippi"  "Montana"  "North Carolina"  "North Dakota"  "Nebraska"  "New Hampshire"  "New Jersey"  "New Mexico"  "Nevada"  "New York"  "Ohio"  "Oklahoma"  "Oregon"  "Pennsylvania"  "Rhode Island"  
+			"South Carolina"  "South Dakota"  "Tennessee"  "Texas"  "Utah"  "Virginia"  "Vermont"  "Washington"  "Wisconsin"  "West Virginia"  "Wyoming"
+		}
+		LIST "ShortSSpace" {
+			"Short"
+			"Short Space"
+			"Space Short"
+		}
+		
+#7ac. Distinguishing between forms -- long 
+		COMMAND "<0to100> <LongLSpace>" {
+			SCRIPT {
+				SendKeys "" + _arg1 + ""
+				IF _arg2 = "Long Space" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<SpaceSpaces> <0to100> Long" {
+			SCRIPT {
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+				IF _arg1 = "Space" THEN SendKeys "{Space}"
+				SendKeys "" + _arg2 + ""
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		LIST "0to100" {
+			"zero"  "one"  "two"  "three"  "four"  "five"  "six"  "seven"  "eight"  "nine"  
+			"ten"  "eleven"  "twelve"  "thirteen"  "fourteen"  "fifteen"  "sixteen"  "seventeen"  "eighteen"  "nineteen"
+			"twenty"  "twenty-one"  "twenty-two"  "twenty-three"  "twenty-four"  "twenty-five"  "twenty-six"  "twenty-seven"  "twenty-eight"  "twenty-nine"
+			"thirty"  "thirty-one"  "thirty-two"  "thirty-three"  "thirty-four"  "thirty-five"  "thirty-six"  "thirty-seven"  "thirty-eight"  "thirty-nine"
+			"forty"  "forty-one"  "forty-two"  "forty-three"  "forty-four"  "forty-five"  "forty-six"  "forty-seven"  "forty-eight"  "forty-nine"
+			"fifty"  "fifty-one"  "fifty-two"  "fifty-three"  "fifty-four"  "fifty-five"  "fifty-six"  "fifty-seven"  "fifty-eight"  "fifty-nine"
+			"sixty"  "sixty-one"  "sixty-two"  "sixty-three"  "sixty-four"  "sixty-five"  "sixty-six"  "sixty-seven"  "sixty-eight"  "sixty-nine"
+			"seventy"  "seventy-one"  "seventy-two"  "seventy-three"  "seventy-four"  "seventy-five"  "seventy-six"  "seventy-seven"  "seventy-eight"  "seventy-nine"
+			"eighty"  "eighty-one"  "eighty-two"  "eighty-three"  "eighty-four"  "eighty-five"  "eighty-six"  "eighty-seven"  "eighty-eight"  "eighty-nine"
+			"ninety"  "ninety-one"  "ninety-two"  "ninety-three"  "ninety-four"  "ninety-five"  "ninety-six"  "ninety-seven"  "ninety-eight"  "ninety-nine" "one hundred"
+		}
+		COMMAND "Cap <Cap0to100> <LongLSpace>" {
+			SCRIPT {
+				SendKeys "" + _arg1 + ""
+				IF _arg2 = "Long Space" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<SpaceSpaces> Cap <Cap0to100> Long" {
+			SCRIPT {
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+				IF _arg1 = "Space" THEN SendKeys "{Space}"
+				SendKeys "" + _arg2 + ""
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		LIST "Cap0to100" {
+			"Zero"  "One"  "Two"  "Three"  "Four"  "Five"  "Six"  "Seven"  "Eight"  "Nine"
+			"Ten"  "Eleven"  "Twelve"  "Thirteen"  "Fourteen"  "Fifteen"  "Sixteen"  "Seventeen"  "Eighteen"  "Nineteen"
+			"Twenty"  "Twenty-one"  "Twenty-two"  "Twenty-three"  "Twenty-four"  "Twenty-five"  "Twenty-six"  "Twenty-seven"  "Twenty-eight"  "Twenty-nine"
+			"Thirty"  "Thirty-one"  "Thirty-two"  "Thirty-three"  "Thirty-four"  "Thirty-five"  "Thirty-six"  "Thirty-seven"  "Thirty-eight"  "Thirty-nine"
+			"Forty"  "Forty-one"  "Forty-two"  "Forty-three"  "Forty-four"  "Forty-five"  "Forty-six"  "Forty-seven"  "Forty-eight"  "Forty-nine"
+			"Fifty"  "Fifty-one"  "Fifty-two"  "Fifty-three"  "Fifty-four"  "Fifty-five"  "Fifty-six"  "Fifty-seven"  "Fifty-eight"  "Fifty-nine"
+			"Sixty"  "Sixty-one"  "Sixty-two"  "Sixty-three"  "Sixty-four"  "Sixty-five"  "Sixty-six"  "Sixty-seven"  "Sixty-eight"  "Sixty-nine"
+			"Seventy"  "Seventy-one"  "Seventy-two"  "Seventy-three"  "Seventy-four"  "Seventy-five"  "Seventy-six"  "Seventy-seven"  "Seventy-eight"  "Seventy-nine"
+			"Eighty"  "Eighty-one"  "Eighty-two"  "Eighty-three"  "Eighty-four"  "Eighty-five"  "Eighty-six"  "Eighty-seven"  "Eighty-eight"  "Eighty-nine"
+			"Ninety"  "Ninety-one"  "Ninety-two"  "Ninety-three"  "Ninety-four"  "Ninety-five"  "Ninety-six"  "Ninety-seven"  "Ninety-eight"  "Ninety-nine"		
+		}
+		COMMAND "<Char> <LongLSpace>" {
+			SCRIPT {
+				SendKeys "" + _arg1 + ""
+				IF _arg2 = "Long Space" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<SpaceSpaces> <Char> Long" {
+			SCRIPT {
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+				IF _arg1 = "Space" THEN SendKeys "{Space}"
+				SendKeys "" + _arg2 + ""
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		LIST "Char" {
+			"comma"  "at sign"  "ampersand"  "apostrophe" "asterisk" "pipe"  "backslash"  "carrot"  "dash"
+			"dollar sign"  "equal sign"  "grave"  "hyphen"  "number sign"  
+			"percent sign"  "plus sign"  "slash"  "star"  "tilde"  "underscore"
+			"period"  "dot"  "point"  "semicolon"  "colon"  "question mark"  "exclamation mark"
+			"times"  "plus"  "minus"  "divided by"  "number sign"   "percent sign"
+			"exclaimation point" "greater than"  "less than"
+			"open paren"  "close paren" "open quote"  "close quote" "open bracket"  "close bracket"  "open brace"  "close brace"  "open single quote"  "close single quote"   "single quote"
+			"open angle"  "close angle"  "open angle bracket"  "close angle bracket"
+			"ellipsis"  "backspace"	"touch" "enter"  "space" "spacebar" "delete"  "escape"
+ 
+		}
+		COMMAND "<Alphsingleword> <LongLSpace>" {
+			SCRIPT {
+				SendKeys "" + _arg1 + ""
+				IF _arg2 = "Long Space" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<SpaceSpaces> <Alphsingleword> Long" {
+			SCRIPT {
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+				IF _arg1 = "Space" THEN SendKeys "{Space}"
+				SendKeys "" + _arg2 + ""
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		LIST "Alphsingleword" {
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "India"  "Juliett"  "kilo"  "Lima"  "Mike"  "November"  "oscar"  "papa"  "Quebec"  "Romeo"  "sierra"  "tango"  "uniform"  "Victor"  "whiskey"  "xray"  "yankee"  "Zulu"
+			"file"  "edit"  "view"  "insert"  "format"  "tools"  "table"  "window"  "help"  "acrobat"
+			"scratch"  "spacebar" "new line"  "new paragraph"  "spell"  "no space"
+ 
+		}
+		COMMAND "Cap <CharCapped> <LongLSpace>" {
+			SCRIPT {
+				SendKeys "" + _arg1 + ""
+				IF _arg2 = "Long Space" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<SpaceSpaces> Cap <CharCapped> Long" {
+			SCRIPT {
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+				IF _arg1 = "Space" THEN SendKeys "{Space}"
+				SendKeys "" + _arg2 + ""
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		LIST "CharCapped" {
+			"Comma"  "at Sign"  "Ampersand"  "Apostrophe" "Asterisk" "Pipe"  "Backslash"  "Carrot"  "Dash"
+			"Dollar Sign"  "Equal Sign"  "Grave"  "Hyphen"  "Number Sign"  
+			"Percent Sign"  "Plus Sign"  "Slash"  "Star"  "Tilde"  "Underscore"
+			"Period"  "Dot"  "Point"  "Semicolon"  "Colon"  "Question Mark"  "Exclamation Mark"
+			"Times"  "Plus"  "Minus"  "Divided by"  "Number Sign"   "Percent Sign"
+			"Exclaimation Point" "Greater Than"  "Less Than"
+			"Open Paren"  "Close Paren" "Open Quote"  "Close Quote" "Open Bracket"  "Close Bracket"  "Open Brace"  "Close Brace"  "Open Single Quote"  "Close Single Quote"   "Single Quote"
+			"Open Angle"  "Close Angle"  "Open Angle Bracket"  "Close Angle Bracket"
+			"Ellipsis"  "Backspace"	"Touch" "Enter"  "Space" "Spacebar" "Delete"  "Escape"
+ 
+		}
+		COMMAND "Cap <AlphsinglewordCapped> <LongLSpace>" {
+			SCRIPT {
+				SendKeys "" + _arg1 + ""
+				IF _arg2 = "Long Space" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<SpaceSpaces> Cap <AlphsinglewordCapped> Long" {
+			SCRIPT {
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+				IF _arg1 = "Space" THEN SendKeys "{Space}"
+				SendKeys "" + _arg2 + ""
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		LIST "AlphsinglewordCapped" {
+			"Alpha"  "Bravo"  "Charlie"  "Delta"  "Echo"  "Foxtrot"  "Golf"  "Hotel"  "India"  "Juliet"  "Kilo"  "Lima"  "Mike"  "November"  "Oscar"  "Papa"  "Quebec"  "Romeo"  "Sierra"  "Tango"  "Uniform"  "Victor"  "Whiskey"  "Xray"  "Yankee"  "Zulu"
+			"File"  "Edit"  "View"  "Insert	"  "Format"  "Tools"  "Table"  "Window"  "Help"  "Acrobat"
+			"Scratch"  "Spacebar"  "New Line"  "New Paragraph" "Spell"  "No Space" 
+ 
+		}
+		LIST "LongLSpace" {
+			"Long"
+			"Long Space"
+		}
+ 
+#7ad. Distinguishing between forms -- To 
+		COMMAND "<ToForCap> Long <1212Space> "{
+			SCRIPT {
+				IF _arg1 = "To" AND _arg2 = "1" THEN SendKeys "to"					
+				IF _arg1 = "To" AND _arg2 = "2" THEN SendKeys "too"	
+				IF _arg1 = "For" AND _arg2 = "1" THEN SendKeys "for"	
+				IF _arg1 = "For" AND _arg2 = "2" THEN SendKeys "fore"
+				IF _arg1 = "Cap" AND _arg2 = "1" THEN SendKeys "cap"		
+				IF _arg2 = "1 Space" XOR _arg2 = "2 Space" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "<SpaceSpaces> <ToForCap> Long <1-2>"{
+			SCRIPT {
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+				IF _arg1 = "Space" THEN SendKeys "{Space}"
+				IF _arg2 = "To" AND _arg3 = "1" THEN SendKeys "to"	
+				IF _arg2 = "To" AND _arg3 = "2" THEN SendKeys "too"	
+				IF _arg2 = "For" AND _arg3 = "1" THEN SendKeys "for"	
+				IF _arg2 = "For" AND _arg3 = "2" THEN SendKeys "fore"
+				IF _arg2 = "Cap" AND _arg3 = "1" THEN SendKeys "cap"		
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		COMMAND "Cap <ToForCap> Long <1212Space> "{
+			SCRIPT {
+				IF _arg1 = "To" AND _arg2 = "1" THEN SendKeys "To"	
+				IF _arg1 = "To" AND _arg2 = "2" THEN SendKeys "Too"	
+				IF _arg1 = "For" AND _arg2 = "1" THEN SendKeys "For"	
+				IF _arg1 = "For" AND _arg2 = "2" THEN SendKeys "Fore"
+				IF _arg1 = "Cap" AND _arg1 = "1" THEN SendKeys "Cap"		
+				IF _arg2 = "1 Space" XOR _arg2 = "2 Space" THEN SendKeys "{Space}"
+			}
+		}
+		LIST "1212Space" {
+			"1"  "2"
+			"1 Space"  "2 Space"
+		}
+		COMMAND "<SpaceSpaces> Cap <ToForCap> Long <1-2>"{
+			SCRIPT {
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+				IF _arg1 = "Space" THEN SendKeys "{Space}"
+				IF _arg2 = "To" AND _arg3 = "1" THEN SendKeys "To"	
+				IF _arg2 = "To" AND _arg3 = "2" THEN SendKeys "Too"	
+				IF _arg2 = "For" AND _arg3 = "1" THEN SendKeys "For"	
+				IF _arg2 = "For" AND _arg3 = "2" THEN SendKeys "Fore"
+				IF _arg2 = "Cap" AND _arg2 = "1" THEN SendKeys "Cap"		
+				IF _arg1 = "Spaces" THEN SendKeys "{Space}"
+			}
+		}
+		LIST "SpaceSpaces" {
+			"Space"
+			"Spaces"
+		}
+		LIST "ToForCap" {
+			"To"  "For"  "Cap"
+		}
+		LIST "1-2" {
+			"1"  "2"
+		}
+		COMMAND "Font <Alph> <Alph>"{
+			SCRIPT {
+				
+				
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft PowerPoint", 512 )
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Excel", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 XOR (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Shift+Ctrl+f}"
+				SendKeys "{Alt+Down}"
+				Wait 100
+				SendKeys "" + MID$(_arg1,0,1) + "" + MID$(_arg2,0,1) + ""
+				ELSE
+				isWriter$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Writer", 512 )
+				IF (instr(isWriter$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}h"
+				SendKeys "{Home}{Shift+End}"
+				Wait 100
+				SendKeys "" + MID$(_arg1,0,1) + "" + MID$(_arg2,0,1) + ""
+				ELSE
+				isCalc$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Calc", 512 )
+				IF (instr(isCalc$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}l"
+				Wait 100
+				SendKeys "" + MID$(_arg1,0,1) + "" + MID$(_arg2,0,1) + ""
+				ELSE
+				isImpress$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Impress", 512 )
+				IF (instr(isImpress$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}h"
+				Wait 100
+				SendKeys "" + MID$(_arg1,0,1) + "" + MID$(_arg2,0,1) + ""
+				ELSE
+				isWord$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Word", 512 )
+				IF (instr(isWord$,"true")) > 0 THEN
+				SendKeys "{Ctrl+d}"
+				Wait 100
+				SendKeys "" + MID$(_arg1,0,1) + "" + MID$(_arg2,0,1) + ""
+				Wait 100
+				SendKeys "{Down}"
+				ELSE
+  				SendKeys "{Alt+o}f"
+				Wait 100
+				SendKeys "" + MID$(_arg1,0,1) + "" + MID$(_arg2,0,1) + ""
+				END IF
+				END IF
+				END IF
+				END IF
+				END IF
+			}
+		}
+		COMMAND "Font <Alph> <Alph> <EnterDownE>"{
+			SCRIPT {
+				
+				
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft PowerPoint", 512 )
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Excel", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 XOR (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Shift+Ctrl+f}"
+				SendKeys "{Alt+Down}"
+				Wait 100
+				SendKeys "" + MID$(_arg1,0,1) + "" + MID$(_arg2,0,1) + ""
+				ELSE
+				isWriter$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Writer", 512 )
+				IF (instr(isWriter$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}h"
+				SendKeys "{Home}{Shift+End}"
+				Wait 100
+				SendKeys "" + MID$(_arg1,0,1) + "" + MID$(_arg2,0,1) + ""
+				ELSE
+				isCalc$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Calc", 512 )
+				IF (instr(isCalc$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}l"
+				Wait 100
+				SendKeys "" + MID$(_arg1,0,1) + "" + MID$(_arg2,0,1) + ""
+				ELSE
+				isImpress$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Impress", 512 )
+				IF (instr(isImpress$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}h"
+				Wait 100
+				SendKeys "" + MID$(_arg1,0,1) + "" + MID$(_arg2,0,1) + ""
+				ELSE
+				isWord$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Word", 512 )
+				IF (instr(isWord$,"true")) > 0 THEN
+				SendKeys "{Ctrl+d}"
+				Wait 100
+				SendKeys "" + MID$(_arg1,0,1) + "" + MID$(_arg2,0,1) + ""
+				Wait 100
+				SendKeys "{Down}"
+				ELSE
+  				SendKeys "{Alt+o}f"
+				Wait 100
+				SendKeys "" + MID$(_arg1,0,1) + "" + MID$(_arg2,0,1) + ""
+				END IF
+				END IF
+				END IF
+				END IF
+				END IF
+				IF _arg3 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg3 = "Down Enter" THEN SendKeys "{Down}{Enter}"
+			}
+		}
+		COMMAND "Size <1-60>"{
+			SCRIPT {
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft PowerPoint", 512 )
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Excel", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 XOR (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Ctrl+t}"
+				SendKeys "{Alt+s}"
+				ELSE
+				isWriter$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Writer", 512 )
+				IF (instr(isWriter$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}h"
+				SendKeys "{Alt+s}"
+				ELSE
+				isCalc$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Calc", 512 )
+				IF (instr(isCalc$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}c"
+				SendKeys "{Alt+s}"
+				ELSE
+				isImpress$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Impress", 512 )
+				IF (instr(isImpress$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}h"
+				SendKeys "{Alt+s}"
+				ELSE
+				isNotepad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Notepad", 512 )
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isNotepad$,"true")) > 0 XOR (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				SendKeys "{Alt+s}"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				Wait 100
+				SendKeys "{Alt+s}"
+				Wait 100
+				END IF
+				END IF
+				END IF
+				END IF
+				END IF
+				SendKeys "" + _arg1 + ""
+				Wait 100
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "Size <1-60> Stay"{
+			SCRIPT {
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft PowerPoint", 512 )
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Excel", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 XOR (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Ctrl+t}"
+				SendKeys "{Alt+s}"
+				ELSE
+				isWriter$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Writer", 512 )
+				IF (instr(isWriter$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}h"
+				SendKeys "{Alt+s}"
+				ELSE
+				isCalc$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Calc", 512 )
+				IF (instr(isCalc$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}c"
+				SendKeys "{Alt+s}"
+				ELSE
+				isImpress$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Impress", 512 )
+				IF (instr(isImpress$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}h"
+				SendKeys "{Alt+s}"
+				ELSE
+				isNotepad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Notepad", 512 )
+				IF (instr(isNotepad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				SendKeys "{Alt+s}"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				Wait 100
+				SendKeys "{Alt+s}"
+				END IF
+				END IF
+				END IF
+				END IF
+				END IF
+				Wait 100
+				SendKeys "" + _arg1 + ""
+			}
+		}
+		COMMAND "Size <1-60> <BoldItalicUnderlineBI>"{
+			SCRIPT {
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft PowerPoint", 512 )
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Excel", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 XOR (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Ctrl+t}"
+				SendKeys "{Alt+s}"
+				ELSE
+				isWriter$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Writer", 512 )
+				IF (instr(isWriter$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}h"
+				SendKeys "{Alt+s}"
+				ELSE
+				isCalc$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Calc", 512 )
+				IF (instr(isCalc$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}c"
+				SendKeys "{Alt+s}"
+				ELSE
+				isImpress$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Impress", 512 )
+				IF (instr(isImpress$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}h"
+				SendKeys "{Alt+s}"
+				ELSE
+				isNotepad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Notepad", 512 )
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isNotepad$,"true")) > 0 XOR (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				SendKeys "{Alt+s}"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				Wait 100
+				SendKeys "{Alt+s}"
+				Wait 100
+				END IF
+				END IF
+				END IF
+				END IF
+				END IF
+				SendKeys "" + _arg1 + ""
+				Wait 100
+				SendKeys "{Enter}"
+				Wait 100
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg2
+			}
+		}
+		COMMAND "<BoldItalicUnderlineBI> Color"{
+			SCRIPT {
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg1
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Excel", 512 )
+				IF (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}e"
+				ELSE
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "PowerPoint", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				END IF
+				END IF
+				END IF
+				Wait 100
+				SendKeys "{Alt+c}"
+ 
+			}
+		}
+		COMMAND "Size <1-60> Color"{
+			SCRIPT {
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft PowerPoint", 512 )
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Excel", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 XOR (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Ctrl+t}"
+				SendKeys "{Alt+s}"
+				ELSE
+				isWriter$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Writer", 512 )
+				IF (instr(isWriter$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}h"
+				SendKeys "{Alt+s}"
+				ELSE
+				isCalc$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Calc", 512 )
+				IF (instr(isCalc$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}c"
+				SendKeys "{Alt+s}"
+				ELSE
+				isImpress$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Impress", 512 )
+				IF (instr(isImpress$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}h"
+				SendKeys "{Alt+s}"
+				ELSE
+				isNotepad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Notepad", 512 )
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isNotepad$,"true")) > 0 XOR (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				SendKeys "{Alt+s}"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				Wait 100
+				SendKeys "{Alt+s}"
+				Wait 100
+				END IF
+				END IF
+				END IF
+				END IF
+				END IF
+				SendKeys "" + _arg1 + ""
+				Wait 100
+				SendKeys "{Enter}"
+				Wait 100
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Excel", 512 )
+				IF (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}e"
+				ELSE
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "PowerPoint", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				END IF
+				END IF
+				END IF
+				Wait 100
+				SendKeys "{Alt+c}"
+			}
+		}
+		COMMAND "<Size> <1-60> <Font> <Alph> <Alph>"{
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				HeardWord _arg3, _arg4, _arg5
+ 
+			}
+		}
+		COMMAND "<Size> <1-60> <Font> <Alph> <Alph> <EnterDownE>"{
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				HeardWord _arg3, _arg4, _arg5
+			}
+		}
+		LIST "EnterDownE" {
+			"Enter" "Down Enter"
+		}
+		COMMAND "<ThisColorCOpen>" {
+			SCRIPT {
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				SendKeys "{Alt+Down}"
+				ELSE
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Excel", 512 )
+				IF (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}e"
+				ELSE
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "PowerPoint", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				END IF
+				END IF
+				END IF
+				Wait 100
+				SendKeys "{Alt+c}"
+ 
+			}
+		}
+		LIST "ThisColorCOpen" {
+			"This Color"  "Color Open"
+		}
+		COMMAND "Color Open" {
+			SCRIPT {
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				SendKeys "{Alt+Down}"
+				ELSE
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Excel", 512 )
+				IF (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}e"
+				ELSE
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "PowerPoint", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				END IF
+				END IF
+				END IF
+				Wait 100
+				SendKeys "{Alt+c}"
+ 
+			}
+		}
+		COMMAND "Color <1-20> <DULR>"{
+			SCRIPT {
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Excel", 512 )
+				IF (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}e"
+				ELSE
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "PowerPoint", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				END IF
+				END IF
+				END IF
+				Wait 100
+				SendKeys "{Alt+c}"
+				Wait 100
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+			}
+		}
+		COMMAND "Color <1-20> <DULR> Enter"{
+			SCRIPT {
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Excel", 512 )
+				IF (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}e"
+				ELSE
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "PowerPoint", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				END IF
+				END IF
+				END IF
+				Wait 100
+				SendKeys "{Alt+c}"
+				Wait 100
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				Wait 500
+				SendKeys "{Enter}"
+				isMicrosoftWord$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Word", 512 )
+				IF (instr(isMicrosoftWord$,"true")) > 0 THEN
+  				HeardWord "OK"
+				END IF
+				
+			}
+		}
+		COMMAND "Color <1-20> <DULR> <1-20> <DULR>"{
+			SCRIPT {
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Excel", 512 )
+				IF (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}e"
+				ELSE
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "PowerPoint", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				END IF
+				END IF
+				END IF
+				Wait 100
+				SendKeys "{Alt+c}"
+				Wait 100
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				Wait 100
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+			}
+		}
+		COMMAND "Color <1-20> <DULR> <1-20> <DULR> Enter"{
+			SCRIPT {
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Excel", 512 )
+				IF (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}e"
+				ELSE
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "PowerPoint", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				END IF
+				END IF
+				END IF
+				Wait 100
+				SendKeys "{Alt+c}"
+				Wait 100
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				Wait 100
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+				Wait 500
+				SendKeys "{Enter}"
+				HeardWord "OK"
+			}
+		}
+		LIST "DULR" {
+			"Down"  "Up" "Left" "Right"
+		}
+		COMMAND "<GLLWBsAsUSDocTopBottom> Color " {
+			SCRIPT {
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg1
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Excel", 512 )
+				IF (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}e"
+				ELSE
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "PowerPoint", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				END IF
+				END IF
+				END IF
+				Wait 100
+				SendKeys "{Alt+c}"
+			}
+		}
+		COMMAND "<1-20> <GLLWDUABUSs> Color " {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Excel", 512 )
+				IF (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}e"
+				ELSE
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "PowerPoint", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				END IF
+				END IF
+				END IF
+				Wait 100
+				SendKeys "{Alt+c}"
+			}
+		}
+		COMMAND "<1-20> <DULR> <1-20> <GLLWDUABUSs> Color " {
+			SCRIPT {
+				SendKeys "{" + _arg2 + "" + _arg1 + "}"
+				p$ = _arg3 + "|" + _arg4
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Excel", 512 )
+				IF (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}e"
+				ELSE
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "PowerPoint", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				END IF
+				END IF
+				END IF
+				Wait 100
+				SendKeys "{Alt+c}"
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> Color " {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				isWordPad$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "WordPad", 512 )
+				IF (instr(isWordPad$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				isExcel$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Excel", 512 )
+				IF (instr(isExcel$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}e"
+				ELSE
+				isPowerPoint$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "PowerPoint", 512 )
+				IF (instr(isPowerPoint$,"true")) > 0 THEN
+  				SendKeys "{Alt+o}f"
+				ELSE
+				SendKeys "{Ctrl+d}"
+				END IF
+				END IF
+				END IF
+				Wait 100
+				SendKeys "{Alt+c}"
+ 
+			}
+		}
+		COMMAND "<GLLWBsAsUSDocTopBottom> <Font> <Alph> <Alph>" {
+			SCRIPT {
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg1
+				HeardWord _arg2, _arg3, _arg4
+			}
+		}
+		COMMAND "<1-20> <GLLWDUABUSs> <Font> <Alph> <Alph>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				HeardWord _arg3, _arg4, _arg5
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <Font> <Alph> <Alph>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				HeardWord _arg3, _arg4, _arg5
+			}
+		}
+		COMMAND "<GLLWBsAsUSDocTopBottom> <Font> <Alph> <Alph> <Enter>" {
+			SCRIPT {
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg1
+				HeardWord _arg2, _arg3, _arg4, _arg5
+			}
+		}
+		COMMAND "<1-20> <GLLWDUABUSs> <Font> <Alph> <Alph> <Enter>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				HeardWord _arg3, _arg4, _arg5, _arg6
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <Font> <Alph> <Alph> <Enter>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				HeardWord _arg3, _arg4, _arg5, _arg6
+			}
+		}
+		LIST "Font" {
+			"Font"
+		}
+		LIST "Alph" {
+			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+		}
+		LIST "Enter" {
+			"Enter"
+		}
+		COMMAND "<GLLWBsAsUSDocTopBottom> <Size> <1-60>" {
+			SCRIPT {
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg1
+				HeardWord _arg2, _arg3
+			}
+		}
+		COMMAND "<1-20> <GLLWDUABUSs> <Size> <1-60>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				HeardWord _arg3, _arg4
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <Size> <1-60>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				HeardWord _arg3, _arg4
+			}
+		}
+		COMMAND "<GLLWBsAsUSDocTopBottom> <Size> <1-60> <BoldItalicUnderlineBI>" {
+			SCRIPT {
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg1
+				HeardWord _arg2, _arg3
+				Wait 100
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg4
+ 
+			}
+		}
+		COMMAND "<1-20> <GLLWDUABUSs> <Size> <1-60> <BoldItalicUnderlineBI>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				HeardWord _arg3, _arg4
+				Wait 100
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg5
+ 
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <Size> <1-60> <BoldItalicUnderlineBI>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				HeardWord _arg3, _arg4
+				Wait 100
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg5
+			}
+		}
+		LIST "BoldItalicUnderlineBI" {
+			"Bold" "Bold Italic" "Italic" "Underline"
+		}
+		COMMAND "<GLLWBsAsUSDocTopBottom> <Size> <1-60> <Stay>" {
+			SCRIPT {
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg1
+				HeardWord _arg2, _arg3, _arg4
+			}
+		}
+		LIST "GLLWBsAsUSDocTopBottom" {
+			"Letter"  "Lefts"  "Rights"
+			"Befores"  "Afters"  "Word"  "Word Top"  "Word Bottom"
+			"Line"  "Line Up"  "Line Top"  "Line Bottom"
+			"Graph"  "Graph Space"  "Graph Up"  "Graph Space Up"  "Graph Top"  "Graph Bottom"
+			"Screen"  "Screen Up"
+			"Document"  "Document Top"  "Document Bottom"
+			"Doc"  "Doc Top"  "Doc Bottom"
+		}
+		COMMAND "<1-20> <GLLWDUABUSs> <Size> <1-60> <Stay>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				HeardWord _arg3, _arg4, _arg5
+			}
+		}
+		LIST "1-20" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+		}
+		LIST "GLLWDUABUSs" {
+			"Letters"  "Lefts"  "Rights"
+			"Words"  "Befores"  "Afters"
+			"Lines"  "Line Ups"  "Downs"  "Ups"
+			"Graphs"  "Graph Spaces"  "Graph Ups"  "Graph Space Ups"
+			"Screens"  "Screen Ups"
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <Size> <1-60> <Stay>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				HeardWord _arg3, _arg4, _arg5
+			}
+		}
+		LIST "1-20thEnd" {
+			"1st"  "2nd"  "3rd"  "4th"  "5th"  "6th"  "7th"  "8th"  "9th"  "10th"
+			"11th"  "12th"  "13th"  "14th"  "15th"  "16th"  "17th"  "18th"  "19th"
+			"20th"  "End"
+		}
+		LIST "GGSLLW" {
+			"Letter"
+			"Word"
+			"Line"
+			"Graph"  "Graph Space"
+		}
+		LIST "Size" {
+			"Size"
+		}
+		LIST "1-60" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40" "41" "42" "43" "44" "45" "46" "47" "48" "49"
+			 "50" "51" "52" "53" "54" "55" "56" "57" "58" "59"
+			 "60" 
+		}
+		LIST "Stay" {
+			"Stay"
+		}
+ 
+	}
+}

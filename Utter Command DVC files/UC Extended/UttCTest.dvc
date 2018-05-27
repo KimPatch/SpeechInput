@@ -1,0 +1,46 @@
+MENU "Global Commands" {
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+ 
+ 
+STATE "Global Commands" GLOBAL {
+		COMMAND "<UCComputerUC> Version" {
+			SCRIPT {
+				' VersionAlert at 97
+				IF _arg1 = "UC" THEN DllCall "UttC.dll", 97, "Show"
+				IF _arg1 = "Computer UC" THEN TTSPlayString "Version Command"
+			}
+		}
+		LIST "UCComputerUC" {
+			"Computer UC"
+			"UC"
+ 
+		}		
+ 
+ 
+ 
+ 
+		COMMAND "<FindTopFBottomFLeftFRightF> <Find List>" {
+			SCRIPT {
+				MsgBoxConfirm _arg1, 64, "UC Debug - _arg1"
+				MsgBoxConfirm _arg2, 64, "UC Debug - _arg2"
+			}
+		}
+ 
+		LIST "FindTopFBottomFLeftFRightF" {
+			"Find"  "Top Find"  "Bottom Find"  "Left Find"  "Right Find"
+		}
+ 
+		LIST "Find List" {
+			"Barn\\Food"
+			"Well\\Drink"
+	    }
+	}
+}
+ 

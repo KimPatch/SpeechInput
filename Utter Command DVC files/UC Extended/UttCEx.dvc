@@ -1,0 +1,107 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#          This file is part of Redstart Systems' Utter Command Speech Interface	     #
+#          for NaturallySpeaking Professional. Utter Command uses Human-Machine 	     #
+#	     Grammar. 						     				    						 #
+#          Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved					 #				 
+############################## Copyright #################################################
+ 
+	STATE "Global Commands" GLOBAL {
+ 
+# Play
+		COMMAND "<InsertAnotherNewEnterEnter2> <Characters>" {
+			SCRIPT {
+				IF _arg1 = "Insert" THEN SendKeys "{Home}{Enter 3}{Up 2}"
+				IF _arg1 = "Another" THEN SendKeys "{End}{Enter 2}"
+				IF _arg1 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg1 = "Two Enter" THEN SendKeys "{Enter 2}"
+				SendKeys "{Tab 6}"
+				SendKeys ""+ _arg2 + ""
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<InsertAnotherNewEnterEnter2> <NameTalk>" {
+			SCRIPT {
+				IF _arg1 = "Insert" THEN SendKeys "{Home}{Enter 3}{Up 2}"
+				IF _arg1 = "Another" THEN SendKeys "{End}{Enter 2}"
+				IF _arg1 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg1 = "New" THEN SendKeys "{Enter}"
+				IF _arg1 = "Two Enter" THEN SendKeys "{Enter 2}"
+				IF _arg2 = "name" then
+				SendKeys "{Tab 5}"
+				SendKeys "NAME"
+				SendKeys "{Enter}"
+				END IF
+				IF _arg2 = "Talk" then 
+				SendKeys ""
+				END IF
+			}
+		}
+		COMMAND "<InsertAnotherNewEnterEnter2> Description" {
+			SCRIPT {
+				IF _arg1 = "Insert" THEN SendKeys "{Home}{Enter 3}{Up 2}"
+				IF _arg1 = "Another" THEN SendKeys "{End}{Enter 2}"
+				IF _arg1 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg1 = "New" THEN SendKeys "{Enter}"
+				IF _arg1 = "Two Enter" THEN SendKeys "{Enter 2}"
+				SendKeys "{Alt+o}p"
+				SendKeys "{Alt+l}2{Tab}1"
+				SendKeys "{Enter}"
+				SendKeys "{Enter}"
+				SendKeys "{Alt+o}p{Alt+l}0{Tab}0{Up}"
+				SendKeys "(){Left}"
+			}
+		}
+		COMMAND "<InsertAnotherEnterNewEnter2> Scene <1-20>" {
+			SCRIPT {
+				IF _arg1 = "Insert" THEN SendKeys "{Home}{Enter 3}{Up 2}"
+				IF _arg1 = "Another" THEN SendKeys "{End}{Enter 2}"
+				IF _arg1 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg1 = "New" THEN SendKeys "{Enter}"
+				IF _arg1 = "Two Enter" THEN SendKeys "{Enter 2}"
+				SendKeys "{Alt+o}p{Alt+l}2{Tab}0{Enter 2}"
+				SendKeys "{Alt+o}p{Alt+l}0{Tab}0{Up}"
+				SendKeys "{Ctrl+u}"
+				SendKeys "Scene "
+				SendKeys "" + _arg2 + ""
+				SendKeys "{Ctrl+u}"
+				SendKeys "{Enter}"
+			}
+		}
+ 
+		LIST "InsertAnotherNewEnterEnter2" {
+			"Insert" "Another"  "New" "Enter"  "Two Enter"
+		}
+		LIST "NameTalk" {
+			"Name"  "Talk"
+		}
+ 
+		LIST "Characters" {
+			"HUSBAND"
+			"WIFE"
+			"MOTHER"
+			"DAUGHTER"
+			"FATHER"
+			"SON"
+			"AUNT"
+			"UNCLE"
+			"COUSIN"
+			"FRIEND"
+			"NEW1"
+			"NEW2"
+			"NEW3"
+			"NEW4"
+			"NEW5"
+			"NEW6"
+		}
+		LIST "1-20" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10"
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+		}
+ 
+	}
+}
+ 

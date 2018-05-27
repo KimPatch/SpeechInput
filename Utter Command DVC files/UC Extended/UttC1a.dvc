@@ -1,0 +1,2177 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+ 
+	STATE "Global Commands" GLOBAL {
+################## Sec. 1: Controlling NatSpeak and UC
+#1a Microphone  
+#1b Window Close Microphone  
+#1c UC Menu
+#1d UC Help
+#1e UC Help Find
+#1f Find letters and numbers, including repeat
+#1g UC Help file at end Variant
+#1h UC Help Notes
+##################
+ 
+#1a. Microphone 
+ 
+		COMMAND "Speech On" {
+			SCRIPT {
+				TTSPlayString "Already On"
+			}
+		}
+		COMMAND "Speech Off" {
+			SCRIPT {
+				GoToSleep
+				TTSPlayString "Speech Off"
+			}
+		}
+		COMMAND "Speech Open" {
+			SCRIPT {
+				TTSPlayString "Already On"
+			}
+		}
+		COMMAND "Speech Close" {
+			SCRIPT {
+				GoToSleep
+				TTSPlayString "Speech Off"
+			}
+		}
+		COMMAND "Microphone Off" {
+			SCRIPT {
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+			}
+		}
+ 
+#1b. Window Close Microphone
+		COMMAND "<DocumentDocWindowWin> <CloseMaximizeMinimizeMaxMinRestore> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2				
+				IF _arg3 = "Speech Off" XOR _arg3 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg3 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		COMMAND "<DocumentDocWindowWin> <Close> <NoYesEnterRightELeftE> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				IF _arg4 = "Speech Off" XOR _arg4 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg4 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		COMMAND "<DocumentDocWindowWin> <MaxRestore> <Close> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				IF _arg4 = "Speech Off" XOR _arg4 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg4 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		COMMAND "<DocumentDocWindowWin> <MaxRestore> <Close> <NoYesEnterRightELeftE> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				IF _arg5 = "Speech Off" XOR _arg5 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg5 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		COMMAND "<DocumentDocWindowWin> <Close> <NoYesEnterRightELeftE> <DocumentDocWindowWin> <Close> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				HeardWord _arg4, _arg5
+				IF _arg6 = "Speech Off" XOR _arg6 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg6 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		COMMAND "<Programs> <OpenCloseNewMaxMinRestore> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				IF _arg3 = "Speech Off" XOR _arg3 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg3 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		COMMAND "<Programs> <MaxRestore> <Close> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				IF _arg4 = "Speech Off" XOR _arg4 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg4 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		COMMAND "<Programs> <OpenNew> <MaxMinRestore> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				IF _arg4 = "Speech Off" XOR _arg4 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg4 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		COMMAND "This Save <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				SendKeys "{Ctrl+s}"
+				IF _arg1 = "Speech Off" XOR _arg1 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg1 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		LIST "OpenNew" {
+			"Open"  "New"
+		}
+		LIST "MaxMinRestore" {
+			"Max"  "Maximize"  "Min"  "Minimize"  "Restore"
+		}
+		COMMAND "<Window> <1-20> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg2
+				' Window1to20 at 99
+				DllCall "UttC.dll",99, _arg2
+				IF _arg3 = "Speech Off" XOR _arg3 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg3 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		COMMAND "<Window> <1-20> <MaxRestore> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				IF _arg4 = "Speech Off" XOR _arg4 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg4 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		COMMAND "<Window> <1-20> <MaxRestore> <Close> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				IF _arg5 = "Speech Off" XOR _arg5 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg5 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		LIST "Window" {
+			"Window"  "Win"
+		}
+		COMMAND "<Programs> <Close> <NoYesEnterRightELeftE> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				IF _arg4 = "Speech Off" XOR _arg4 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg4 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		COMMAND "<Programs> <MaxRestore> <Close> <NoYesEnterRightELeftE> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				IF _arg5 = "Speech Off" XOR _arg5 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg5 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		LIST "MaxRestore" {
+			"Max"  "Maximize"  "Restore"
+		}
+		COMMAND "<DocumentDocWindowWin> Close Times <1-10> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				loop& = Val(_arg2)
+				while ( loop& )
+				IF _arg1 = "Document" XOR _arg1 = "Doc" THEN SendKeys "{Ctrl+F4}"
+				IF _arg1 = "Window" XOR _arg1 = "Win" THEN SendKeys "{Alt+F4}"
+				Wait 500
+				loop& = loop& - 1
+				wend				
+				IF _arg3 = "Speech Off" XOR _arg3 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg3 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		
+		COMMAND "Rulers <OnOffOpenClose> <SpeechOffMicrophoneOff>" {
+			SCRIPT {
+				' RulersOn at 71
+				IF _arg1 = "On" XOR _arg1 = "Open" THEN DllCall "UttC.dll",71,""
+				' _SendRulerMessage@4 at 1
+				IF _arg1 = "Off" XOR _arg1 = "Close" THEN DllCall "rulercom.dll", 1, "130"
+				IF _arg2 = "Speech Off" XOR _arg2 = "Speech Close" THEN
+				GoToSleep
+				TTSPlayString "Speech Off"
+				END IF
+				IF _arg2 = "Microphone Off" THEN
+				SetMicrophone 0
+				TTSPlayString "Microphone Off"
+				END IF
+			}
+		}
+		LIST "OnOffOpenClose" {
+			"On" "Off" "Open" "Close"
+		}
+		LIST "SpeechOffMicrophoneOff" {
+			"Speech Off"  "Microphone Off" "Speech Close"
+		}
+		COMMAND "NatSpeak Menu" {
+			SCRIPT {
+				HeardWord "NaturallySpeaking"
+			}
+		}
+		LIST "CloseMaximizeMinimizeMaxMinRestore" {
+			"Close"
+			"Maximize"  "Max"
+			"Minimize"  "Min"
+			"Restore"
+		}
+		LIST "DocumentDocWindowWin" {
+			"Document"  "Doc"  "Window"  "Win"
+		}
+		LIST "OpenCloseNewMaxMinRestore" {
+			"Open"  "Close"  "New"  "Maximize"  "Minimize"  "Restore"
+		}
+		LIST "Programs" {
+			"Access"  "Reader"  "Calculator" "Dreamweaver"
+			"Excel"  "Express"  "Eudora"
+			"Firefox"   "Internet"  "iTunes"  "InDesign"
+			"Media Player"	"Notepad"   "Outlook"  "Illustrator"
+			"Photoshop"  "Picasa"    "PowerPoint"
+			"Quicken" "Solitaire"   "Thunderbird"   "Visual" "Emacs"
+			"WordPad"  "Word"  
+			"DOS" "Base"  "Calc"  "Draw"  "Impress"  "Math"  "Writer"
+			"Paint" "Project"  "Visio"
+		}
+		LIST "Close" {
+			"Close"
+		}
+		LIST "NoYesEnterRightELeftE" {
+			"No"  "Yes"  "Enter"  "Right Enter"  "Left Enter"
+		}
+ 
+#1c. UC Menu
+ 
+ 		COMMAND "UC Menu" {
+			SCRIPT {
+				' ShowTrayMenu at 108
+				DllCall "UttC.dll", 108, ""
+			}
+		}
+ 		COMMAND "Test UC Menu" {
+			SCRIPT {
+				' ShowTrayMenu at 108
+				DllCall "UttC.dll", 108, ""
+				' ShowTrayMenu at 108
+				DllCall "UttC.dll", 108, ""
+			}
+		}
+		COMMAND "UC <UCMenuItemsNoPDFnoMenusnoGuides>" {
+			SCRIPT {
+				IF _arg1 = "Rulers" THEN  _arg1 = "32834"
+				IF _arg1 = "Options" THEN  _arg1 = "32784"
+				IF _arg1 = "Frequently" THEN  _arg1 = "32792"
+				IF _arg1 = "Report" THEN  _arg1 = "32791"
+				IF _arg1 = "Request" THEN  _arg1 = "32793"
+				IF _arg1 = "Make" THEN  _arg1 = "32904"
+				IF _arg1 = "UC Knowledge Base" THEN  _arg1 = "32814"
+				IF _arg1 = "New" THEN  _arg1 = "32785"
+				IF _arg1 = "Register" THEN  _arg1 = "32786"
+				' _SendUttCTrayMessage@4 at 1
+				DllCall "UttCTrayCom.dll", 1, _arg1
+			}
+		}
+		LIST "UCMenuItemsNoPDFnoMenusnoGuides" {
+			"Rulers" "Options" 
+			"Frequently" "Report" "Request" "Make" "UC Knowledge Base" 
+			"New" "Register" "Dismiss"  "Close"
+		}
+		COMMAND "UC <UCMenuItemsGuides>" {
+			SCRIPT {
+				IF _arg1 = "Whirlwind" THEN _arg1 = "32892"  
+				IF _arg1 = "Top General" THEN _arg1 = "32873" 
+				IF _arg1 = "Top Email" THEN  _arg1 = "32868"
+				IF _arg1 = "Top Web" THEN  _arg1 = "32869"
+				IF _arg1 = "Top Word" THEN  _arg1 = "32870"
+				IF _arg1 = "Top Excel" THEN  _arg1 = "32886"
+				IF _arg1 = "Top PowerPoint" XOR _arg1 = "Top Power" THEN _arg1 = "32902"
+				IF _arg1 = "Top Reader" XOR _arg1 = "Top Acrobat" THEN  _arg1 = "32872"
+				IF _arg1 = "Task" THEN  _arg1 = "32837"
+				IF _arg1 = "Advanced" THEN  _arg1 = "32838"
+				IF _arg1 = "Review 1" THEN  _arg1 = "32822"
+				IF _arg1 = "Review 2" THEN  _arg1 = "32823"
+				IF _arg1 = "Review 3" THEN  _arg1 = "32824"
+				IF _arg1 = "Review 4" THEN  _arg1 = "32825"
+				IF _arg1 = "Review 5" THEN  _arg1 = "32826"
+				IF _arg1 = "Review 6" THEN  _arg1 = "32827"
+				IF _arg1 = "Review 7" THEN  _arg1 = "32829"
+				IF _arg1 = "Review 8" THEN  _arg1 = "32830"
+				IF _arg1 = "Review 9" THEN  _arg1 = "32831"
+				IF _arg1 = "Review 10" THEN  _arg1 = "32832"
+				IF _arg1 = "Correction" THEN  _arg1 = "32881"
+				IF _arg1 = "Key Combinations" THEN  _arg1 = "32882"
+				IF _arg1 = "Text Drill 1" THEN  _arg1 = "32900"
+				IF _arg1 = "Text Drill 2" THEN  _arg1 = "32901"
+				IF _arg1 = "Text Drill 3" THEN  _arg1 = "32879"
+				IF _arg1 = "Text Drill 4" THEN  _arg1 = "32880"
+				IF _arg1 = "Key Names" THEN  _arg1 = "32839"
+				IF _arg1 = "Alpha" THEN  _arg1 = "32819"
+				IF _arg1 = "Standard" THEN  _arg1 = "32842"
+				IF _arg1 = "Custom 1" THEN  _arg1 = "32845"
+				IF _arg1 = "Custom 2" THEN  _arg1 = "32846"
+				IF _arg1 = "Custom 3" THEN  _arg1 = "32847"
+				IF _arg1 = "Custom 4" THEN  _arg1 = "32858"
+				IF _arg1 = "Custom 5" THEN  _arg1 = "32859"
+				IF _arg1 = "Custom 6" THEN  _arg1 = "32865"
+				IF _arg1 = "Custom 7" THEN  _arg1 = "32866"
+				IF _arg1 = "Training" THEN  _arg1 = "32908"
+				IF _arg1 = "Patch" THEN  _arg1 = "32909"
+				IF _arg1 = "Register" THEN  _arg1 = "32910"
+				' _SendUttCTrayMessage@4 at 1
+				DllCall "UttCTrayCom.dll", 1, _arg1
+			}
+		}
+		COMMAND "UC <UCMenuItemsGuides> Return" {
+			SCRIPT {
+				window$ = DllCall$("UttC.dll", "GetForegroundWindowDVC", "", 1200 )				
+				IF _arg1 = "Whirlwind" THEN _arg1 = "32892"
+				IF _arg1 = "Top General" THEN  _arg1 = "32873"
+				IF _arg1 = "Top Email" THEN  _arg1 = "32868"
+				IF _arg1 = "Top Web" THEN  _arg1 = "32869"
+				IF _arg1 = "Top Word" THEN  _arg1 = "32870"
+				IF _arg1 = "Top Excel" THEN  _arg1 = "32886"
+				IF _arg1 = "Top PowerPoint" XOR _arg1 = "Top Power" THEN _arg1 = "32902"
+				IF _arg1 = "Top Reader" XOR _arg1 = "Top Acrobat" THEN  _arg1 = "32872"
+				IF _arg1 = "Task" THEN  _arg1 = "32837"
+				IF _arg1 = "Advanced" THEN  _arg1 = "32838"
+				IF _arg1 = "Review 1" THEN  _arg1 = "32822"
+				IF _arg1 = "Review 2" THEN  _arg1 = "32823"
+				IF _arg1 = "Review 3" THEN  _arg1 = "32824"
+				IF _arg1 = "Review 4" THEN  _arg1 = "32825"
+				IF _arg1 = "Review 5" THEN  _arg1 = "32826"
+				IF _arg1 = "Review 6" THEN  _arg1 = "32827"
+				IF _arg1 = "Review 7" THEN  _arg1 = "32829"
+				IF _arg1 = "Review 8" THEN  _arg1 = "32830"
+				IF _arg1 = "Review 9" THEN  _arg1 = "32831"
+				IF _arg1 = "Review 10" THEN  _arg1 = "32832"
+				IF _arg1 = "Correction" THEN  _arg1 = "32881"
+				IF _arg1 = "Key Combinations" THEN  _arg1 = "32882"
+				IF _arg1 = "Text Drill 1" THEN  _arg1 = "32900"
+				IF _arg1 = "Text Drill 2" THEN  _arg1 = "32901"
+				IF _arg1 = "Text Drill 3" THEN  _arg1 = "32879"
+				IF _arg1 = "Text Drill 4" THEN  _arg1 = "32880"
+				IF _arg1 = "Key Names" THEN  _arg1 = "32839"
+				IF _arg1 = "Alpha" THEN  _arg1 = "32819"
+				IF _arg1 = "Standard" THEN  _arg1 = "32842"
+				IF _arg1 = "Custom 1" THEN  _arg1 = "32845"
+				IF _arg1 = "Custom 2" THEN  _arg1 = "32846"
+				IF _arg1 = "Custom 3" THEN  _arg1 = "32847"
+				IF _arg1 = "Custom 4" THEN  _arg1 = "32858"
+				IF _arg1 = "Custom 5" THEN  _arg1 = "32859"
+				IF _arg1 = "Custom 6" THEN  _arg1 = "32865"
+				IF _arg1 = "Custom 7" THEN  _arg1 = "32866"
+				IF _arg1 = "Training" THEN  _arg1 = "32908"
+				IF _arg1 = "Patch" THEN  _arg1 = "32909"
+				IF _arg1 = "Register" THEN  _arg1 = "32910"
+ 
+				' _SendUttCTrayMessage@4 at 1
+				DllCall "UttCTrayCom.dll", 1, _arg1
+				Wait 1000
+				' SetForegroundWindowDVC at 114
+				DllCall "UttC.dll",114, window$
+			}
+		}
+		COMMAND "UC <UCMenuItemsGuides> <FindTopFBottomF>" {
+			SCRIPT {
+				IF _arg1 = "Whirlwind" THEN _arg1 = "32892"
+				IF _arg1 = "Top General" THEN  _arg1 = "32873"
+				IF _arg1 = "Top Email" THEN  _arg1 = "32868"
+				IF _arg1 = "Top Web" THEN  _arg1 = "32869"
+				IF _arg1 = "Top Word" THEN  _arg1 = "32870"
+				IF _arg1 = "Top Excel" THEN  _arg1 = "32886"
+				IF _arg1 = "Top PowerPoint" XOR _arg1 = "Top Power" THEN _arg1 = "32902"
+				IF _arg1 = "Top Reader" XOR _arg1 = "Top Acrobat" THEN  _arg1 = "32872"
+				IF _arg1 = "Task" THEN  _arg1 = "32837"
+				IF _arg1 = "Advanced" THEN  _arg1 = "32838"
+				IF _arg1 = "Review 1" THEN  _arg1 = "32822"
+				IF _arg1 = "Review 2" THEN  _arg1 = "32823"
+				IF _arg1 = "Review 3" THEN  _arg1 = "32824"
+				IF _arg1 = "Review 4" THEN  _arg1 = "32825"
+				IF _arg1 = "Review 5" THEN  _arg1 = "32826"
+				IF _arg1 = "Review 6" THEN  _arg1 = "32827"
+				IF _arg1 = "Review 7" THEN  _arg1 = "32829"
+				IF _arg1 = "Review 8" THEN  _arg1 = "32830"
+				IF _arg1 = "Review 9" THEN  _arg1 = "32831"
+				IF _arg1 = "Review 10" THEN  _arg1 = "32832"
+				IF _arg1 = "Correction" THEN  _arg1 = "32881"
+				IF _arg1 = "Key Combinations" THEN  _arg1 = "32882"
+				IF _arg1 = "Text Drill 1" THEN  _arg1 = "32900"
+				IF _arg1 = "Text Drill 2" THEN  _arg1 = "32901"
+				IF _arg1 = "Text Drill 3" THEN  _arg1 = "32879"
+				IF _arg1 = "Text Drill 4" THEN  _arg1 = "32880"
+				IF _arg1 = "Key Names" THEN  _arg1 = "32839"
+				IF _arg1 = "Alpha" THEN  _arg1 = "32819"
+				IF _arg1 = "Standard" THEN  _arg1 = "32842"
+				IF _arg1 = "Custom 1" THEN  _arg1 = "32845"
+				IF _arg1 = "Custom 2" THEN  _arg1 = "32846"
+				IF _arg1 = "Custom 3" THEN  _arg1 = "32847"
+				IF _arg1 = "Custom 4" THEN  _arg1 = "32858"
+				IF _arg1 = "Custom 5" THEN  _arg1 = "32859"
+				IF _arg1 = "Custom 6" THEN  _arg1 = "32865"
+				IF _arg1 = "Custom 7" THEN  _arg1 = "32866"
+				IF _arg1 = "Training" THEN  _arg1 = "32908"
+				IF _arg1 = "Patch" THEN  _arg1 = "32909"
+				IF _arg1 = "Register" THEN  _arg1 = "32910"
+				' _SendUttCTrayMessage@4 at 1
+				DllCall "UttCTrayCom.dll", 1, _arg1
+				Wait 500
+			    ' WaitForWindowByTitleRE at 122
+			    DllCall "UttC.dll", 122, "7|UC"
+				Wait 2000
+				isCustom$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "UC", 512 )
+				IF (instr(isCustom$,"true")) > 0 THEN
+				IF _arg2 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg2 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				END IF
+				}
+			}
+		COMMAND "<UCMenuItemsGuides> Guide" {
+			SCRIPT {
+				IF _arg1 = "Whirlwind" THEN _arg1 = "32892"  
+				IF _arg1 = "Top General" THEN _arg1 = "32873" 
+				IF _arg1 = "Top Email" THEN  _arg1 = "32868"
+				IF _arg1 = "Top Web" THEN  _arg1 = "32869"
+				IF _arg1 = "Top Word" THEN  _arg1 = "32870"
+				IF _arg1 = "Top Excel" THEN  _arg1 = "32886"
+				IF _arg1 = "Top PowerPoint" XOR _arg1 = "Top Power" THEN _arg1 = "32902"
+				IF _arg1 = "Top Reader" XOR _arg1 = "Top Acrobat" THEN  _arg1 = "32872"
+				IF _arg1 = "Task" THEN  _arg1 = "32837"
+				IF _arg1 = "Advanced" THEN  _arg1 = "32838"
+				IF _arg1 = "Review 1" THEN  _arg1 = "32822"
+				IF _arg1 = "Review 2" THEN  _arg1 = "32823"
+				IF _arg1 = "Review 3" THEN  _arg1 = "32824"
+				IF _arg1 = "Review 4" THEN  _arg1 = "32825"
+				IF _arg1 = "Review 5" THEN  _arg1 = "32826"
+				IF _arg1 = "Review 6" THEN  _arg1 = "32827"
+				IF _arg1 = "Review 7" THEN  _arg1 = "32829"
+				IF _arg1 = "Review 8" THEN  _arg1 = "32830"
+				IF _arg1 = "Review 9" THEN  _arg1 = "32831"
+				IF _arg1 = "Review 10" THEN  _arg1 = "32832"
+				IF _arg1 = "Correction" THEN  _arg1 = "32881"
+				IF _arg1 = "Key Combinations" THEN  _arg1 = "32882"
+				IF _arg1 = "Text Drill 1" THEN  _arg1 = "32900"
+				IF _arg1 = "Text Drill 2" THEN  _arg1 = "32901"
+				IF _arg1 = "Text Drill 3" THEN  _arg1 = "32879"
+				IF _arg1 = "Text Drill 4" THEN  _arg1 = "32880"
+				IF _arg1 = "Key Names" THEN  _arg1 = "32839"
+				IF _arg1 = "Alpha" THEN  _arg1 = "32819"
+				IF _arg1 = "Standard" THEN  _arg1 = "32842"
+				IF _arg1 = "Custom 1" THEN  _arg1 = "32845"
+				IF _arg1 = "Custom 2" THEN  _arg1 = "32846"
+				IF _arg1 = "Custom 3" THEN  _arg1 = "32847"
+				IF _arg1 = "Custom 4" THEN  _arg1 = "32858"
+				IF _arg1 = "Custom 5" THEN  _arg1 = "32859"
+				IF _arg1 = "Custom 6" THEN  _arg1 = "32865"
+				IF _arg1 = "Custom 7" THEN  _arg1 = "32866"
+				' _SendUttCTrayMessage@4 at 1
+				DllCall "UttCTrayCom.dll", 1, _arg1
+				Wait 3000
+				DllCall "UttC.dll",77,"3 95"
+				SendKeys "{Ctrl+Home}"				
+			}
+		}
+		COMMAND "<UCMenuItemsGuides> Guide Return" {
+			SCRIPT {
+				window$ = DllCall$("UttC.dll", "GetForegroundWindowDVC", "", 1200 )				
+				IF _arg1 = "Whirlwind" THEN _arg1 = "32892"
+				IF _arg1 = "Top General" THEN  _arg1 = "32873"
+				IF _arg1 = "Top Email" THEN  _arg1 = "32868"
+				IF _arg1 = "Top Web" THEN  _arg1 = "32869"
+				IF _arg1 = "Top Word" THEN  _arg1 = "32870"
+				IF _arg1 = "Top Excel" THEN  _arg1 = "32886"
+				IF _arg1 = "Top PowerPoint" XOR _arg1 = "Top Power" THEN _arg1 = "32902"
+				IF _arg1 = "Top Reader" XOR _arg1 = "Top Acrobat" THEN  _arg1 = "32872"
+				IF _arg1 = "Task" THEN  _arg1 = "32837"
+				IF _arg1 = "Advanced" THEN  _arg1 = "32838"
+				IF _arg1 = "Review 1" THEN  _arg1 = "32822"
+				IF _arg1 = "Review 2" THEN  _arg1 = "32823"
+				IF _arg1 = "Review 3" THEN  _arg1 = "32824"
+				IF _arg1 = "Review 4" THEN  _arg1 = "32825"
+				IF _arg1 = "Review 5" THEN  _arg1 = "32826"
+				IF _arg1 = "Review 6" THEN  _arg1 = "32827"
+				IF _arg1 = "Review 7" THEN  _arg1 = "32829"
+				IF _arg1 = "Review 8" THEN  _arg1 = "32830"
+				IF _arg1 = "Review 9" THEN  _arg1 = "32831"
+				IF _arg1 = "Review 10" THEN  _arg1 = "32832"
+				IF _arg1 = "Correction" THEN  _arg1 = "32881"
+				IF _arg1 = "Key Combinations" THEN  _arg1 = "32882"
+				IF _arg1 = "Text Drill 1" THEN  _arg1 = "32900"
+				IF _arg1 = "Text Drill 2" THEN  _arg1 = "32901"
+				IF _arg1 = "Text Drill 3" THEN  _arg1 = "32879"
+				IF _arg1 = "Text Drill 4" THEN  _arg1 = "32880"
+				IF _arg1 = "Key Names" THEN  _arg1 = "32839"
+				IF _arg1 = "Alpha" THEN  _arg1 = "32819"
+				IF _arg1 = "Standard" THEN  _arg1 = "32842"
+				IF _arg1 = "Custom 1" THEN  _arg1 = "32845"
+				IF _arg1 = "Custom 2" THEN  _arg1 = "32846"
+				IF _arg1 = "Custom 3" THEN  _arg1 = "32847"
+				IF _arg1 = "Custom 4" THEN  _arg1 = "32858"
+				IF _arg1 = "Custom 5" THEN  _arg1 = "32859"
+				IF _arg1 = "Custom 6" THEN  _arg1 = "32865"
+				IF _arg1 = "Custom 7" THEN  _arg1 = "32866"
+				' _SendUttCTrayMessage@4 at 1
+				DllCall "UttCTrayCom.dll", 1, _arg1
+				Wait 1000
+				' SetForegroundWindowDVC at 114
+				DllCall "UttC.dll",114, window$
+			}
+		}
+		COMMAND "<UCMenuItemsGuides> Guide <FindTopFBottomF>" {
+			SCRIPT {
+				IF _arg1 = "Whirlwind" THEN _arg1 = "32892"
+				IF _arg1 = "Top General" THEN  _arg1 = "32873"
+				IF _arg1 = "Top Email" THEN  _arg1 = "32868"
+				IF _arg1 = "Top Web" THEN  _arg1 = "32869"
+				IF _arg1 = "Top Word" THEN  _arg1 = "32870"
+				IF _arg1 = "Top Excel" THEN  _arg1 = "32886"
+				IF _arg1 = "Top PowerPoint" XOR _arg1 = "Top Power" THEN _arg1 = "32902"
+				IF _arg1 = "Top Reader" XOR _arg1 = "Top Acrobat" THEN  _arg1 = "32872"
+				IF _arg1 = "Task" THEN  _arg1 = "32837"
+				IF _arg1 = "Advanced" THEN  _arg1 = "32838"
+				IF _arg1 = "Review 1" THEN  _arg1 = "32822"
+				IF _arg1 = "Review 2" THEN  _arg1 = "32823"
+				IF _arg1 = "Review 3" THEN  _arg1 = "32824"
+				IF _arg1 = "Review 4" THEN  _arg1 = "32825"
+				IF _arg1 = "Review 5" THEN  _arg1 = "32826"
+				IF _arg1 = "Review 6" THEN  _arg1 = "32827"
+				IF _arg1 = "Review 7" THEN  _arg1 = "32829"
+				IF _arg1 = "Review 8" THEN  _arg1 = "32830"
+				IF _arg1 = "Review 9" THEN  _arg1 = "32831"
+				IF _arg1 = "Review 10" THEN  _arg1 = "32832"
+				IF _arg1 = "Correction" THEN  _arg1 = "32881"
+				IF _arg1 = "Key Combinations" THEN  _arg1 = "32882"
+				IF _arg1 = "Text Drill 1" THEN  _arg1 = "32900"
+				IF _arg1 = "Text Drill 2" THEN  _arg1 = "32901"
+				IF _arg1 = "Text Drill 3" THEN  _arg1 = "32879"
+				IF _arg1 = "Text Drill 4" THEN  _arg1 = "32880"
+				IF _arg1 = "Key Names" THEN  _arg1 = "32839"
+				IF _arg1 = "Alpha" THEN  _arg1 = "32819"
+				IF _arg1 = "Standard" THEN  _arg1 = "32842"
+				IF _arg1 = "Custom 1" THEN  _arg1 = "32845"
+				IF _arg1 = "Custom 2" THEN  _arg1 = "32846"
+				IF _arg1 = "Custom 3" THEN  _arg1 = "32847"
+				IF _arg1 = "Custom 4" THEN  _arg1 = "32858"
+				IF _arg1 = "Custom 5" THEN  _arg1 = "32859"
+				IF _arg1 = "Custom 6" THEN  _arg1 = "32865"
+				IF _arg1 = "Custom 7" THEN  _arg1 = "32866"
+				IF _arg1 = "Training" THEN  _arg1 = "32908"
+				IF _arg1 = "Patch" THEN  _arg1 = "32909"
+				IF _arg1 = "Register" THEN  _arg1 = "32910"
+				' _SendUttCTrayMessage@4 at 1
+				DllCall "UttCTrayCom.dll", 1, _arg1
+				Wait 500
+			    ' WaitForWindowByTitleRE at 122
+			    DllCall "UttC.dll", 122, "7|UC"
+				Wait 2000
+				isCustom$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "UC", 512 )
+				IF (instr(isCustom$,"true")) > 0 THEN
+				IF _arg2 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg2 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				END IF
+				}
+			}
+		LIST "UCMenuItemsGuides" {
+			"Top General" "Top Email" "Top Web" "Top Word" "Top Excel" 
+			"Top Power"  "Top PowerPoint"  "Top Acrobat"  "Top Reader"
+			"Task" "Whirlwind" "Advanced" 
+			"Review 1" "Review 2" "Review 3" "Review 4" "Review 5" "Review 6" "Review 7" "Review 8" "Review 9" "Review 10" 
+			"Correction" "Key Combinations" "Text Drill 1" "Text Drill 2" "Text Drill 3"  "Text Drill 4"
+			"Key Names" "Alpha" "Standard" "Command" "Custom 1" "Custom 2" "Custom 3" "Custom 4" "Custom 5" "Custom 6" "Custom 7"		
+			"Training"  "Patch"  "Register"
+		}
+		LIST "FindTopFBottomF" {
+			"Find"  "Top Find"  "Bottom Find"  
+		}
+ 
+		COMMAND "UC <UCMenuSubmenus>" {
+			SCRIPT {
+				' ShowTrayMenu at 108
+				DllCall "UttC.dll", 108, ""
+				Wait 500				
+				IF _arg1 = "Refresh" THEN 
+				SendKeys "{Down 17}"
+				Wait 500
+				SendKeys "{Enter}"
+				END IF			
+				IF _arg1 = "Contents Intro" THEN SendKeys "c"
+				IF _arg1 = "Lessons" THEN SendKeys "l"
+				IF _arg1 = "References" THEN SendKeys "r"
+				IF _arg1 = "Visual" THEN SendKeys "v"
+				IF _arg1 = "Top" THEN SendKeys "t"
+				IF _arg1 = "Tour" THEN SendKeys "o"
+				IF _arg1 = "Drill" THEN SendKeys "d"
+				IF _arg1 = "Key" THEN SendKeys "y"
+				IF _arg1 = "Custom" THEN SendKeys "s"
+				IF _arg1 = "About" THEN SendKeys "a"
+				IF _arg1 = "Visual" XOR _arg1 = "Custom" THEN SendKeys "{Right}"
+ 
+			}
+		}
+		LIST "UCMenuSubmenus" {
+			"Contents Intro" "Lessons" "References" "Visual" 
+			"Top" "Tour" "Drill" "Key" "UC" "Custom"
+			"Refresh" "About"
+			
+		}
+ 
+#1d. UC Help 
+		COMMAND "<UC> <ContentsIntroCommonTaskTGettingQuickFullShortcutsAppendices>" {
+			SCRIPT {
+				IF _arg2 = "Introduction" THEN  _arg2 = "Intro"
+				IF _arg2 = "Common" THEN _arg2 = "Common Commands"
+				IF _arg2 = "Quick" THEN  _arg2 = "Quick Reference"
+				IF _arg2 = "Full" THEN  _arg2 = "Full Reference"
+				IF _arg2 = "Getting" THEN  _arg2 = "Getting Started"
+				IF _arg2 = "Task Tour" THEN  _arg2 = "Task Tours"
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+			}
+		}
+		COMMAND "<UC> <ContentsIntroCommonTaskTGettingQuickFullShortcutsAppendices> Page <1-100>" {
+			SCRIPT {
+				IF _arg2 = "Introduction" THEN  _arg2 = "Intro"
+				IF _arg2 = "Common" THEN _arg2 = "Common Commands"
+				IF _arg2 = "Quick" THEN  _arg2 = "Quick Reference"
+				IF _arg2 = "Full" THEN  _arg2 = "Full Reference"
+				IF _arg2 = "Getting" THEN  _arg2 = "Getting Started"
+				IF _arg2 = "Task Tour" THEN  _arg2 = "Task Tours"
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1000
+				SendKeys "{Ctrl+f}"
+				Wait 200				
+				SendKeys "Page " + _arg3 + ""
+				Wait 100
+				SendKeys "{Enter}"
+				SendKeys "{F6}"
+			}
+		}
+		COMMAND "<UC> <ContentsIntroCommonTaskTGettingQuickFullShortcutsAppendices> <FindControl0-3>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 1000
+				IF _arg3 = "Find" THEN SendKeys "{Ctrl+f}"
+				IF _arg3 = "Control 0" THEN SendKeys "{Ctrl+0}"
+				IF _arg3 = "Control 1" THEN SendKeys "{Ctrl+1}"
+				IF _arg3 = "Control 2" THEN SendKeys "{Ctrl+2}"
+				IF _arg3 = "Control 3" THEN SendKeys "{Ctrl+3}"
+			}
+		}
+		COMMAND "<UC> <VisualCheatSheets>" {
+			SCRIPT {
+				IF _arg2 = "Windows" THEN  _arg2 = "Windows Menus"
+				IF _arg2 = "Dialog" THEN  _arg2 = "Dialog Boxes"
+				IF _arg2 = "File Handling" THEN  _arg2 = "File-Handling Dialog Boxes"
+				IF _arg2 = "E-Mail" THEN  _arg2 = "Email"				
+				IF _arg2 = "UC List" THEN  _arg2 = "List"				
+				IF _arg2 = "All Visual" THEN
+				_arg2 = "Visual Cheat Sheets"
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + ".pdf"
+				ELSE
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + " Visual Cheat Sheet.pdf"
+				END IF
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+			}
+		}
+		COMMAND "<UC> <VisualCheatSheets> <FindControl0-3>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 1000
+				IF _arg3 = "Find" THEN SendKeys "{Ctrl+f}"
+				IF _arg3 = "Control 0" THEN SendKeys "{Ctrl+0}"
+				IF _arg3 = "Control 1" THEN SendKeys "{Ctrl+1}"
+				IF _arg3 = "Control 2" THEN SendKeys "{Ctrl+2}"
+				IF _arg3 = "Control 3" THEN SendKeys "{Ctrl+3}"
+			}
+		}
+		LIST "VisualCheatSheets" {
+			"Windows" "Windows Menus" "Dialog" "Dialog Boxes" 
+			"File Handling" "E-mail" "Email" "The Web" "UC List" 
+			"All Visual" "Windows Explorer"
+		}
+		COMMAND "<UC> <Lesson> <1-10>" {
+			SCRIPT {
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + " "+ _arg3 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+			}
+		}
+ 		COMMAND "<UC> <Lesson> <1-10> Page <1-100>" {
+			SCRIPT {
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + " "+ _arg3 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1200
+				SendKeys "{Ctrl+f}"
+				Wait 200				
+				SendKeys "Page " + _arg4 + ""
+				Wait 100
+				SendKeys "{Enter}"
+				SendKeys "{F6}"
+			}
+		}
+		COMMAND "<UC> <Lesson> <1-10> <FindControl0-3>" {
+			SCRIPT {
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + " "+ _arg3 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1200
+				IF _arg4 = "Find" THEN SendKeys "{Ctrl+f}"
+				IF _arg4 = "Control 0" THEN SendKeys "{Ctrl+0}"
+				IF _arg4 = "Control 1" THEN SendKeys "{Ctrl+1}"
+				IF _arg4 = "Control 2" THEN SendKeys "{Ctrl+2}"
+				IF _arg4 = "Control 3" THEN SendKeys "{Ctrl+3}"
+			}
+		}
+ 		COMMAND "<UC> <Lesson> <1-10> Point <1-24>" {
+			SCRIPT {
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + " "+ _arg3 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1200
+				SendKeys "{Ctrl+f}"
+				Wait 200				
+				SendKeys "" + _arg2 + " " + _arg3 + "." + _arg4 + " "
+				Wait 100
+				SendKeys "{Enter}"
+				SendKeys "{F6}"
+			}
+		}
+		COMMAND "<UC> <Lesson> <1-10> <Point> <1-24> <FindControl0-3>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4, _arg5
+				Wait 1200
+				IF _arg6 = "Find" THEN SendKeys "{Ctrl+f}"
+				IF _arg6 = "Control 0" THEN SendKeys "{Ctrl+0}"
+				IF _arg6 = "Control 1" THEN SendKeys "{Ctrl+1}"
+				IF _arg6 = "Control 2" THEN SendKeys "{Ctrl+2}"
+				IF _arg6 = "Control 3" THEN SendKeys "{Ctrl+3}"
+			}
+		}
+ 		COMMAND "<UC> <Lesson> <1-10> Point <1-2> <0-9>" {
+			SCRIPT {
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + " "+ _arg3 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1200
+				SendKeys "{Ctrl+f}"
+ 				Wait 200				
+				SendKeys "" + _arg2 + " " + _arg3 + "." + _arg4 + "" + _arg5 + " "
+				Wait 300
+				SendKeys "{Enter}"
+				SendKeys "{F6}"
+			}
+		}
+ 		COMMAND "<UC> <Lesson> <1-10> <Point> <1-2> <0-9> <FindControl0-3>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4, _arg5, _arg6
+				Wait 1200
+				IF _arg7 = "Find" THEN SendKeys "{Ctrl+f}"
+				IF _arg7 = "Control 0" THEN SendKeys "{Ctrl+0}"
+				IF _arg7 = "Control 1" THEN SendKeys "{Ctrl+1}"
+				IF _arg7 = "Control 2" THEN SendKeys "{Ctrl+2}"
+				IF _arg7 = "Control 3" THEN SendKeys "{Ctrl+3}"
+			}
+		}
+		COMMAND "<UC> <IntroFullQuickShortcutsAppendicesGettingGStarted> <1-20>" {
+			SCRIPT {
+				IF _arg2 = "Introduction" THEN  _arg2 = "Intro"
+				IF _arg2 = "Quick" THEN  _arg2 = "Quick Reference"		
+				IF _arg2 = "Full" THEN  _arg2 = "Full Reference"				
+				IF _arg2 = "Getting" THEN  _arg2 = "Getting Started"
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1200
+				SendKeys "{Ctrl+f}"
+				Wait 100			
+				IF _arg2 = "Quick Reference" THEN  _arg2 = "Quick"				
+				IF _arg2 = "Full Reference" THEN  _arg2 = "Full"
+				SendKeys "" + _arg2 + " " + _arg3 + ""
+				Wait 100
+				SendKeys "{Enter}"
+				SendKeys "{F6}"
+			}
+		}
+		COMMAND "<UC> Intro <1-10> Point <1-10> Point <1-10>" {
+			SCRIPT {
+				IF _arg2 = "Introduction" THEN  _arg2 = "Intro"
+				IF _arg2 = "Getting" THEN  _arg2 = "Getting Started"
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\UC Intro.pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1200
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "Intro " + _arg2 + "." + _arg3 + "." + _arg4 + ""
+				Wait 100
+				SendKeys "{Enter}"
+				SendKeys "{F6}"
+ 
+			}
+		}
+		COMMAND "<UC> <IntroFullQuickShortcutsAppendicesGettingGStarted> <1-20> <FindControl0-3>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				Wait 1200
+				IF _arg4 = "Find" THEN SendKeys "{Ctrl+f}"
+				IF _arg4 = "Control 0" XOR _arg4 = "Control Zero" THEN SendKeys "{Ctrl+0}"
+				IF _arg4 = "Control 1" THEN SendKeys "{Ctrl+1}"
+				IF _arg4 = "Control 2" THEN SendKeys "{Ctrl+2}"
+				IF _arg4 = "Control 3" THEN SendKeys "{Ctrl+3}"
+			}
+		}
+		COMMAND "<UC> <IntroAppendicesGettingGStarted> <1-20> Point <1-20>" {
+			SCRIPT {
+				IF _arg2 = "Introduction" THEN  _arg2 = "Intro"
+				IF _arg2 = "Getting" THEN  _arg2 = "Getting Started"
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1200
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "" + _arg2 + " " + _arg3 + "." + _arg4 + ""
+				Wait 100
+				SendKeys "{Enter}"
+				SendKeys "{F6}"
+ 
+			}
+		}
+		COMMAND "<UC> <IntroAppendicesGettingGStarted> <1-10> Point <1-2> <0-9>" {
+			SCRIPT {
+				IF _arg2 = "Introduction" THEN  _arg2 = "Intro"
+				IF _arg2 = "Getting" THEN  _arg2 = "Getting Started"
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1200
+				SendKeys "{Ctrl+f}"
+ 				Wait 200				
+				SendKeys "" + _arg2 + " " + _arg3 + "." + _arg4 + "" + _arg5 + " "
+				Wait 300
+				SendKeys "{Enter}"
+				SendKeys "{F6}"
+			}
+		}
+		COMMAND "<UC> <IntroFullQuickShortcutsAppendicesGettingGStarted> <1-20> <Point> <1-24> <FindControl0-3>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4, _arg5
+				Wait 1200
+				IF _arg6 = "Find" THEN SendKeys "{Ctrl+f}"
+				IF _arg6 = "Control 0" THEN SendKeys "{Ctrl+0}"
+				IF _arg6 = "Control 1" THEN SendKeys "{Ctrl+1}"
+				IF _arg6 = "Control 2" THEN SendKeys "{Ctrl+2}"
+				IF _arg6 = "Control 3" THEN SendKeys "{Ctrl+3}"
+			}
+		}
+  		LIST "IntroFullQuickShortcutsAppendicesGettingGStarted" {
+			"Intro"  "Introduction"  
+			"Full"  "Quick"  "Shortcuts"  "Appendices" "Getting"  "Getting Started" 
+		}
+		COMMAND "<UC> <IntroAppendicesGettingGStarted> <1-10> Point <1-2> <0-9> <FindControl0-3>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4, _arg5, _arg6
+				Wait 1200
+				IF _arg7 = "Find" THEN SendKeys "{Ctrl+f}"
+				IF _arg7 = "Control 0" THEN SendKeys "{Ctrl+0}"
+				IF _arg7 = "Control 1" THEN SendKeys "{Ctrl+1}"
+				IF _arg7 = "Control 2" THEN SendKeys "{Ctrl+2}"
+				IF _arg7 = "Control 3" THEN SendKeys "{Ctrl+3}"
+			}
+		}
+  		LIST "IntroAppendicesGettingGStarted" {
+			"Intro"   "Introduction"  "Getting"  "Getting Started" 
+			"Appendices" 
+		}
+ 		COMMAND "<UC> <FullQuickShortcuts> <1-20> Point <1-24>" {
+			SCRIPT {
+				IF _arg2 = "Quick" THEN  _arg2 = "Quick Reference"		
+				IF _arg2 = "Full" THEN  _arg2 = "Full Reference"				
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1200
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				IF _arg2 = "Quick Reference" THEN  _arg2 = "Quick"		
+				IF _arg2 = "Full Reference" THEN  _arg2 = "Full"				
+				SendKeys "" + _arg3 + "." + _arg4 + ""
+				Wait 100
+				SendKeys "{Enter}"
+				SendKeys "{F6}"
+			}
+		}
+		COMMAND "<UC> <FullQuickShortcuts> <1-10> Point <1-2> <0-9>" {
+			SCRIPT {
+				IF _arg2 = "Quick" THEN  _arg2 = "Quick Reference"		
+				IF _arg2 = "Full" THEN  _arg2 = "Full Reference"				
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1200
+				SendKeys "{Ctrl+f}"
+ 				Wait 200				
+				IF _arg2 = "Quick Reference" THEN  _arg2 = "Quick"		
+				IF _arg2 = "Full Reference" THEN  _arg2 = "Full"				
+				SendKeys "" + _arg3 + "." + _arg4 + "" + _arg5 + " "
+				Wait 300
+				SendKeys "{Enter}"
+				SendKeys "{F6}"
+			}
+		}
+ 		LIST "FullQuickShortcuts" {
+			"Full"  "Quick"  "Shortcuts"
+		}
+  		COMMAND "<UC> <CommonAllVisual> <1-20>" {
+			SCRIPT {
+ 				IF _arg2 = "Common" THEN _arg2 = "Common Commands"
+				IF _arg2 = "Visual" THEN  _arg2 = "Visual Cheat Sheets"			
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1200
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "" + _arg3 + "."
+				Wait 100
+				SendKeys "{Enter}"
+				SendKeys "{F6}"
+			}
+		}
+   		COMMAND "<UC> <CommonAllVisual> <1-20> <FindControl0-3>" {
+			SCRIPT {
+ 				HeardWord _arg1, _arg2, _arg3
+				Wait 1200
+				IF _arg4 = "Find" THEN SendKeys "{Ctrl+f}"
+				IF _arg4 = "Control 0" XOR _arg4 = "Control Zero" THEN SendKeys "{Ctrl+0}"
+				IF _arg4 = "Control 1" THEN SendKeys "{Ctrl+1}"
+				IF _arg4 = "Control 2" THEN SendKeys "{Ctrl+2}"
+				IF _arg4 = "Control 3" THEN SendKeys "{Ctrl+3}"
+			}
+		}
+		COMMAND "<UC> <CommonAllVisual> <1-20> Point <1-24>" {
+			SCRIPT {
+ 				IF _arg2 = "Common" THEN _arg2 = "Common Commands"
+				IF _arg2 = "Visual" THEN  _arg2 = "Visual Cheat Sheets"			
+ 				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1200
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "" + _arg3 + "." + _arg4 + " "
+				Wait 100
+				SendKeys "{Enter}"
+				SendKeys "{F6}"
+			}
+		}
+		COMMAND "<UC> <CommonAllVisual> <1-10> Point <1-2> <0-9>" {
+			SCRIPT {
+ 				IF _arg2 = "Common" THEN _arg2 = "Common Commands"
+				IF _arg2 = "Visual" THEN  _arg2 = "Visual Cheat Sheets"			
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\" + _arg1 + " "+ _arg2 + ".pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1200
+				SendKeys "{Ctrl+f}"
+ 				Wait 200				
+				IF _arg2 = "Quick Reference" THEN  _arg2 = "Quick"		
+				IF _arg2 = "Full Reference" THEN  _arg2 = "Full"				
+				SendKeys "" + _arg3 + "." + _arg4 + "" + _arg5 + " "
+				Wait 300
+				SendKeys "{Enter}"
+				SendKeys "{F6}"
+			}
+		}
+		COMMAND "<UC> <CommonAllVisual> <1-20> <Point> <1-24> <FindControl0-3>" {
+			SCRIPT {
+ 				HeardWord _arg1, _arg2, _arg3, _arg4, _arg5
+				Wait 1200
+				IF _arg6 = "Find" THEN SendKeys "{Ctrl+f}"
+				IF _arg6 = "Control 0" THEN SendKeys "{Ctrl+0}"
+				IF _arg6 = "Control 1" THEN SendKeys "{Ctrl+1}"
+				IF _arg6 = "Control 2" THEN SendKeys "{Ctrl+2}"
+				IF _arg6 = "Control 3" THEN SendKeys "{Ctrl+3}"
+			}
+		}
+		LIST "1-24" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20" "21" "22" "23" "24"
+		}
+		COMMAND "<UC> <CommonAllVisual> <1-20> <Point> <1-2> <0-9> <FindControl0-3>" {
+			SCRIPT {
+ 				HeardWord _arg1, _arg2, _arg3, _arg4, _arg5, _arg6
+				Wait 1200
+				IF _arg7 = "Find" THEN SendKeys "{Ctrl+f}"
+				IF _arg7 = "Control 0" THEN SendKeys "{Ctrl+0}"
+				IF _arg7 = "Control 1" THEN SendKeys "{Ctrl+1}"
+				IF _arg7 = "Control 2" THEN SendKeys "{Ctrl+2}"
+				IF _arg7 = "Control 3" THEN SendKeys "{Ctrl+3}"
+			}
+		}
+ 		LIST "CommonAllVisual" {
+			"Common"  "All Visual"  "Visual"
+		}
+		LIST "1-2" {
+			"1"  "2"
+		}
+		COMMAND "<UC> <TaskTourTTs> <1-40>" {
+			SCRIPT {
+				p$ = "C:\Program Files (x86)\Redstart Systems\Utter Command\Help\UC Task Tours.pdf"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 1200
+				' FocusOnWindowByTitleRE at 121
+				DllCall "UttC.dll", 121, "UC Task Tours"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				IF _arg2 = "Task Tours" THEN  _arg2 = "Task Tour"		
+				SendKeys "" + _arg2 + " " + _arg3 + ""
+				Wait 100
+				SendKeys "{Enter}"
+				Wait 500
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isAdobe$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isAdobe$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+		COMMAND "<UC> <TaskTourTTs> <1-40> <FindControl0-3>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				Wait 1200
+				IF _arg4 = "Find" THEN SendKeys "{Ctrl+f}"
+				IF _arg4 = "Control 0" XOR _arg4 = "Control Zero" THEN SendKeys "{Ctrl+0}"
+				IF _arg4 = "Control 1" THEN SendKeys "{Ctrl+1}"
+				IF _arg4 = "Control 2" THEN SendKeys "{Ctrl+2}"
+				IF _arg4 = "Control 3" THEN SendKeys "{Ctrl+3}"
+			}
+		} 		
+		LIST "TaskTourTTs" {
+			"Task Tour"  "Task Tours"  
+		}
+		LIST "FindControl0-3" {
+			"Find" "Control 0"  "Control 1"  "Control 2"  "Control 3"
+		}
+		COMMAND "Task <1-40> Guide" {
+			SCRIPT {
+				' _SendUttCTrayMessage@4 at 1
+				DllCall "UttCTrayCom.dll", 1, "32837"
+				Wait 500
+			    ' WaitForWindowByTitleRE at 122
+			    DllCall "UttC.dll", 122, "7|UC Task Tours"
+				Wait 1000
+				' FocusOnWindowByTitleRE at 121
+				DllCall "UttC.dll", 121, "UC Task Tours"
+				Wait 200
+				isTask$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "UC Task Tour", 512 )
+				IF (instr(isTask$,"true")) > 0 THEN
+				SendKeys "{Ctrl+End}"
+				SendKeys "{Ctrl+f}"
+				Wait 200
+				SendKeys "Tour " + _arg1 + ""
+				Wait 200
+				SendKeys "{Enter}"
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+ 
+			}
+		}
+		COMMAND "Task <1-40> Guide Return" {
+			SCRIPT {
+				' _SendUttCTrayMessage@4 at 1
+				DllCall "UttCTrayCom.dll", 1, "32837"
+				Wait 500
+			    ' WaitForWindowByTitleRE at 122
+			    DllCall "UttC.dll", 122, "7|UC Task Tours"
+				Wait 2000
+				isTask$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "UC Task Tour", 512 )
+				IF (instr(isTask$,"true")) > 0 THEN
+				SendKeys "{Ctrl+End}"
+				SendKeys "{Ctrl+f}"
+				Wait 200
+				SendKeys "Tour " + _arg1 + ""
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 1000
+				SendKeys "{Alt+Tab}" 
+				END IF
+ 
+			}
+		}
+		COMMAND "UC Task <1-40>" {
+			SCRIPT {
+				' _SendUttCTrayMessage@4 at 1
+				DllCall "UttCTrayCom.dll", 1, "32837"
+				Wait 500
+			    ' WaitForWindowByTitleRE at 122
+			    DllCall "UttC.dll", 122, "7|UC Task Tours"
+				Wait 1000
+				' FocusOnWindowByTitleRE at 121
+				DllCall "UttC.dll", 121, "UC Task Tours"
+				Wait 200
+				isTask$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "UC Task Tour", 512 )
+				IF (instr(isTask$,"true")) > 0 THEN
+				SendKeys "{Ctrl+End}"
+				SendKeys "{Ctrl+f}"
+				Wait 200
+				SendKeys "Tour " + _arg1 + ""
+				Wait 200
+				SendKeys "{Enter}"
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+ 
+			}
+		}
+		COMMAND "UC Task <1-40> Return" {
+			SCRIPT {
+				' _SendUttCTrayMessage@4 at 1
+				DllCall "UttCTrayCom.dll", 1, "32837"
+				Wait 500
+			    ' WaitForWindowByTitleRE at 122
+			    DllCall "UttC.dll", 122, "7|UC Task Tours"
+				Wait 2000
+				isTask$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "UC Task Tour", 512 )
+				IF (instr(isTask$,"true")) > 0 THEN
+				SendKeys "{Ctrl+End}"
+				SendKeys "{Ctrl+f}"
+				Wait 200
+				SendKeys "Tour " + _arg1 + ""
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 1000
+				SendKeys "{Alt+Tab}" 
+				END IF
+ 
+			}
+		}
+#1e. Find in Help
+		COMMAND "<FindTopFBottomFLeftFRightF> <TourFigureTableLessonIntroFullAppendicesShortcutsGettingGStarted> <1-20>" {
+			SCRIPT {
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				IF _arg1 = "Right Find" THEN SendKeys "{Right}"
+				Wait 100
+				IF _arg2 = "Introduction" THEN  _arg2 = "Intro"
+				IF _arg2 = "Full" THEN  _arg2 = "Full"
+				IF _arg2 = "Getting" THEN  _arg2 = "Getting Started"
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "" + _arg2 + " " + _arg3 + ""
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+ 
+			}
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <TourFigureTableLessonIntroFullAppendicesShortcutsGettingGStarted> <1-20> Point <1-40>" {
+			SCRIPT {
+				SendKeys "{Right}"
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+ 				IF _arg2 = "Introduction" THEN  _arg2 = "Intro"
+				IF _arg2 = "Full" THEN  _arg2 = "Full"
+				IF _arg2 = "Getting" THEN  _arg2 = "Getting Started"
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "" + _arg2 + " " + _arg3 + "." + _arg4 + ""
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+		LIST "TourFigureTableLessonIntroFullAppendicesShortcutsGettingGStarted" {
+			"Tour"  "Figure"  "Table"  "Lesson"
+			"Intro"  "Introduction"
+			"Full"  "Appendices"  "Shortcuts" "Getting"  "Getting Started" 
+ 
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> Tour <1-40>" {
+			SCRIPT {
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				IF _arg1 = "Right Find" THEN SendKeys "{Right}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "Tour " + _arg2 + ""
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+		LIST "1-40" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			 "11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+			 "21" "22" "23" "24" "25" "26" "27" "28" "29" "30" 
+			 "31" "32" "33" "34" "35" "36" "37" "38" "39" "40"
+		}
+ 
+#1 Find pages, numbers and letters, including repeat
+ 
+		COMMAND "<FindTopFBottomFLeftFRightF> Page <1-100>" {
+			SCRIPT {
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				IF _arg1 = "Right Find" THEN SendKeys "{Right}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "Page " + _arg2 + ""
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+				END IF
+			}
+		}
+		LIST "1-100" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40" "41" "42" "43" "44" "45" "46" "47" "48" "49"
+			 "50" "51" "52" "53" "54" "55" "56" "57" "58" "59"
+			 "60" "61" "62" "63" "64" "65" "66" "67" "68" "69"
+			 "70" "71" "72" "73" "74" "75" "76" "77" "78" "79"
+			 "80" "81" "82" "83" "84" "85" "86" "87" "88" "89"
+			 "90" "91" "92" "93" "94" "95" "96" "97" "98" "99"  "100"
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> Page <1-5> <0-9> <0-9>" {
+			SCRIPT {
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				IF _arg1 = "Right Find" THEN SendKeys "{Right}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "Page " + _arg2 + "" + _arg3 + "" + _arg4 + ""
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+				END IF
+			}
+		}
+		LIST "1-5" {
+			"1"  "2" "3"  "4"  "5"
+		}
+		LIST "0-9" {
+			"0"   "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"   
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <0-40> Point <0-40>" {
+			SCRIPT {				
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				SendKeys "{Ctrl+f}"
+				Wait 200
+				SendKeys "" + _arg2 + "." + _arg3 + ""
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+				END IF
+			}
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <0-40> <Point> <0-40> <TabScreenUpSDown>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				Wait 100
+				IF _arg5 = "Screen Up" THEN  _arg5 = "PgUp"
+				IF _arg5 = "Screen Down" THEN  _arg5 = "PgDn"
+				SendKeys "{" + _arg5 +"}"
+			}
+		}
+		LIST "Point" {
+			"Point"
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <Alph> <.>" {
+			SCRIPT {
+				SendKeys "{Right}"
+				
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				SendKeys "{Ctrl+f}"
+				Wait 200
+				SendKeys "" + MID$(_arg2,0,1) + "" + _arg3 + ""
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+				END IF
+			}
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <Alph> <.> <TabScreenUpSDown>" {
+			SCRIPT {
+				
+				HeardWord _arg1, _arg2, _arg3
+				Wait 100
+				IF _arg4 = "Screen Up" THEN  _arg4 = "PgUp"
+				IF _arg4 = "Screen Down" THEN  _arg4 = "PgDn"
+				SendKeys "{" + _arg4 +"}"
+			}
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <Alph> <0-40> <.>" {
+			SCRIPT {
+				SendKeys "{Right}"
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				SendKeys "{Ctrl+f}"
+				Wait 200
+				SendKeys "" + MID$(_arg2,0,1) + "" + _arg3 + "" + MID$(_arg4,0,1) + ""
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+				END IF
+			}
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <0-40> <Alph.>" {
+			SCRIPT {
+				SendKeys "{Right}"
+				
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				SendKeys "{Ctrl+f}"
+				Wait 200
+				SendKeys "" + _arg2 + "" + MID$(_arg3,0,1) + ""
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+				END IF
+			}
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <0-40> <Alph.> <TabScreenUpSDown>" {
+			SCRIPT {
+				
+				HeardWord _arg1, _arg2, _arg3
+				Wait 100
+				IF _arg4 = "Screen Up" THEN  _arg4 = "PgUp"
+				IF _arg4 = "Screen Down" THEN  _arg4 = "PgDn"
+				SendKeys "{" + _arg4 +"}"
+			}
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <0-40> <Alph> <.>" {
+			SCRIPT {
+				SendKeys "{Right}"
+				
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				SendKeys "{Ctrl+f}"
+				Wait 200
+				SendKeys "" + _arg2 + "" + MID$(_arg3,0,1) + "."
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+				END IF
+			}
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <0-40> <Alph> <.> <TabScreenUpSDown>" {
+			SCRIPT {
+				SendKeys "{Right}"
+				
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				SendKeys "{Ctrl+f}"
+				Wait 200
+				SendKeys "" + _arg2 + "" + MID$(_arg3,0,1) + "."
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+				END IF
+				SendKeys "{" + _arg5 +"}"
+ 
+			}
+		}
+		LIST "TabScreenUpSDown" {
+			"Tab"  "Screen Up"  "Screen Down"
+		}
+		LIST "." {
+			"."
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <0-40> Point <0-40> Point <0-40>" {
+			SCRIPT {
+				SendKeys "{Right}"
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				SendKeys "{Ctrl+f}"
+				Wait 200
+				SendKeys "" + _arg2 + "." + _arg3 + "." + _arg4 + ""
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+				END IF
+			}
+		}
+	LIST "Alph" {
+			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+		}
+ 
+		LIST "FindTopFBottomFLeftFRightF" {
+			"Find"  "Top Find"  "Bottom Find"  "Left Find"  "Right Find"
+		}
+		LIST "0-40" {
+			 "0"  "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40"
+		}
+		LIST "Alph." {
+			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z" "."
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+		}
+ 
+#1d UC Help Notes
+		COMMAND "<UC> <ContentsIntroCommonTaskTGettingQuickFullShortcutsAppendices> <NotesNBottom>" {
+			SCRIPT {
+				IF _arg2 = "Common" THEN _arg2 = "Common Commands"
+				IF _arg2 = "Quick" THEN  _arg2 = "Quick Reference"
+				IF _arg2 = "Full" THEN  _arg2 = "Full Reference"
+				IF _arg2 = "Getting" THEN  _arg2 = "Getting Started"
+				IF _arg2 = "Task Tour" THEN  _arg2 = "Task Tours"
+				p$ = "C:\Documents and Settings\All Users\Documents\UC Files\Notes\" + _arg1 + " "+ _arg2 + " Notes.doc"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 500
+				SendKeys "{Down 8}"
+				IF _arg3 = "Notes Bottom" THEN SendKeys "{Ctrl+End}"
+			} 
+		}
+ 		LIST "ContentsIntroCommonTaskTGettingQuickFullShortcutsAppendices" {
+			"Contents"
+			"Intro"  "Introduction"
+			"Common"  "Task Tours"  "Task Tour"
+			"Getting"  "Getting Started"
+			"Quick"  "Full"  "Quick Reference"  "Full Reference" "Appendices"  "Index"
+			"New Commands"
+		}
+		COMMAND "<UC> <Lesson> <1-10> <NotesNBottom>" {
+			SCRIPT {
+				p$ = "C:\Documents and Settings\All Users\Documents\UC Files\Notes\" + _arg1 + " "+ _arg2 + " "+ _arg3 + " Notes.doc"
+				' UttCShellLP at 105
+				DllCall "UttC.dll",105, p$
+				Wait 500
+				SendKeys "{Down 8}"
+				IF _arg4 = "Notes Bottom" THEN SendKeys "{Ctrl+End}"
+ 
+			}
+		}
+		LIST "UC" {
+			"UC"
+		}
+		LIST "Lesson" {
+			"Lesson"
+		}
+		LIST "NotesNBottom" {
+			"Notes"  "Notes Bottom"
+		}
+#1h. Nope
+		COMMAND "Nope <1-9> Down"{
+			SCRIPT {
+				HeardWord "Nope"
+				isSpell$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Spell", 512 )
+				IF (instr(isSpell$,"true")) > 0 THEN
+ 				SendKeys "{Down " + _arg1 + "}"
+				END IF		
+			}
+		}
+		COMMAND "Nope Under <1-9>"{
+			SCRIPT {
+				HeardWord "Nope"
+				isSpell$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Spell", 512 )
+				IF (instr(isSpell$,"true")) > 0 THEN
+ 				SendKeys "{Down " + _arg1 + "}"
+				Wait 500
+				SendKeys "{Enter}"
+				END IF		
+ 
+			}
+		}
+		COMMAND "<NopeNUnder> <1-9> Wait <1-10>"{
+			SCRIPT {
+				HeardWord "Nope"
+				isSpell$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Spell", 512 )
+				IF (instr(isSpell$,"true")) > 0 THEN
+				SendKeys "{Down " + _arg2 + "}"
+				Wait Val(_arg3)*500
+				SendKeys "{Enter}"
+				END IF		
+ 
+			}
+		}
+		COMMAND "<0-10> <0-10> Nope" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2 + "|" + "Words"
+				' GGSLLWSSUs at 45
+				DllCall "UttC.dll", 45, p$
+				HeardWord "Nope"
+			}
+		}
+		COMMAND "<0-10> <0-10> Nope <1-9> Down" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2 + "|" + "Words"
+				' GGSLLWSSUs at 45
+				DllCall "UttC.dll", 45, p$
+				HeardWord "Nope"
+				isSpell$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Spell", 512 )
+				IF (instr(isSpell$,"true")) > 0 THEN
+				SendKeys "{Down " + _arg3 + "}"
+				END IF
+			}
+		}
+		COMMAND "<0-10> <0-10> <NopeNUnder> <1-9>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2 + "|" + "Words"
+				' GGSLLWSSUs at 45
+				DllCall "UttC.dll", 45, p$
+				HeardWord "Nope"
+				isSpell$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Spell", 512 )
+				IF (instr(isSpell$,"true")) > 0 THEN
+				SendKeys "{Down " + _arg4 + "}"
+				Wait 500
+				SendKeys "{Enter}"
+				END IF
+			}
+		}
+		COMMAND "<0-10> <0-10> <NopeNUnder> <1-9> Wait <1-10>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2 + "|" + "Words"
+				' GGSLLWSSUs at 45
+				DllCall "UttC.dll", 45, p$
+				HeardWord "Nope"
+				isSpell$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Spell", 512 )
+				IF (instr(isSpell$,"true")) > 0 THEN
+				SendKeys "{Down " + _arg4 + "}"
+				Wait Val(_arg5)*500
+				SendKeys "{Enter}"
+				END IF
+			}
+		}
+		LIST "0-10" {
+			"0" "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+		}
+		COMMAND "<1-20> <GLLWDUABUSs> Nope" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				HeardWord "Nope"
+			}
+		}
+		COMMAND "<1-20> <GLLWDUABUSs> Nope <1-9> Down" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				HeardWord "Nope"
+				isSpell$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Spell", 512 )
+				IF (instr(isSpell$,"true")) > 0 THEN
+				SendKeys "{Down " + _arg3 + "}"
+				END IF
+			}
+		}
+		COMMAND "<1-20> <GLLWDUABUSs> <NopeNUnder> <1-9>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				HeardWord "Nope"
+				isSpell$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Spell", 512 )
+				IF (instr(isSpell$,"true")) > 0 THEN
+				SendKeys "{Down " + _arg4 + "}"
+				Wait 500
+				SendKeys "{Enter}"
+				END IF
+			}
+		}
+		COMMAND "<1-20> <GLLWDUABUSs> <NopeNUnder> <1-9> Wait <1-10>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				HeardWord "Nope"
+				isSpell$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Spell", 512 )
+				IF (instr(isSpell$,"true")) > 0 THEN
+				SendKeys "{Down " + _arg4 + "}"
+				Wait Val(_arg5)*500
+				SendKeys "{Enter}"
+				END IF
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> Nope" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				HeardWord "Nope"
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> Nope <1-9> Down" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				HeardWord "Nope"
+				isSpell$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Spell", 512 )
+				IF (instr(isSpell$,"true")) > 0 THEN
+				SendKeys "{Down " + _arg3 + "}"
+				END IF
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <NopeNUnder> <1-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				HeardWord "Nope"
+				isSpell$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Spell", 512 )
+				IF (instr(isSpell$,"true")) > 0 THEN
+				SendKeys "{Down " + _arg4 + "}"
+				Wait 500
+				SendKeys "{Enter}"
+				END IF
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <NopeNUnder> <1-9> Wait <1-10>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				HeardWord "Nope"
+				isSpell$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Spell", 512 )
+				IF (instr(isSpell$,"true")) > 0 THEN
+				SendKeys "{Down " + _arg4 + "}"
+				Wait Val(_arg5)*500
+				SendKeys "{Enter}"
+				END IF
+			}
+		}
+		LIST "NopeNUnder" {
+			"Nope"  "Nope Under"
+		}	
+		LIST "1-9" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9" 
+		}
+		LIST "1-10" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <1-20> <GLLWDUABUSs> Nope" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				IF _arg4 = "Afters" THEN
+				SendKeys ""
+				ELSE
+				SendKeys "{Ctrl+Left}"
+				END IF
+				p$ = _arg3 + "|" + _arg4
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				HeardWord "Nope"
+			}
+		}
+		COMMAND "<1-20> <BeforeAfterRightLeftUpDown> <1-20> <GLLWDUABUSs> Nope" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				IF _arg4 = "Afters" THEN
+				SendKeys ""
+				ELSE
+				SendKeys "{Ctrl+Left}"
+				END IF
+				p$ = _arg3 + "|" + _arg4
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				HeardWord "Nope"
+			}
+		}
+		LIST "BeforeAfterRightLeftUpDown" {
+			"Before"  "After"  "Right"  "Left"  "Up"  "Down"
+		}
+		LIST "GLLWDUABUSs" {
+			"Letters"  "Lefts"  "Rights"
+			"Words"  "Befores"  "Afters"
+			"Lines"  "Line Ups"  "Downs"  "Ups"
+			"Graphs"  "Graph Spaces"  "Graph Ups"  "Graph Space Ups"
+			"Screens"  "Screen Ups"
+		}
+		COMMAND "<1-20> <UpDown> <1-20thEnd> <GGSLLW> Nope" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				IF _arg4 = "Afters" THEN
+				SendKeys ""
+				ELSE
+				SendKeys "{Ctrl+Left}"
+				END IF
+				HeardWord _arg3, _arg4
+				HeardWord "Nope"
+			}
+		}
+		LIST "1-20" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+		}
+		LIST "UpDown" {
+			"Up"
+			"Down"
+		}
+		LIST "1-20thEnd" {
+			"1st"  "2nd"  "3rd"  "4th"  "5th"  "6th"  "7th"  "8th"  "9th"  "10th"
+			"11th"  "12th"  "13th"  "14th"  "15th"  "16th"  "17th"  "18th"  "19th"
+			"20th"  "End"
+		}
+		LIST "GGSLLW" {
+			"Letter"
+			"Word"
+			"Line"
+			"Graph"  "Graph Space"
+		}
+	}
+}

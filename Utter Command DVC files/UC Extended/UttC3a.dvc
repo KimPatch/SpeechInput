@@ -1,0 +1,1236 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+ 
+################# 
+#2k. Tray, Menus, Menu Items
+################# 
+ 
+	STATE "Global Commands" GLOBAL {
+ 
+		COMMAND "Tray <1-20>" {
+			SCRIPT {
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+			}
+		}
+		COMMAND "Tray <1-20> <Alph1-9>" {
+			SCRIPT {
+				
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+			}
+		}
+		COMMAND "Tray <1-20> <Alph1-9> Enter" {
+			SCRIPT {
+				
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray <1-20> <Alph1-9> <Alph1-9>" {
+			SCRIPT {
+				
+				
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+			}
+		}
+		COMMAND "Tray <1-20> <Alph1-9> <Alph1-9> <Alph1-9>" {
+			SCRIPT {
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+				Wait 300
+				SendKeys MID$(_arg4,0,1)
+			}
+		}
+		COMMAND "Tray <1-20> <Alph1-9> <Alph1-9> Enter" {
+			SCRIPT {
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+				Wait 500
+				SendSystemKeys "{Enter}"
+ 			}
+		}
+		COMMAND "Tray <1-20> <Alph1-9> <Alph1-9> <Alph1-9> Enter" {
+			SCRIPT {
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+				Wait 500
+				SendKeys MID$(_arg4,0,1)
+				Wait 500
+				SendSystemKeys "{Enter}"
+ 			}
+		}
+		COMMAND "Tray <1-20> <DownUp>" {
+			SCRIPT {
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys "{" + _arg2 + "}"
+			}
+		}
+		COMMAND "Tray <1-20> <DownUp> Enter" {
+			SCRIPT {
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys "{" + _arg2 + "}"
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray <1-20> <1-40> <DownUp>" {
+			SCRIPT {
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+			}
+		}
+		COMMAND "Tray <1-20> <1-40> <DownUp> Enter" {
+			SCRIPT {
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray <1-20> <Alph> <DownUp>" {
+			SCRIPT {
+				
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg3 + "}"
+			}
+		}
+		COMMAND "Tray <1-20> <Alph> <DownUp> Enter" {
+			SCRIPT {
+				
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg3 + "}"
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray <1-20> <Alph1-9> <1-20> <DownUp>" {
+			SCRIPT {
+				
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+			}
+		}
+		COMMAND "Tray <1-20> <Alph1-9> <1-20> <DownUp> Enter" {
+			SCRIPT {
+				
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray <1-20> <Alph1-9> <Alph> <DownUp>" {
+			SCRIPT {
+				
+						
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg3 + "}"
+				Wait 300
+				SendKeys "{" + _arg4 + "}"
+			}
+		}
+		COMMAND "Tray <1-20> <Alph1-9> <Alph> <DownUp> Enter" {
+			SCRIPT {
+				
+						
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+				Wait 300
+				SendKeys "{" + _arg4 + "}"
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray <1-20> <Alph1-9> <Alph1-9> <1-20> <DownUp>" {
+			SCRIPT {
+				
+						
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+				Wait 300
+				SendKeys "{" + _arg5 + " " + _arg4 + "}"
+			}
+		}
+		COMMAND "Tray <1-20> <Alph1-9> <Alph1-9> <1-20> <DownUp> Enter" {
+			SCRIPT {
+				
+						
+				' Tray1to20 at 93
+				DllCall "UttC.dll", 93, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+				Wait 300
+				SendKeys "{" + _arg5 + " " + _arg4 + "}"
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray Right <1-20>" {
+			SCRIPT {
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+			}
+		}
+		COMMAND "Tray Right <1-20> <Alph1-9>" {
+			SCRIPT {
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+			}
+		}
+		COMMAND "Tray Right <1-20> <Alph1-9> Enter" {
+			SCRIPT {
+					
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray Right <1-20> <Alph1-9> <Alph1-9>" {
+			SCRIPT {
+				
+						
+				Wait 200
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+			}
+		}
+		COMMAND "Tray Right <1-20> <Alph1-9> <Alph1-9> Enter" {
+			SCRIPT {
+				
+						
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray Right <1-20> <Alph1-9> <Alph1-9> <Alph1-9>" {
+			SCRIPT {
+				
+						
+						
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+				Wait 300
+				SendKeys MID$(_arg4,0,1)
+			}
+		}
+		COMMAND "Tray Right <1-20> <Alph1-9> <Alph1-9> <Alph1-9> Enter" {
+			SCRIPT {
+				
+						
+						
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+				Wait 500
+				SendKeys MID$(_arg4,0,1)
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray Right <1-20> <Alph> <DownUp>" {
+			SCRIPT {
+				
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg3 + "}"
+			}
+		}
+		COMMAND "Tray Right <1-20> <Alph> <DownUp> Enter" {
+			SCRIPT {
+				
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg3 + "}"
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray Right <1-20> <Alph1-9> <1-40> <DownUp>" {
+			SCRIPT {
+				
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+			}
+		}
+		COMMAND "Tray Right <1-20> <Alph1-9> <1-40> <DownUp> Enter" {
+			SCRIPT {
+				
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray Right <1-20> <Alph1-9> <Alph> <DownUp>" {
+			SCRIPT {
+				
+								
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				Wait 200
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg3 + "}"
+				Wait 300
+				SendKeys "{" + _arg4 + "}"
+			}
+		}
+		COMMAND "Tray Right <1-20> <Alph1-9> <Alph> <DownUp> Enter" {
+			SCRIPT {
+				
+								
+				Wait 200
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg3 + "}"
+				Wait 500
+				SendKeys "{" + _arg4 + "}"
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray Right <1-20> <Alph1-9> <Alph1-9> <1-40> <DownUp>" {
+			SCRIPT {
+				
+								
+				Wait 200
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+				Wait 300
+				SendKeys "{" + _arg5 + " " + _arg4 + "}"
+			}
+		}
+		COMMAND "Tray Right <1-20> <Alph1-9> <Alph1-9> <1-40> <DownUp> Enter" {
+			SCRIPT {
+				
+								
+				Wait 200
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+				Wait 300
+				SendKeys "{" + _arg5 + " " + _arg4 + "}"
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray Right <1-20> <DownUp>" {
+			SCRIPT {
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				Wait 200
+				SendKeys "{" + _arg2 + "}"
+			}
+		}
+		COMMAND "Tray Right <1-20> <DownUp> Enter" {
+			SCRIPT {
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				Wait 200
+				SendKeys "{" + _arg2 + "}"
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Tray Right <1-20> <1-40> <DownUp>" {
+			SCRIPT {
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				Wait 200
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+			}
+		}
+		COMMAND "Tray Right <1-20> <1-40> <DownUp> Enter" {
+			SCRIPT {
+				' Tray1to20R at 95
+				DllCall "UttC.dll", 95, _arg1
+				Wait 200
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		LIST "1-20" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+		}
+		COMMAND "Cursor <MenuRight>" {
+			SCRIPT {
+				p$ = "Cursor" + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+			} 
+		}
+		COMMAND "<TouchMouse> <MenuRight>" {
+			SCRIPT {
+				ButtonClick 2,1
+			}
+		}
+		LIST "TouchMouse" {
+			"Touch"  "Mouse"
+		}
+		COMMAND "<CursorMouseTouch> <MenuRight> <Alph1-9>" {
+			SCRIPT {
+								
+				IF _arg1 = "Touch" THEN  _arg1 = "Mouse"
+				p$ = _arg1 + "|" + "Menu"
+				' SystemMenus at 89
+				IF _arg1 = "Cursor" THEN DllCall "UttC.dll",89, p$
+				IF _arg1 = "Mouse" THEN ButtonClick 2,1
+				IF _arg2 = "Menu" THEN Wait 1000
+				IF _arg2 = "Right" THEN Wait 500
+				SendKeys MID$(_arg3,0,1)
+			}
+		}
+		COMMAND "<CursorMouseTouch> <MenuRight> <Alph1-9> <Alph1-9>" {
+			SCRIPT {
+								
+								
+				IF _arg1 = "Touch" THEN  _arg1 = "Mouse"
+				p$ = _arg1 + "|" + "Menu"
+				' SystemMenus at 89
+				IF _arg1 = "Cursor" THEN DllCall "UttC.dll",89, p$
+				IF _arg1 = "Mouse" THEN ButtonClick 2,1
+				IF _arg2 = "Menu" THEN Wait 1000
+				IF _arg2 = "Right" THEN Wait 500
+				SendKeys MID$(_arg3,0,1)
+				Wait 300
+				SendKeys MID$(_arg4,0,1)
+			}
+		}
+		COMMAND "<CursorMouseTouch> <MenuRight> <Alph1-9> <EnterEE>" {
+			SCRIPT {
+								
+				IF _arg1 = "Touch" THEN  _arg1 = "Mouse"
+				p$ = _arg1 + "|" + "Menu"
+				' SystemMenus at 89
+				IF _arg1 = "Cursor" THEN DllCall "UttC.dll",89, p$
+				IF _arg1 = "Mouse" THEN ButtonClick 2,1
+				IF _arg2 = "Menu" THEN Wait 1000
+				IF _arg2 = "Right" THEN Wait 500
+				SendKeys MID$(_arg3,0,1)
+				Wait 300
+				SendKeys "{Enter}"
+				Wait 300
+				IF _arg4 = "Enter Enter" THEN SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<CursorMouseTouch> <MenuRight> <Alph1-9> <Alph1-9> <EnterEE>" {
+			SCRIPT {
+								
+								
+				IF _arg1 = "Touch" THEN  _arg1 = "Mouse"
+				p$ = _arg1 + "|" + "Menu"
+				' SystemMenus at 89
+				IF _arg1 = "Cursor" THEN DllCall "UttC.dll",89, p$
+				IF _arg1 = "Mouse" THEN ButtonClick 2,1
+				IF _arg2 = "Menu" THEN Wait 1000
+				IF _arg2 = "Right" THEN Wait 500
+				SendKeys MID$(_arg3,0,1)
+				Wait 300
+				SendKeys MID$(_arg4,0,1)
+				Wait 300
+				SendKeys "{Enter}"
+				Wait 300
+				IF _arg5 = "Enter Enter" THEN SendKeys "{Enter}"
+			}
+		}
+		LIST "EnterEE" {
+			"Enter" "Enter Enter"
+		}
+		COMMAND "<CursorMouseTouch> <MenuRight> <1-40> <DownUp>" {
+			SCRIPT {
+				IF _arg1 = "Touch" THEN  _arg1 = "Mouse"
+				p$ = _arg1 + "|" + "Menu"
+				' SystemMenus at 89
+				IF _arg1 = "Cursor" THEN DllCall "UttC.dll",89, p$
+				IF _arg1 = "Mouse" THEN ButtonClick 2,1
+				Wait 500				
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+			}
+		}
+		COMMAND "<CursorMouseTouch> <MenuRight> <1-40> <DownUp> Enter" {
+			SCRIPT {
+				IF _arg1 = "Touch" THEN  _arg1 = "Mouse"
+				p$ = _arg1 + "|" + "Menu"
+				' SystemMenus at 89
+				IF _arg1 = "Cursor" THEN DllCall "UttC.dll",89, p$
+				IF _arg1 = "Mouse" THEN ButtonClick 2,1
+				Wait 500
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+				Wait 1000
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<CursorMouseTouch> <MenuRight> <DownUp>" {
+			SCRIPT {
+				IF _arg1 = "Touch" THEN  _arg1 = "Mouse"
+				p$ = _arg1 + "|" + "Menu"
+				' SystemMenus at 89
+				IF _arg1 = "Cursor" THEN DllCall "UttC.dll",89, p$
+				IF _arg1 = "Mouse" THEN ButtonClick 2,1
+				Wait 500
+				SendKeys "{" + _arg3 + "}"
+			}
+		}
+		COMMAND "<CursorMouseTouch> <MenuRight> <DownUp> Enter" {
+			SCRIPT {
+				IF _arg1 = "Touch" THEN  _arg1 = "Mouse"
+				p$ = _arg1 + "|" + "Menu"
+				' SystemMenus at 89
+				IF _arg1 = "Cursor" THEN DllCall "UttC.dll",89, p$
+				IF _arg1 = "Mouse" THEN ButtonClick 2,1
+				Wait 500
+				SendKeys "{" + _arg3 + "}"
+				Wait 1000
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<CursorMouseTouch> <MenuRight> <Alph1-9> <1-40> <DownUp>" {
+			SCRIPT {
+								
+				IF _arg1 = "Touch" THEN  _arg1 = "Mouse"
+				p$ = _arg1 + "|" + "Menu"
+				' SystemMenus at 89
+				IF _arg1 = "Cursor" THEN DllCall "UttC.dll",89, p$
+				IF _arg1 = "Mouse" THEN ButtonClick 2,1
+				Wait 500
+				SendKeys MID$(_arg3,0,1)
+				Wait 300
+				SendKeys "{" + _arg5 + " " + _arg4 + "}"
+			}
+		}
+		COMMAND "<CursorMouseTouch> <MenuRight> <Alph1-9> <1-40> <DownUp> Enter" {
+			SCRIPT {
+								
+				IF _arg1 = "Touch" THEN  _arg1 = "Mouse"
+				p$ = _arg1 + "|" + "Menu"
+				' SystemMenus at 89
+				IF _arg1 = "Cursor" THEN DllCall "UttC.dll",89, p$
+				IF _arg1 = "Mouse" THEN ButtonClick 2,1
+				SendKeys MID$(_arg3,0,1)
+				Wait 300
+				SendKeys "{" + _arg5 + " " + _arg4 + "}"
+				IF _arg2 = "Menu" THEN Wait 1000
+				IF _arg2 = "Right" THEN Wait 500
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<CursorMouseTouch> <MenuRight> <Alph1-9> <DownUp>" {
+			SCRIPT {
+								
+				IF _arg1 = "Touch" THEN  _arg1 = "Mouse"
+				p$ = _arg1 + "|" + "Menu"
+				' SystemMenus at 89
+				IF _arg1 = "Cursor" THEN DllCall "UttC.dll",89, p$
+				IF _arg1 = "Mouse" THEN ButtonClick 2,1
+				IF _arg2 = "Menu" THEN Wait 1000
+				IF _arg2 = "Right" THEN Wait 500
+				SendKeys MID$(_arg3,0,1)
+				Wait 300
+				SendKeys "{" + _arg4 + "}"
+			}
+		}
+		COMMAND "<CursorMouseTouch> <MenuRight> <Alph1-9> <DownUp> Enter" {
+			SCRIPT {
+								
+				IF _arg1 = "Touch" THEN  _arg1 = "Mouse"
+				p$ = _arg1 + "|" + "Menu"
+				' SystemMenus at 89
+				IF _arg1 = "Cursor" THEN DllCall "UttC.dll",89, p$
+				IF _arg1 = "Mouse" THEN ButtonClick 2,1
+				SendKeys MID$(_arg3,0,1)
+				Wait 300
+				SendKeys "{" + _arg4 + "}"
+				Wait 1000
+				SendKeys "{Enter}"
+			}
+		}
+		LIST "CursorMouseTouch" {
+			"Cursor"   "Mouse"   "Touch"
+		}
+		COMMAND "<Start> Menu" {
+			SCRIPT {
+				p$ = "Start" + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+			}
+		}
+		COMMAND "Start Right" {
+			SCRIPT {
+				p$ = "Start" + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+				SendKeys "{Esc}"
+				Wait 100
+				p$ = "Cursor" + "|" + "Menu"
+				DllCall "UttC.dll",89, p$
+			}
+		}
+		COMMAND "Start Menu <Alph>" {
+			SCRIPT {
+								
+				p$ = "Start" + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+				Wait 300
+				SendKeys MID$(_arg1,0,1)
+			}
+		}
+		COMMAND "Start Menu <Alph> <Alph>" {
+			SCRIPT {
+								
+								
+				p$ = "Start" + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+				Wait 300
+				SendKeys MID$(_arg1,0,1)
+				SendKeys MID$(_arg2,0,1)
+			}
+		}
+		COMMAND "Start Menu <Alph> Enter" {
+			SCRIPT {
+								
+				p$ = "Start" + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+				SendKeys MID$(_arg1,0,1)
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		COMMAND "Start Menu <Alph> <Alph> Enter" {
+			SCRIPT {
+								
+								
+				p$ = "Start" + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+				Wait 300
+				SendKeys MID$(_arg1,0,1)
+				SendKeys MID$(_arg2,0,1)
+				Wait 500
+				SendSystemKeys "{Enter}"
+			}
+		}
+		LIST "Alph" {
+			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+		}
+		COMMAND "Start Menu <1-100> <DownUp>" {
+			SCRIPT {
+				p$ = "Start" + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+				Wait 500
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+			}
+		}
+		COMMAND "Start Menu <1-100> <DownUp> Enter" {
+			SCRIPT {
+				p$ = "Start" + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				Wait 500
+				SendKeys "{Enter}"
+			}
+		}
+		LIST "1-100" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40" "41" "42" "43" "44" "45" "46" "47" "48" "49"
+			 "50" "51" "52" "53" "54" "55" "56" "57" "58" "59"
+			 "60" "61" "62" "63" "64" "65" "66" "67" "68" "69"
+			 "70" "71" "72" "73" "74" "75" "76" "77" "78" "79"
+			 "80" "81" "82" "83" "84" "85" "86" "87" "88" "89"
+			 "90" "91" "92" "93" "94" "95" "96" "97" "98" "99"  "100"
+		}
+		COMMAND "Start Menu <DownUp>" {
+			SCRIPT {
+				p$ = "Start" + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+				Wait 500
+				SendKeys "{" + _arg1 + "}"
+			}
+		}
+		COMMAND "Start Menu <DownUp> Enter" {
+			SCRIPT {
+				p$ = "Start" + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+				SendKeys "{" + _arg1 + "}"
+				Wait 500
+				SendKeys "{Enter}"
+			}
+		}
+		LIST "MenuRight" {
+			"Menu"
+			"Right"
+		}
+		COMMAND "<Start> <ProgDocSettingsSearchFindFavHelp>" {
+			SCRIPT {
+				IF _arg2 = "Docs" THEN  _arg2 = "Documents"
+				SendSystemKeys "{Ctrl+Esc}"
+				Wait 10
+				SendKeys "{Up 10}"
+				Wait 10
+				IF _arg2 = "Settings" THEN SendKeys "{Down 3}s"
+				IF _arg2 = "Programs" THEN SendKeys "p"
+				IF _arg2 = "Documents" THEN SendKeys "{Down 2}d"
+				IF _arg2 = "Favorites" THEN SendKeys "{Down 1}a"
+				IF _arg2 = "Search" THEN SendKeys "{Down 4}c"
+				IF _arg2 = "Find" THEN SendKeys "f"
+				IF _arg2 = "Help" THEN SendKeys "{Down 5}h"
+				IF _arg2 = "Programs" XOR _arg2 = "Documents" XOR _arg2 = "Favorites" XOR _arg2 = "Search" XOR _arg2 = "Find" XOR _arg2 = "Settings" THEN SendKeys "{Right}"
+			}
+		}
+		COMMAND "Start Run" {
+			SCRIPT {
+				' HoldAKey at 51
+				DllCall "UttC.dll",51, "Win"
+				wait 50
+				SendSystemKeys "r"
+				wait 50
+				' ReleaseAKey at 69
+				DllCall "UttC.dll",69, "Win"
+				Wait 10
+				SendKeys "{Up}"
+				SendKeys "{Alt+ExtDown}"
+			}
+		}
+ 
+		LIST "Start" {
+			"Start"
+		}
+		LIST "ProgDocSettingsSearchFindFavHelp" {
+			"Programs"
+			"Documents"
+			"Docs"
+			"Settings"
+			"Search"
+			"Find"
+			"Favorites"
+			"Help"
+		}
+		COMMAND "Run <OpenBoxClose>" {
+			SCRIPT {
+				' HoldAKey at 51
+				DllCall "UttC.dll",51, "Win"
+				wait 50
+				SendSystemKeys "r" 
+				wait 50
+				' ReleaseAKey at 69
+				DllCall "UttC.dll",69, "Win"
+				Wait 10
+				SendKeys "{Up}"
+				SendKeys "{Alt+ExtDown}"
+				IF _arg1 = "Close" THEN SendKeys "{Alt+F4}"
+			}
+		}
+		COMMAND "Run <RunPrograms>" {
+			SCRIPT {
+				' HoldAKey at 51
+				DllCall "UttC.dll",51, "Win"
+				wait 50
+				SendSystemKeys "r"
+				wait 50
+				' ReleaseAKey at 69
+				DllCall "UttC.dll",69, "Win"
+				Wait 10
+				IF _arg1 = "MS Config" THEN SendKeys "msconfig"
+				IF _arg1 = "DOS" XOR _arg1 = "Command" THEN SendKeys "Cmd"
+				SendKeys "{Enter}"
+			}
+		}
+		LIST "RunPrograms" {
+			"MS Config"  "DOS"  "Command"
+		}
+		COMMAND "MS Config <OpenBoxClose>"{
+			SCRIPT {
+				SendSystemKeys "{Ctrl+Esc}"
+				SendKeys "{Up 10}"
+				Wait 10
+				SendKeys "r"
+				Wait 10
+				SendKeys "msconfig"
+				SendKeys "{Enter}"
+				Wait 100
+				IF _arg1 = "Close" THEN SendKeys "{Alt+F4}"
+			}
+		}
+		COMMAND "<WindowsDialogBoxes> <OpenBoxClose>" {
+			SCRIPT {
+				ver$ = DllCall$("UttC.dll", "GetWindowsVersion", "", 10)
+				IF _arg1 = "Computer" THEN AppBringUp "COMPMGMT.msc"
+				IF _arg1 = "Event" THEN AppBringUp "eventvwr.msc"
+				IF _arg1 = "Performance" THEN AppBringUp "PERFMON.msc"
+				IF _arg1 = "System Info" XOR _arg1 = "System Information" THEN AppBringUp "MSInfo32"
+				IF _arg1 = "Character" THEN AppBringUp "CHARMAP"
+				IF _arg1 = "Services" THEN AppBringUp "services.msc"
+				IF _arg1 = "Magnifier" THEN AppBringUp "magnify.exe"
+				IF _arg1 = "Narrator" THEN AppBringUp "narrator.exe"
+				IF _arg1 = "On-screen" THEN AppBringUp "osk.exe"
+				IF _arg1 = "Sidebar" THEN AppBringUp "Sidebar"
+				IF _arg1 = "Utility" THEN 
+					' HoldAKey at 51
+					DllCall "UttC.dll",51, "Win"
+					wait 50
+					SendSystemKeys "u"
+					wait 50
+					' ReleaseAKey at 69
+					DllCall "UttC.dll",69, "Win"
+				END IF
+				IF _arg1 = "System Help" THEN 
+					' HoldAKey at 51
+					DllCall "UttC.dll",51, "Win"
+					wait 50
+					SendSystemKeys "{F1}"
+					wait 50
+					' ReleaseAKey at 69
+					DllCall "UttC.dll",69, "Win"
+				END IF
+				IF _arg1 = "Search" THEN 
+					' HoldAKey at 51
+					DllCall "UttC.dll",51, "Win"
+					wait 50
+					SendSystemKeys "f"
+					wait 50
+					' ReleaseAKey at 69
+					DllCall "UttC.dll",69, "Win"
+				END IF
+				IF _arg1 = "System" XOR _arg1 = "System Properties" THEN 
+					' HoldAKey at 51
+					DllCall "UttC.dll",51, "Win"
+					wait 50
+					SendSystemKeys "{Pause}"
+					wait 50
+					' ReleaseAKey at 69
+					DllCall "UttC.dll",69, "Win"
+				END IF
+		            IF (instr(ver$,"600")) > 0 THEN
+ 					IF _arg1 = "Disk" THEN AppBringUp "dfrgui.exe"
+					IF _arg1 = "Volume" THEN AppBringUp "SNDVOL"				 
+					IF _arg1 = "Sound" THEN AppBringUp "SoundRecorder"
+					IF _arg1 = "Backup" THEN AppBringUp "sdclt"
+					IF _arg1 = "Sticky" THEN AppBringUp "stikynot.exe"
+					IF _arg1 = "Tablet" THEN AppBringUp "tabtip.exe"
+					IF _arg1 = "Journal" THEN AppBringUp "journal.exe"
+					IF _arg1 = "Scheduler" XOR _arg1 = "Task Scheduler" THEN AppBringUp "taskschd.msc"
+				ELSE
+					IF _arg1 = "Disk" THEN AppBringUp "dfrg.msc"
+					IF _arg1 = "Volume" THEN AppBringUp "SNDVOL32"
+					IF _arg1 = "Sound" THEN AppBringUp "SNDREC32"
+					IF _arg1 = "Backup" THEN AppBringUp "NTBACKUP"
+				END IF
+				IF _arg2 = "Close" THEN SendKeys "{Alt+F4}"
+			}
+		}
+		LIST "WindowsDialogBoxes" {
+			"Volume"   "Sound"   "Performance"  "System Info"   "System Information"  "Services"  
+			"Backup"  "Character"   "Computer"  "Event"   "Disk"  
+			"Utility"  "System Help"  "Search"  "System"  "System Properties" "Magnifier"   "Narrator"
+			"On-screen"  "MS Config"  "Sidebar" "Sticky"  "Tablet"  "Journal"  "Scheduler" "Task Scheduler"
+		}
+		COMMAND "<TaskbarToolbarsWinDoc> Menu" {
+			SCRIPT {
+				p$ = _arg1 + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+			}
+		}
+		LIST "TaskbarToolbarsWinDoc" {
+			"Taskbar"
+			"Toolbars"
+			"Window"  "Win"
+			"Document"  "Doc"
+		}
+		COMMAND "Taskbar <RightOpenBoxPropertiesToolbarsClose>" {
+			SCRIPT {
+				p$ = "Taskbar" + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+				IF _arg1 = "Toolbars" THEN SendKeys "t"
+				IF _arg1 = "Properties" THEN SendKeys "r"
+				IF _arg1 = "Box" XOR _arg1 = "Open" THEN SendKeys "r"
+				Wait 100
+				IF _arg1 = "Close" THEN 
+				SendKeys "r"
+				SendKeys "{Esc}"
+				END IF
+			}
+		}
+		LIST "RightOpenBoxPropertiesToolbarsClose" {
+			"Right"
+			"Open"
+			"Box"
+			"Properties"
+			"Toolbars"
+			"Close"
+		}
+		COMMAND "Task <ManagerProcessesApplicationsPerformanceBox>" {
+			SCRIPT {
+				p$ = "Taskbar" + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+				IF _arg1 = "Manager" XOR _arg1 = "Box" XOR _arg1 = "Open" XOR _arg1 = "Close" THEN
+				SendSystemKeys "k"
+				ELSE
+				SendSystemKeys "k"
+				Wait 200
+				HeardWord "" + _arg1 + ""
+				Wait 200
+				SendKeys "{Tab}"
+				END IF
+				IF _arg1 = "Close" THEN SendKeys "{Alt+F4}"
+			}
+		}
+		LIST "ManagerProcessesApplicationsPerformanceBox" {
+			"Manager"
+			"Processes"
+			"Applications"
+			"Performance"
+			"Box"
+			"Open"
+			"Close"
+		}
+		COMMAND "Task Manager <OpenBoxClose>" {
+			SCRIPT {
+				p$ = "Taskbar" + "|" + "Menu"
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, p$
+				SendSystemKeys "k"
+				Wait 200
+				HeardWord "" + _arg1 + ""
+				Wait 200
+				SendKeys "{Tab}"
+				END IF
+				IF _arg1 = "Close" THEN SendKeys "{Alt+F4}"
+			}
+		}
+		LIST "OpenBoxClose" {
+			"Open"  "Box"  "Close"
+		}
+		COMMAND "<ControlPanelCBoxClose>" {
+			SCRIPT {
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, "Control Panel"
+				Wait 300
+				IF _arg1 = "Control Close" XOR _arg1 = "Control Panel Close" THEN SendKeys "{Alt+F4}"
+			}
+		}
+		LIST "ControlPanelCBoxClose" {
+			"Control Panel"
+			"Control Panel Open"
+			"Control Panel Close"
+			"Control Box"
+			"Control Open"
+			"Control Close"
+		}
+		COMMAND "<ControlPanelCBox> <Alph1-9>" {
+			SCRIPT {
+								
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, "Control Panel"
+				Wait 800				
+				SendKeys MID$(_arg2,0,1)
+			}
+		}
+		COMMAND "<ControlPanelCBox> <Alph1-9> <Alph1-9>" {
+			SCRIPT {
+								
+								
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, "Control Panel"
+				Wait 700
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+			}
+		}
+		COMMAND "<ControlPanelCBox> <Alph1-9> Enter" {
+			SCRIPT {
+								
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, "Control Panel"
+				Wait 700
+				SendKeys MID$(_arg2,0,1)
+				Wait 500
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<ControlPanelCBox> <Alph1-9> <Alph1-9> Enter" {
+			SCRIPT {
+								
+								
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, "Control Panel"
+				Wait 700
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys MID$(_arg3,0,1)
+				Wait 500
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<ControlPanelCBox> <1-40> <DownUp>" {
+			SCRIPT {
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, "Control Panel"
+				Wait 1200
+				SendKeys "{Down}{Up}"
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+			}
+		}
+		COMMAND "<ControlPanelCBox> <1-40> <DownUp> Enter" {
+			SCRIPT {
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, "Control Panel"
+				Wait 1200
+				SendKeys "{Down}{Up}"
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				Wait 500
+				SendKeys "{Enter}"
+ 
+			}
+		}
+		COMMAND "<ControlPanelCBox> <DownUp>" {
+			SCRIPT {
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, "Control Panel"
+				Wait 1000
+				SendKeys "{Down}{Up}"
+				SendKeys "{" + _arg2 + "}"
+			}
+		}
+		COMMAND "<ControlPanelCBox> Down Up" {
+			SCRIPT {
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, "Control Panel"
+				Wait 1000
+				SendKeys "{Down}{Up}"
+				SendKeys "{Down}{Up}"
+			}
+		}
+		COMMAND "<ControlPanelCBox> <DownUp> Enter" {
+			SCRIPT {
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, "Control Panel"
+				Wait 1000
+				SendKeys "{Down}{Up}"
+				SendKeys "{" + _arg2 + "}"
+				Wait 500
+				SendKeys "{Down}{Up}"
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<ControlPanelCBox> <Alph1-9> <1-40> <DownUp>" {
+			SCRIPT {
+								
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, "Control Panel"
+				Wait 700
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+			}
+		}
+		COMMAND "<ControlPanelCBox> <Alph1-9> <1-40> <DownUp> Enter" {
+			SCRIPT {
+								
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, "Control Panel"
+				Wait 700
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+				Wait 500
+				SendKeys "{Enter}"
+			}
+		}
+		LIST "1-40" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			 "11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+			 "21" "22" "23" "24" "25" "26" "27" "28" "29" "30" 
+			 "31" "32" "33" "34" "35" "36" "37" "38" "39" "40"
+		}
+		COMMAND "<ControlPanelCBox> <Alph1-9> <DownUp>" {
+			SCRIPT {
+								
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, "Control Panel"
+				Wait 700
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg3 + "}"
+			}
+		}
+		COMMAND "<ControlPanelCBox> <Alph1-9> <DownUp> Enter" {
+			SCRIPT {
+								
+				' SystemMenus at 89
+				DllCall "UttC.dll",89, "Control Panel"
+				Wait 700
+				SendKeys MID$(_arg2,0,1)
+				Wait 300
+				SendKeys "{" + _arg3 + "}"
+				Wait 500
+				SendKeys "{Enter}"
+			}
+		}
+		LIST "ControlPanelCBox" {
+			"Control Panel"
+			"Control Box"
+			"Control Open"
+		}	
+		LIST "Alph1-9" {
+			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z" 
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9" 
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+		}
+		LIST "DownUp" {
+			"Down"  "Up"
+		}
+		COMMAND "<NetworkPrintersTaskbarLocalandMenuBox>" {
+			SCRIPT {
+				SendSystemKeys "{Ctrl+Esc}"
+				Wait 10
+				SendKeys "{Up 7}"
+				SendKeys "s"
+				SendKeys "{Enter}"
+				Wait 100
+				IF _arg1 = "Settings Network" XOR _arg1 = "Network Menu" THEN SendKeys "n"
+				IF _arg1 = "Settings Printers" XOR _arg1 = "Printers Menu" THEN SendKeys "p"
+				IF _arg1 = "Local Area" XOR _arg1 = "Local Box" XOR _arg1 = "Local Open" THEN SendKeys "n{Up}{Enter}"
+			}
+		}
+		LIST "NetworkPrintersTaskbarLocalandMenuBox" {
+			"Settings Network"
+			"Network Menu"
+			"Settings Printers"
+			"Printers Menu"
+			"Local Box"
+			"Local Open"
+			"Local Area"
+		}	
+	}
+}
+ 

@@ -1,0 +1,3028 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+ 
+	STATE "Global Commands" GLOBAL {
+ 
+################## Sec. 7: Text
+#7a Moving -- basic doc
+#7b Moving -- basic DULR and screen, including wait and Touch
+#7c Cursor placing -- basic words lines graphs
+#7d Cursor Placing -- combinations
+#7e Moving the cursor to a given GCLWS
+#7f Moving the cursor to a given GCLWS combinations
+#7g Selecting -- basic
+#7h Moving and selecting -- 2 steps
+#7i Moving and selecting -- 3 steps
+#7j Moving and selecting -- special combinations
+#7k Select and Find
+#7l Select, Find, Move 
+#7m Select and find Stay
+#7n Select and find Repeat, Wait Repeat
+#7o Moving by given character
+ 
+#7p Selecting letters --In UttC7b
+#7q Selecting numbers --In UttC7b
+ 
+#7r Copying, Cutting, Pasting, Deleting, Formatting -- basic
+#7s Selecting and Copying, Cutting, Pasting, Deleting, Formatting
+#7t Moving and Copying, Cutting, Pasting, Deleting Formatting
+#7u Moving and selecting and Copying, Cutting, Pasting, Deleting Formatting
+#7v Selecting letters and Copying, Cutting, Pasting, Deleting Formatting 
+#7w Selecting plus keyboard shortcut
+#7x Moving and selecting plus keyboard shortcut
+#7y Moving text
+ 
+#In UttC7b
+#7z Spacing, Compounding, Undoing, Duplicating
+#7aa Standard Lists
+#7ab Distinguishing between forms -- short 
+#7ac Distinguishing between forms -- long 
+#7ad Distinguishing between forms -- To
+#7ae 
+##################
+ 
+#7a. Moving -- basic doc
+		COMMAND "Go <BottomTopAfterBeforeHomeEnd>" {
+			SCRIPT {
+				if _arg1 = "After" then SendKeys "{Right}"
+				if _arg1 = "Right" then SendKeys "{Right}"
+				if _arg1 = "Before" then SendKeys "{Left}"
+				if _arg1 = "Left" then SendKeys "{Left}"
+				if _arg1 = "Home" then SendKeys "{Home}"
+				if _arg1 = "Top" then SendKeys "{Ctrl+Home}"
+				if _arg1 = "End" then SendKeys "{End}"
+				if _arg1 = "Bottom" then SendKeys "{Ctrl+End}"
+				IF _arg1 = "Top End" THEN SendKeys "{Ctrl+Home}{End}"
+				IF _arg1 = "Bottom Home" THEN SendKeys "{Ctrl+End}{Home}"
+			}
+		}
+		LIST "BottomTopAfterBeforeHomeEnd" {
+			"Top"  "Bottom"
+			"Before"  "After"
+			"Home"  "End"
+			"Top End"  "Bottom Home"
+		}
+		COMMAND "Bottom <1-100> Up" {
+			SCRIPT {
+				SendKeys "{Ctrl+End}"
+				SendKeys "{Up " + _arg1 + "}{Home}"
+			}
+		}
+ 
+		COMMAND "<TopBottom> <11-20> <DULR>" {
+			SCRIPT {
+				IF _arg1 = "Bottom" THEN SendKeys "{Ctrl+End}"
+				IF _arg1 = "Top" THEN SendKeys "{Ctrl+Home}"
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				IF _arg1 = "Bottom" THEN SendKeys "{Home}"
+			}
+		}
+		LIST "11-20" {
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+		}
+ 
+#7b. Moving -- basic DULR and screen, including wait and Touch 
+		COMMAND "<1-100> <DULR>" {
+			SCRIPT {
+				SendKeys "{"+ _arg2 + " " + _arg1 + "}"
+			}
+		}
+		COMMAND "Cursor <1-100> <DULR>" {
+			SCRIPT {
+				loop& = Val(_arg1)
+				while ( loop& )
+				SendKeys "{" + _arg2 + "}"
+				Wait 300
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<1-100> <DULR> Touch" {
+			SCRIPT {
+				SendKeys "{"+ _arg2 + " " + _arg1 + "}"
+				Wait 200
+				ButtonClick
+			}
+		}
+		COMMAND "Cursor <1-100> <DULR> Touch" {
+			SCRIPT {
+				SendKeys "{"+ _arg2 + " " + _arg1 + "}"
+				Wait 200
+				ButtonClick
+			}
+		}
+		COMMAND "<1-5> <0-9> <0-9> <DULR>" {
+			SCRIPT {
+				SendKeys "{" + _arg4 + " " + _arg1 + "" + _arg2 + "" + _arg3 + "}"
+			}
+		}
+		COMMAND "<1-9> <0-9> <DULR>" {
+			SCRIPT {
+				SendKeys "{" + _arg3 + " " + _arg1 + "" + _arg2 + "}"
+			}
+		}
+		COMMAND "<1-100> <DULR> <1-100> <DULR>" {
+			SCRIPT {
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+			}
+		}
+		COMMAND "<1-100> <DULR> <1-100> <DULR> Enter" {
+			SCRIPT {
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<1-100> <DULR> Enter" {
+			SCRIPT {
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				Wait 100
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<1-100> <DULR> <WaitWEnter>" {
+			SCRIPT {
+				loop& = Val(_arg1)
+				while ( loop& )
+				SendKeys "{" + _arg2 + "}"
+				Wait 300
+				loop& = loop& - 1
+				wend
+				IF _arg3 = "Wait Enter" THEN 
+				Wait 300
+				SendKeys "{Enter}"			
+				END IF
+			}
+		}
+		COMMAND "<1-100> <DULR> Wait <1-10>" {
+			SCRIPT {
+				loop& = Val(_arg1)
+				while ( loop& )
+				SendKeys "{" + _arg2 + "}"
+				Wait Val(_arg3)*100
+				loop& = loop& - 1
+				wend				
+			}
+		}
+		COMMAND "<1-20> <DULR> <1-20> <DULR> <WaitWEnter>" {
+			SCRIPT {
+				loop& = Val(_arg1)
+				while ( loop& )
+				SendKeys "{" + _arg2 + "}"
+				Wait 300
+				loop& = loop& - 1
+				wend			
+				loop& = Val(_arg3)
+				while ( loop& )
+				SendKeys "{" + _arg4 + "}"
+				Wait 300
+				loop& = loop& - 1
+				wend			
+				IF _arg5 = "Wait Enter" THEN 
+				Wait 300
+				SendKeys "{Enter}"
+				END IF
+			}
+		}
+		LIST "WaitWEnter" {
+			"Wait"  "Wait Enter"
+		}
+		COMMAND "Screen <UpDown>" {
+			SCRIPT {
+				IF _arg1 = "Up" THEN SendKeys "{PgUp}"
+				IF _arg1 = "Down" THEN SendKeys "{PgDn}"
+			}
+		}
+		COMMAND "<1-40> <ScreenSUp>" {
+			SCRIPT {
+				IF _arg2 = "Screen" XOR _arg2 = "Screen Down" THEN  _arg2 = "PgDn"
+				IF _arg2 = "Screen Up" THEN  _arg2 = "PgUp"
+				loop& = Val(_arg1)
+				while ( loop& )
+				SendKeys "{" + _arg2 + "}"
+				loop& = loop& - 1
+				wend				
+			}
+		}
+		COMMAND "<1-40> <DULRSSU> System" {
+			SCRIPT {
+				IF _arg2 = "Screen" XOR _arg2 = "Screen Down" THEN  _arg2 = "PgDn"
+				IF _arg2 = "Screen Up" THEN  _arg2 = "PgUp"
+				SendSystemKeys "{"+ _arg2 + " " + _arg1 + "}"
+			}
+		}
+		COMMAND "<1> <DULRSSU>" {
+			SCRIPT {
+				IF _arg2 = "Screen" XOR _arg2 = "Screen Down" THEN  _arg2 = "PgDn"
+				IF _arg2 = "Screen Up" THEN  _arg2 = "PgUp"
+				SendSystemKeys "{"+ _arg2 + " " + _arg1 + "}"
+			}
+		}
+		LIST "1" {
+			"1"
+		}
+		COMMAND "<1-40> <ScreenSUp> Wait" {
+			SCRIPT {
+				IF _arg2 = "Screen" XOR _arg2 = "Screen Down" THEN  _arg2 = "PgDn"
+				IF _arg2 = "Screen Up" THEN  _arg2 = "PgUp"
+				loop& = Val(_arg1)
+				while ( loop& )
+				SendKeys "{" + _arg2 + "}"
+				Wait 2000
+				loop& = loop& - 1
+				wend				
+			}
+		}
+		COMMAND "<1-40> <ScreenSUp> Wait <1-10>" {
+			SCRIPT {
+				IF _arg2 = "Screen" XOR _arg2 = "Screen Down" THEN  _arg2 = "PgDn"
+				IF _arg2 = "Screen Up" THEN  _arg2 = "PgUp"
+				loop& = Val(_arg1)
+				while ( loop& )
+				SendKeys "{" + _arg2 + "}"
+				Wait Val(_arg3)*1000
+				loop& = loop& - 1
+				wend				
+			}
+		}
+		LIST "ScreenSUp" {
+			"Screen" "Screen Down"  "Screen Up"
+		}
+		COMMAND "<1-40> <DULRSSU> Wait <1-10> Repeat <1-20>" {
+			SCRIPT {
+				IF _arg2 = "Screen" XOR _arg2 = "Screen Down" THEN  _arg2 = "PgDn"
+				IF _arg2 = "Screen Up" THEN  _arg2 = "PgUp"
+				loop& = Val(_arg4)
+				while ( loop& )
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				IF _arg2 = "PgDn" XOR _arg2 = "PgUp" THEN  
+				Wait Val(_arg3)*1000
+				ELSE
+				Wait Val(_arg3)*1000
+				END IF
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<1-40> <DULRSSU> Wait Repeat <1-20>" {
+			SCRIPT {
+				IF _arg2 = "Screen" XOR _arg2 = "Screen Down" THEN  _arg2 = "PgDn"
+				IF _arg2 = "Screen Up" THEN  _arg2 = "PgUp"
+				loop& = Val(_arg3)
+				while ( loop& )
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				IF _arg2 = "PgUp" XOR _arg2 = "PgDn"THEN 
+				SendKeys "{" + _arg2 + "}"
+				Wait 1000
+				ELSE
+				SendKeys "{" + _arg2 + "}"
+				Wait 300
+				END IF
+				loop& = loop& - 1
+				wend
+			}
+		}
+ 
+#7c. Cursor placing -- basic words lines graphs
+		COMMAND "Line <UpDown>" {
+			SCRIPT {
+				IF _arg1 = "Up" THEN SendKeys "{Up}{Home}"
+				IF _arg1 = "Down" THEN SendKeys "{Down}{Home}"
+			}
+		}
+		COMMAND "Graph <UpDown>" {
+			SCRIPT {
+				IF _arg1 = "Up" THEN SendKeys "{Ctrl+Up}"
+				IF _arg1 = "Down" THEN SendKeys "{Ctrl+Down}"
+			}
+		}
+		COMMAND "Graph Space <UpDown>" {
+			SCRIPT {
+				IF _arg1 = "Up" THEN SendKeys "{Ctrl+Up 2}"
+				IF _arg1 = "Down" THEN SendKeys "{Ctrl+Down 2}"
+			}
+		}
+		COMMAND "<GLWDoc> <HomeEndTopBottom>" {
+			SCRIPT {
+				IF _arg2 = "Home" THEN 
+				IF _arg1 = "Graph" THEN SendKeys "{Ctrl+Up}"
+				IF _arg1 = "Word" THEN SendKeys "{Ctrl+Left}"
+				IF _arg1 = "Line" THEN SendKeys "{Home}"
+				IF _arg1 = "Document" XOR _arg1 = "Doc" THEN SendKeys "{Ctrl+Home}"
+				END IF
+				IF _arg2 = "End" THEN 
+				IF _arg1 = "Graph" THEN Sendkeys "{Ctrl+Down}"
+				IF _arg1 = "Word" THEN SendKeys "{Ctrl+Right}"
+				IF _arg1 = "Line" THEN SendKeys "{End}"
+				IF _arg1 = "Document" XOR _arg1 = "Doc" THEN SendKeys "{Ctrl+End}"
+				END IF
+				IF _arg2 = "Top" THEN 
+				IF _arg1 = "Graph" THEN SendKeys "{Shift+Ctrl+Up}"
+				IF _arg1 = "Word" THEN SendKeys "{Shift+Ctrl+Left}"
+				IF _arg1 = "Line" THEN SendKeys "{Shift+Home}"
+				IF _arg1 = "Document" XOR _arg1 = "Doc" THEN SendKeys "{Shift+Ctrl+Home}"
+				END IF
+				IF _arg2 = "Bottom" THEN 
+				IF _arg1 = "Graph" THEN Sendkeys "{Shift+Ctrl+Down}"
+				IF _arg1 = "Word" THEN SendKeys "{Shift+Ctrl+Right}"
+				IF _arg1 = "Line" THEN SendKeys "{Shift+End}"
+				IF _arg1 = "Document" XOR _arg1 = "Doc" THEN SendKeys "{Shift+Ctrl+End}"
+				END IF
+			}
+		}
+		LIST "GLWDoc" {
+			"Word"
+			"Line"
+			"Graph"
+			"Document"  "Doc"
+		}
+		LIST "HomeEndTopBottom" {
+			"Home"  "End"
+			"Top"  "Bottom"
+		}
+		COMMAND "<1-20> <GLRLWBALUSBALeftRtSSUddd>" {
+			SCRIPT {
+				IF _arg2 = "Line Down" THEN  _arg2 = "Line"
+				IF _arg2 = "Graph Down" THEN  _arg2 = "Graph"
+				IF _arg2 = "Screen Down" THEN  _arg2 = "Screen"
+				p$ = _arg1 + "|" + _arg2
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+			}
+		}
+ 
+		COMMAND "Cursor <1-20> <GLRLWBALUSBALeftRtSSUddd>" {
+			SCRIPT {
+				IF _arg2 = "Line Down" THEN  _arg2 = "Line"
+				IF _arg2 = "Graph Down" THEN  _arg2 = "Graph"
+				IF _arg2 = "Screen Down" THEN  _arg2 = "Screen"
+				p$ = _arg1 + "|" + _arg2
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+			}
+		}
+ 
+#7d. Cursor Placing -- combinations
+		COMMAND "<1-20> <DULR> <AnotherInsert> Graph" {
+			SCRIPT {
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				Wait 200
+				IF _arg3 = "Another" THEN SendKeys "{End}{Enter 2}"
+				IF _arg3 = "Insert" THEN SendKeys "{Home}{Enter 2}{Up}"
+			}
+		}
+		COMMAND "<1-20> <DULR> <AnotherInsert> Line" {
+			SCRIPT {
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				Wait 200
+				IF _arg3 = "Another" THEN SendKeys "{End}{Enter}"
+				IF _arg3 = "Insert" THEN SendKeys "{Home}{Enter}{Up}"
+			}
+		}
+		LIST "Another Insert" {
+			"Another"  "Insert"
+		}
+		COMMAND "<DULRHETopBottom> <1-20> <GLRLWBALUSBALeftRtSSU>" {
+			SCRIPT {
+				IF _arg1 = "Top" THEN _arg1 = "Ctrl+Home"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				SendKeys "{" + _arg1 + "}"
+				p$ = _arg2 + "|" + _arg3
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+			}
+		}
+		LIST "DULRHETopBottom" {
+			"Down"  "Up"  "Left"  "Right"  "Home"  "End"  "Top"  "Bottom"
+		}
+		COMMAND "<1-20> <DULR> <1-20> <GLRLWBALUSBALeftRtSSU>" {
+			SCRIPT {
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				p$ = _arg3 + "|" + _arg4
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+			}
+		}
+		COMMAND "<1-20> <GLRLWBALUSBALeftRtSSU> <1-20> <DULR>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"  
+			}
+		}
+		COMMAND "<1-20> <GLRLWBALUSBALeftRtSDSU> <DULR>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+				SendKeys "{" + _arg3 + "}"  
+			}
+		}
+		LIST "GLRLWBALUSBALeftRtSDSU" {
+			"Letter"
+			"Word"  "Before"  "After"
+			"Before Left"  "After Left"
+			"Before Right"  "After Right"
+			"Line"  "Line Up"
+			"Graph"  "Graph Up"
+			"Graph Space"  "Graph Space Up"
+			"Screen Down"  "Screen Up"
+		}
+		COMMAND "<TopBottom> <1-20> <DULR> <1-20> <GLRLWBALUSBALeftRtSSU>" {
+			SCRIPT {
+				IF _arg1 = "Top" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom" THEN SendKeys "{Ctrl+End}"
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				p$ = _arg4 + "|" + _arg5
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+			}
+		}
+		COMMAND "<1-20> <GLRLWBALUSBALeftRtSSU> <1-20> <GLRLWBALUSBALeftRtSSU>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+				p$ = _arg3 + "|" + _arg4
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+			}
+		}
+		COMMAND "<1-20> <GLLWUDUs> <BeforeAfter>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2 + "|" + _arg3
+				' GLLWUDUs at 47
+				DllCall "UttC.dll", 47, p$
+			}
+		}
+		COMMAND "<1-20thEnd> <BefreAftrBALeftRt>" {
+			SCRIPT {
+				HeardWord _arg1, "Word"
+				IF _arg2 = "Before" XOR _arg2 = "Before Left" XOR _arg2 = "Before Right" THEN SendKeys "{Left}"
+				IF _arg2 = "After" XOR _arg2 = "After Left" XOR _arg2 = "After Right" THEN SendKeys "{Right}"
+				IF _arg2 = "Before Left" XOR _arg2 = "After Left" THEN SendKeys "{Left}"
+				IF _arg2 = "Before Right" XOR _arg2 = "Before Left" THEN SendKeys "{Right}"
+			}
+		}
+		LIST "BefreAftrBALeftRt" {
+			"Before"  "After"
+			"Before Left"  "After Left"
+			"Before Right"  "After Right"
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <BeforeAfter>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				IF _arg3 = "Before" THEN SendKeys "{Left}"
+				IF _arg3 = "After" THEN SendKeys "{Right}"
+			}
+		}
+		LIST "BeforeAfter" {
+			"Before"  "After"
+		}
+		COMMAND "Screen <UpDown> Screen <UpDown>" {
+			SCRIPT {
+				IF _arg1 = "Up" THEN SendKeys "{PgUp}"
+				IF _arg1 = "Down" THEN SendKeys "{PgDn}"
+				IF _arg2 = "Up" THEN SendKeys "{PgUp}"
+				IF _arg2 = "Down" THEN SendKeys "{PgDn}"
+			}
+		}
+#7e. Moving the cursor to a given GCLWS
+		COMMAND "<GCLWSScreenSBottom> <1-100>" {
+			SCRIPT {
+				Arg2Minus = Val(_arg2) -1
+				Arg2Minus = Str$(Arg2Minus)
+				SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Line" THEN 
+				SendKeys "{Down " + Arg2Minus + "}"
+				SendKeys "{Home}{Shift+End}"
+				Wait 300
+				SendKeys "{Home}"
+				END IF
+				IF _arg1 = "Graph Space" XOR _arg1 = "Graph" THEN SendKeys "{Ctrl+Down " + Arg2Minus + "}"
+				IF _arg1 = "Graph Space" THEN SendKeys "{Ctrl+Down " + Arg2Minus + "}"
+				IF _arg1 = "Graph" XOR _arg1 = "Graph Space" THEN
+				SendKeys "{Shift+Ctrl+Down}" 
+				Wait 300
+				SendKeys "{Ctrl+Left}"
+				END IF
+				IF _arg1 = "Word" THEN 
+				SendKeys "{Ctrl+Right " + Arg2Minus + "}"
+				SendKeys "{Shift+Ctrl+Right}"
+				Wait 300
+				SendKeys "{Ctrl+Left}"
+				END IF
+				IF _arg1 = "Character" THEN
+				SendKeys "{Right " + Arg2Minus + "}"
+				SendKeys "{Shift+Right}"
+				Wait 300
+				SendKeys "{Left}"
+				END IF
+				IF _arg1 = "Screen" THEN SendKeys "{PgDn " + Arg2Minus + "}"
+				IF _arg1 = "Screen Bottom" THEN SendKeys "{Ctrl+End}{PgUp " + Arg2Minus + "}"
+				IF _arg1 = "Sentence" THEN 
+				SendKeys "{Ctrl+f}"
+				loop& = Val(_arg2) -1
+				while ( loop& )
+				SendKeys "."
+				SendKeys "{Enter}"
+				loop& = loop& - 1
+				wend
+				SendKeys "{Esc}"
+				SendKeys "{Right 2}"
+				END IF
+			}
+		}
+ 		COMMAND "<GCLWSScreenSBottom> <1-9> <0-9>" {
+			SCRIPT {
+				Arg3Minus = Val(_arg3) -1
+				Arg3Minus = Str$(Arg3Minus)
+				SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Graph" XOR _arg1 = "Graph Space" THEN SendKeys "{Ctrl+Down " + _arg2 + "" + _arg3 + "}{Ctrl+Up}"
+				IF _arg1 = "Graph Space" THEN SendKeys "{Ctrl+Down " + _arg2 + "" + _arg3 + "}{Ctrl+Up}"
+				IF _arg1 = "Character" THEN 
+				SendKeys "{Right " + _arg2 + "" + _arg3 + "}{Left}"
+				SendKeys "{Shift+Right}"
+				Wait 300
+				SendKeys "{Left}"
+				END IF
+				IF _arg1 = "Line" THEN 
+				SendKeys "{Down " + _arg2 + "" + _arg3 + "}{Up}"
+				SendKeys "{Home}{Shift+End}"
+				Wait 300
+				SendKeys "{Ctrl+Left}"
+				SendKeys "{Home}"
+				END IF
+				IF _arg1 = "Word" THEN 
+				SendKeys "{Ctrl+Right " + _arg2 + "" + _arg3 + "}{Ctrl+Left}"
+				SendKeys "{Shift+Ctrl+Right}"
+				Wait 300
+				SendKeys "{Ctrl+Left}"
+				END IF
+				IF _arg1 = "Graph" XOR _arg1 = "Graph Space" THEN
+				SendKeys "{Shift+Ctrl+Down}" 
+				Wait 300
+				SendKeys "{Ctrl+Left}"
+				END IF
+				IF _arg1 = "Screen" THEN SendKeys "{PgDn " + _arg2 + "" + Arg3Minus + "}"
+				IF _arg1 = "Screen Bottom" THEN SendKeys "{Ctrl+End}{PgUp " + _arg2 + "" + Arg3Minus + "}"
+			}
+		}
+		LIST "1-9" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9" 
+		}
+		COMMAND "<GCLWSScreen> <1-5> <0-9> <0-9>" {
+			SCRIPT {
+				Arg4Minus = Val(_arg4) -1
+				Arg4Minus = Str$(Arg4Minus)
+				SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Graph" XOR _arg1 = "Graph Space" THEN SendKeys "{Ctrl+Down " + _arg2 + "" + _arg3 + "" + _arg4 + "}{Ctrl+Up}"
+				IF _arg1 = "Graph Space" THEN SendKeys "{Ctrl+Down " + _arg2 + "" + _arg3 + "" + _arg4 + "}{Ctrl+Up}"
+				IF _arg1 = "Character" THEN 
+				SendKeys "{Right " + _arg2 + "" + _arg3 + "" + _arg4 + "}{Left}"
+				SendKeys "{Shift+Right}"
+				Wait 300
+				SendKeys "{Left}"
+				END IF
+				IF _arg1 = "Line" THEN 
+				SendKeys "{Down " + _arg2 + "" + _arg3 + "" + _arg4 + "}{Up}"
+				SendKeys "{Home}{Shift+End}"
+				Wait 300
+				SendKeys "{Ctrl+Left}"
+				END IF
+				IF _arg1 = "Word" THEN 
+				SendKeys "{Ctrl+Right " + _arg2 + "" + _arg3 + "" + _arg4 + "}{Ctrl+Left}"
+				SendKeys "{Shift+Ctrl+Right}"
+				Wait 300
+				SendKeys "{Ctrl+Left}"
+				END IF
+				IF _arg1 = "Graph" XOR _arg1 = "Graph Space" THEN
+				SendKeys "{Shift+Ctrl+Down}" 
+				Wait 300
+				SendKeys "{Ctrl+Left}"
+				END IF
+				IF _arg1 = "Screen" THEN SendKeys "{PgDn " + _arg2 + "" + _arg3 + "" + Arg4Minus + "}"
+				IF _arg1 = "Screen Bottom" THEN SendKeys "{Ctrl+End}{PgUp " + _arg2 + "" + _arg3 + "" + Arg4Minus + "}"
+			}
+		}
+		LIST "1-5" {
+			"1"  "2" "3"  "4"  "5"
+		}
+		LIST "0-9" {
+			"0"   "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"   
+		}
+ 
+#7f. Moving the cursor to a given GCLWS combinations
+		COMMAND "<GCLWSScreenSBottom> <1-100> <1-100> <DULR>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				HeardWord _arg3, _arg4
+			}
+		}
+		LIST "GCLWSScreenSBottom" {
+			"Character"
+			"Word"
+			"Line"
+			"Graph"  "Graph Space"
+			"Screen"  "Screen Bottom"
+		}
+		COMMAND "<GCLWSScreen> <1-100> <1-20> <GLLWDUABUSs>" {
+			SCRIPT {
+			HeardWord _arg1, _arg2
+			HeardWord _arg3, _arg4
+			}
+		}
+		COMMAND "<GCLWSScreen> <1-100> <1-20thEnd> <GGSLLW>" {
+			SCRIPT {
+			HeardWord _arg1, _arg2
+			HeardWord _arg3, _arg4
+			}
+		}
+		LIST "GCLWSScreen" {
+			"Character"
+			"Word"
+			"Line"
+			"Graph"  "Graph Space"
+			"Screen"
+		}
+ 
+#7g. Selecting -- basic
+		COMMAND "<This> <GLLWRUSDocTopbottomBeforeAfterBALR>" {
+			SCRIPT {
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg2
+			}
+		}
+		COMMAND "Graph Space" {
+			SCRIPT {
+				SendKeys "{Ctrl+Down}{Ctrl+Down}"
+			}
+		}
+		COMMAND "Graph Space Up" {
+			SCRIPT {
+				SendKeys "{Ctrl+Up}{Ctrl+Up}"
+			}
+		}
+		COMMAND "<1-100> <DULRs>" {
+			SCRIPT {
+				IF _arg2 = "Downs" THEN SendKeys "{Shift+Down " + _arg1 + "}"
+				IF _arg2 = "Ups" THEN SendKeys "{Shift+Up " + _arg1 + "}"
+				IF _arg2 = "Rights" THEN SendKeys "{Shift+Right " + _arg1 + "}"
+				IF _arg2 = "Lefts" THEN SendKeys "{Shift+Left " + _arg1 + "}"
+				IF _arg2 = "Screens" XOR _arg2 = "Screen Downs" THEN SendKeys "{Shift+PgDn " + _arg1 + "}"
+				IF _arg2 = "Screen Ups" THEN SendKeys "{Shift+PgUp " + _arg1 + "}"
+			}
+		}
+		COMMAND "Cursor <1-100> <DULRs>" {
+			SCRIPT {
+				IF _arg2 = "Downs" THEN SendKeys "{Shift+Down " + _arg1 + "}"
+				IF _arg2 = "Ups" THEN SendKeys "{Shift+Up " + _arg1 + "}"
+				IF _arg2 = "Rights" THEN SendKeys "{Shift+Right " + _arg1 + "}"
+				IF _arg2 = "Lefts" THEN SendKeys "{Shift+Left " + _arg1 + "}"
+				IF _arg2 = "Screens" XOR _arg2 = "Screen Downs" THEN SendKeys "{Shift+PgDn " + _arg1 + "}"
+				IF _arg2 = "Screen Ups" THEN SendKeys "{Shift+PgUp " + _arg1 + "}"
+			}
+		}
+		COMMAND "<1-40> <ScreensSupsSDowns>" {
+			SCRIPT {
+				IF _arg2 = "Screens" XOR _arg2 = "Screen Downs" THEN SendKeys "{Shift+PgDn " + _arg1 + "}"
+				IF _arg2 = "Screen Ups" THEN SendKeys "{Shift+PgUp " + _arg1 + "}"
+			}
+		}
+		LIST "ScreensSupsSDowns" {
+			"Screens" "Screen Ups"  "Screen Downs"
+		}
+		COMMAND "<1-20> <GLLWDUABUSs>" {
+			SCRIPT {
+				IF _arg2 = "Graph Space Ups" THEN SendKeys "{Ctrl+Up}"
+				IF _arg2 = "Befores" THEN
+				SendKeys "{Shift+Ctrl+Left " + _arg1 + "}" 
+				ELSE
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				END IF 
+			}
+		}
+		COMMAND "Cursor <1-20> <GLLWDUABUSs>" {
+			SCRIPT {
+				IF _arg2 = "Graph Space Ups" THEN SendKeys "{Ctrl+Up}"
+				IF _arg2 = "Befores" THEN
+				SendKeys "{Shift+Ctrl+Left " + _arg1 + "}" 
+				ELSE
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				END IF 
+			}
+		}
+		COMMAND "Stay <1-20> <GLLWDUABUSs>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' StayGLLWDUABUSs at 87
+				DllCall "UttC.dll", 87, p$
+			}
+		}
+		COMMAND "<0-10> <0-10> <GGSLLWSSUs>" {
+			SCRIPT {
+				IF _arg1 = "Graphs" XOR _arg1 = "Graph Spaces" THEN SendKeys "{Ctrl+Up}"
+				IF _arg3 = "Graph Spaces" THEN 
+				SendKeys "{Ctrl+Up}"
+				loop& = Val(_arg1)
+				while ( loop& )
+				SendKeys "{Ctrl+Up}"
+				loop& = loop& - 1
+				wend
+				SendKeys "{Shift+Ctrl+Down}"
+				END IF
+				p$ = _arg1 + "|" + _arg2 + "|" + _arg3
+				' GGSLLWSSUs at 45
+				DllCall "UttC.dll", 45, p$
+			}
+		}
+		LIST "GGSLLWSSUs" {
+			"Letters"
+			"Words"
+			"Lines"
+			"Graphs"  "Graph Spaces"
+			"Screens"  "Screen Ups"
+		}
+		COMMAND "<1-20thEnd> <GGSLLW>" {
+			SCRIPT {
+				IF _arg2 = "word" THEN
+				SendKeys "{Home}"
+				if _arg1 = "End" then 
+				SendKeys "{End}{Shift+Ctrl+Left}"
+				ELSE
+				IF _arg1 = "1st" XOR _arg1 = "2nd" XOR _arg1 = "3rd" XOR _arg1 = "4th" XOR _arg1 = "5th" XOR _arg1 = "6th" XOR _arg1 = "7th" XOR _arg1 = "8th" XOR _arg1 = "9th" THEN 
+				SendKeys "{Ctrl+Right " + MID$(_arg1,0,1) + "}"
+				ELSE
+				SendKeys "{Ctrl+Right " + MID$(_arg1,0,2) + "}"
+				END IF
+				SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}"
+				END IF
+				END IF
+				IF _arg2 = "Line" THEN
+				SendKeys "{Right}{Ctrl+Up}"
+				IF _arg1 = "End" THEN 
+				SendKeys "{Ctrl+End}{Home}{Shift+End}"
+				ELSE
+				IF _arg1 = "1st" XOR _arg1 = "2nd" XOR _arg1 = "3rd" XOR _arg1 = "4th" XOR _arg1 = "5th" XOR _arg1 = "6th" XOR _arg1 = "7th" XOR _arg1 = "8th" XOR _arg1 = "9th" THEN 
+				SendKeys "{Down " + MID$(_arg1,0,1) + "}"
+				ELSE
+				SendKeys "{Down " + MID$(_arg1,0,2) + "}"
+				END IF
+				SendKeys "{Up}{Home}{Shift+End}"
+				END IF
+				END IF
+				IF _arg2 = "Letter" THEN 
+				SendKeys "{Ctrl+Left}"
+				IF _arg1 = "End" THEN 
+				SendKeys "{End}"
+				ELSE
+				IF _arg1 = "1st" XOR _arg1 = "2nd" XOR _arg1 = "3rd" XOR _arg1 = "4th" XOR _arg1 = "5th" XOR _arg1 = "6th" XOR _arg1 = "7th" XOR _arg1 = "8th" XOR _arg1 = "9th" THEN 
+				SendKeys "{Right " + MID$(_arg1,0,1) + "}"
+				ELSE
+				SendKeys "{Right " + MID$(_arg1,0,2) + "}"
+				END IF
+				SendKeys "{Left}{Shift+Right}"
+				END IF
+				END IF
+				IF _arg2 = "Graph" XOR _arg2 = "GraphSpace" THEN 
+				SendKeys "{Ctrl+Home}"
+				IF _arg1 = "End" THEN 
+				SendKeys "{Ctrl+End}{Ctrl+Up}{Shift+Ctrl+Down}"
+				IF _arg2 = "GraphSpace" THEN SendKeys "{Shift+Ctrl+Down}"
+				ELSE
+				IF _arg1 = "1st" XOR _arg1 = "2nd" XOR _arg1 = "3rd" XOR _arg1 = "4th" XOR _arg1 = "5th" XOR _arg1 = "6th" XOR _arg1 = "7th" XOR _arg1 = "8th" XOR _arg1 = "9th" THEN 
+				SendKeys "{Ctrl+Down " + MID$(_arg1,0,1) + "}"
+				IF _arg2 = "GraphSpace" THEN SendKeys "{Ctrl+Down " + MID$(_arg1,0,1) + "}{Ctrl+Up}"
+				ELSE
+				SendKeys "{Ctrl+Down " + MID$(_arg1,0,2) + "}"
+				IF _arg2 = "GraphSpace" THEN SendKeys "{Ctrl+Down " + MID$(_arg1,0,2) + "}{Ctrl+Up}"
+				END IF
+				SendKeys "{Ctrl+Up}{Shift+Ctrl+Down}"
+				IF _arg2 = "GraphSpace" THEN SendKeys "{Shift+Ctrl+Down}"
+				END IF
+				END IF
+			}
+		}
+#7h. Moving and selecting -- 2 steps
+		COMMAND "<1-20> <GLRLWBALUSBALeftRtSSU> <1-20> <GLLWDUABUSs>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+				Wait 100
+				p$ = _arg3 + "|" + _arg4
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+			}
+		}
+		COMMAND "<DULRHomeEndTopBottom> <1-20> <GLLWDUABUSsNoWordsAftersBefores>" {
+			SCRIPT {
+				IF _arg1 = "Top" THEN _arg1 = "Ctrl+Home"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				SendKeys "{" + _arg1 + "}"
+				Wait 100
+				p$ = _arg2 + "|" + _arg3
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+			}
+		}
+		COMMAND "<1-20> <GLLWDUABUSs> <1-20> <GLLWDUABUSs>" {
+			SCRIPT {
+				IF _arg2 = "Graph Space Ups" THEN SendKeys "{Ctrl+Up}"
+				IF _arg2 = "Befores" THEN
+				SendKeys "{Shift+Ctrl+Left " + _arg1 + "}" 
+				ELSE
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				END IF 
+				Wait 100
+				IF _arg4 = "Graph Space Ups" THEN SendKeys "{Ctrl+Up}"
+				IF _arg4 = "Befores" THEN
+				SendKeys "{Shift+Ctrl+Left " + _arg3 + "}" 
+				ELSE
+				p$ = _arg3 + "|" + _arg4
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				END IF 
+			}
+		}
+		COMMAND "<1-20> <GLLWDUABUSs> <LeftRight>" {
+			SCRIPT {
+				IF _arg2 = "Graph Space Ups" THEN SendKeys "{Ctrl+Up}"
+				IF _arg2 = "Befores" THEN
+				SendKeys "{Shift+Ctrl+Left " + _arg1 + "}" 
+				ELSE
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				END IF 
+				Wait 100
+				IF _arg3 = "Left" THEN SendKeys "{Shift+Left}"
+				IF _arg3 = "Right" THEN SendKeys "{Shift+Right}"
+			}
+		}
+		COMMAND " <LeftRight> <1-20> <GLLWDUABUSs>" {
+			SCRIPT {			
+				IF _arg1 = "Left" THEN SendKeys "{Shift+Left}"
+				IF _arg1 = "Right" THEN SendKeys "{Shift+Right}"
+				Wait 100
+				IF _arg3 = "Graph Space Ups" THEN SendKeys "{Ctrl+Up}"
+				IF _arg3 = "Befores" THEN
+				SendKeys "{Shift+Ctrl+Left " + _arg2 + "}" 
+				ELSE
+				p$ = _arg2 + "|" + _arg3
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				END IF 
+			}
+		}
+		LIST "LeftRight" {
+			"Left"  "Right"
+		}
+		COMMAND "<DULRHomeEndTopBottom> <1-20> <WordsBeforesAfters>" {
+			SCRIPT {
+				IF _arg1 = "Top" THEN _arg1 = "Ctrl+Home"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				SendKeys "{" + _arg1 + "}"
+				Wait 100
+				IF _arg3 = "Words" XOR _arg3 = "Afters" THEN SendKeys "{Shift+Ctrl+Right " + _arg2 + "}"
+				IF _arg3 = "Befores" THEN SendKeys "{Shift+Ctrl+Left " + _arg2 + "}"
+			}
+		}
+		COMMAND "<1-20> <DULRSSU> <1-20> <GLLWDUABUSs>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 100
+				p$ = _arg3 + "|" + _arg4
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <1-20> <GLLWDUABUSs>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				IF _arg2 = "Word" AND _arg4 = "Words" THEN
+				SendKeys "{Ctrl+Left}"
+				END IF
+				IF _arg2 = "Word" AND _arg4 = "Letters" THEN
+				SendKeys "{Ctrl+Left}"
+				END IF
+				Wait 100
+				p$ = _arg3 + "|" + _arg4
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> End <1-20> <GLLWDUABUSs>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 100
+				SendKeys "{End}"
+				Wait 100
+				p$ = _arg3 + "|" + _arg4
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <1-20> <DULRSSU>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 100
+				HeardWord _arg3, _arg4
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> End <1-20> <DULRSSU>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 100
+				IF _arg2 = "Word" THEN SendKeys "{Ctrl+Right}"
+				IF _arg2 = "Line" THEN SendKeys "{End}"
+				IF _arg2 = "Graph" THEN SendKeys "{Ctrl+Down}"
+				Wait 100
+				HeardWord _arg3, _arg4
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <DULR>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 100
+				SendKeys "{" + _arg3 + "}"
+			}
+		}
+		COMMAND "<DULR> <1-20thEnd> <GGSLLW>" {
+			SCRIPT {
+				SendKeys "{" + _arg1 + "}"
+				Wait 100
+				HeardWord _arg2, _arg3  
+			}
+		}
+		COMMAND "<1-20> <DULR> <1-20thEnd> <GGSLLW>" {
+			SCRIPT {
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				Wait 100
+				HeardWord _arg3, _arg4  
+			}
+		}
+		COMMAND "<1-20> <GLRLWBALUSBALeftRtSSU> <1-20thEnd> <GGSLLW>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLRLWBALUSBALeftRtSSU at 48
+				Wait 100
+				DllCall "UttC.dll", 48, p$
+				HeardWord _arg3, _arg4  
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <1-20thEnd> <GGSLLW>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 100
+				IF _arg2 = "GraphSpace" THEN SendKeys "{Ctrl+Up}"
+				HeardWord _arg3, _arg4  
+			}
+		}
+		COMMAND "<1-100> <DULRs> <1-100> <DULRs>" {
+			SCRIPT {
+				IF _arg2 = "Downs" THEN SendKeys "{Shift+Down " + _arg1 + "}"
+				IF _arg2 = "Ups" THEN SendKeys "{Shift+Up " + _arg1 + "}"
+				IF _arg2 = "Rights" THEN SendKeys "{Shift+Right " + _arg1 + "}"
+				IF _arg2 = "Lefts" THEN SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 100
+				IF _arg4 = "Downs" THEN SendKeys "{Shift+Down " + _arg3 + "}"
+				IF _arg4 = "Ups" THEN SendKeys "{Shift+Up " + _arg3 + "}"
+				IF _arg4 = "Rights" THEN SendKeys "{Shift+Right " + _arg3 + "}"
+				IF _arg4 = "Lefts" THEN SendKeys "{Shift+Left " + _arg3 + "}"
+			}
+		}	
+#7i. Moving and selecting -- 3 steps
+		COMMAND "<DULRHomeEndTopBottom> <DULRHomeEnd> <1-20> <GLLWDUABUSsNoWordsAftersBefores>" {
+			SCRIPT {
+				IF _arg1 = "Top" THEN _arg1 = "Ctrl+Home"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg2 + "}"
+				Wait 100
+				p$ = _arg3 + "|" + _arg4
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+			}
+		}
+		COMMAND "<DULRHomeEndTopBottom> <1-20> <DULR> <1-20> <GLLWDUABUSsNoWordsAftersBefores>" {
+			SCRIPT {
+				IF _arg1 = "Top" THEN _arg1 = "Ctrl+Home"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				Wait 100
+				p$ = _arg4 + "|" + _arg5
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+			}
+		}
+		COMMAND "<1-20> <DULR> <DULRHomeEnd> <1-20> <GLLWDUABUSsNoWordsAftersBefores>" {
+			SCRIPT {
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				SendKeys "{" + _arg3 + "}"
+				Wait 100
+				p$ = _arg4 + "|" + _arg5
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+			}
+		}
+		COMMAND "<DULRHomeEndTopBottom> <DULRHomeEnd> <1-20> <WordsBeforesAfters>" {
+			SCRIPT {
+				IF _arg1 = "Top" THEN _arg1 = "Ctrl+Home"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg2 + "}"
+				IF _arg4 = "Words" XOR _arg4 = "Afters" THEN SendKeys "{Shift+Ctrl+Right " + _arg3 + "}"
+				IF _arg4 = "Befores" THEN SendKeys "{Shift+Ctrl+Left " + _arg3 + "}"
+			}
+		}
+		COMMAND "<DULRHomeEndTopBottom> <1-20> <DULR> <1-20> <WordsBeforesAfters>" {
+			SCRIPT {
+				IF _arg1 = "Top" THEN _arg1 = "Ctrl+Home"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				IF _arg5 = "Words" XOR _arg5 = "Afters" THEN SendKeys "{Shift+Ctrl+Right " + _arg4 + "}"
+				IF _arg5 = "Befores" THEN SendKeys "{Shift+Ctrl+Left " + _arg4 + "}"
+			}
+		}
+		COMMAND "<1-20> <DULR> <DULRHomeEnd> <1-20> <WordsBeforesAfters>" {
+			SCRIPT {
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				SendKeys "{" + _arg3 + "}"
+				IF _arg5 = "Words" XOR _arg5 = "Afters" THEN SendKeys "{Shift+Ctrl+Right " + _arg4 + "}"
+				IF _arg5 = "Befores" THEN SendKeys "{Shift+Ctrl+Left " + _arg4 + "}"
+			}
+		}
+#7j. Moving and selecting -- special combinations
+		COMMAND "<WordThisW> Left" {
+			SCRIPT {
+				SendKeys "{Ctrl+Right}{Left}{Shift+Ctrl+Left}"
+			}
+		}
+		LIST "WordThisW" {
+			"Word"
+			"This Word"
+		}	
+		COMMAND "Touch This <GLLWRUSDocTopbottomBeforeAfterBALR>" {
+			SCRIPT {
+				ButtonClick
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg2
+			}
+		}
+		LIST "GLLWRUSDocTopbottomBeforeAfterBALR" {
+			"Letter"  "Lefts"  "Rights"
+			"Befores"  "Afters"  "Word"  "Word Top"  "Word Bottom"
+			"Line"  "Line Up"  "Line Top"  "Line Bottom"
+			"Graph"  "Graph Space"  "Graph Up"  "Graph Space Up"  "Graph Top"  "Graph Bottom"
+			"Screen"  "Screen Up"
+			"Document"  "Document Top"  "Document Bottom"
+			"Doc"  "Doc Top"  "Doc Bottom"
+			"Before"  "After"
+			"Before Left"  "Before Right"
+			"After Left"  "After Right"
+		}
+ 
+#7k. Select and Find 
+		COMMAND "<ThisWordLine> <FindTopFBottomFLeftFRightF>" {
+			SCRIPT {
+				IF _arg1 = "Word" THEN SendKeys "{Left}{Ctrl+Right}{Shift+Ctrl+Left}"
+				IF _arg1 = "Line" THEN SendKeys "{Home}{Shift+End}"
+				SendKeys "{ctrl+c}"
+				Wait 50
+				IF _arg2 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg2 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg2 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg2 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				IF _arg1 = "Line" THEN SendKeys "{End}"
+				Wait 10
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+		COMMAND "Clip Find"{
+			SCRIPT {
+			SendKeys "{Ctrl+f}"
+			Wait 100
+			SendKeys "{Ctrl+v}"
+			Wait 100
+			SendKeys "{Alt+f}"
+			Wait 10
+			SendKeys "{Ctrl+f}"
+			SendKeys "{Esc}"
+				
+			}
+		}
+		COMMAND "<1-20> <LeftsRightsBeforesAftersWords> <FindTopFBottomFLeftFRightF>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				SendKeys "{ctrl+c}"
+				Wait 50
+				SendKeys "{Right}"
+				IF _arg3 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg3 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+		COMMAND "<1-10> <1-10> <Words> <FindTopFBottomFLeftFRightF>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				SendKeys "{ctrl+c}"
+				Wait 50
+				SendKeys "{Right}"
+				IF _arg4 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg4 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+#7l. Select, Find, Move 
+		COMMAND "<ThisWordLine> <FindTopFBottomFLeftFRightF> <TabScreenUpSDown>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 100
+				IF _arg3 = "Screen Up" THEN  _arg3 = "PgUp"
+				IF _arg3 = "Screen Down" THEN  _arg3 = "PgDn"
+				SendKeys "{" + _arg3 +"}"
+			}
+		}
+		COMMAND "<1-20> <LeftsRightsBeforesAftersWords> <FindTopFBottomFLeftFRightF> <TabScreenUpSDown>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				Wait 100
+				IF _arg4 = "Screen Up" THEN  _arg4 = "PgUp"
+				IF _arg4 = "Screen Down" THEN  _arg4 = "PgDn"
+				SendKeys "{" + _arg4 +"}"
+			}
+		}
+		COMMAND "<1-10> <1-10> <Words> <FindTopFBottomFLeftFRightF> <TabScreenUpSDown>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				Wait 100
+				IF _arg4 = "Screen Up" THEN  _arg4 = "PgUp"
+				IF _arg4 = "Screen Down" THEN  _arg4 = "PgDn"
+				SendKeys "{" + _arg4 +"}"
+			}
+		}
+		LIST "TabScreenUpSDown" {
+			"Tab"  "Screen Up"  "Screen Down"
+		}
+		LIST "1-40" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			 "11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+			 "21" "22" "23" "24" "25" "26" "27" "28" "29" "30" 
+			 "31" "32" "33" "34" "35" "36" "37" "38" "39" "40"
+		}		
+#7m. Select and find Stay
+		COMMAND "<ThisWordLine> <FindTopFBottomFLeftFRightF> Stay" {
+			SCRIPT {
+				IF _arg1 = "Word" THEN SendKeys "{Left}{Ctrl+Right}{Shift+Ctrl+Left}"
+				IF _arg1 = "Line" THEN SendKeys "{Home}{Shift+End}"
+				SendKeys "{ctrl+c}"
+				Wait 50
+				IF _arg2 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg2 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg2 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg2 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				IF _arg1 = "Line" THEN SendKeys "{End}"
+				Wait 10
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"			
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys ""
+				ELSE
+				SendKeys "{Enter}"
+				END IF 
+			}
+		}
+		COMMAND "<1-20> <LeftsRightsBeforesAftersWords> <FindTopFBottomFLeftFRightF> Stay" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				SendKeys "{ctrl+c}"
+				Wait 50
+				IF _arg3 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg3 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg3 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg3 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys ""
+				ELSE
+				SendKeys "{Enter}"
+				END IF 
+			}
+		}
+		COMMAND "<1-10> <1-10> <Words> <FindTopFBottomFLeftFRightF> Stay" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				SendKeys "{ctrl+c}"
+				Wait 50
+				IF _arg4 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg4 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg4 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg4 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys ""
+				ELSE
+				SendKeys "{Enter}"
+				END IF 
+			}
+		}
+#7n. Select and find Repeat, Wait Repeat
+		COMMAND "<ThisWordLine> <FindTopFBottomFLeftFRightF> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg1 = "Word" THEN SendKeys "{Left}{Ctrl+Right}{Shift+Ctrl+Left}"
+				IF _arg1 = "Line" THEN SendKeys "{Home}{Shift+End}"
+				SendKeys "{ctrl+c}"
+				Wait 50
+				IF _arg2 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg2 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg2 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg2 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				IF _arg1 = "Line" THEN SendKeys "{End}"
+				Wait 10
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				loop& = Val(_arg3)-1
+				ELSE
+				loop& = Val(_arg3)
+				END IF
+				while ( loop& )
+				SendKeys "{Enter}"
+				Wait 500
+				loop& = loop& - 1
+				wend
+				Wait 500
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF
+				END IF  
+			}
+		}
+		COMMAND "<1-20> <LeftsRightsBeforesAftersWords> <FindTopFBottomFLeftFRightF> Repeat <1-10>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				SendKeys "{ctrl+c}"
+				Wait 50
+				IF _arg3 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg3 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg3 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg3 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				loop& = Val(_arg4)-1
+				ELSE
+				loop& = Val(_arg4)
+				END IF
+				while ( loop& )
+				SendKeys "{Enter}"
+				Wait 500
+				loop& = loop& - 1
+				wend
+				Wait 500
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF
+				END IF  
+			}
+		}
+		COMMAND "<1-10> <1-10> <Words> <FindTopFBottomFLeftFRightF> Repeat <1-10>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				SendKeys "{ctrl+c}"
+				Wait 50
+				IF _arg4 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg4 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg4 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg4 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				loop& = Val(_arg5)-1
+				ELSE
+				loop& = Val(_arg5)
+				END IF
+				while ( loop& )
+				SendKeys "{Enter}"
+				Wait 500
+				loop& = loop& - 1
+				wend
+				Wait 500
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF
+				END IF  
+			}
+		}
+		COMMAND "<ThisWordLine> <FindTopFBottomFLeftFRightF> Wait Repeat <1-10>" {
+			SCRIPT {
+				IF _arg1 = "Word" THEN SendKeys "{Left}{Ctrl+Right}{Shift+Ctrl+Left}"
+				IF _arg1 = "Line" THEN SendKeys "{Home}{Shift+End}"
+				SendKeys "{ctrl+c}"
+				Wait 50
+				IF _arg2 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg2 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg2 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg2 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				IF _arg1 = "Line" THEN SendKeys "{End}"
+				Wait 10
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				loop& = Val(_arg3)
+				while ( loop& )
+				SendKeys "{Enter}"
+				Wait 500
+				loop& = loop& - 1
+				wend
+				Wait 100
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE	
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+		COMMAND "<1-20> <LeftsRightsBeforesAftersWords> <FindTopFBottomFLeftFRightF> Wait Repeat <1-10>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				SendKeys "{ctrl+c}"
+				Wait 50
+				IF _arg3 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg3 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg3 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg3 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				loop& = Val(_arg4)
+				while ( loop& )
+				SendKeys "{Enter}"
+				Wait 500
+				loop& = loop& - 1
+				wend
+				Wait 100
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE	
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+		COMMAND "<1-10> <1-10> <Words> <FindTopFBottomFLeftFRightF> Wait Repeat <1-10>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				SendKeys "{ctrl+c}"
+				Wait 50
+				IF _arg4 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg4 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg4 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg4 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				loop& = Val(_arg5)
+				while ( loop& )
+				SendKeys "{Enter}"
+				Wait 500
+				loop& = loop& - 1
+				wend
+				Wait 100
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE	
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+		COMMAND "<ThisWordLine> <FindTopFBottomFLeftFRightF> Wait <1-10> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg1 = "Word" THEN SendKeys "{Left}{Ctrl+Right}{Shift+Ctrl+Left}"
+				IF _arg1 = "Line" THEN SendKeys "{Home}{Shift+End}"
+				SendKeys "{ctrl+c}"
+				Wait 50
+				IF _arg2 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg2 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg2 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg2 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				IF _arg1 = "Line" THEN SendKeys "{End}"
+				Wait 10
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				loop& = Val(_arg4)-1
+				ELSE
+				loop& = Val(_arg4)
+				END IF
+				while ( loop& )
+				SendKeys "{Enter}"
+				Wait Val(_arg3)*1000
+				loop& = loop& - 1
+				wend
+				Wait 100
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE	
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+		LIST "ThisWordLine" {
+			"This"
+			"Word"
+			"Line"
+		}
+		COMMAND "<1-20> <LeftsRightsBeforesAftersWords> <FindTopFBottomFLeftFRightF> Wait <1-10> Repeat <1-10>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				SendKeys "{ctrl+c}"
+				Wait 50
+				IF _arg3 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg3 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg3 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg3 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				loop& = Val(_arg5)-1
+				ELSE
+				loop& = Val(_arg5)
+				END IF
+				while ( loop& )
+				SendKeys "{Enter}"
+				Wait Val(_arg4)*1000
+				loop& = loop& - 1
+				wend
+				Wait 100
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE	
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+		LIST "LeftsRightsBeforesAftersWords" {
+			"Lefts" "Rights"  "Befores"  "Afters"  "Words"
+		}
+		COMMAND "<1-10> <1-10> <Words> <FindTopFBottomFLeftFRightF> Wait <1-10> Repeat <1-10>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				SendKeys "{ctrl+c}"
+				Wait 50
+				SendKeys "{Right}"
+				IF _arg4  = "Left Find" THEN SendKeys "{Left}"
+				IF _arg4 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg4 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg4 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				loop& = Val(_arg6)-1
+				ELSE
+				loop& = Val(_arg6)
+				END IF
+				while ( loop& )
+				SendKeys "{Enter}"
+				Wait Val(_arg5)*1000
+				loop& = loop& - 1
+				wend
+				Wait 100
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE	
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+			}
+		}
+		LIST "1-10" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+		}
+		LIST "Words" {
+			"Words"
+		}
+		LIST "FindTopFBottomFLeftFRightF" {
+			"Find"  "Top Find"  "Bottom Find"  "Left Find"  "Right Find"
+		}
+ 
+#7o. Moving by given character
+		COMMAND "<SpellsInBeforeInAfter> <AlphChar0-9Space>" {
+			SCRIPT {
+				
+				IF _arg2 = "Pipe" THEN  _arg2 = "|"				
+				IF _arg2 = "Ampersand" THEN  _arg2 = "&"
+				IF _arg2 = "Apostrophe" THEN  _arg2 = "'"
+				IF _arg2 = "Exclamation" XOR _arg2 = "Exclamation Mark" THEN  _arg2 = "!"										
+				IF _arg2 = "Dollar" XOR _arg2 = "Dollar Sign" THEN  _arg2 = "$"										
+				IF _arg2 = "Number" XOR _arg2 = "Number Sign" THEN  _arg2 = "#"										
+				IF _arg2 = "Question" XOR _arg2 = "Question Mark" THEN  _arg2 = "?"										
+				IF _arg2 = "Single" XOR _arg2 = "Single Quote" THEN  _arg2 = "'"
+				IF _arg2 = "Plus" XOR _arg2 = "Plus Sign" THEN  _arg2 = "+"
+				IF _arg2 = "Minus" XOR _arg2 = "Minus Sign" THEN  _arg2 = "-"
+				IF _arg2 = "Equals" XOR _arg2 = "Equals Sign" THEN  _arg2 = "="
+				IF _arg2 = "Percent" XOR _arg2 = "Percent Sign" THEN _arg2 = "%"												
+				IF _arg2 = "Divided By" THEN _arg2 = "/"								
+				IF _arg2 = "Star" XOR _arg2 = "Times" THEN  _arg2 = "*"
+				IF _arg2 = "Open Angle" XOR _arg2 = "Less Than" THEN _arg2 = "<"
+				IF _arg2 = "Close Angle" XOR _arg2 = "Greater Than" THEN _arg2 = ">"
+				IF _arg2 = "Grave" THEN _arg2 = "`"									
+				IF _arg2 = "Zero" THEN  _arg2 = "0"
+				IF _arg2 = "Space" THEN  _arg2 = " "
+				SendKeys "{Ctrl+f}"
+				Wait 50
+				SendKeys MID$(_arg2,0,1)
+				Wait 50
+				SendKeys "{Enter}"
+				Wait 50
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isAdobe$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isAdobe$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 10
+				SendKeys "{Ctrl+f}"
+				Wait 10
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF
+				IF _arg1 = "In Before" XOR _arg1 = "Top In Before" THEN
+				Wait 200
+				SendKeys "{Left}"
+				END IF  
+				IF _arg1 = "In After" XOR _arg1 = "Top In After" THEN
+				Wait 200
+				SendKeys "{Right}"
+				END IF  				
+			}
+		}
+		COMMAND "<SpellsInBeforeInAfter> <AlphChar0-9Space> <AlphChar0-9Space>" {
+			SCRIPT {
+				
+				IF _arg2 = "Pipe" THEN  _arg2 = "|"				
+				IF _arg2 = "Ampersand" THEN  _arg2 = "&"
+				IF _arg2 = "Apostrophe" THEN  _arg2 = "'"
+				IF _arg2 = "Exclamation" XOR _arg2 = "Exclamation Mark" THEN  _arg2 = "!"										
+				IF _arg2 = "Dollar" XOR _arg2 = "Dollar Sign" THEN  _arg2 = "$"										
+				IF _arg2 = "Number" XOR _arg2 = "Number Sign" THEN  _arg2 = "#"										
+				IF _arg2 = "Question" XOR _arg2 = "Question Mark" THEN  _arg2 = "?"										
+				IF _arg2 = "Single" XOR _arg2 = "Single Quote" THEN  _arg2 = "'"
+				IF _arg2 = "Plus" XOR _arg2 = "Plus Sign" THEN  _arg2 = "+"
+				IF _arg2 = "Minus" XOR _arg2 = "Minus Sign" THEN  _arg2 = "-"
+				IF _arg2 = "Equals" XOR _arg2 = "Equals Sign" THEN  _arg2 = "="
+				IF _arg2 = "Percent" XOR _arg2 = "Percent Sign" THEN _arg2 = "%"												
+				IF _arg2 = "Divided By" THEN _arg2 = "/"								
+				IF _arg2 = "Star" XOR _arg2 = "Times" THEN  _arg2 = "*"
+				IF _arg2 = "Open Angle" XOR _arg2 = "Less Than" THEN _arg2 = "<"
+				IF _arg2 = "Close Angle" XOR _arg2 = "Greater Than" THEN _arg2 = ">"
+				IF _arg2 = "Grave" XOR _arg2 = "Accent Grave" THEN _arg2 = "`"									
+				IF _arg2 = "Zero" THEN  _arg2 = "0"
+				
+				IF _arg3 = "Pipe" THEN  _arg3 = "|"				
+				IF _arg3 = "Ampersand" THEN  _arg3 = "&"
+				IF _arg3 = "Apostrophe" THEN  _arg3 = "'"
+				IF _arg3 = "Exclamation" XOR _arg3 = "Exclamation Mark" THEN  _arg3 = "!"										
+				IF _arg3 = "Dollar" XOR _arg3 = "Dollar Sign" THEN  _arg3 = "$"										
+				IF _arg3 = "Number" XOR _arg3 = "Number Sign" THEN  _arg3 = "#"										
+				IF _arg3 = "Question" XOR _arg3 = "Question Mark" THEN  _arg3 = "?"										
+				IF _arg3 = "Single" XOR _arg3 = "Single Quote" THEN  _arg3 = "'"
+				IF _arg3 = "Plus" XOR _arg3 = "Plus Sign" THEN  _arg3 = "+"
+				IF _arg3 = "Minus" XOR _arg3 = "Minus Sign" THEN  _arg3 = "-"
+				IF _arg3 = "Equals" XOR _arg3 = "Equals Sign" THEN  _arg3 = "="
+				IF _arg3 = "Percent" XOR _arg3 = "Percent Sign" THEN _arg3 = "%"												
+				IF _arg3 = "Divided By" THEN _arg3 = "/"								
+				IF _arg3 = "Star" XOR _arg3 = "Times" THEN  _arg3 = "*"
+				IF _arg3 = "Open Angle" XOR _arg3 = "Less Than" THEN _arg3 = "<"
+				IF _arg3 = "Close Angle" XOR _arg3 = "Greater Than" THEN _arg3 = ">"
+				IF _arg3 = "Grave" XOR _arg3 = "Accent Grave" THEN _arg3 = "`"									
+				IF _arg3 = "Zero" THEN  _arg3 = "0"
+				IF _arg2 = "Space" THEN  _arg2 = " "
+				IF _arg3 = "Space" THEN  _arg3 = " "
+				SendKeys "{Ctrl+f}"
+				Wait 50
+				SendKeys MID$(_arg2,0,1)
+				SendKeys MID$(_arg3,0,1)
+				Wait 50
+				SendKeys "{Enter}"
+				Wait 50
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 10
+				SendKeys "{Ctrl+f}"
+				Wait 10
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF
+				IF _arg1 = "In Before" XOR _arg1 = "Top In Before" THEN
+				Wait 200
+				SendKeys "{Left}"
+				END IF  
+				IF _arg1 = "In After" XOR _arg1 = "Top In After" THEN
+				Wait 200
+				SendKeys "{Right}"
+				END IF  				
+			}
+		}
+		COMMAND "<SpellsInBeforeInAfter> <AlphChar0-9Space> <AlphChar0-9Space> <AlphChar0-9Space>" {
+			SCRIPT {
+				
+				IF _arg2 = "Pipe" THEN  _arg2 = "|"				
+				IF _arg2 = "Ampersand" THEN  _arg2 = "&"
+				IF _arg2 = "Apostrophe" THEN  _arg2 = "'"
+				IF _arg2 = "Exclamation" THEN  _arg2 = "!"										
+				IF _arg2 = "Dollar" THEN  _arg2 = "$"										
+				IF _arg2 = "Number" THEN  _arg2 = "#"										
+				IF _arg2 = "Question" THEN  _arg2 = "?"										
+				IF _arg2 = "Single" XOR _arg2 = "Single Quote" THEN  _arg2 = "'"
+				IF _arg2 = "Plus" XOR _arg2 = "Plus Sign" THEN  _arg2 = "+"
+				IF _arg2 = "Minus" XOR _arg2 = "Minus Sign" THEN  _arg2 = "-"
+				IF _arg2 = "Equals" XOR _arg2 = "Equals Sign" THEN  _arg2 = "="
+				IF _arg2 = "Equals" THEN  _arg2 = "="
+				IF _arg2 = "Percent" XOR _arg2 = "Percent Sign" THEN _arg2 = "%"												
+				IF _arg2 = "Divided By" THEN _arg2 = "/"								
+				IF _arg2 = "Star" XOR _arg2 = "Times" THEN  _arg2 = "*"
+				IF _arg2 = "Open Angle" XOR _arg2 = "Less Than" THEN _arg2 = "<"
+				IF _arg2 = "Close Angle" XOR _arg2 = "Greater Than" THEN _arg2 = ">"
+				IF _arg2 = "Grave" XOR _arg2 = "Accent Grave" THEN _arg2 = "`"									
+				IF _arg2 = "Zero" THEN  _arg2 = "0"
+				
+				IF _arg3 = "Pipe" THEN  _arg3 = "|"				
+				IF _arg3 = "Ampersand" THEN  _arg3 = "&"
+				IF _arg3 = "Apostrophe" THEN  _arg3 = "'"
+				IF _arg3 = "Exclamation" XOR _arg3 = "Exclamation Mark" THEN  _arg3 = "!"										
+				IF _arg3 = "Dollar" XOR _arg3 = "Dollar Sign" THEN  _arg3 = "$"										
+				IF _arg3 = "Number" XOR _arg3 = "Number Sign" THEN  _arg3 = "#"										
+				IF _arg3 = "Question" XOR _arg3 = "Question Mark" THEN  _arg3 = "?"										
+				IF _arg3 = "Single" XOR _arg3 = "Single Quote" THEN  _arg3 = "'"
+				IF _arg3 = "Plus" XOR _arg3 = "Plus Sign" THEN  _arg3 = "+"
+				IF _arg3 = "Minus" XOR _arg3 = "Minus Sign" THEN  _arg3 = "-"
+				IF _arg3 = "Equals" XOR _arg3 = "Equals Sign" THEN  _arg3 = "="
+				IF _arg3 = "Percent" XOR _arg3 = "Percent Sign" THEN _arg3 = "%"												
+				IF _arg3 = "Divided By" THEN _arg3 = "/"								
+				IF _arg3 = "Star" XOR _arg3 = "Times" THEN  _arg3 = "*"
+				IF _arg3 = "Open Angle" XOR _arg3 = "Less Than" THEN _arg3 = "<"
+				IF _arg3 = "Close Angle" XOR _arg3 = "Greater Than" THEN _arg3 = ">"
+				IF _arg3 = "Grave" XOR _arg3 = "Accent Grave" THEN _arg3 = "`"									
+				IF _arg3 = "Zero" THEN  _arg3 = "0"
+				
+				IF _arg4 = "Pipe" THEN  _arg4 = "|"				
+				IF _arg4 = "Ampersand" THEN  _arg4 = "&"
+				IF _arg4 = "Apostrophe" THEN  _arg4 = "'"
+				IF _arg4 = "Exclamation" XOR _arg4 = "Exclamation Mark" THEN  _arg4 = "!"										
+				IF _arg4 = "Dollar" XOR _arg4 = "Dollar Sign" THEN  _arg4 = "$"										
+				IF _arg4 = "Number" XOR _arg4 = "Number Sign" THEN  _arg4 = "#"										
+				IF _arg4 = "Question" XOR _arg4 = "Question Mark" THEN  _arg4 = "?"										
+				IF _arg4 = "Single" XOR _arg4 = "Single Quote" THEN  _arg4 = "'"
+				IF _arg4 = "Plus" XOR _arg4 = "Plus Sign" THEN  _arg4 = "+"
+				IF _arg4 = "Minus" XOR _arg3 = "Minus Sign" THEN  _arg4 = "-"
+				IF _arg4 = "Equals" XOR _arg4 = "Equals Sign" THEN  _arg4 = "="
+				IF _arg4 = "Percent" THEN _arg4 = "%"												
+				IF _arg4 = "Divided By" THEN _arg4 = "/"								
+				IF _arg4 = "Star" XOR _arg4 = "Times" THEN  _arg4 = "*"
+				IF _arg4 = "Open Angle" XOR _arg4 = "Less Than" THEN _arg4 = "<"
+				IF _arg4 = "Close Angle" XOR _arg4 = "Greater Than" THEN _arg4 = ">"
+				IF _arg4 = "Grave" XOR _arg4 = "Accent Grave" THEN _arg4 = "`"									
+				IF _arg4 = "Zero" THEN  _arg4 = "0"
+				IF _arg2 = "Space" THEN  _arg2 = " "
+				IF _arg3 = "Space" THEN  _arg3 = " "
+				IF _arg4 = "Space" THEN  _arg4 = " "
+				SendKeys "{Ctrl+f}"
+				Wait 50
+				SendKeys MID$(_arg2,0,1)
+				SendKeys MID$(_arg3,0,1)
+				SendKeys MID$(_arg4,0,1)
+				Wait 50
+				SendKeys "{Enter}"
+				Wait 50
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 10
+				SendKeys "{Ctrl+f}"
+				Wait 10
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF
+				IF _arg1 = "In Before" XOR _arg1 = "Top In Before" THEN
+				Wait 200
+				SendKeys "{Left}"
+				END IF  
+				IF _arg1 = "In After" XOR _arg1 = "Top In After" THEN
+				Wait 200
+				SendKeys "{Right}"
+				END IF  				
+			}
+		}
+		LIST "SpellsInBeforeInAfter" {
+			"Spells"  
+			"In Before"  "In After"
+		}
+ 
+#7r. Copying, Cutting, Pasting, Deleting, Formatting -- basic
+ 
+		COMMAND "<AllThis> <CutCopyPasteDeleteTouch>" {
+			SCRIPT {
+				IF _arg1 = "All" THEN SendKeys "{Ctrl+a}{Ctrl+Home}{Shift+Ctrl+End}"
+				IF _arg2 = "Copy" THEN 
+				SendKeys "{Ctrl+c}"
+				Wait 100
+				SendKeys "{Right}"
+				END IF
+				IF _arg2 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg2 = "Paste" THEN SendKeys "{Ctrl+v}"
+				IF _arg2 = "Delete" THEN SendKeys "{Del}"
+				IF _arg2 = "Touch" THEN ButtonClick
+			}
+		}
+		LIST "AllThis" {
+			"All"
+			"This"
+		}
+		LIST "CutCopyPasteDeleteTouch" {
+			"Cut"  "Copy"
+			"Paste"
+			"Delete" "Touch"
+		}
+		COMMAND "<CopyCut> To <TopBottomBEnterTE>" {
+			SCRIPT {				
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				Wait 100
+				IF _arg2 = "Top" XOR _arg2 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg2 = "Bottom" XOR _arg2 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				IF _arg2 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg2 = "Bottom Enter" THEN SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<CopyCut> To <TopBottomBEnterTE> <TopBottom>" {
+			SCRIPT {				
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				Wait 100
+				IF _arg2 = "Top" XOR _arg2 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg2 = "Bottom" XOR _arg2 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				IF _arg2 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg2 = "Bottom Enter" THEN SendKeys "{Enter}"
+				Wait 200
+				IF _arg3 = "Top" THEN SendKeys "{Ctrl+Home}"
+				IF _arg3 = "Bottom" THEN SendKeys "{Ctrl+End}"
+			}
+		}
+		COMMAND "<LineGraphGSpace> <CopyCut> To <TopBottomBEnterTE>" {
+			SCRIPT {
+				IF _arg1 = "Line" THEN SendKeys "{Home}{Shift+End}"
+				IF _arg1 = "Graph" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}"
+				IF _arg1 = "Graph Space" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}"
+				IF _arg2 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg2 = "Cut" THEN SendKeys "{Ctrl+x}"
+				Wait 100
+				IF _arg3 = "Top" XOR _arg3 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg3 = "Bottom" XOR _arg3 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				IF _arg3 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg3 = "Bottom Enter" THEN SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<LineGraphGSpace> <CopyCut> To <TopBottomBEnterTE> <TopBottom>" {
+			SCRIPT {				
+				IF _arg1 = "Line" THEN SendKeys "{Home}{Shift+End}"
+				IF _arg1 = "Graph" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}"
+				IF _arg1 = "Graph Space" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}"
+				IF _arg2 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg2 = "Cut" THEN SendKeys "{Ctrl+x}"
+				Wait 100
+				IF _arg3 = "Top" XOR _arg3 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg3 = "Bottom" XOR _arg3 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				IF _arg3 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg3 = "Bottom Enter" THEN SendKeys "{Enter}"
+				Wait 200
+				IF _arg4 = "Top" THEN SendKeys "{Ctrl+Home}"
+				IF _arg4 = "Bottom" THEN SendKeys "{Ctrl+End}"
+			}
+		}
+		COMMAND "<1-20> <UpDown> <LineGraphGSpace> <CopyCut> To <TopBottomBEnterTE>" {
+			SCRIPT {
+			    SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				IF _arg3 = "Line" THEN SendKeys "{Home}{Shift+End}"
+				IF _arg3 = "Graph" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}"
+				IF _arg4 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg4 = "Cut" THEN SendKeys "{Ctrl+x}"
+				Wait 100
+				IF _arg5 = "Top" XOR _arg5 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg5 = "Bottom" XOR _arg5 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				IF _arg5 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg5 = "Bottom Enter" THEN SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<1-20> <UpDown> <LineGraphGSpace> <CopyCut> To <TopBottomBEnterTE> <TopBottom>" {
+			SCRIPT {				
+			    SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				IF _arg3 = "Line" THEN SendKeys "{Home}{Shift+End}"
+				IF _arg3 = "Graph" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}"
+				IF _arg4 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg4 = "Cut" THEN SendKeys "{Ctrl+x}"
+				Wait 100
+				IF _arg5 = "Top" XOR _arg5 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg5 = "Bottom" XOR _arg5 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 100
+				SendKeys "{Ctrl+v}"
+				IF _arg5 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg5 = "Bottom Enter" THEN SendKeys "{Enter}"
+				Wait 200
+				IF _arg6 = "Top" THEN SendKeys "{Ctrl+Home}"
+				IF _arg6 = "Bottom" THEN SendKeys "{Ctrl+End}"
+			}
+		}
+		LIST "UpDown" {
+			"Up"
+			"Down"
+		}
+		LIST "LineGraphGSpace" {
+			"Line" "Graph"  "Graph Space"
+		}
+		LIST "CopyCut" {
+			"Copy"  "Cut"
+		}
+		LIST "TopBottom" {
+			"Top"  "Bottom"
+		}
+		LIST "TopBottomBEnterTE" {
+			"Top"  "Bottom" "Bottom Enter"  "Top Enter"
+		}
+		COMMAND "All Select" {
+			SCRIPT {
+				SendKeys "{Ctrl+a}{Ctrl+Home}{Shift+Ctrl+End}"
+			}
+		}
+		COMMAND "<This> <CapsBoldItalicCopyPasteCutCDeleteCBackspaceCEnterCSpaceAnotherInsertAGraphIGIsolateAINextNew>" {
+			SCRIPT {
+				isIndesign$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "InDesign", 512 )
+				IF (instr(isIndesign$,"true")) > 0 THEN
+				IF _arg2 = "Bold" THEN SendKeys "{Shift+Ctrl+b}"
+				IF _arg2 = "Bold Italic" THEN SendKeys "{Shift+Ctrl+b}{Shift+Ctrl+i}"
+				IF _arg2 = "Italic" THEN SendKeys "{Shift+Ctrl+i}"
+				IF _arg2 = "Underline" THEN SendKeys "{Shift+Ctrl+u}"
+				ELSE
+				IF _arg2 = "Caps" THEN HeardWord "Add", "Caps"
+				IF _arg2 = "All Caps" THEN HeardWord "Add", "\All-Caps"
+				IF _arg2 = "No Caps" THEN HeardWord "Add", "\No-Caps"
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg2
+				END IF
+			}
+		}
+		LIST "This" {
+			"This"
+		}
+		LIST "CapsBoldItalicCopyPasteCutCDeleteCBackspaceCEnterCSpaceAnotherInsertAGraphIGIsolateAINextNew" {
+			"New"  "Next"  "Last"
+			"Isolate"  "Another Isolate"
+			"Another"  "Another Line"  "Another Graph"
+			"Insert Line"  "Insert Graph"
+			"Bold"  "Bold Italic"  "Italic" "Underline"
+			"Cut Delete"  "Cut Space"  "Cut Enter"  "Cut Backspace"  
+			"Delete Delete"  "Delete Space"  "Delete Enter"  "Delete Backspace"
+			"Caps"  "All Caps"  "No Caps"
+			"Cut"  "Copy"
+			"Paste" "Delete"
+		}
+ 
+#7s. Selecting and Copying, Cutting, Pasting, Deleting, Formatting
+		COMMAND "<GLLWBsAsUSDocTopBottom> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg1
+				IF _arg2 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg2
+				END IF
+			}
+		}
+		COMMAND "<1-20> <GLLWDUABUSs> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				IF _arg3 = "Touch" THEN
+				ButtonClick
+				ELSE
+				Wait 200
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg3
+				END IF
+			}
+		}
+		COMMAND "<1-100> <DULRs> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				IF _arg2 = "Downs" THEN SendKeys "{Shift+Down " + _arg1 + "}"
+				IF _arg2 = "Ups" THEN SendKeys "{Shift+Up " + _arg1 + "}"
+				IF _arg2 = "Rights" THEN SendKeys "{Shift+Right " + _arg1 + "}"
+				IF _arg2 = "Lefts" THEN SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 300
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg3
+			}
+		}
+		COMMAND "<0-10> <0-10> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2 + "|" + "Words"
+				' GGSLLWSSUs at 45
+				DllCall "UttC.dll", 45, p$
+				IF _arg3 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg3
+				END IF
+			}
+		}
+		COMMAND "<0-10> <0-10> <GGSLLWs> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2 + "|" + _arg3
+				' GGSLLWSSUs at 45
+				DllCall "UttC.dll", 45, p$
+				IF _arg4 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg4
+				END IF
+			}
+		}
+		LIST "GGSLLWs" {
+			"Letters"  "Words"  "Lines"  "Graphs"  "Graph Spaces"
+		}
+		LIST "0-10" {
+			"0" "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				IF _arg3 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg3
+				END IF
+			}
+		}
+		COMMAND "<1-100> <DULRs> <1-100> <DULRs> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				IF _arg5 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg5
+				END IF
+			}
+		}
+ 
+#7t. Moving and Copying, Cutting, Pasting, Deleting Formatting
+ 		COMMAND "<1-20> <GLRLWBALUSBALeftRtSSUddd> <BackspacePasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				IF _arg2 = "Line Down" THEN  _arg2 = "Line"
+				IF _arg2 = "Graph Down" THEN  _arg2 = "Graph"
+				IF _arg2 = "Screen Down" THEN  _arg2 = "Screen"
+				p$ = _arg1 + "|" + _arg2
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+ 				IF _arg3 = "Touch" THEN
+				ButtonClick
+				ELSE
+				IF _arg3 = "Backspace" THEN
+				SendKeys "{Backspace}"
+				ELSE
+				Wait 200
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg3
+				END IF
+				END IF
+			}
+		}
+		LIST "BackspacePasteDeleteBoldItalicTouch" {
+			"Backspace"	"Paste"	"Delete"
+			"Bold"  "Bold Italic" "Italic"  "Underline" "Touch"
+		}
+ 
+#7u. Moving and selecting and Copying, Cutting, Pasting, Deleting Formatting
+		COMMAND "<1-20> <DULRSSU> <GLLWBsAsUSDocTopBottom> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg3
+				IF _arg4 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg4
+				END IF
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <1-20> <GLLWDUABUSs> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				IF _arg4 = "Afters" THEN
+				SendKeys ""
+				ELSE
+				SendKeys "{Ctrl+Left}"
+				END IF
+				p$ = _arg3 + "|" + _arg4
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				IF _arg5 = "Touch" THEN
+				ButtonClick
+				ELSE
+				Wait 200
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg5
+				END IF
+			}
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <1-20thEnd> <GGSLLW> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				SendKeys "{Ctrl+Left}"
+				HeardWord _arg3, _arg4
+				IF _arg5 = "Touch" THEN
+				ButtonClick
+				ELSE
+				Wait 200
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg5
+				END IF
+			}
+		}
+		COMMAND "<1-20> <GLRLWBALUSBALeftRtSSU> <1-20thEnd> <GGSLLW> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+				HeardWord _arg3, _arg4  
+				IF _arg5 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg5
+				END IF
+			}
+		}
+		COMMAND "<1-20> <DULR> <1-20thEnd> <GGSLLW> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				HeardWord _arg3, _arg4  
+				IF _arg5 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg5
+				END IF
+			}
+		}
+ 		COMMAND "<DULR> <1-20thEnd> <GGSLLW> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				SendKeys "{" + _arg1 + "}"
+				HeardWord _arg2, _arg3  
+				IF _arg4 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg4
+				END IF
+			}
+		}
+		COMMAND "<1-20> <GLRLWBALUSBALeftRtSSU> <1-20> <GLLWDUABUSs> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+				p$ = _arg3 + "|" + _arg4
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				IF _arg5 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg5
+				END IF
+			}
+		}
+		COMMAND "<1-20> <GLRLWBALUSBALeftRtSSU> <GLLWBsAsUSDocTopBottom> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg3
+				IF _arg4 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg4
+				END IF
+			}
+		}
+		COMMAND "<DULRHE> <GLLWBsAsUSDocTopBottom> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				SendKeys "{" + _arg1 + "}"
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg2
+				IF _arg3 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg3
+				END IF
+			}
+		}
+		LIST "GLLWBsAsUSDocTopBottom" {
+			"Letter"  "Lefts"  "Rights"
+			"Befores"  "Afters"  "Word"  "Word Top"  "Word Bottom"
+			"Line"  "Line Up"  "Line Top"  "Line Bottom"
+			"Graph"  "Graph Space"  "Graph Up"  "Graph Space Up"  "Graph Top"  "Graph Bottom"
+			"Screen"  "Screen Up"
+			"Document"  "Document Top"  "Document Bottom"
+			"Doc"  "Doc Top"  "Doc Bottom"
+		}
+		COMMAND "<DULRHE> <1-20> <GLRLWBALUSBALeftRtSSU> <PasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				SendKeys "{" + _arg1 + "}"
+				p$ = _arg2 + "|" + _arg3
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+				IF _arg4 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg4
+				END IF
+			}
+		}
+		COMMAND "<1-20> <DULRSSU> <1-20> <GLRLWBALUSBALeftRtSSU> <PasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				p$ = _arg3 + "|" + _arg4
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+				IF _arg5 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg5
+				END IF
+			}
+		}
+		LIST "PasteDeleteBoldItalicTouch" {
+			"Paste"	"Delete"
+			"Bold" "Bold Italic" "Italic" "Underline"  "Touch"
+		}
+		COMMAND "<1-20> <DULRSSU> <1-20> <GLLWDUABUSs> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				p$ = _arg3 + "|" + _arg4
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				IF _arg5 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg5
+				END IF
+			}
+		}
+		LIST "DULRSSU" {
+			"Left"  "Right"  "Down"  "Up"
+			"Screen"  "Screen Down"  "Screen Up"
+		}
+		COMMAND "<DULRHomeEndTopBottom> <1-20> <GLLWDUABUSsNoWordsAftersBefores> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				IF _arg1 = "Top" THEN _arg1 = "Ctrl+Home"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				SendKeys "{" + _arg1 + "}"
+				p$ = _arg2 + "|" + _arg3
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				IF _arg4 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg4
+				END IF
+			}
+		}
+		COMMAND "<DULRHomeEndTopBottom> <1-20> <WordsBeforesAfters> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				IF _arg1 = "Top" THEN _arg1 = "Ctrl+Home"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				SendKeys "{" + _arg1 + "}"
+				IF _arg3 = "Words" XOR _arg3 = "Afters" THEN SendKeys "{Shift+Ctrl+Right " + _arg2 + "}"
+				IF _arg3 = "Befores" THEN SendKeys "{Shift+Ctrl+Left " + _arg2 + "}"
+				IF _arg4 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg4
+				END IF
+			}
+		}
+		COMMAND "<DULRHomeEndTopBottom> <DULRHomeEndTopBottom> <1-20> <GLLWDUABUSsNoWordsAftersBefores> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				IF _arg1 = "Top" THEN _arg1 = "Ctrl+Home"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				IF _arg2 = "Top" THEN _arg2 = "Ctrl+Home"
+				IF _arg2 = "Bottom" THEN _arg2 = "Ctrl+End"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg2 + "}"
+				p$ = _arg3 + "|" + _arg4
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				IF _arg5 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg5
+				END IF
+			}
+		}
+		COMMAND "<DULRHomeEndTopBottom> <1-20> <DULR> <1-20> <GLLWDUABUSsNoWordsAftersBefores> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				IF _arg1 = "Top" THEN _arg1 = "Ctrl+Home"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				p$ = _arg4 + "|" + _arg5
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				IF _arg6 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg6
+				END IF
+			}
+		}
+		COMMAND "<1-20> <DULR> <DULRHomeEndTopBottom> <1-20> <GLLWDUABUSsNoWordsAftersBefores> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				IF _arg2 = "Top" THEN _arg2 = "Ctrl+Home"
+				IF _arg2 = "Bottom" THEN _arg2 = "Ctrl+End"
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				SendKeys "{" + _arg3 + "}"
+				p$ = _arg4 + "|" + _arg5
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				IF _arg6 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg6
+				END IF
+			}
+		}
+		LIST "GLLWDUABUSsNoWordsAftersBefores" {
+			"Letters"  "Lefts"  "Rights"
+			"Lines"  "Line Ups"  "Downs"  "Ups"
+			"Graphs"  "Graph Spaces"  "Graph Ups"  "Graph Space Ups"
+			"Screens"  "Screen Ups"
+		}
+		COMMAND "<DULRHomeEndTopBottom> <DULRHomeEnd> <1-20> <WordsBeforesAfters> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				IF _arg1 = "Top" THEN _arg1 = "Ctrl+Home"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				IF _arg2 = "Top" THEN _arg2 = "Ctrl+Home"
+				IF _arg2 = "Bottom" THEN _arg2 = "Ctrl+End"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg2 + "}"
+				IF _arg4 = "Words" XOR _arg4 = "Afters" THEN SendKeys "{Shift+Ctrl+Right " + _arg3 + "}"
+				IF _arg4 = "Befores" THEN SendKeys "{Shift+Ctrl+Left " + _arg3 + "}"
+				IF _arg5 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg5
+				END IF
+			}
+		}
+		COMMAND "<DULRHomeEndTopBottom> <1-20> <DULR> <1-20> <WordsBeforesAfters> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				IF _arg1 = "Top" THEN _arg1 = "Ctrl+Home"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				IF _arg5 = "Words" XOR _arg5 = "Afters" THEN SendKeys "{Shift+Ctrl+Right " + _arg4 + "}"
+				IF _arg5 = "Befores" THEN SendKeys "{Shift+Ctrl+Left " + _arg4 + "}"
+				IF _arg6 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg6
+				END IF
+			}
+		}
+		LIST "DULRHomeEndTopBottom" {
+			"Home"  "End"
+			"Top"  "Bottom"
+			"Up"  "Down"  "Left"  "Right"
+		}
+		COMMAND "<1-20> <DULR> <DULRHomeEnd> <1-20> <WordsBeforesAfters> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				SendKeys "{" + _arg3 + "}"
+				IF _arg5 = "Words" XOR _arg5 = "Afters" THEN SendKeys "{Shift+Ctrl+Right " + _arg4 + "}"
+				IF _arg5 = "Befores" THEN SendKeys "{Shift+Ctrl+Left " + _arg4 + "}"
+				IF _arg6 = "Touch" THEN
+				ButtonClick
+				ELSE
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg6
+				END IF
+			}
+		}
+		LIST "DULRHomeEnd" {
+			"Home"  "End"
+			"Up"  "Down"  "Left"  "Right"
+		}
+		LIST "WordsBeforesAfters" {
+			"Words"  "Befores"  "Afters"
+		}
+		COMMAND "<DULRHE> <1-20> <GLRLWBALUSBALeftRtSSU> <1-20> <GLLWDUABUSs>" {
+			SCRIPT {
+				SendKeys "{" + _arg1 + "}"
+				Wait 200
+				p$ = _arg2 + "|" + _arg3
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+				p$ = _arg4 + "|" + _arg5
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+			}
+		}
+		LIST "DULRHE" {
+			"Up"  "Down"  "Left"  "Right" "Home" "End"
+		}
+		LIST "GLRLWBALUSBALeftRtSSU" {
+			"Letter"
+			"Word"  "Before"  "After"
+			"Before Left"  "After Left"
+			"Before Right"  "After Right"
+			"Line"  "Line Up"
+			"Graph"  "Graph Up"
+			"Graph Space"  "Graph Space Up"
+			"Screen"  "Screen Down"  "Screen Up"
+		}
+ 
+#7v. Selecting letters and Copying, Cutting, Pasting, Deleting Formatting 
+		COMMAND "<Spells> <AlphChar0-9Space> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				
+				IF _arg2 = "Zero" THEN  _arg2 = "0"
+				HeardWord _arg1, _arg2
+				IF _arg3 = "Touch" THEN
+				Wait 300
+				ButtonClick
+				ELSE
+				Wait 300
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg3
+				END IF
+			}
+		}
+		COMMAND "<Spells> <AlphChar0-9Space> <AlphChar0-9Space> <CutCopyPasteDeleteBoldItalicTouch>" {
+			SCRIPT {
+				
+				IF _arg2 = "Zero" THEN  _arg2 = "0"
+							
+				IF _arg3 = "Zero" THEN  _arg3 = "0"
+				HeardWord _arg1, _arg2, _arg3				
+				IF _arg4 = "Touch" THEN
+				Wait 300
+				ButtonClick
+				ELSE
+				Wait 300
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg4
+				END IF
+			}
+		}
+		LIST "Spells" {
+			"Spells"
+		}
+		LIST "AlphChar0-9Space" {
+			"Space"
+			"Zero"   "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"   
+			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+            "@"  "^"  "Ampersand"  "("  ")"
+			"~"  "-"  "Minus"  "_"  "Equals"  
+			"Plus"  "Pipe"  "Grave" "["  "{"
+			"]"  "}"  ";"  ":"  "\""  ","  "."
+			"/"  "?"
+			"Exclamation"  "Dollar"  "Number"  "Question"  "Single"  "Single Quote" "Times"  "Star"  "Percent"  "Divided By"
+			"Greater Than"  "Less Than"  "Open Angle"  "Close Angle"  
+		}
+		LIST "CutCopyPasteDeleteBoldItalicTouch" {
+			"Cut"  "Copy"  "Paste"  "Delete"  "Bold"  "Bold Italic"  "Italic"  "Underline"  "Touch"
+		}
+ 
+#7w. Selecting plus keyboard shortcut
+		COMMAND "<GLLWBsAsUSDocTopBottomAnotherAG> <1-3AltUnderCtrlSh> <AlphChar0-9>" {
+			SCRIPT {
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg1
+				_var1 = "{"				
+				if Instr(_arg2, "Control") > 0 then _var1 = _var1 + "Ctrl+"
+				if Instr(_arg2, "Alternate") XOR Instr (_arg2, "Under") > 0 then _var1 = _var1 + "Alt+"
+				if Instr(_arg2, "Shift") > 0 then _var1 = _var1 + "Shift+"
+				SendKeys _var1 + MID$(_arg3,0,1) +"}"
+			}
+		}
+		COMMAND "<1-3AltUnderCtrlSh> <AlphChar0-9> <GLLWBsAsUSDocTopBottomAnotherAG>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				' ThisCommand at 91
+				DllCall "UttC.dll", 91, _arg3
+			}
+		}
+		LIST "GLLWBsAsUSDocTopBottomAnotherAG" {
+			"Letter"  "Lefts"  "Rights"
+			"Befores"  "Afters"  "Word"  "Word Top"  "Word Bottom"
+			"Line"  "Line Up"  "Line Top"  "Line Bottom"
+			"Graph"  "Graph Space"  "Graph Up"  "Graph Space Up"  "Graph Top"  "Graph Bottom"
+			"Screen"  "Screen Up"
+			"Document"  "Document Top"  "Document Bottom"
+			"Doc"  "Doc Top"  "Doc Bottom" "Another" "Another Graph"
+		}
+		COMMAND "<1-20> <GLLWDUABUSs> <1-3AltUnderCtrlSh> <AlphChar0-9>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				
+				IF _arg4 = "Zero" THEN  _arg4 = "0"				
+				IF _arg4 = "Minus" THEN  _arg4 = "-"										
+				IF _arg4 = "Plus" THEN  _arg4 = "+"										
+				IF _arg4 = "Equals" THEN  _arg4 = "="										
+				IF _arg4 = "Percent" THEN _arg4 = "%"												
+				IF _arg4 = "Star" THEN  _arg4 = "*"
+				IF _arg4 = "Ampersand" THEN  _arg4 = "&"							
+				IF _arg4 = "Exclamation" THEN  _arg4 = "!"										
+				IF _arg4 = "Dollar" THEN  _arg4 = "$"										
+				IF _arg4 = "Number" THEN  _arg4 = "#"										
+				IF _arg4 = "Question" THEN  _arg4 = "?"										
+				IF _arg4 = "Single" THEN  _arg4 = "'"
+				_var1 = "{"				
+				if Instr(_arg3, "Control") > 0 then _var1 = _var1 + "Ctrl+"
+				if Instr(_arg3, "Alternate") XOR Instr (_arg3, "Under") > 0 then _var1 = _var1 + "Alt+"
+				if Instr(_arg3, "Shift") > 0 then _var1 = _var1 + "Shift+"
+				SendKeys _var1 + MID$(_arg4,0,1) +"}"
+			}
+		}
+		LIST "GLLWDUABUSs" {
+			"Letters"  "Lefts"  "Rights"
+			"Words"  "Befores"  "Afters"
+			"Lines"  "Line Ups"  "Downs"  "Ups"
+			"Graphs"  "Graph Spaces"  "Graph Ups"  "Graph Space Ups"
+			"Screens"  "Screen Ups"
+		}
+		COMMAND "<1-20thEnd> <GGSLLW> <1-3AltUnderCtrlSh> <AlphChar0-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				HeardWord _arg3, _arg4
+			}
+		}
+ 		COMMAND "<1-20> <GLRLWBALUSBALeftRtSSUddd> <1-3AltUnderCtrlSh> <AlphChar0-9>" {
+			SCRIPT {
+				IF _arg2 = "Line Down" THEN  _arg2 = "Line"
+				IF _arg2 = "Graph Down" THEN  _arg2 = "Graph"
+				IF _arg2 = "Screen Down" THEN  _arg2 = "Screen"
+				p$ = _arg1 + "|" + _arg2
+				' GLRLWBALUSBALeftRtSSU at 48
+				DllCall "UttC.dll", 48, p$
+				HeardWord _arg3, _arg4
+			}
+		}
+		LIST "GLRLWBALUSBALeftRtSSUddd" {
+			"Letter"
+			"Word"  "Before"  "After"
+			"Before Left"  "After Left"
+			"Before Right"  "After Right"
+			"Line"  "Line Down"  "Line Up"
+			"Graph"  "Graph Down"  "Graph Up"
+			"Graph Space"  "Graph Space Up"
+			"Screen"  "Screen Down"  "Screen Up"
+		}
+		COMMAND "<1-100> <DULRs> <1-3AltUnderCtrlSh> <AlphChar0-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				HeardWord _arg3, _arg4
+			}
+		}
+		LIST "1-100" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40" "41" "42" "43" "44" "45" "46" "47" "48" "49"
+			 "50" "51" "52" "53" "54" "55" "56" "57" "58" "59"
+			 "60" "61" "62" "63" "64" "65" "66" "67" "68" "69"
+			 "70" "71" "72" "73" "74" "75" "76" "77" "78" "79"
+			 "80" "81" "82" "83" "84" "85" "86" "87" "88" "89"
+			 "90" "91" "92" "93" "94" "95" "96" "97" "98" "99"  "100"
+		}
+		LIST "DULRs" {
+			"Lefts"  "Rights"  "Downs"  "Ups"
+		}
+ 
+#7x. Moving and selecting plus keyboard shortcut
+ 		COMMAND "<DULR> <1-20thEnd> <GGSLLW> <1-3AltUnderCtrlSh> <AlphChar0-9>" {
+			SCRIPT {
+				SendKeys "{" + _arg1 + "}"
+				HeardWord _arg2, _arg3  
+				HeardWord _arg4, _arg5
+			}
+		}
+		LIST "DULR" {
+			"Up"  "Down"  "Left"  "Right"
+		}
+		LIST "1-20thEnd" {
+			"1st"  "2nd"  "3rd"  "4th"  "5th"  "6th"  "7th"  "8th"  "9th"  "10th"
+			"11th"  "12th"  "13th"  "14th"  "15th"  "16th"  "17th"  "18th"  "19th"
+			"20th"  "End"
+		}
+		LIST "GGSLLW" {
+			"Letter"
+			"Word"
+			"Line"
+			"Graph"  "GraphSpace"
+		}
+		LIST "1-3AltUnderCtrlSh" {
+			"Shift"  "Control"  "Alternate"  "Under"
+			"Shift Control"	"Shift Alternate" "Control Alternate"
+			"Shift Control Alternate"
+			"Shift Under" "Control Under"
+			"Shift Control Under"
+		}
+		LIST "AlphChar0-9" {
+			"Zero" "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"   
+			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+           "@"  "^" "Ampersand"  "("  ")"    
+			"~"  "-"  "Minus"  "_"  "Equals"
+			"Plus"  ";"  ":"  "\""  ","  "."
+			"/"  
+			"Dollar" "Exclamation"  "Number" "Single" "Question"  "Star"  			  
+		}
+ 
+#7y. Moving text
+		COMMAND "<1-20> <GLLWSP> <BackForward>" {
+			SCRIPT {
+					IF _arg2 = "Letter" THEN  _arg2 = "Letters"
+					IF _arg2 = "Word" THEN  _arg2 = "Words"
+					IF _arg2 = "Line" THEN  _arg2 = "Lines"
+					IF _arg2 = "Graph" THEN  _arg2 = "Graphs"
+					IF _arg2 = "Graph Space" THEN  _arg2 = "Graph Spaces"
+					IF _arg2 = "Page" THEN  _arg2 = "Pages"
+					p$ = _arg3 + "|" + _arg1 + "|" + _arg2
+					' backforward1to20GLLWSPs at 9
+					DllCall "UttC.dll", 9, p$
+			}
+		}
+		COMMAND "<1-20> <Word> <BackForward> 1 Space" {
+			SCRIPT {
+					IF _arg2 = "Word" THEN  _arg2 = "Words"
+					p$ = _arg3 + "|" + _arg1 + "|" + _arg2
+					' backforward1to20GLLWSPs at 9
+					DllCall "UttC.dll", 9, p$
+					SendKeys "{Space}"
+			}
+		}
+		LIST "Word" {
+			"Word"
+		}
+		LIST "GLLWSP" {
+			"Letter"  "Word"  "Line"
+			"Graph"  "Graph Space"  "Page"
+		}
+		COMMAND "<GLLWBsAsUS> <1-20> <BackForward>" {
+			SCRIPT {
+				' ThisCommand at 91
+				DllCall "UttC.dll",91, _arg1
+				SendKeys "{Ctrl+x}"
+				IF _arg3 = "Back" THEN 
+					IF _arg1 = "Letter" XOR _arg1 = "Word" XOR _arg1 = "Line" XOR _arg1 = "Graph" THEN 
+						p$ = _arg2 + "|" + _arg1 + "s|" + "Before"
+					End If
+					IF _arg1 = "Befores" XOR _arg1 = "Afters" THEN
+						p$ = _arg2 + "|" + "Words" + "|" + "Before"
+					End If
+					IF _arg1 = "Lefts" XOR _arg1 = "Rights" THEN 
+						p$ = _arg2 + "|" + "Letters" + "|" + "Before"
+					End If
+					IF _arg1 = "Line Up" THEN
+						p$ = _arg2 + "|" + "Lines" + "|" + "Before"
+					End If
+					IF _arg1 = "Graph Up" THEN
+						p$ = _arg2 + "|" + "Graph Ups" + "|" + "Before"
+					End If
+					IF _arg1 = "Graph Space" THEN
+						p$ = _arg2 + "|" + "Graph Spaces" + "|" + "Before"
+					End If
+					IF _arg1 = "Graph Up Space" THEN
+						p$ = _arg2 + "|" + "Graph Up Spaces" + "|" + "Before"
+					End If
+				' GLLWUDUs at 47
+				DllCall "UttC.dll", 47, p$
+				END IF
+				IF _arg3 = "Forward" THEN 
+					IF _arg1 = "Letter" XOR _arg1 = "Word" XOR _arg1 = "Line" XOR _arg1 = "Graph" THEN
+						p$ = _arg2 + "|" + _arg1 + "s|" + "After"
+					End If
+					IF _arg1 = "Befores" XOR _arg1 = "Afters" THEN
+						p$ = _arg2 + "|" + "Words" + "|" + "After"
+					End If
+					IF _arg1 = "Lefts" XOR _arg1 = "Rights" THEN 
+						p$ = _arg2 + "|" + "Letters" + "|" + "After"
+					End If
+					IF _arg1 = "Line Up" THEN
+						p$ = _arg2 + "|" + "Lines" + "|" + "After"
+					End If
+					IF _arg1 = "Graph Up" THEN
+						p$ = _arg2 + "|" + "Graph Ups" + "|" + "After"
+					End If
+					IF _arg1 = "Graph Space" THEN
+						p$ = _arg2 + "|" + "Graph Spaces" + "|" + "After"
+					End If
+					IF _arg1 = "Graph Up Space" THEN
+						p$ = _arg2 + "|" + "Graph Up Spaces" + "|" + "After"
+					End If
+				' GLLWUDUs at 47
+				DllCall "UttC.dll", 47, p$
+				END IF
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				IF _arg1 = "Letter" THEN SendKeys "{Shift+Left}"
+				IF _arg1 = "Word" XOR _arg1 = "Befores" XOR _arg1 = "Afters" THEN SendKeys "{Ctrl+Shift+Left}"
+				IF _arg1 = "Line" XOR _arg1 = "Line Up" THEN SendKeys "{End}{Shift+Home}"
+				IF _arg1 = "Graph" XOR _arg1 = "Graph Up" THEN SendKeys "{Shift+Ctrl+Up}"
+				IF _arg1 = "Graph Space" XOR _arg1 = "Graph Up Space" THEN SendKeys "{Shift+Ctrl+Up 2}"
+			}
+		}
+		LIST "GLLWBsAsUS" {
+			"Letter"
+			"Word"  "Befores"  "Afters"
+			"Line"  "Line Up"
+			"Graph"  "Graph Up"  "Graph Space"  "Graph Space Up"
+		}
+		COMMAND "1 <GLLWUDUs> <1-20> <BackForward>" {
+			SCRIPT {
+				p$ = "1" + "|" + _arg1
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				p$ = _arg3 + "|" + _arg2 + "|" + _arg1
+				' backforward1to20GLLWSPs at 9
+				DllCall "UttC.dll", 9, p$
+				IF _arg1 = "Letters" XOR _arg1 = "Rights" XOR _arg1 = "Lefts" THEN SendKeys "{Shift+Left}"				
+				IF _arg1 = "Words" XOR _arg1 = "Befores" XOR _arg1 = "Afters" THEN SendKeys "{Ctrl+Shift+Left}"
+				IF _arg1 = "Lines" XOR _arg1 = "Line Ups" THEN SendKeys "{End}{Shift+Home}"
+				IF _arg1 = "Ups" XOR _arg1 = "Downs" THEN SendKeys "{Shift+Up}"
+				IF _arg1 = "Graphs" XOR _arg1 = "Graph Ups" THEN SendKeys "{Shift+Ctrl+Up}"
+				IF _arg1 = "Graph Spaces" XOR _arg1 = "Graph Space Ups" THEN SendKeys "{Shift+Ctrl+Up 2}"								
+			}
+		}
+		COMMAND "<2-20> <GLLWUDUs> <1-20> <BackForward>" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				p$ = _arg4 + "|" + _arg3 + "|" + _arg2
+				' backforward1to20GLLWSPs at 9
+				DllCall "UttC.dll", 9, p$
+				IF _arg2 = "Letters" XOR _arg2 = "Rights" XOR _arg2 = "Lefts" THEN SendKeys "{Shift+Left " + _arg1 + "}"				
+				IF _arg2 = "Words" XOR _arg2 = "Befores" XOR _arg2 = "Afters" THEN SendKeys "{Ctrl+Shift+Left " + _arg1 + "}"
+				IF _arg2 = "Lines" XOR _arg2 = "Line Ups" THEN SendKeys "{Shift+Up " + _arg1 + "}"
+				IF _arg2 = "Ups" XOR _arg2 = "Downs" THEN SendKeys "{Shift+Up " + _arg1 + "}"
+				IF _arg2 = "Graphs" XOR _arg2 = "Graph Ups" THEN SendKeys "{Shift+Ctrl+Up " + _arg1 + "}"
+				IF _arg2 = "Graph Spaces" XOR _arg2 = "Graph Space Ups" THEN SendKeys "{Shift+Ctrl+Up " + _arg1 + "}{Shift+Ctrl+Up " + _arg1 + "}"								
+			}
+		}
+		LIST "2-20" {
+			"2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+		}
+		LIST "GLLWUDUs" {
+			"Letters"  "Lefts"  "Rights"
+			"Words"  "Befores"  "Afters"
+			"Lines"  "Line Ups"  "Downs"  "Ups"
+			"Graphs"  "Graph Spaces"  "Graph Ups"  "Graph Space Ups"
+		}
+		LIST "1-20" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+		}
+		LIST "BackForward" {
+			"Back"
+			"Forward"
+		}
+ 
+	}
+}
