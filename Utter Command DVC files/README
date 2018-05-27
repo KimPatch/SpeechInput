@@ -1,4 +1,4 @@
-This file contains three versions of the Utter Command DVC files. These are the files that contain all the UC speech input commands. 
-UC Extended contains all the UC commands. 
-UC Common leaves out some of the compute-intensive advanced commands that most people don’t need. I usually start people out with this. UC Common also has notes that show which Extended commands were left out.
-UC Current is what I use. It iis based on UC Common but includes the advanced commands that I find most useful plus several command sets for specific programs.
+This folder contains two versions of Utter Command DVC files. These are the files that contain all the UC speech input commands. 
+UC Extended is contains all the UC commands. 
+UC Common is the up-to-date and practical version. It leaves out some of the compute-intensive advanced commands that most people don’t need. I usually start people out with this, and add advanced commands from UC Extended if necessary. UC Common also has notes that show which Extended commands were left out.
+
