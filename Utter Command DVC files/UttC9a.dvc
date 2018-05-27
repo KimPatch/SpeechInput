@@ -1,0 +1,446 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+	STATE "Global Commands" GLOBAL {
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Tab <ForwardBack>" {
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				IF _arg2 = "Forward" THEN SendKeys "{Ctrl+Tab}"
+				IF _arg2 = "Back" THEN SendKeys "{Shift+Ctrl+Tab}"
+				Wait 500
+				SendKeys "{Ctrl+v}"				
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Tab <ForwardBack> <StayReturn>" {
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				IF _arg2 = "Forward" THEN SendKeys "{Ctrl+Tab}"
+				IF _arg2 = "Back" THEN SendKeys "{Shift+Ctrl+Tab}"
+				Wait 500
+				SendKeys "{Ctrl+v}"	
+				Wait 500
+				IF _arg3 = "Return" THEN
+					IF _arg2 = "Forward" THEN SendKeys "{Shift+Ctrl+Tab}"
+					IF _arg2 = "Back" THEN SendKeys "{Ctrl+Tab}"
+				END IF
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Tab <ForwardBack> <TopBottomEnterBETE>" {
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				IF _arg2 = "Forward" THEN SendKeys "{Ctrl+Tab}"
+				IF _arg2 = "Back" THEN SendKeys "{Shift+Ctrl+Tab}"
+				Wait 500
+				IF _arg3 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg3 = "Top" XOR _arg3 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg3 = "Bottom" XOR _arg3 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				IF _arg3 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg3 = "Bottom Enter" THEN SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Tab <ForwardBack> <TopBottomEnterBETE> <StayReturn>" {
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				IF _arg2 = "Forward" THEN SendKeys "{Ctrl+Tab}"
+				IF _arg2 = "Back" THEN SendKeys "{Shift+Ctrl+Tab}"
+				Wait 500
+				IF _arg3 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg3 = "Top" XOR _arg3 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg3 = "Bottom" XOR _arg3 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				IF _arg3 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg3 = "Bottom Enter" THEN SendKeys "{Enter}"
+				Wait 500
+				IF _arg4 = "Return" THEN
+					IF _arg2 = "Forward" THEN SendKeys "{Shift+Ctrl+Tab}"
+					IF _arg2 = "Back" THEN SendKeys "{Ctrl+Tab}"
+				END IF
+			}
+		}
+ 
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to <1-10> Tab <ForwardBack>" {
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				IF _arg3 = "Forward" THEN SendKeys "{Ctrl+Tab " + _arg2 + "}"
+				IF _arg3 = "Back" THEN SendKeys "{Shift+Ctrl+Tab " + _arg2 + "}"
+				Wait 500
+				SendKeys "{Ctrl+v}"				
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to <1-10> Tab <ForwardBack> <StayReturn>" {
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				IF _arg3 = "Forward" THEN SendKeys "{Ctrl+Tab " + _arg2 + "}"
+				IF _arg3 = "Back" THEN SendKeys "{Shift+Ctrl+Tab " + _arg2 + "}"
+				Wait 500
+				SendKeys "{Ctrl+v}"	
+				Wait 500
+				IF _arg4 = "Return" THEN
+					IF _arg3 = "Forward" THEN SendKeys "{Shift+Ctrl+Tab " + _arg2 + "}"
+					IF _arg3 = "Back" THEN SendKeys "{Ctrl+Tab " + _arg2 + "}"
+				END IF
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to <1-10> Tab <ForwardBack> <TopBottomEnterBETE>" {
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				IF _arg3 = "Forward" THEN SendKeys "{Ctrl+Tab " + _arg2 + "}"
+				IF _arg3 = "Back" THEN SendKeys "{Shift+Ctrl+Tab " + _arg2 + "}"
+				Wait 500
+				IF _arg = "Enter" THEN SendKeys "{Enter}"
+				IF _arg4 = "Top" XOR _arg3 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg4 = "Bottom" XOR _arg3 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				IF _arg4 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg4 = "Bottom Enter" THEN SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to <1-10> Tab <ForwardBack> <TopBottomEnterBETE> <StayReturn>" {
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				IF _arg2 = "Forward" THEN SendKeys "{Ctrl+Tab " + _arg2 + "}"
+				IF _arg2 = "Back" THEN SendKeys "{Shift+Ctrl+Tab " + _arg2 + "}"
+				Wait 500
+				IF _arg4 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg4 = "Top" XOR _arg3 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg4 = "Bottom" XOR _arg3 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				IF _arg4 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg4 = "Bottom Enter" THEN SendKeys "{Enter}"
+				Wait 500
+				IF _arg5 = "Return" THEN
+					IF _arg3 = "Forward" THEN SendKeys "{Shift+Ctrl+Tab " + _arg2 + "}"
+					IF _arg3 = "Back" THEN SendKeys "{Ctrl+Tab " + _arg2 + "}"
+				END IF
+			}
+		}
+		LIST "1-10" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10"   
+		}
+ 
+		LIST "ForwardBack" {
+			"Forward"  "Back"
+		}
+		LIST "StayReturn" {
+			"Return"  "Stay"
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Zero <0-9> Go"{
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				SendKeys "{NumKey0}{NumKey" + _arg2 + "}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Zero <0-9> <0-9> Go"{
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				SendKeys "{NumKey0}{NumKey" + _arg2 + "}{NumKey" + _arg3 + "}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Zero <0-9> Go Zero <0-9>"{
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				SendKeys "{NumKey0}{NumKey" + _arg2 + "}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				Wait 500
+				SendKeys "{NumKey0}{NumKey" + _arg3+ "}"
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Zero <0-9> <0-9> Go Zero <0-9>"{
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				SendKeys "{NumKey0}{NumKey" + _arg2 + "}{NumKey" + _arg3 + "}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				SendKeys "{NumKey0}{NumKey" + _arg4 + "}"
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Zero <0-9> Go Zero <0-9> <0-9>"{
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				SendKeys "{NumKey0}{NumKey" + _arg2 + "}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				Wait 500
+				SendKeys "{NumKey0}{NumKey" + _arg3 + "}{NumKey" + _arg4 + "}"
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Zero <0-9> <0-9> Go Zero <0-9> <0-9>"{
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				SendKeys "{NumKey0}{NumKey" + _arg2 + "}{NumKey" + _arg3 + "}"
+				Wait 500
+				IF _arg2 = "Top" XOR _arg2 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg2 = "Bottom" XOR _arg2 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				IF _arg2 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg2 = "Bottom Enter" THEN SendKeys "{Enter}"
+			SendKeys "{NumKey0}{NumKey" + _arg4 + "}{NumKey" + _arg5 + "} {NumKey" + _arg4 + "}"
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Zero <0-9> Go <TopBottomEnterBETE>"{
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				SendKeys "{NumKey0}{NumKey" + _arg2 + "}"
+				Wait 500
+				IF _arg3 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg3 = "Top" XOR _arg3 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg3 = "Bottom" XOR _arg3 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				IF _arg3 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg3 = "Bottom Enter" THEN SendKeys "{Enter}"
+				}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Zero <0-9> <0-9> Go <TopBottomEnterBETE>"{
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				SendKeys "{NumKey0}{NumKey" + _arg2 + "}{NumKey" + _arg3 + "}"
+				Wait 500
+				IF _arg4 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg4 = "Top" XOR _arg4 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg4 = "Bottom" XOR _arg4 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				IF _arg4 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg4 = "Bottom Enter" THEN SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Zero <0-9> Go <TopBottomEnterBETE> Zero <0-9> "{
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				SendKeys "{NumKey0}{NumKey" + _arg2 + "}"
+				Wait 500
+				IF _arg3 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg3 = "Top" XOR _arg3 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg3 = "Bottom" XOR _arg3 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				IF _arg3 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg3 = "Bottom Enter" THEN SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{NumKey0}{NumKey" + _arg4+ "}"
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Zero <0-9> <0-9> Go <TopBottomEnterBETE> Zero <0-9> "{
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				SendKeys "{NumKey0}{NumKey" + _arg2 + "}{NumKey" + _arg3 + "}"
+				Wait 500
+				IF _arg4 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg4 = "Top" XOR _arg4 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg4 = "Bottom" XOR _arg4 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				IF _arg3 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg3 = "Bottom Enter" THEN SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{NumKey0}{NumKey" + _arg4 + "}"
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Zero <0-9> Go <TopBottomEnterBETE> Zero <0-9> <0-9>"{
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				SendKeys "{NumKey0}{NumKey" + _arg2 + "}"
+				Wait 500
+				IF _arg3 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg3 = "Top" XOR _arg2 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg3 = "Bottom" XOR _arg2 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				IF _arg3 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg3 = "Bottom Enter" THEN SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{NumKey0}{NumKey" + _arg4 + "}{NumKey" + _arg5 + "}"
+			}
+		}
+		COMMAND "<CopyCutLineCGraphCGSpaceC> to Zero <0-9> <0-9> Go <TopBottomEnterBETE> Zero <0-9> <0-9>"{
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "Cut" THEN SendKeys "{Ctrl+x}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg1 = "Graph Space Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+c}"
+				IF _arg1 = "Line Cut" THEN SendKeys "{Home}{Shift+End}{Ctrl+x}"
+				IF _arg1 = "Graph Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+x}"
+				IF _arg1 = "Graph Space Cut" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Shift+Down}{Ctrl+x}"
+				SendKeys "{NumKey0}{NumKey" + _arg2 + "}{NumKey" + _arg3 + "}"
+				Wait 500
+				IF _arg4 = "Enter" THEN SendKeys "{Enter}"
+				IF _arg4 = "Top" XOR _arg4 = "Top Enter" THEN SendKeys "{Ctrl+Home}{Enter}{Up}"
+				IF _arg4 = "Bottom" XOR _arg4 = "Bottom Enter" THEN SendKeys "{Ctrl+End}{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				IF _arg4 = "Top Enter" THEN SendKeys "{Enter}{Up}"
+				IF _arg4 = "Bottom Enter" THEN SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{NumKey0}{NumKey" + _arg5 + "}{NumKey" + _arg6 + "} {NumKey" + _arg4 + "}"
+			
+			}
+		}
+ 
+		LIST "CopyCutLineCGraphCGSpaceC" {
+			"Copy"  "Cut"  "Line Copy"  "Graph Copy"  "Graph Space Copy"
+			"Line Cut"  "Graph Cut"  "Graph Space Cut"
+		}
+ 
+		LIST "0-9" {
+			"0"  "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+		}
+		LIST "TopBottomEnterBETE" {
+			"Top"  "Bottom" "Bottom Enter"  "Top Enter"  "Enter"
+ 
+ 
+		}
+	}
+}
