@@ -1,0 +1,2185 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#          This file is part of Redstart Systems' Utter Command Speech Interface	     #
+#          for NaturallySpeaking Professional. Utter Command uses Human-Machine 	     #
+#	     Grammar. 						     				    						 #
+#          Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          � Copyright Redstart Systems 2005-2008. All rights reserved					 #				 
+############################## Copyright #################################################
+ 
+	STATE "Global Commands" GLOBAL {
+ 
+################## Sec. 8: Email
+#8i Sending and checking email
+#See section 5 for user List macros that drive these NN macros
+#8b Sending to Nicknames (NN)
+#8c Sending to and CCing nicknames 
+#8d Add Commands
+#8e Combine copy and email
+################## Sec. 9: Web
+ 
+ 
+################## Section 8: Email ##################
+#See section 5 for user List macros that drive these NN macros
+#8a Sending and checking email
+		COMMAND "<EudoraOutlookExpressThunderbird> Message" {
+			SCRIPT {
+				IF _arg1 = "Mail" THEN 
+					' DefaultMail at 14
+					DllCall "UttC.dll",14, _arg1
+				ELSE
+				IF _arg1 = "Express" THEN _arg1 = "msimn"
+				AppBringUp "" + _arg1 + ""
+				Wait 3000
+				IF _arg1 = "Thunderbird" THEN
+				SendKeys "{Ctrl+m}"
+				ELSE
+				IF _arg1 = "Outlook" THEN
+				param$ = "99 99"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				SendKeys "{Shift+Ctrl+m}"
+				ELSE
+				SendKeys "{Ctrl+n}"				
+				END IF
+				END IF
+				END IF
+			}
+		}
+		COMMAND "<EudoraOutlookExpressThunderbird> Message <Alph>" {
+			SCRIPT {
+				IF _arg1 = "Mail" THEN 
+					' DefaultMail at 14
+					DllCall "UttC.dll",14, _arg1
+				ELSE
+				IF _arg1 = "Express" THEN _arg1 = "msimn"
+				AppBringUp "" + _arg1 + ""
+				Wait 3000
+				IF _arg1 = "Thunderbird" THEN
+				SendKeys "{Ctrl+m}"
+				ELSE
+				IF _arg1 = "Outlook" THEN
+				param$ = "99 99"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				SendKeys "{Shift+Ctrl+m}"
+				ELSE
+				SendKeys "{Ctrl+n}"				
+				END IF
+				END IF
+				END IF
+				Wait 500
+				SendKeys MID$(_arg2,0,1)
+			}
+		}
+		COMMAND "<OutlookThunderbird> Message <Alph> <Alph>" {
+			SCRIPT {
+				IF _arg1 = "Mail" THEN 
+					' DefaultMail at 14
+					DllCall "UttC.dll",14, _arg1
+				ELSE
+				IF _arg1 = "Express" THEN _arg1 = "msimn"
+				AppBringUp "" + _arg1 + ""
+				Wait 3000
+				IF _arg1 = "Thunderbird" THEN
+				SendKeys "{Ctrl+m}"
+				ELSE
+				IF _arg1 = "Outlook" THEN
+				param$ = "99 99"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				SendKeys "{Shift+Ctrl+m}"
+				ELSE
+				SendKeys "{Ctrl+n}"				
+				END IF
+				END IF
+				END IF
+				Wait 500
+				SendKeys MID$(_arg2,0,1)
+				SendKeys MID$(_arg3,0,1)
+			}
+		}
+		LIST "OutlookThunderbird" {
+			"Outlook"  "Thunderbird"
+		}
+		LIST "Alph" {
+#			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+#			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"      
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+		}
+		COMMAND "<EudoraOutlookExpressThunderbird> Check" {
+			SCRIPT {
+				IF _arg1 = "Mail" THEN 
+					' DefaultMail at 14
+					DllCall "UttC.dll",14, _arg1
+				ELSE
+				IF _arg1 = "Express" THEN _arg1 = "msimn"
+				AppBringUp "" + _arg1 + ""
+				END IF
+				Wait 3000
+				IF _arg1 = "Thunderbird" THEN 
+				SendKeys "{Shift+F5}"
+				ELSE
+				IF _arg1 = "Outlook" THEN
+				AppBringUp "" + _arg1 + ""  
+				SendKeys "{F9}"
+				param$ = "99 99"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				ELSE
+				SendKeys "{Ctrl+m}"
+				END IF
+				END IF
+			}
+		}	
+ 
+#8b Sending to Nicknames (NN)
+		COMMAND "Testing <NN>" {
+			SCRIPT {
+				n$ = DllCall$("UttC.dll", "ParseListItem", "N|N|" + _arg1, 512)
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg1, 512)
+				Wait 100
+				SendKeys v$
+				Wait 100
+				SendKeys "Hi " + n$ + ", {Enter 2}"
+			}
+		}
+ 
+		COMMAND "<EudoraOutlookExpressThunderbird> <NN>" {
+			SCRIPT {
+				n$ = DllCall$("UttC.dll", "ParseListItem", "N|N|" + _arg2, 512)
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				IF _arg1 = "Express" THEN _arg1 = "msimn"
+				AppBringUp "" + _arg1 + ""
+				IF _arg1 = "Outlook" THEN
+				Wait 2000
+				END IF
+				Wait 300
+			    ' WaitForWindowByTitleRE at 122
+			    DllCall "UttC.dll", 122, "7|Eudora|Express|Thunderbird|Outlook"
+				Wait 300
+				IF _arg1 = "Outlook" THEN 
+				param$ = "98 98"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				Wait 50
+				SendKeys "{Shift+Ctrl+m}"
+				ELSE
+				IF _arg1 = "Thunderbird" THEN 
+				SendKeys "{Ctrl+m}"
+				ELSE
+				IF _arg1 = "msimn" THEN 
+				SendKeys "{Shift+Tab}"
+				SendKeys "{Ctrl+n}"
+				ELSE
+				SendKeys "{Ctrl+n}"
+				END IF
+				END IF
+				END IF
+				Wait 500
+				SendKeys v$
+				Wait 100
+				IF _arg1 = "Thunderbird" THEN 
+				Wait 500
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Alt+s}{Tab}"
+				ELSE
+				IF _arg1 = "Eudora" THEN 
+				Wait 100
+				SendKeys "{Alt+a}{Tab}"
+				ELSE
+				IF _arg1 = "msimn" THEN 
+				Wait 500
+				SendKeys "{Shift+Tab}"
+				ELSE
+				Wait 500
+				SendKeys "{Enter}"
+				SendKeys "{Tab 4}"
+				SendKeys "{Home}"
+				END IF
+				END IF
+				END IF
+				Wait 500
+				SendKeys "Hi " + n$ + ", {Enter 2}"
+				IF _arg1 = "Thunderbird" THEN 
+				SendKeys "{Alt+s}"
+				ELSE
+				IF _arg1 = "Eudora" THEN 
+				SendKeys "{Alt+u}"
+				ELSE
+				SendKeys "{Shift+Tab}"
+				END IF
+				END IF
+			}
+		}
+		COMMAND "<EudoraOutlookExpressThunderbird> <NN> <NoDearHiPlain>" {
+			SCRIPT {
+				IF _arg1 = "Express" THEN _arg1 = "msimn"
+				IF _arg1 = "Outlook" THEN
+				p$ = "50 70"
+				' MoveArrowByPercentages at 56
+				DllCall "UttC.dll", 56, p$
+				END IF
+				AppBringUp "" + _arg1 + ""
+				IF _arg1 = "Outlook" THEN 
+				Wait 2000
+				END IF
+				Wait 300
+			    ' WaitForWindowByTitleRE at 122
+			    DllCall "UttC.dll", 122, "7|Eudora|Express|Thunderbird|Outlook"
+				Wait 300
+				IF _arg1 = "Outlook" THEN 
+				SendKeys "{Shift+Ctrl+m}"
+				ELSE
+				IF _arg1 = "Thunderbird" THEN 
+				SendKeys "{Ctrl+m}"
+				ELSE
+				IF _arg1 = "msimn" THEN 
+				SendKeys "{Shift+Tab}"
+				SendKeys "{Ctrl+n}"
+				ELSE
+				SendKeys "{Ctrl+n}"
+				END IF
+				END IF
+				END IF
+				Wait 500
+				SendKeys "" + _arg2 + ""
+				Wait 100
+				IF _arg1 = "Thunderbird" THEN 
+				Wait 500
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Alt+s}{Tab}"
+				ELSE
+				IF _arg1 = "Eudora" THEN 
+				Wait 100
+				SendKeys "{Alt+a}{Tab}"
+				ELSE
+				IF _arg1 = "msimn" THEN 
+				Wait 500
+				SendKeys "{Shift+Tab}"
+				ELSE
+				Wait 500
+				SendKeys "{Enter}"
+				SendKeys "{Tab 4}"
+				SendKeys "{Home}"
+				END IF
+				END IF
+				END IF
+				Wait 500
+				IF _arg3 = "Dear" THEN SendKeys "Dear " + _arg2 + ", {Enter 2}"
+				IF _arg3 = "Hi" THEN SendKeys  "Hi " + _arg2 + ", {Enter 2}"
+				IF _arg3 = "Plain" THEN SendKeys  + _arg2 + ", {Enter 2}"
+				IF _arg1 = "Thunderbird" THEN 
+				SendKeys "{Alt+s}"
+				ELSE
+				IF _arg1 = "Eudora" THEN 
+				SendKeys "{Alt+u}"
+				ELSE
+				SendKeys "{Shift+Tab}"
+				END IF
+				END IF
+			}
+		}
+		LIST "NoDearHiPlain" {
+			"No"   "Dear"   "Hi"  "Plain"
+		}
+		COMMAND "<EudoraOutlookExpressThunderbird> <NN> <NN>" {
+			SCRIPT {
+				IF _arg1 = "Express" THEN _arg1 = "msimn"
+				AppBringUp "" + _arg1 + ""
+				IF _arg1 = "Outlook" THEN
+				Wait 2000
+				END IF
+				Wait 300
+			    ' WaitForWindowByTitleRE at 122
+			    DllCall "UttC.dll", 122, "7|Eudora|Express|Thunderbird|Outlook"
+				Wait 300
+				IF _arg1 = "Outlook" THEN 
+				param$ = "98 98"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				Wait 50
+				SendKeys "{Shift+Ctrl+m}"
+				ELSE
+				IF _arg1 = "Thunderbird" THEN 
+				SendKeys "{Ctrl+m}"
+				ELSE
+				IF _arg1 = "msimn" THEN 
+				SendKeys "{Shift+Tab}"
+				SendKeys "{Ctrl+n}"
+				ELSE
+				SendKeys "{Ctrl+n}"
+				END IF
+				END IF
+				END IF
+				Wait 500
+				SendKeys "" + _arg2 + ""
+				Wait 10
+				IF _arg1 = "Outlook" THEN SendKeys "{Enter}"
+				Wait 10
+				SendKeys ", " + _arg3 + ""
+				Wait 10
+				IF _arg1 = "Outlook" THEN SendKeys "{Enter}"
+				Wait 100
+				IF _arg1 = "Thunderbird" THEN 
+				Wait 500
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Alt+s}{Tab}"
+				ELSE
+				IF _arg1 = "Eudora" THEN 
+				Wait 100
+				SendKeys "{Alt+a}{Tab}"
+				ELSE
+				IF _arg1 = "msimn" THEN 
+				Wait 500
+				SendKeys "{Shift+Tab}"
+				ELSE
+				Wait 500
+				SendKeys "{Enter}"
+				SendKeys "{Tab 4}"
+				SendKeys "{Home}"
+				END IF
+				END IF
+				END IF
+				Wait 500
+				SendKeys "Hi " + _arg2 + ", " + _arg3 + ", {Enter 2}"
+				IF _arg1 = "Thunderbird" THEN 
+				SendKeys "{Alt+s}"
+				ELSE
+				IF _arg1 = "Eudora" THEN 
+				SendKeys "{Alt+u}"
+				ELSE
+				SendKeys "{Shift+Tab}"
+				END IF
+				END IF
+			}
+		}
+		COMMAND "<EudoraOutlookExpressThunderbird> <NN> <NN> <NN>" {
+			SCRIPT {
+				IF _arg1 = "Express" THEN _arg1 = "msimn"
+				AppBringUp "" + _arg1 + ""
+				IF _arg1 = "Outlook" THEN 
+				Wait 3000
+				END IF
+				Wait 300
+			    ' WaitForWindowByTitleRE at 122
+			    DllCall "UttC.dll", 122, "7|Eudora|Express|Thunderbird|Outlook"
+				Wait 300
+				IF _arg1 = "Outlook" THEN 
+				param$ = "98 98"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				Wait 50
+				SendKeys "{Shift+Ctrl+m}"
+				ELSE
+				IF _arg1 = "Thunderbird" THEN 
+				SendKeys "{Ctrl+m}"
+				ELSE
+				IF _arg1 = "msimn" THEN 
+				SendKeys "{Shift+Tab}"
+				SendKeys "{Ctrl+n}"
+				ELSE
+				SendKeys "{Ctrl+n}"
+				END IF
+				END IF
+				END IF
+				Wait 500
+				SendKeys "" + _arg2 + ""
+				Wait 10
+				IF _arg1 = "Outlook" THEN SendKeys "{Enter}"
+				Wait 10
+				SendKeys ", " + _arg3 + ""
+				Wait 10
+				IF _arg1 = "Outlook" THEN SendKeys "{Enter}"
+				Wait 10
+				SendKeys ", " + _arg4 + ""
+				Wait 10
+				IF _arg1 = "Outlook" THEN SendKeys "{Enter}"
+				Wait 100
+				IF _arg1 = "Thunderbird" THEN 
+				Wait 500
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Alt+s}{Tab}"
+				ELSE
+				IF _arg1 = "Eudora" THEN 
+				Wait 100
+				SendKeys "{Alt+a}{Tab}"
+				ELSE
+				IF _arg1 = "msimn" THEN 
+				Wait 500
+				SendKeys "{Shift+Tab}"
+				ELSE
+				Wait 500
+				SendKeys "{Enter}"
+				SendKeys "{Tab 4}"
+				SendKeys "{Home}"
+				END IF
+				END IF
+				END IF
+				Wait 500
+				SendKeys "Hi " + _arg2 + ", " + _arg3 + ", " + _arg4 + ", {Enter 2}"
+				IF _arg1 = "Thunderbird" THEN 
+				SendKeys "{Alt+s}"
+				ELSE
+				IF _arg1 = "Eudora" THEN 
+				SendKeys "{Alt+u}"
+				ELSE
+				SendKeys "{Shift+Tab}"
+				END IF
+				END IF
+			}
+		}
+#8c Sending to and CCing nicknames 
+ 
+		COMMAND "<EudoraOutlookExpress> <NN> <CCBCC> <NN>" {
+			SCRIPT {
+				IF _arg1 = "Express" THEN _arg1 = "msimn"
+				AppBringUp "" + _arg1 + ""
+				IF _arg1 = "Outlook" THEN 
+				Wait 3000
+				ELSE
+				Wait 300
+			    ' WaitForWindowByTitleRE at 122
+			    DllCall "UttC.dll", 122, "7|Eudora|Express"
+				Wait 300
+				END IF
+				IF _arg1 = "Outlook" THEN 
+				param$ = "98 98"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				Wait 50
+				SendKeys "{Shift+Ctrl+m}"
+				ELSE
+				IF _arg1 = "msimn" THEN SendKeys "{Shift+Tab}"
+				SendKeys "{Ctrl+n}"
+				END IF
+				Wait 500
+				SendKeys "" + _arg2 + ""
+				Wait 10
+				IF _arg1 = "Outlook" THEN SendKeys "{Enter}"
+				Wait 500
+				IF _arg1 = "Eudora" THEN 
+					IF _arg3 = "CC" THEN SendKeys "{Alt+c}"
+					IF _arg3 = "BCC" THEN SendKeys "{Alt+b}"
+				ELSE
+				IF _arg3 = "CC" THEN SendKeys "{Tab}"
+				IF _arg3 = "BCC" THEN SendKeys "{Tab 2}"
+				END IF
+				Wait 500
+				SendKeys "" + _arg4 + ""
+				Wait 10
+				IF _arg1 = "Outlook" THEN SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Tab 10}{Ctrl+Home}"
+				Wait 500
+				SendKeys "Hi " + _arg2 + ", {Enter 2}"
+				Wait 100
+				IF _arg1 = "Eudora" THEN 
+				Wait 500
+				SendKeys "{Alt+u}"
+				ELSE
+				SendKeys "{Shift+Tab}"
+				END IF
+			}
+		}
+		COMMAND "<EudoraOutlookExpress> <NN> <CCBCC> <NN> <NN>" {
+			SCRIPT {
+				IF _arg1 = "Express" THEN _arg1 = "msimn"
+				AppBringUp "" + _arg1 + ""
+				IF _arg1 = "Outlook" THEN 
+				Wait 3000
+				ELSE
+				Wait 300
+			    ' WaitForWindowByTitleRE at 122
+			    DllCall "UttC.dll", 122, "7|Eudora|Express"
+				Wait 300
+				END IF
+				IF _arg1 = "Outlook" THEN 
+				param$ = "98 98"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				Wait 50
+				SendKeys "{Shift+Ctrl+m}"
+				ELSE
+				IF _arg1 = "msimn" THEN SendKeys "{Shift+Tab}"
+				SendKeys "{Ctrl+n}"
+				END IF
+				Wait 500
+				SendKeys "" + _arg2 + ""
+				Wait 100
+				IF _arg1 = "Outlook" THEN SendKeys "{Enter}"
+				Wait 500
+				IF _arg1 = "Eudora" THEN 
+					IF _arg3 = "CC" THEN SendKeys "{Alt+c}"
+					IF _arg3 = "BCC" THEN SendKeys "{Alt+b}"
+				ELSE
+				IF _arg3 = "CC" THEN SendKeys "{Tab}"
+				IF _arg3 = "BCC" THEN SendKeys "{Tab 2}"
+				END IF
+				Wait 500
+				SendKeys "" + _arg4 + ""
+				Wait 10
+				IF _arg1 = "Outlook" THEN SendKeys "{Enter}"
+				Wait 10
+				SendKeys ", " + _arg5 + ""
+				Wait 10
+				IF _arg1 = "Outlook" THEN SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Tab 10}{Ctrl+Home}"
+				Wait 100
+				SendKeys "Hi " + _arg2 + ", {Enter 2}"
+				Wait 500
+				IF _arg1 = "Eudora" THEN 
+				SendKeys "{Alt+u}"
+				ELSE
+				SendKeys "{Shift+Tab}"
+				END IF
+			}
+		}
+		COMMAND "<EudoraOutlookExpress> <NN> <NN> <CCBCC> <NN>" {
+			SCRIPT {
+				IF _arg1 = "Express" THEN _arg1 = "msimn"
+				AppBringUp "" + _arg1 + ""
+				IF _arg1 = "Outlook" THEN 
+				Wait 3000
+				SendKeys "{F6}"
+				ELSE
+				Wait 300
+			    ' WaitForWindowByTitleRE at 122
+			    DllCall "UttC.dll", 122, "7|Eudora|Express"
+				Wait 300
+				END IF
+				IF _arg1 = "Outlook" THEN 
+				param$ = "98 98"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				Wait 50
+				SendKeys "{Shift+Ctrl+m}"
+				ELSE
+				IF _arg1 = "msimn" THEN SendKeys "{Shift+Tab}"
+				SendKeys "{Ctrl+n}"
+				END IF
+				Wait 500
+				SendKeys "" + _arg2 + ""
+				Wait 10
+				IF _arg1 = "Outlook" THEN SendKeys "{Enter}"
+				Wait 10
+				SendKeys ", " + _arg3 + ""
+				Wait 10
+				IF _arg1 = "Outlook" THEN SendKeys "{Enter}"
+				Wait 500
+				IF _arg1 = "Eudora" THEN 
+				IF _arg4 = "CC" THEN SendKeys "{Alt+c}"
+				IF _arg4 = "BCC" THEN SendKeys "{Alt+b}"
+				ELSE
+				IF _arg4 = "CC" THEN SendKeys "{Tab}"
+				IF _arg4 = "BCC" THEN SendKeys "{Tab 2}"
+				END IF
+				Wait 500
+				SendKeys "" + _arg5 + ""
+				Wait 10
+				IF _arg1 = "Outlook" THEN SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Tab 10}{Ctrl+Home}"
+				Wait 100
+				SendKeys "Hi " + _arg2 + ", " + _arg3 + ", {Enter 2}"
+				Wait 500
+				IF _arg1 = "Eudora" THEN 
+				SendKeys "{Alt+u}"
+				ELSE
+				SendKeys "{Shift+Tab}"
+				END IF
+			}
+		}	
+		LIST "EudoraOutlookExpress" {
+			"Eudora"
+			"Outlook"
+			"Express"
+		}
+		COMMAND "<Thunderbird> <NN> <CCBCC> <NN>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 500
+				SendKeys "{Shift+Tab 2}{Down}"
+				IF _arg3 = "BCC" THEN SendKeys "{Down}"
+				SendKeys "{Tab}"
+				SendKeys "" + _arg4 + ""
+				Wait 500
+				SendKeys "{Alt+s}"
+			}
+		}
+		COMMAND "<Thunderbird> <NN> <CCBCC> <NN> <NN>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 500
+				SendKeys "{Shift+Tab 2}{Down}"
+				IF _arg3 = "BCC" THEN SendKeys "{Down}"
+				SendKeys "{Tab}"
+				SendKeys "" + _arg4 + ""
+				Wait 500
+				SendKeys "{Enter}"
+				Wait 100
+				SendKeys "" + _arg5 + ""
+				Wait 500
+				SendKeys "{Alt+s}"
+			}
+		}
+		COMMAND "<Thunderbird> <NN> <NN> <CCBCC> <NN>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				Wait 500
+				SendKeys "{Shift+Tab 2}{Down}"
+				IF _arg4 = "BCC" THEN SendKeys "{Down}"
+				SendKeys "{Tab}"
+				SendKeys "" + _arg5 + ""
+				Wait 500
+				SendKeys "{Alt+s}"
+			}
+		}	
+		LIST "Thunderbird" {
+			"Thunderbird"
+		}	
+		LIST "CCBCC" {
+			"CC"
+			"BCC"
+		}
+ 
+		COMMAND "<CutCopyAllWLGCopy> To <EudoraOutlookExpressThunderbird> <NN>" {
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "All Copy" THEN SendKeys "{Ctrl+Home}{Shift+Ctrl+End}{Ctrl+c}"
+				IF _arg1 = "All Copy" THEN SendKeys "{Ctrl+a}{Ctrl+c}"
+				IF _arg1 = "Word Copy" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg2 = "Express" THEN _arg2 = "msimn"
+				AppBringUp "" + _arg2 + ""
+				Wait 3000
+				IF _arg2 = "Thunderbird" THEN 
+				IF _arg1 = "Outlook" THEN 
+				param$ = "99 99"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				SendKeys "{Ctrl+m}"
+				ELSE
+				SendKeys "{Ctrl+n}"
+				END IF
+				Wait 100
+				SendKeys "" + _arg3 + ""
+				IF _arg2 = "Eudora" THEN SendKeys "{Alt+a}"
+				IF _arg2 = "Thunderbird" THEN SendKeys "{Alt+s}"
+				IF _arg2 = "msimn" THEN SendKeys "{Shift+Tab}"
+				IF _arg2 = "Outlook" THEN 
+				SetMousePosition 1, 500, 700
+				ButtonClick
+				SendKeys "{Ctrl+Home}"
+				END IF
+				IF _arg2 = "Eudora" XOR _arg2 = "Thunderbird" THEN SendKeys "{Tab}"
+				Wait 300
+				SendKeys "{Enter 2}{Ctrl+v}{Enter}{Ctrl+Home}"
+				Wait 300
+				SendKeys "Hi " + _arg3 + ","
+				IF _arg2 = "Eudora" THEN 
+				SendKeys "{Alt+u}"
+				ELSE
+				IF _arg2 = "Thunderbird" THEN 
+				SendKeys "{Alt+s}"
+				ELSE
+				SendKeys "{Shift+Tab}"
+				END IF
+				END IF
+				END IF
+			}
+		}
+ 
+#8e Combine copy and email
+ 
+		COMMAND "<EudoraOutlookExpressThunderbird> Message Paste" {
+			SCRIPT {
+				IF _arg1 = "Express" THEN _arg1 = "msimn"
+				AppBringUp "" + _arg1 + ""
+				Wait 3000
+				SendKeys "{F6}"
+				Wait 100
+				IF _arg1 = "Thunderbird" THEN
+				SendKeys "{Ctrl+m}"
+				ELSE
+				IF _arg1 = "Outlook" THEN
+				param$ = "99 99"
+				' MoveArrowByPercentagesLocal at 57
+				DllCall "UttC.dll", 57, param$
+				ButtonClick
+				SendKeys "{Shift+Ctrl+m}"
+				ELSE
+				SendKeys "{Ctrl+n}"				
+				END IF
+				END IF
+				Wait 100
+				IF _arg1 = "Eudora" THEN SendKeys "{Alt+a}"
+				IF _arg1 = "Thunderbird" THEN SendKeys "{Alt+s}"
+				IF _arg1 = "Eudora" XOR _arg1 = "Thunderbird" THEN SendKeys "{Tab}"
+				IF _arg1 = "msimn" THEN SendKeys "{Shift+Tab}"
+				IF _arg1 = "Outlook" THEN 
+				Wait 2000
+				SendKeys "{Tab 10}{Home}"
+				END IF
+				Wait 1000
+				SendKeys "{Enter 2}{Ctrl+v}{Enter}{Ctrl+Home}"
+				Wait 100
+				IF _arg1 = "Eudora" THEN SendKeys "{Alt+s}"
+				IF _arg1 = "Thunderbird" THEN SendKeys "{Alt+s}"
+				IF _arg1 = "Outlook" XOR _arg1 = "msimn" THEN SendKeys "{Shift+Tab}"
+			}
+		}
+		COMMAND "<CutCopyAllWLGCopy> To <EudoraOutlookExpressThunderbird>" {
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "All Copy" THEN SendKeys "{Ctrl+Home}{Shift+Ctrl+End}{Ctrl+c}"
+				IF _arg1 = "All Copy" THEN SendKeys "{Ctrl+a}{Ctrl+c}"
+				IF _arg1 = "Word Copy" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg2 = "Express" THEN _arg2 = "msimn"
+				AppBringUp "" + _arg2 + ""
+				Wait 1000
+				SendKeys "{Ctrl+v}{Enter}"
+			}
+		}
+		COMMAND "<CutCopyAllWLGCopy> To <EudoraOutlookExpressThunderbird> Message" {
+			SCRIPT {
+				IF _arg1 = "Copy" THEN SendKeys "{Ctrl+c}"
+				IF _arg1 = "All Copy" THEN SendKeys "{Ctrl+Home}{Shift+Ctrl+End}{Ctrl+c}"
+				IF _arg1 = "All Copy" THEN SendKeys "{Ctrl+a}{Ctrl+c}"
+				IF _arg1 = "Word Copy" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}{Ctrl+c}"
+				IF _arg1 = "Line Copy" THEN SendKeys "{Home}{Shift+End}{Ctrl+c}"
+				IF _arg1 = "Graph Copy" THEN SendKeys "{Down}{Ctrl+Up}{Shift+Ctrl+Down}{Ctrl+c}"
+				IF _arg2 = "Express" THEN _arg2 = "msimn"
+				AppBringUp "" + _arg2 + ""
+				Wait 3000
+				SendKeys "{F6}"
+				Wait 100
+				IF _arg1 = "Thunderbird" THEN 
+				SendKeys "{Ctrl+m}"
+				ELSE
+				SendKeys "{Ctrl+n}"
+				END IF
+				Wait 100
+				IF _arg2 = "Eudora" THEN SendKeys "{Alt+a}"
+				IF _arg2 = "Thunderbird" THEN SendKeys "{Alt+s}"
+				IF _arg2 = "Eudora" XOR _arg2 = "Thunderbird" THEN SendKeys "{Tab}"
+				IF _arg2 = "msimn" THEN SendKeys "{Shift+Tab}"
+				IF _arg2 = "Outlook" THEN SendKeys "{Tab 10}{Ctrl+Home}"
+				Wait 1000
+				SendKeys "{Enter 2}{Ctrl+v}{Enter}{Ctrl+Home}"
+				Wait 100
+				IF _arg2 = "Eudora" THEN SendKeys "{Alt+s}"
+				IF _arg2 = "Thunderbird" THEN SendKeys "{Alt+s}"
+				IF _arg2 = "Outlook" THEN SendKeys "{Shift+Tab}"
+				IF _arg2 = "msimn" THEN SendKeys "{Shift+Tab}"
+			}
+		}
+		LIST "EudoraOutlookExpressThunderbird" {
+			"Eudora"
+			"Outlook"
+			"Express"
+			"Thunderbird"
+		}
+		LIST "CutCopyAllWLGCopy" {
+			"Cut"  "Copy"  "All Copy"  "Word Copy"  "Line Copy"  "Graph Copy"
+		}
+		COMMAND "Address Copy to Message" {
+			SCRIPT {
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Alt+f}e"
+				ELSE
+				isIE$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Internet Explorer", 512 )
+				IF (instr(isIE$,"true")) > 0 THEN
+				SendKeys "{Alt+f}el"
+				END IF
+				END IF
+			}
+		}
+		COMMAND "Address Copy to Message <NN>" {
+			SCRIPT {
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Alt+f}e"
+				ELSE
+				isIE$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Internet Explorer", 512 )
+				IF (instr(isIE$,"true")) > 0 THEN
+				SendKeys "{Alt+f}el"
+				END IF
+				END IF
+				Wait 1000
+				SendKeys "" + _arg1 + ""
+				Wait 500
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "Address Copy to Message <NN> <NN>" {
+			SCRIPT {
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Alt+f}e"
+				ELSE
+				isIE$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Internet Explorer", 512 )
+				IF (instr(isIE$,"true")) > 0 THEN
+				SendKeys "{Alt+f}el"
+				END IF
+				END IF
+				Wait 1000
+				SendKeys "" + _arg1 + ", " + _arg2 + ""
+				Wait 500
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "Address Copy to Message <NN> <NN> <NN>" {
+			SCRIPT {
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Alt+f}e"
+				ELSE
+				isIE$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Internet Explorer", 512 )
+				IF (instr(isIE$,"true")) > 0 THEN
+				SendKeys "{Alt+f}el"
+				END IF
+				END IF
+				Wait 1000
+				SendKeys "" + _arg1 + ", " + _arg2 + ", " + _arg3 + ""
+				Wait 500
+				SendKeys "{Enter}"
+			}
+		}
+ 
+		COMMAND "Mail Open" {
+			SCRIPT {
+				' DefaultMail at 14
+				DllCall "UttC.dll",14, _arg1
+			}
+		}
+		COMMAND "New Message" {
+			SCRIPT {
+				isOutlook$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Outlook", 512 )
+				IF (instr(isOutlook$,"true")) > 0 THEN
+				SendKeys "{Shift+Ctrl+m}"
+				ELSE			
+				SendKeys "{Ctrl+n}"
+				END IF
+			}
+		}
+		COMMAND "Mail Check" {
+			SCRIPT {
+				' DefaultMail at 14
+				DllCall "UttC.dll",14, _arg1
+				Wait 500
+				isOutlook$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Outlook", 512 )
+				IF (instr(isOutlook$,"true")) > 0 THEN
+				SendKeys "{F9}"
+				END IF			
+				isExpress$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Outlook Express", 512 )
+				isMail$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Windows Mail", 512 )
+				IF (instr(isExpress$,"true")) > 0 XOR (instr(isMail$,"true")) > 0 THEN
+				SendKeys "{Ctrl+m}"
+				END IF			
+				isEudora$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Eudora", 512 )
+				IF (instr(isEudora$,"true")) > 0 THEN
+				SendKeys "{Ctrl+m}"
+				END IF			
+				isThunderbird$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Thunderbird", 512 )
+				IF (instr(isThunderbird$,"true")) > 0 THEN
+				SendKeys "{Shift+F5}"
+				END IF
+			}
+		}	
+		COMMAND "<AttachOpenThisAFileA>"{
+			SCRIPT {
+				isOutlookExpressMessage$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Message", 512 )
+				IF (instr(isOutlookExpressMessage$,"true")) > 0 THEN
+				SendKeys "{Alt+i}l"
+				SendKeys "{Shift+Tab}"
+				END IF			
+				isExpressMessage$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Message", 512 )
+				isMail$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Windows Mail", 512 )
+				IF (instr(isExpressMessage$,"true")) > 0 XOR (instr(isMail$,"true")) > 0 THEN
+				SendKeys "{Alt+i}a"
+				SendKeys "{Shift+Tab}"
+				END IF			
+				isEudoraMessage$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", ",", 512 )
+				IF (instr(isEudoraMessage$,"true")) > 0 THEN
+				SendKeys "{Ctrl+h}"
+				SendKeys "{Shift+Tab}"
+				END IF			
+				isThunderbirdMessage$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Compose", 512 )
+				IF (instr(isThunderbirdMessage$,"true")) > 0 THEN
+				SendKeys "{Alt+f}t"
+				SendKeys "f"
+				SendKeys "{Shift+Tab}"
+				END IF													
+			}
+		}
+		LIST "AttachOpenThisAFileA" {
+			"Attach Open" "This Attach"  "File Attach" 
+		}
+		COMMAND "Attach Site"{
+			SCRIPT {
+				isThunderbirdMessage$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Compose", 512 )
+				IF (instr(isThunderbirdMessage$,"true")) > 0 THEN
+				SendKeys "{Alt+f}t"
+				SendKeys "w"
+				SendKeys "{Shift+Tab}"
+				END IF													
+			}
+		}
+		COMMAND "This Send"{
+			SCRIPT {
+				isEudoraMessage$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", ",", 512 )
+				IF (instr(isEudoraMessage$,"true")) > 0 THEN
+				SendKeys "{Ctrl+e}"
+				ELSE			
+				isGmail$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Gmail", 512 )
+				IF (instr(isGmail$,"true")) > 0 THEN
+				SendKeys "{Tab+Enter}"
+				ELSE			
+				SendKeys "{Ctrl+Enter}"
+				END IF
+				END IF
+			}
+		}
+		COMMAND "This Reply"{
+			SCRIPT {
+				isGmail$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Gmail", 512 )
+				IF (instr(isGmail$,"true")) > 0 THEN
+				SendKeys "r"
+				ELSE			
+				isThunderbird$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Thunderbird", 512 )
+				IF (instr(isThunderbird$,"true")) > 0 THEN
+				SendKeys "{Ctrl+r}"
+				SendKeys "{Ctrl+Home}"
+				SendKeys "{Enter 2}{Up 2}"
+				ELSE
+				SendKeys "{Ctrl+r}"
+				END IF
+				END IF	
+			}
+		}
+		COMMAND "Reply All"{
+			SCRIPT {
+				isGmail$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Gmail", 512 )
+				IF (instr(isGmail$,"true")) > 0 THEN
+				SendKeys "a"
+				ELSE
+				isThunderbird$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Thunderbird", 512 )
+				IF (instr(isThunderbird$,"true")) > 0 THEN
+				SendKeys "{Shift+Ctrl+r}"
+				SendKeys "{Ctrl+Home}"
+				SendKeys "{Enter 2}{Up 2}"
+				ELSE					
+				SendKeys "{Shift+Ctrl+r}"
+				END IF
+				END IF
+				
+			}
+		}
+		COMMAND "This Forward"{
+			SCRIPT {
+				isThunderbird$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Thunderbird", 512 )
+				IF (instr(isThunderbird$,"true")) > 0 THEN
+				SendKeys "{Ctrl+l}"
+				SendKeys "{Ctrl+Home}"
+				SendKeys "{Enter 2}{Up 2}"
+				ELSE
+				SendKeys "{Ctrl+f}"
+				END IF
+			}
+		}
+		COMMAND "This Move"{
+			SCRIPT {
+				isOutlook$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Outlook", 512 )
+				IF (instr(isOutlook$,"true")) > 0 THEN
+				SendKeys "{Shift+Ctrl+v}"
+				END IF			
+				isExpress$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Outlook Express", 512 )
+				isMail$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Windows Mail", 512 )
+				IF (instr(isExpress$,"true")) > 0 XOR (instr(isMail$,"true")) > 0 THEN
+				SendKeys "{Shift+Ctrl+v}"
+				END IF			
+				isEudora$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Eudora", 512 )
+				IF (instr(isEudora$,"true")) > 0 THEN
+				SendKeys "{Alt+t}"
+				END IF			
+				isThunderbird$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Thunderbird", 512 )
+				IF (instr(isThunderbird$,"true")) > 0 THEN
+				SendKeys "{Alt+m}"
+				SendKeys "m"
+				END IF
+			}
+		}
+		COMMAND "Move <LocalRecentAlph>"{
+			SCRIPT {
+				isOutlook$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Outlook", 512 )
+				IF (instr(isOutlook$,"true")) > 0 THEN
+				SendKeys "{Shift+Ctrl+v}"
+				END IF			
+				isExpress$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Outlook Express", 512 )
+				isMail$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Windows Mail", 512 )
+				IF (instr(isExpress$,"true")) > 0 XOR (instr(isMail$,"true")) > 0 THEN
+				SendKeys "{Shift+Ctrl+v}"
+				END IF			
+				isEudora$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Eudora", 512 )
+				IF (instr(isEudora$,"true")) > 0 THEN
+				SendKeys "{Alt+t}"
+				END IF			
+				isThunderbird$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Thunderbird", 512 )
+				IF (instr(isThunderbird$,"true")) > 0 THEN
+				SendKeys "{Alt+m}"
+				SendKeys "m"
+				END IF
+				Wait 100
+				IF _arg1 = "Local" THEN 
+				SendKeys "l"
+				ELSE
+				IF _arg1 = "Recent" THEN 
+				SendKeys "r"
+				ELSE
+				SendKeys MID$(_arg1,0,1) 
+				END IF
+				END IF
+			}
+		}
+		LIST "LocalRecentAlph" {
+			"Local"  "Recent"  "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"   
+#			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+#			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+		}
+		
+		COMMAND "Move <LocalRecentAlph> <AlphRight>"{
+			SCRIPT {
+				isOutlook$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Outlook", 512 )
+				IF (instr(isOutlook$,"true")) > 0 THEN
+				SendKeys "{Shift+Ctrl+v}"
+				END IF			
+				isExpress$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Outlook Express", 512 )
+				isMail$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Windows Mail", 512 )
+				IF (instr(isExpress$,"true")) > 0 XOR (instr(isMail$,"true")) > 0 THEN
+				SendKeys "{Shift+Ctrl+v}"
+				END IF			
+				isEudora$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Eudora", 512 )
+				IF (instr(isEudora$,"true")) > 0 THEN
+				SendKeys "{Alt+t}"
+				END IF			
+				isThunderbird$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Thunderbird", 512 )
+				IF (instr(isThunderbird$,"true")) > 0 THEN
+				SendKeys "{Alt+m}"
+				SendKeys "m"
+				END IF
+				Wait 100
+				IF _arg1 = "Local" THEN 
+				SendKeys "l"
+				ELSE
+				IF _arg1 = "Recent" THEN 
+				SendKeys "r"
+				ELSE
+				SendKeys MID$(_arg1,0,1) 
+				END IF
+				END IF
+				Wait 200
+				IF _arg2 = "Right" THEN 
+				Wait 300
+				SendKeys "{Right}"
+				ELSE
+				SendKeys MID$(_arg2,0,1) 					
+				END IF
+			}
+		}
+		COMMAND "Move <LocalRecentAlph> <AlphRight> <AlphRight>"{
+			SCRIPT {
+				isOutlook$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Outlook", 512 )
+				IF (instr(isOutlook$,"true")) > 0 THEN
+				SendKeys "{Shift+Ctrl+v}"
+				END IF			
+				isExpress$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Outlook Express", 512 )
+				isMail$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Windows Mail", 512 )
+				IF (instr(isExpress$,"true")) > 0 XOR (instr(isMail$,"true")) > 0 THEN
+				SendKeys "{Shift+Ctrl+v}"
+				END IF			
+				isEudora$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Eudora", 512 )
+				IF (instr(isEudora$,"true")) > 0 THEN
+				SendKeys "{Alt+t}"
+				END IF			
+				isThunderbird$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Thunderbird", 512 )
+				IF (instr(isThunderbird$,"true")) > 0 THEN
+				SendKeys "{Alt+m}"
+				SendKeys "m"
+				END IF
+				Wait 100
+				IF _arg1 = "Local" THEN 
+				SendKeys "l"
+				ELSE
+				IF _arg1 = "Recent" THEN 
+				SendKeys "r"
+				ELSE
+				SendKeys MID$(_arg1,0,1) 
+				END IF
+				END IF
+				Wait 500
+				IF _arg2 = "Right" THEN 
+				SendKeys "{Right}"
+				ELSE
+				SendKeys MID$(_arg2,0,1) 					
+				END IF
+				Wait 500
+				IF _arg3 = "Right" THEN 
+				Wait 300
+				SendKeys "{Right}"
+				ELSE
+				SendKeys MID$(_arg3,0,1) 					
+				END IF
+			}
+		}
+		COMMAND "Move <LocalRecentAlph> <AlphRight> <AlphRight> Right"{
+			SCRIPT {
+				isOutlook$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Microsoft Outlook", 512 )
+				IF (instr(isOutlook$,"true")) > 0 THEN
+				SendKeys "{Shift+Ctrl+v}"
+				END IF			
+				isExpress$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Outlook Express", 512 )
+				isMail$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Windows Mail", 512 )
+				IF (instr(isExpress$,"true")) > 0 XOR (instr(isMail$,"true")) > 0 THEN
+				SendKeys "{Shift+Ctrl+v}"
+				END IF			
+				isEudora$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Eudora", 512 )
+				IF (instr(isEudora$,"true")) > 0 THEN
+				SendKeys "{Alt+t}"
+				END IF			
+				isThunderbird$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Thunderbird", 512 )
+				IF (instr(isThunderbird$,"true")) > 0 THEN
+				SendKeys "{Alt+m}"
+				SendKeys "m"
+				END IF
+				Wait 100
+				IF _arg1 = "Local" THEN 
+				SendKeys "l"
+				ELSE
+				IF _arg1 = "Recent" THEN 
+				SendKeys "r"
+				ELSE
+				SendKeys MID$(_arg1,0,1) 
+				END IF
+				END IF
+				Wait 200
+				IF _arg2 = "Right" THEN 
+				Wait 300
+				SendKeys "{Right}"
+				ELSE
+				SendKeys MID$(_arg2,0,1) 					
+				END IF
+				Wait 200
+				IF _arg3 = "Right" THEN 
+				Wait 300
+				SendKeys "{Right}"
+				ELSE
+				SendKeys MID$(_arg3,0,1) 					
+				END IF
+				Wait 500
+				SendKeys "{Right}"
+			}
+		}
+		LIST "AlphRight" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"   
+#			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+#			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+			"Right"
+		}
+ 
+ 
+################## Section 9: Web ##################
+#See section 4 for user List macros that drive these Site List macros
+ 
+ 
+################## Sec. 9: Web Site List
+ 
+		COMMAND "<Site List> <PathSiteSP>" {
+			SCRIPT {
+				If _arg2 = "Site Address" XOR _arg2 = "Address" THEN _arg2 = "Path"
+				p$ = _arg1 + "|" + _arg2
+				' AutoSite at 8
+				DllCall "UttC.dll",8, p$
+			}
+		}
+		LIST "PathSiteSP" {
+			"Site Address"
+			"Address"
+			"Site"
+		}
+		COMMAND "<Site List> Search" {
+			SCRIPT {
+				path$ = Mid$(_arg1,0,instr(_arg1,"\")-1)
+				Wait 50
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll",77,"100 100"
+				Wait 10
+				p$ = _arg1 + "|" + "Search"
+				' AutoSite at 8
+				DllCall "UttC.dll",8, p$
+				Wait 300
+				' WaitForWindowByTitleRE at 122
+				DllCall "UttC.dll", 122, "7|Firefox|Internet"
+				Wait 500
+				SendKeys " site:"
+				Wait 100
+				Sendkeys path$
+				Wait 100
+				Sendkeys "{Home}"
+			}
+		}
+		COMMAND "<TWL> <Site List> Search" {
+			SCRIPT {
+				IF _arg1 = "Word" THEN SendKeys "{Left}{Ctrl+Right}{Shift+Ctrl+Left}"
+				IF _arg1 = "Line" THEN SendKeys "{Home}{Shift+End}"
+				SendKeys "{ctrl+c}"
+				Wait 50
+				path$ = Mid$(_arg2,0,instr(_arg2,"\")-1)
+				Wait 50
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll",77,"100 100"
+				Wait 10
+				p$ = _arg2 + "|" + "Search"
+				' AutoSite at 8
+				DllCall "UttC.dll",8, p$
+				Wait 300
+				' WaitForWindowByTitleRE at 122
+				DllCall "UttC.dll", 122, "7|Firefox|Internet"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				Wait 100
+				SendKeys " site:"
+				Wait 100
+				Sendkeys path$
+				Wait 100
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<TWL> Search" {
+			SCRIPT {
+				IF _arg1 = "Word" THEN SendKeys "{Left}{Ctrl+Right}{Shift+Ctrl+Left}"
+				IF _arg1 = "Line" THEN SendKeys "{Home}{Shift+End}"
+				SendKeys "{ctrl+c}"
+				Wait 50
+				p$ = "http://www.google.com\Google|Search"
+				' AutoSite at 8
+				DllCall "UttC.dll",8, p$
+				Wait 300
+				' WaitForWindowByTitleRE at 122
+				DllCall "UttC.dll", 122, "7|Firefox|Internet"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				Wait 100
+				SendKeys "{Enter}"
+			}
+		}
+		LIST "TWL" {
+			"This"
+			"Word"
+			"Line"
+		}
+		COMMAND "<1-20> <BAW> Search" {
+			SCRIPT {
+ 				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				SendKeys "{ctrl+c}"
+				Wait 50
+				p$ = "http://www.google.com\Google|Search"
+				' AutoSite at 8
+				DllCall "UttC.dll",8, p$
+				Wait 300
+				' WaitForWindowByTitleRE at 122
+				DllCall "UttC.dll", 122, "7|Firefox|Internet"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				Wait 100
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<010> <010> <Ws> Search" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2 + "|" + _arg3
+				' GGSLLWSSUs at 45
+				DllCall "UttC.dll", 45, p$
+				SendKeys "{ctrl+c}"
+				Wait 50
+				p$ = "http://www.google.com\Google|Search"
+				' AutoSite at 8
+				DllCall "UttC.dll",8, p$
+				Wait 300
+				' WaitForWindowByTitleRE at 122
+				DllCall "UttC.dll", 122, "7|Firefox|Internet"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				Wait 100
+				SendKeys "{Enter}"
+			}
+		}
+		COMMAND "<1-20> <BAW> <Site List> Search" {
+			SCRIPT {
+ 				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				SendKeys "{ctrl+c}"
+				Wait 50
+				path$ = Mid$(_arg3,0,instr(_arg3,"\")-1)
+				Wait 50
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll",77,"100 100"
+				Wait 10
+				p$ = _arg3 + "|" + "Search"
+				' AutoSite at 8
+				DllCall "UttC.dll",8, p$
+				Wait 300
+				' WaitForWindowByTitleRE at 122
+				DllCall "UttC.dll", 122, "7|Firefox|Internet"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				Wait 100
+				SendKeys " site:"
+				Wait 100
+				Sendkeys path$
+				Wait 100
+				SendKeys "{Enter}"
+			}
+		}
+		LIST "1-20" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+		}
+		LIST "BAW" {
+			"Befores"  "Afters"  "Words"
+		}
+		COMMAND "<010> <010> <Ws> <Site List> Search" {
+			SCRIPT {
+				p$ = _arg1 + "|" + _arg2 + "|" + _arg3
+				' GGSLLWSSUs at 45
+				DllCall "UttC.dll", 45, p$
+				SendKeys "{ctrl+c}"
+				Wait 50
+				path$ = Mid$(_arg4,0,instr(_arg4,"\")-1)
+				Wait 50
+				' SetArrowByPercentages at 77
+				DllCall "UttC.dll",77,"100 100"
+				Wait 10
+				p$ = _arg4 + "|" + "Search"
+				' AutoSite at 8
+				DllCall "UttC.dll",8, p$
+				Wait 300
+				' WaitForWindowByTitleRE at 122
+				DllCall "UttC.dll", 122, "7|Firefox|Internet"
+				Wait 500
+				SendKeys "{Ctrl+v}"
+				Wait 100
+				SendKeys " site:"
+				Wait 100
+				Sendkeys path$
+				Wait 100
+				SendKeys "{Enter}"
+			}
+		}
+		LIST "Ws" {
+			"Words"
+		}
+		LIST "010" {
+			"0" "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+		}
+		COMMAND "Go Address"{
+			SCRIPT {
+				SendKeys "{Alt+d}"
+			}
+		}
+		COMMAND "Address Paste"{
+			SCRIPT {				
+				SendKeys "{Alt+d}"
+				SendKeys "{Ctrl+v}"
+			}
+		}
+		COMMAND "Go Address Paste"{
+			SCRIPT {				
+				SendKeys "{Alt+d}"
+				SendKeys "{Ctrl+v}"
+			}
+		}
+		COMMAND "Address Copy"{
+			SCRIPT {				
+				SendKeys "{Alt+d}"
+				SendKeys "{Ctrl+c}"
+			}
+		}
+		COMMAND "Go Address Copy"{
+			SCRIPT {				
+				SendKeys "{Alt+d}"
+				SendKeys "{Ctrl+c}"
+			}
+		}
+		COMMAND "Address <a-z>"{
+			SCRIPT {
+				
+				SendKeys "{Alt+d}"
+				SendKeys "" + _arg1 + ""
+			}
+		}
+		COMMAND "Go Address <a-z>"{
+			SCRIPT {
+				
+				SendKeys "{Alt+d}"
+				SendKeys "" + _arg1 + ""
+			}
+		}
+		COMMAND "Address <a-z> <a-z>"{
+			SCRIPT {
+				SendKeys "{Alt+d}"
+				SendKeys "" + _arg1 + "" + _arg2 + ""
+			}
+		}
+		COMMAND "Go Address <a-z> <a-z>"{
+			SCRIPT {
+				
+				
+				SendKeys "{Alt+d}"
+				SendKeys "" + _arg1 + "" + _arg2 + ""
+			}
+		}
+		LIST "a-z" {
+			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+		}
+ 
+#10 zKeywords
+		COMMAND "<FindTopFBottomFLeftFRightF> <Find List>" {
+			SCRIPT {
+				IF _arg1 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg1 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys ""
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 100
+				SendKeys "{Alt+c}{Alt+c}"
+				SendKeys "{Ctrl+f}"
+				END IF
+				END IF
+				Wait 200
+			    n$ = DllCall$("UttC.dll", "ParseListItem", "N|N|" + _arg2, 512)
+				IF n$ = "" THEN
+				v$ = DllCall$("UttC.dll", "ParseListItem", "N|V|" + _arg2, 512)
+				ELSE
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				END IF
+				' At this point v$ is the keyword value; works for old or new format lists.
+				SendKeys v$
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF
+				END IF
+			}
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <Find List> <RightAnotherAGraphInsertIGraph>" {
+			SCRIPT {
+				IF _arg1 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg1 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+ 
+				SendKeys "{Ctrl+f}"
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys ""
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 100
+				SendKeys "{Alt+c}{Alt+c}"
+				SendKeys "{Ctrl+f}"
+				END IF
+				END IF
+				Wait 200
+			    n$ = DllCall$("UttC.dll", "ParseListItem", "N|N|" + _arg2, 512)
+				IF n$ = "" THEN
+				v$ = DllCall$("UttC.dll", "ParseListItem", "N|V|" + _arg2, 512)
+				ELSE
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				END IF
+				SendKeys v$
+ 
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Esc}"
+				ELSE
+				isAdobe$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isAdobe$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF 
+				END IF 
+				END IF
+				IF _arg3 = "Right" THEN SendKeys "{Right}"
+				IF _arg3 = "Another" THEN SendKeys "{End}{Enter}"
+				IF _arg3 = "Another Graph" THEN SendKeys "{End}{Enter 2}"
+				IF _arg3 = "Insert" THEN SendKeys "{Home}{Enter}{Up}"
+				IF _arg3 = "Insert Graph" THEN SendKeys "{Home}{Enter 2}"
+			}
+		}
+		LIST "RightAnotherAGraphInsertIGraph" {
+			"Right" "Left" "Another" "Another Graph" "Insert" "Insert Graph"
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <Find List> Stay" {
+			SCRIPT {
+				IF _arg1 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg1 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys ""
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 100
+				SendKeys "{Alt+c}{Alt+c}"
+				SendKeys "{Ctrl+f}"
+				END IF
+				END IF
+				Wait 100
+			    n$ = DllCall$("UttC.dll", "ParseListItem", "N|N|" + _arg2, 512)
+				IF n$ = "" THEN
+				v$ = DllCall$("UttC.dll", "ParseListItem", "N|V|" + _arg2, 512)
+				ELSE
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				END IF
+				SendKeys v$
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys ""
+				ELSE
+				SendKeys "{Enter}"
+				END IF 
+				END IF
+			}
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <Find List> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg1 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg1 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys ""
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 100
+				SendKeys "{Alt+c}{Alt+c}"
+				SendKeys "{Ctrl+f}"
+				END IF
+				END IF
+				Wait 100
+			    n$ = DllCall$("UttC.dll", "ParseListItem", "N|N|" + _arg2, 512)
+				IF n$ = "" THEN
+				v$ = DllCall$("UttC.dll", "ParseListItem", "N|V|" + _arg2, 512)
+				ELSE
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				END IF
+				SendKeys v$
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				loop& = Val(_arg3)-1
+				ELSE
+				loop& = Val(_arg3)
+				END IF
+				while ( loop& )
+				SendKeys "{Enter}"
+				Wait 500
+				loop& = loop& - 1
+				wend
+				Wait 500
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				Wait 200
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF
+				END IF
+				END IF
+			}
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <Find List> Wait Repeat <1-10>" {
+			SCRIPT {
+				IF _arg1 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg1 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys ""
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 100
+				SendKeys "{Alt+c}{Alt+c}"
+				SendKeys "{Ctrl+f}"
+				END IF
+				END IF
+				Wait 100
+			    n$ = DllCall$("UttC.dll", "ParseListItem", "N|N|" + _arg2, 512)
+				IF n$ = "" THEN
+				v$ = DllCall$("UttC.dll", "ParseListItem", "N|V|" + _arg2, 512)
+				ELSE
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				END IF
+				SendKeys v$
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				loop& = Val(_arg3)-1
+				ELSE
+				loop& = Val(_arg3)
+				END IF
+				while ( loop& )
+				SendKeys "{Enter}"
+				Wait 500
+				loop& = loop& - 1
+				wend
+				Wait 100
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE	
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF
+				END IF
+				END IF
+			}
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <Find List> Wait <1-10> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg1 = "Left Find" THEN SendKeys "{Left}"
+				IF _arg1 = "Right Find" THEN SendKeys "{Right}"
+				IF _arg1 = "Top Find" THEN SendKeys "{Ctrl+Home}"
+				IF _arg1 = "Bottom Find" THEN SendKeys "{Ctrl+End}"
+				Wait 100
+				SendKeys "{Ctrl+f}"
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys ""
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				Wait 100
+				SendKeys "{Alt+c}{Alt+c}"
+				SendKeys "{Ctrl+f}"
+				END IF
+				END IF
+				Wait 100
+			    n$ = DllCall$("UttC.dll", "ParseListItem", "N|N|" + _arg2, 512)
+				IF n$ = "" THEN
+				v$ = DllCall$("UttC.dll", "ParseListItem", "N|V|" + _arg2, 512)
+				ELSE
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg2, 512)
+				END IF
+				SendKeys v$
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				loop& = Val(_arg4)-1
+				ELSE
+				loop& = Val(_arg4)
+				END IF
+				while ( loop& )
+				SendKeys "{Enter}"
+				Wait Val(_arg3)*1000
+				loop& = loop& - 1
+				wend
+				Wait 100
+				isGoogle$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Google", 512 )
+				IF (instr(isGoogle$,"true")) > 0 THEN
+				Wait 200
+				SendKeys "{Enter}"
+				Wait 500
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Firefox", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{Esc}"
+				ELSE
+				isfox$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Adobe", 512 )
+				IF (instr(isfox$,"true")) > 0 THEN
+				SendKeys "{F6}"
+				ELSE	
+				vol$ = DllCall$("UttC.dll", "GetAudioVolumeByPercent", "", 500)
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, "0"
+				SendKeys "{Ctrl+f}"
+				SendKeys "{Esc}"
+				Wait 10
+				' SetAudioVolumeByPercent at 119
+				DllCall "UttC.dll", 119, vol$
+				END IF
+				END IF
+				END IF
+			}
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <Find List> <Tab1TScreenUpSDown>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 200
+				IF _arg3 = "Screen Up" THEN  _arg3 = "PgUp"
+				IF _arg3 = "Screen Down" THEN  _arg3 = "PgDn"
+				IF _arg3 = "1 Tab" THEN 
+				SendKeys "{Tab}"
+				ELSE
+				SendKeys "{" + _arg3 +"}"
+				END IF
+			
+			}
+		}
+		LIST "Tab1TScreenUpSDown" {
+			"Tab"  "1 Tab"  "Screen Up"  "Screen Down"
+		}
+		COMMAND "<FindTopFBottomFLeftFRightF> <Find List> Tab <DownAlternateD>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 100
+				SendKeys "{Tab}"
+				IF _arg3 = "Down" THEN SendKeys "{Down}"
+				IF _arg3 = "Alternate Down" XOR _arg3 = "Drop Down" THEN SendKeys "{Alt+Down}"
+			}
+		}
+		LIST "DownAlternateD" {
+			"Down"  "Alternate Down"  "Drop Down"
+		}
+		COMMAND "<Find List> Path" {
+			SCRIPT {
+			    n$ = DllCall$("UttC.dll", "ParseListItem", "N|N|" + _arg1, 512)
+				IF n$ = "" THEN
+				v$ = DllCall$("UttC.dll", "ParseListItem", "N|V|" + _arg1, 512)
+				ELSE
+				v$ = DllCall$("UttC.dll", "ParseListItem", "D|V|" + _arg1, 512)
+				END IF
+				SendKeys v$
+			}
+		}
+		LIST "FindTopFBottomFLeftFRightF" {
+			"Find"  "Top Find"  "Bottom Find"  "Left Find"  "Right Find"
+		}
+ 
+#10f Reminders
+#See section 4 for user List macros that drive the Reminder List macros
+ 
+		COMMAND "<1-60> <MinutesSeconds> <Reminder List>" {
+			SCRIPT {
+				TTSPlayString "" + _arg1 + " " + _arg2 + " " + _arg3 + ""
+				IF _arg2 = "Seconds" THEN Wait Val(_arg1)*1000
+				IF _arg2 = "Minutes" THEN Wait Val(_arg1)*60000
+				Beep
+				TTSPlayString "Reminding You" 
+				TTSPlayString "" + _arg3 + ""
+			}
+		}
+		LIST "MinutesSeconds" {
+			"Minutes"
+			"Seconds"
+		}
+		COMMAND "<1-10> <Hours> <Reminder List>" {
+			SCRIPT {
+				TTSPlayString "" + _arg1 + " " + _arg2 + " " + _arg3 + ""
+				Wait Val(_arg1)*3600000
+				Beep
+				TTSPlayString "Reminding You" 
+				TTSPlayString "" + _arg3 + ""
+			}
+		}
+		COMMAND "<1-10> <Hours> <1-60> <Minutes> <Reminder List>" {
+			SCRIPT {
+				TTSPlayString "" + _arg1 + " " + _arg2 + " " + _arg3 + " " + _arg4 + " " + _arg5 + ""
+				Wait Val(_arg1)*3600000
+				Wait Val(_arg3)*60000
+				Beep
+				TTSPlayString "Reminding You" 
+				TTSPlayString "" + _arg5 + ""
+			}
+		}
+		LIST "1-10" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+		}
+		LIST "Hours" {
+			"Hours"
+		}	
+		LIST "1-60" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39"
+			 "40" "41" "42" "43" "44" "45" "46" "47" "48" "49"
+			 "50" "51" "52" "53" "54" "55" "56" "57" "58" "59"
+			 "60"  
+		}
+		LIST "Minutes" {
+			"Minutes"
+		}
+ 
+ 
+################# Auto Lists ##################
+ 
+LIST "Site List" {
+			"http://www.dogpile.com\\Dog Pile"
+			"http://www.google.com\\Google"
+			"http://www.google.com/advanced_search?hl=en\\Google Advanced"
+			"http://www.google.com/dirhp?hl=en&ie=ISO-8859-1&q=\\Google Directory"
+			"http://www.msn.com\\MSN"
+			"http://www.yahoo.com\\Yahoo"
+			"http://www.gmail.google.com\\G Mail"
+			"http://docs.google.com/#all\\Docs All"
+			"http://docs.google.com/#starred\\Docs Starred"
+			"http://docs.google.com\\Google Docs"
+			"http://docs.google.com/#documents\\Docs Docs"
+			"http://docs.google.com/#spreadsheets\\Docs Spreadsheets"
+			"http://docs.google.com/#presentations\\Docs Presentations"
+			"http://facebook.com\\Facebook"
+			"http://groups.google.com\\Google Groups"
+			"https://www.linkedin.com/secure/login?trk=hb_signin\\Linked In"
+			"http://www.myspace.com\\My Space"
+			"http://slashdot.org\\Slash Dot"
+			"http://twitter.com\\Twitter"
+			"http://youtube.com\\You Tube"
+			"http://www.cnn.com\\CNN"
+			"http://news.google.com\\Google News"
+			"http://www.nytimes.com\\New York Times"
+			"http://www.washingtonpost.com\\Washington Post"
+			"http://www.latimes.com\\L.A. Times"
+			"http://news.bbc.co.uk\\BBC"
+			"http://www.guardian.co.uk\\Guardian"
+			"http://www.independent.co.uk\\Independent"
+			"http://www.timesonline.co.uk\\London Times"
+			"http://www.businessweek.com\\Business Week"
+			"http://news.ft.com/home/us\\Financial Times"
+			"http://www.fedworld.gov\\Fed World"
+			"http://www.Thomas.gov\\Thomas"
+			"http://www.sciencenews.org\\Science News"
+			"http://www.sciam.com\\Scientific American"
+			"http://espn.go.com\\ESPN"
+			"http://www.nws.noaa.gov\\Weather"
+			"http://www.bartelby.com\\Bartelby"
+			"http://dictionary.reference.com\\Dictionary"
+			"http://en.wikipedia.org\\Wikipedia"
+			"http://www.redstartsystems.com\\Redstart"						
+			"http://www.redstartsystems.com\\Redstart Systems"						
+			"http://www.redstartsystems.com/redstartpictures.html\\Redstart Pictures"
+			"http://www.redstartsystems.com/resources.html\\Redstart Resources"
+			"http://twitter.com/RedstartSystems\\Redstart Twitter"
+			"http://www.redstartsystems.com/uttercommand.html\\UC Overview"
+			"http://www.redstartsystems.com/videos.html\\UC Videos"
+			"http://www.redstartsystems.com/uccommandwords.html\\UC Command Words"
+			"http://www.redstartsystems.com/Wikka/wikka.php?wakka=UCExchangeWiki\\UC Knowledge Base" 
+			"http://www.redstartsystems.com/faq.html\\UC Frequently"			
+			"http://www.redstartsystems.com/faq.html\\UC FAQ"			
+			"http://groups.google.com/group/uttercommand\\UC Group"
+			"http://redstartsystems.com/news.html\\UC News"
+			"http://redstartsystems.com/blog\\Patch on Speech" 
+			"http://redstartsystems.com/makeacomment.html\\UC Make"
+			"http://redstartsystems.com/reportabug.html\\UC Report"
+			"http://redstartsystems.com/requestafeature.html\\UC Request"
+			"http://support.nuance.com\\Dragon Support"
+			"http://knowledgebase.nuance.com/family.asp\\Dragon Knowledgebase"
+			"http://goldbamboo.com\\Gold Bamboo"
+			"http://www.nlm.nih.gov/medlineplus\\Medline"
+			"http://www.mayoclinic.com\\Mayo Clinic"
+			"http://www.amazon.com\\Amazon"
+			"http://www.craigslist.org\\Craigs list"
+			"http://www.ebay.com\\eBay"
+			"http://www.mozilla.com\\Mozilla"
+			"http://www.mozilla.com\\Firefox"
+			"https://addons.mozilla.org/firefox\\Firefox Addons"
+}
+LIST "Find List" {
+			"Name\\Name"
+			"First\\First"
+			"Last\\Last"
+			"Address\\Address"
+			"City\\City"
+			"State\\State"
+			"Zip\\Zip"
+			"Zip Code\\Zip Code"
+			"Country\\Country"
+			"Title\\Title"
+			"Organization\\Organization"
+			"Email\\Email"
+			"Phone\\Phone"
+			"Fax\\Fax"
+			"Number\\Number"
+			"Billing\\Billing"
+			"Shipping\\Shipping"
+			"Payment\\Payment"
+			"Section\\Section"
+			"Section 1\\Section 1"
+			"Section 2\\Section 2"
+			"Section 3\\Section 3"
+			"Section 4\\Section 4"
+			"Section 5\\Section 5"
+			"Section 6\\Section 6"
+			"Section 7\\Section 7"
+			"Section 8\\Section 8"
+			"Section 9\\Section 9"
+			"Section 10\\Section 10"
+			"Act 1\\Act 1"
+			"Act 2\\Act 2"
+			"Act 3\\Act 3"
+			"Scene 1\\Scene 1"
+			"Scene 2\\Scene 2"
+			"Scene 3\\Scene 3"
+			"Scene 4\\Scene 4"
+			"Scene 5\\Scene 5"
+			"Scene 6\\Scene 6"
+			"Introduction\\Introduction"
+			"Details\\Details"
+			"Summary\\Summary"
+			"Mark\\Mark"
+			"Mark 1\\Mark 1" 
+			"Mark 2\\Mark 2" 
+			"Mark 3\\Mark 3" 
+			"Mark 4\\Mark 4" 
+			"Mark 5\\Mark 5" 
+			"Note\\Note"
+			"Question\\Question"
+			"Placeholder\\Placeholder"
+			"1\\One Short"
+			"One\\One Long"
+			"~\\Tilde"
+			"Intro\\Intro"
+			"Lesson\\Lesson"
+			"Appendices\\Appendices"		
+			"Preview\\Preview"
+			"Review\\Review"
+			"References\\References"
+			"Figure\\Figure"
+			"Important\\Important"
+			"Potential Gotcha\\Potential Gotcha"
+			"Table\\Table"
+			"Tip\\Tip"
+			"Tour\\Tour"
+			"Review Tour\\Review Tour"
+			"Self-guided Tour\\Self-guided Tour"
+			"View\\View"
+			"Navigating\\Navigating"
+			"Organizing\\Organizing"
+			"Moving\\Moving"
+			"Selecting\\Selecting"
+			"Editing\\Editing"
+			"Formatting\\Formatting"
+			"Actions\\Actions"
+			"Tools\\Tools"
+}
+LIST "Reminder List" {
+			"Backup"
+			"Call"
+			"Check"
+			"Lunch"
+			"Mail"
+			"Meeting"
+			"Quit"
+			"Stretch"
+			"Walk"
+			"Water"
+			"Fax"
+			"Messages"
+			"Conference Call"
+			"Conference Room"
+			"Pickup"
+			"Status Report"
+			"Call John"
+			"Lunch Defrag" 
+			"Lunch Backup"
+			"Quit Defrag"
+			"Quit Backup"
+			"Bus"
+			"Train"
+			"Cab"
+			"Last Bus"
+			"Last Train" 
+			"Bother Boss"
+			"Chide Colleague"
+			"More Cowbell"
+			"Sanity Check"
+			"Feed Cats"
+			"Remember"
+			"Remember 1"
+			"Remember 2"
+			"Remember 3"
+}
+LIST "NN" {
+			"Adam\\Adam"
+			"Bill\\Bill"
+			"David\\David"
+			"Chris\\Chris"
+			"Dennis\\Dennis"
+			"Eric\\Eric"
+			"Eileen\\Eileen"
+			"Gena\\Gena"
+			"John\\John"
+			"JohnDoe@company.com\\John Doe"
+			"Karen\\Karen"
+			"Kim\\Kim"
+			"Kevin\\Kevin"
+			"Laurie\\Laurie"
+			"Linda\\Linda"
+			"Lisa\\Lisa"
+			"Max\\Max"
+			"Mark\\Mark"
+			"Mike\\Mike"
+			"Molly\\Molly"
+			"Phil\\Phil"
+			"Rachel\\Rachel"
+			"Rick\\Rick"
+			"Sue\\Sue"
+			"Susan\\Susan"
+			"Sabrina\\Sabrina"
+			"Sarah\\Sarah"
+			"Sierra\\Sierra"
+			"Sierra, Sabrina\\Kids"
+}
+   }
+}

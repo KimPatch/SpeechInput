@@ -1,0 +1,833 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          � Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+ 
+	STATE "Global Commands" GLOBAL {
+ 
+################## Section 5: File ##################
+#5a Opening Files and folders
+# Also User List commands here for Find (sec. 6) Nickname (sec. 7-NN) 
+# and Site (sec. 8) Lists
+ 
+		COMMAND "UC <ListLOpen>"{
+			SCRIPT {
+				' OpenListTab at 115
+				DllCall "UttC.dll", 115, "File"
+			}
+		}
+		LIST "ListLOpen" {
+			"List"  "List Open"
+		}
+ 		COMMAND "UC List Close" {
+			SCRIPT {
+				' OpenListTab at 115
+				DllCall "UttC.dll", 115, "File"
+				Wait 500
+				SendKeys "{Alt+F4}"
+			}
+		}
+		COMMAND "<UCUCList> <FileFolderSiteNNFindReminder>"{
+			SCRIPT {
+				IF _arg2 = "Files" THEN  _arg2 = "File"
+				IF _arg2 = "Folders" THEN  _arg2 = "Folder"
+				IF _arg2 = "Sites" THEN  _arg2 = "Site"
+				IF _arg2 = "Nicknames" THEN  _arg2 = "Nickname"
+				IF _arg2 = "Reminders" THEN  _arg2 = "Reminder"
+				IF _arg2 = "Enters" XOR _arg2 = "Enter Command" THEN  _arg2 = "Enter"
+				IF _arg2 = "Touches" XOR _arg2 = "Touch Command" THEN  _arg2 = "Touch"
+				IF _arg2 = "Local Command" XOR _arg2 = "Local" THEN  _arg2 = "Local Touch"
+				' OpenListTab at 115
+				DllCall "UttC.dll", 115, _arg2
+				IF _arg2 = "File" THEN SendKeys "{Tab 3}"
+			}
+		}
+		COMMAND "<UCUCList> <FileFolderSiteNNFindReminder> <CommandPathAllSelectBottom>"{
+			SCRIPT {
+				IF _arg2 = "Files" THEN  _arg2 = "File"
+				IF _arg2 = "Folders" THEN  _arg2 = "Folder"
+				IF _arg2 = "Sites" THEN  _arg2 = "Site"
+				IF _arg2 = "Nicknames" THEN  _arg2 = "Nickname"
+				IF _arg2 = "Reminders" THEN  _arg2 = "Reminder"
+				IF _arg2 = "Enters" XOR _arg2 = "Enter Command" THEN  _arg2 = "Enter"
+				IF _arg2 = "Touches" XOR _arg2 = "Touch Command" THEN  _arg2 = "Touch"
+				IF _arg2 = "Local Command" XOR _arg2 = "Local" THEN  _arg2 = "Local Touch"
+				' OpenListTab at 115
+				DllCall "UttC.dll", 115, _arg2
+				IF _arg2 = "File" THEN SendKeys "{Tab 3}"
+				Wait 500
+				IF _arg3 = "All Select" THEN SendKeys "{Ctrl+a}"  
+				IF _arg3 = "Command" THEN SendKeys "{Alt+c}"
+				IF _arg3 = "Path" THEN SendKeys "{Alt+p}"
+				IF _arg3 = "Bottom" THEN 
+				SendKeys "{Ctrl+End}"
+				Wait 50
+				SendKeys "{Up}{Down}"
+				END IF
+			}
+		}
+		LIST "UCUCList" {
+			"UC"  "UC List"			
+		}
+		COMMAND "<UCList> <ExportImportMergeFileHelpOptions>"{
+			SCRIPT {
+				' OpenListTab at 115
+				DllCall "UttC.dll", 115, "File"
+				Wait 1000
+				IF _arg2 = "Help" THEN 
+				SendKeys "{Alt+h}"
+				ELSE
+				IF _arg2 = "Options" THEN 
+				SendKeys "{Alt+t}"
+				SendKeys "t"
+				SendKeys "{Enter}"
+				ELSE
+				IF _arg2 = "Options Thin" THEN 
+				SendKeys "{Alt+t}"
+				SendKeys "t"
+				SendKeys "{Enter}"
+				Wait 300
+				SendKeys "{Alt+t}"
+				Wait 500
+				SendKeys "{Enter}"
+				ELSE
+				IF _arg2 = "Options List" THEN 
+				SendKeys "{Alt+t}"
+				SendKeys "t"
+				SendKeys "{Enter}"
+				Wait 300
+				SendKeys "{Alt+l}"
+				Wait 500
+				SendKeys "{Enter}"
+				ELSE
+				SendKeys "{Alt+f}"
+				IF _arg2 = "Export" THEN SendKeys "e"
+				IF _arg2 = "Import" THEN SendKeys "i"
+				IF _arg2 = "Merge" THEN SendKeys "m"
+				Wait 100
+				IF _arg2 = "Export" THEN
+				SendKeys "{Home}{Shift+Right}"
+				ELSE
+				SendKeys "{Shift+Tab}{Ctrl+End}"
+				END IF
+				END IF
+				END IF
+				END IF
+				END IF
+			}
+		}
+		LIST "CommandPathAllSelectBottom" {
+			"Command"  "Path"  "All Select"  "Bottom"
+		}
+		LIST "ExportImportMergeFileHelpOptions" {
+			"Export"  "Import"  "Merge"
+			"File Menu"  "Help"
+			"Options"  "Options Thin"  "Options List"
+		}
+		LIST "UCList" {
+			"UC List"
+		}
+# 9/12/14 Kim FIX for Folder commands Windows Explorer and programs working differently in Windows 7, added to end of command:
+		COMMAND "<Folder List> Folder" {
+			SCRIPT {
+				p$ = _arg1 + "|" + "Folder"
+				' AutoFolder at 5
+				DllCall "UttC.dll",5, p$
+				' 9/15/14 FIX
+				isOpen$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Open", 512 )
+				isSaveAs$ = DllCall$( "UttC.dll", "IsForegroundWindowByTitleRE", "Save As", 512 )
+				IF (instr(isOpen$,"true")) XOR (instr(isSaveAs$,"true")) > 0 THEN
+				SendKeys ""
+				ELSE
+				Wait 100
+				SendKeys "{Esc}"
+				SendKeys "{Tab 2}"
+				SendKeys "{Down}"
+				SendKeys "{Up}"
+				END IF
+				}
+		}
+		COMMAND "<NetworkETC> Path" {
+			SCRIPT {
+				SendKeys _arg1 
+			}
+		}			 
+		COMMAND "Save As <NetworkETC>" {
+			SCRIPT {
+			SendKeys "{Alt+f}a"
+			IF _arg1 = "My Computer" XOR _arg1 = "Computer" THEN
+			SendKeys "{Shift+Tab}"
+			SendKeys "{Backspace 10}"
+			Wait 200
+			SendKeys "My Computer"
+			Wait 200
+			SendKeys "{Enter}{Tab}"
+			SendKeys "{End}{Left 4}"
+			END IF
+			IF _arg1 = "Desktop" THEN 
+			SendKeys "{Backspace 10}"
+			SendKeys "{Enter}{Tab}"
+			SendKeys "{End}{Left 4}"
+			END IF
+			IF _arg1 = "Network" XOR _arg1 = "My Network" THEN 
+			SendKeys "{Shift+Tab}"
+			SendKeys "{Backspace 10}"
+			Wait 200
+			SendKeys "My Network"
+			Wait 200
+			SendKeys "{Enter}{Tab}"
+			SendKeys "{End}{Left 4}"
+			END IF
+			IF _arg1 = "Recycle" XOR _arg1 = "Recycle Bin" THEN 
+			SendKeys "{Shift+Tab}"
+			SendKeys "{Backspace 10}"
+			Wait 200
+			SendKeys "Recycle Bin"
+			Wait 200
+			SendKeys "{Enter}{Tab}"
+			SendKeys "{End}{Left 4}"
+			END IF
+			IF _arg1 = "Shared" XOR _arg1 = "Shared Documents" THEN 
+			SendKeys "{Shift+Tab}"
+			SendKeys "{Backspace 10}"
+			Wait 200
+			SendKeys "My Computer"
+			Wait 200
+			SendKeys "{Enter}"
+			Wait 200
+			SendKeys "Shared Documents"
+			Wait 200
+			SendKeys "{Enter}{Tab}"
+			SendKeys "{End}{Left 4}"
+			END IF
+			IF _arg1 = "Documents" XOR _arg1 = "My Documents" THEN 
+			SendKeys "{Shift+Tab}"
+			SendKeys "{Backspace 10}"
+			Wait 200
+			SendKeys "My Documents"
+			Wait 200
+			SendKeys "{Enter}{Tab}"
+			SendKeys "{End}{Left 4}"
+			END IF
+			IF _arg1 = "Music" XOR _arg1 = "My Music" THEN 
+			SendKeys "{Shift+Tab}"
+			SendKeys "{Backspace 10}"
+			Wait 200
+			SendKeys "My Computer"
+			Wait 200
+			SendKeys "{Enter}"
+			Wait 200
+			SendKeys "My Music"
+			Wait 200
+			SendKeys "{Enter}{Tab}"
+			SendKeys "{End}{Left 4}"
+			END IF
+			IF _arg1 = "Pictures" XOR _arg1 = "My Pictures" THEN 
+			SendKeys "{Shift+Tab}"
+			SendKeys "{Backspace 10}"
+			Wait 200
+			SendKeys "My Computer"
+			Wait 200
+			SendKeys "{Enter}"
+			Wait 200
+			SendKeys "My Pictures"
+			Wait 200
+			SendKeys "{Enter}{Tab}"
+			SendKeys "{End}{Left 4}"
+			END IF
+			IF _arg1 = "Video" XOR _arg1 = "My Video" THEN 
+			SendKeys "{Shift+Tab}"
+			SendKeys "{Backspace 10}"
+			Wait 200
+			SendKeys "My Computer"
+			Wait 200
+			SendKeys "{Enter}"
+			Wait 200
+			SendKeys "My Video"
+			Wait 200
+			SendKeys "{Enter}{Tab}"
+			SendKeys "{End}{Left 4}"
+			END IF
+			} 
+		}
+		LIST "NetworkETC" {
+			"Network"  "My Network"  "Computer"  "My Computer"  "Desktop"
+			"Recycle Bin"  "Recycle"  "Shared"  "Shared Documents"
+			"Documents"  "My Documents"  "Pictures"  "My Pictures"
+			"Music"  "My Music"  "Videos"  "My Videos"
+ 
+		}
+		COMMAND "<Folder List> <PathPE>" {
+			SCRIPT {
+				If _arg2 = "Folder Address" XOR _arg2 = "Address" THEN _arg2 = "Path"
+				If _arg2 = "Address Enter" THEN _arg2 = "Enter"
+				p$ = _arg1 + "|" + _arg2
+				' AutoFolder at 5
+				DllCall "UttC.dll",5, p$
+			}
+		}
+		COMMAND "<CDDOS> <Folder List> <PathPE>" {
+			SCRIPT {
+				IF _arg1 = "DOS" THEN 
+				AppBringUp "cmd"
+				Wait 500
+				END IF
+				SendKeys "cd "
+				If _arg3 = "Folder Address" XOR _arg3 = "Address" THEN _arg3 = "Path"
+				If _arg3 = "Address Enter" THEN _arg3 = "Enter"
+				p$ = _arg2 + "|" + _arg3
+				' AutoFolder at 5
+				DllCall "UttC.dll",5, p$
+			} 
+		}
+		LIST "PathPE" {
+			"Folder Address"  "Address"  "Address Enter"
+		}
+		COMMAND "<CDDOS> <Folder List>" {
+			SCRIPT {
+				IF _arg1 = "DOS" THEN 
+				AppBringUp "cmd"
+				Wait 500
+				END IF
+				SendKeys "cd "				
+				p$ = _arg2 + "|" + "Path"
+				' AutoFolder at 5
+				DllCall "UttC.dll",5, p$
+			}
+		}
+		LIST "CDDOS" {
+			"CD"  "DOS"		
+		}
+		COMMAND "<PNW> <Open> <OpenBox>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 1000
+				SendKeys "{Ctrl+o}"
+				Wait 50
+				SendKeys "{Shift+Tab}"
+				ver$ = DllCall$("UttC.dll", "GetWindowsVersion", "", 10)
+				Wait 500
+		        IF (instr(ver$,"600")) > 0 THEN 
+				SendKeys "{Shift+Tab}"
+				END IF
+				SendKeys "{Down}{Up}"
+			}
+		}
+		LIST "Open" {
+			"Open"
+		}
+		LIST "OpenBox" {
+			"Open"  "Box"
+		}
+		COMMAND "<PNW> <OpenNewMaxClose> <Folder List> Folder" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 1000
+				p$ = _arg3 + "|" + "Folder"
+				' AutoFolder at 5
+				DllCall "UttC.dll",5, p$
+			}
+		}
+		COMMAND "<PNW> <OpenNewMaxClose> <Folder List>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2
+				Wait 1000
+				p$ = _arg3 + "|" + "Folder"
+				' AutoFolder at 5
+				DllCall "UttC.dll",5, p$
+			}
+		}
+		LIST "OpenNewMaxClose" {
+			"Open"  "New"  "Close"
+			"Maximize"  "Max"
+		}
+		COMMAND "<PNW> <Folder List> <Folder>" {
+			SCRIPT {
+				IF _arg1 = "Access" THEN  _arg1 = "MSACCESS"
+				IF _arg1 = "Base" THEN  _arg1 = "sbase.exe"
+				IF _arg1 = "Calc" THEN  _arg1 = "scalc.exe"
+				IF _arg1 = "Draw" THEN  _arg1 = "sdraw.exe"
+				IF _arg1 = "Calculator" THEN  _arg1 = "calc"
+				IF _arg1 = "Express" THEN  _arg1 = "msimn"
+				IF _arg1 = "InDesign" THEN  _arg1 = "InDesign"
+				IF _arg1 = "Impress" THEN  _arg1 = "simpress.exe"
+				IF _arg1 = "Internet" THEN  _arg1 = "IEXPLORE"
+				IF _arg1 = "Math" THEN  _arg1 = "smath.exe"
+				IF _arg1 = "Media Player" THEN  _arg1 = "wmplayer"
+				IF _arg1 = "Outlook" THEN  _arg1 = "OUTLOOK"
+				IF _arg1 = "Paint" THEN  _arg1 = "mspaint.exe"
+				IF _arg1 = "Picasa" THEN  _arg1 = "Picasa2"
+				IF _arg1 = "Project" THEN _arg1 = "MSPROJ"
+				IF _arg1 = "PowerPoint" THEN  _arg1 = "Powerpnt"
+				IF _arg1 = "Acrobat" THEN  _arg1 = "AcroRd32"
+				IF _arg1 = "Reader" THEN  _arg1 = "Acrobat"
+				IF _arg1 = "Visual" THEN  _arg1 = "MSDEV"
+				IF _arg1 = "Word" THEN  _arg1 = "Winword"		
+				IF _arg1 = "Writer" THEN  _arg1 = "swriter.exe"
+				IF _arg2 = "New" THEN
+				ShellExecute "" + _arg1 + ""
+				ELSE
+				AppBringUp "" + _arg1 + ""
+				END IF
+				Wait 100
+				HeardWord _arg2, _arg3
+			}
+		}
+		LIST "PNW" {
+			"Access" "Acrobat" "Reader" "Calculator" "Dreamweaver"
+			"Excel"  "Express"  "Eudora"
+			"Firefox"   "Internet"  "iTunes" "InDesign"  
+			"Media Player"  "Notepad"   "Outlook"  "Illustrator"
+			"Photoshop"  "Picasa"    "PowerPoint" "Visual" "Emacs"
+			"Quicken" "Thunderbird"
+			"WordPad"  "Word"  "Base" "Calc"  "Draw"  "Impress" "Math" "Writer"
+			"Paint" "Project" "Visio" 
+ 
+		}
+# 9/12/14 Kim FIX, added 6 lines to end of command:
+		COMMAND "<WWN> <Folder List> <Folder>" {
+			SCRIPT {
+				ShellExecute "Explorer",3
+				Wait 500
+				p$ = _arg2 + "|" + "Folder"
+				' AutoFolder at 5
+				DllCall "UttC.dll",5, p$
+				' FIX
+				Wait 100
+				SendKeys "{Esc}"
+				SendKeys "{Tab 2}"
+				SendKeys "{Down}"
+				SendKeys "{Up}"
+			}
+		}
+		LIST "WWN" {
+			"Windows"  "Windows New"
+		}
+		LIST "Folder" {
+			"Folder"
+		}
+		# 9/12/14 Kim FIX, added 6 lines to end of command:
+		COMMAND "Windows New <Folder List>" {
+			SCRIPT {
+				ShellExecute "Explorer",3
+				Wait 500
+				p$ = _arg1 + "|" + "Folder"
+				' AutoFolder at 5
+				DllCall "UttC.dll",5, p$
+				' FIX
+				Wait 100
+				SendKeys "{Esc}"
+				SendKeys "{Tab 2}"
+				SendKeys "{Down}"
+				SendKeys "{Up}"
+ 
+			}
+		}
+		COMMAND "Save To <DriveList>" {
+			SCRIPT {
+				SendKeys "{Alt+f}a"
+				Wait 500
+				SendKeys "{Home}"
+				Wait 100
+				_arg2 = "Path"
+				p$ = _arg1 + "|" + _arg2
+				' AutoFolder at 5
+				DllCall "UttC.dll",5, p$
+				Wait 1000
+				SendKeys "{End}{Left 4}"
+			}
+		}
+		COMMAND "Save To <DriveList> Folder" {
+			SCRIPT {
+				SendKeys "{Alt+f}a"
+				Wait 500
+				SendKeys "{Home}"
+				Wait 100
+				_arg2 = "Path"
+				p$ = _arg1 + "|" + _arg2
+				' AutoFolder at 5
+				DllCall "UttC.dll",5, p$
+				Wait 1000
+				SendKeys "{End}{Left 4}"
+			}
+		}
+ 
+		COMMAND "Save As <DriveList>" {
+			SCRIPT {
+				SendKeys "{Alt+f}a"
+				Wait 500
+				SendKeys "{Home}"
+				Wait 100
+				_arg2 = "Path"
+				p$ = _arg1 + "|" + _arg2
+				' AutoFolder at 5
+				DllCall "UttC.dll",5, p$
+				Wait 1000
+				SendKeys "{End}{Left 4}"
+			}
+		}
+		COMMAND "Save As <DriveList> Folder" {
+			SCRIPT {
+				SendKeys "{Alt+f}a"
+				Wait 500
+				SendKeys "{Home}"
+				Wait 100
+				_arg2 = "Path"
+				p$ = _arg1 + "|" + _arg2
+				' AutoFolder at 5
+				DllCall "UttC.dll",5, p$
+				Wait 1000
+				SendKeys "{End}{Left 4}"
+			}
+		}
+		LIST "DriveList" {
+			"A:#5C\\A Drive"
+			"A:#5C\\Alpha Drive"
+			"C:#5C\\C Drive"
+			"C:#5C\\Charlie Drive"
+			"D:#5C\\D Drive"
+			"D:#5C\\Delta Drive"
+			"E:#5C\\E Drive"
+			"E:#5C\\Echo Drive"
+			"F:#5C\\F Drive"
+			"F:#5C\\Foxtrot Drive"
+			"G:#5C\\G Drive"
+			"G:#5C\\Golf Drive"
+			"H:#5C\\H Drive"
+			"H:#5C\\Hotel Drive"
+			"I:#5C\\I Drive"
+			"I:#5C\\India Drive"
+			"J:#5C\\J Drive"
+			"J:#5C\\Juliet Drive"
+			"K:#5C\\K Drive"
+			"K:#5C\\Kilo Drive"
+		}
+		COMMAND "Save To <Folder List>" {
+			SCRIPT {
+				SendKeys "{Alt+f}a"
+				Wait 100
+				SendKeys "{Home}"
+				Wait 100
+				_arg2 = "Path"
+				p$ = _arg1 + "|" + _arg2
+				' AutoFolder at 5
+				DllCall "UttC.dll",5, p$
+				Wait 500
+				SendKeys "\"
+				SendKeys "{End}{Left 4}"
+			}
+		}
+		COMMAND "Save To <Folder List> Folder" {
+			SCRIPT {
+				SendKeys "{Alt+f}a"
+				Wait 100
+				SendKeys "{Home}"
+				Wait 100
+				_arg2 = "Path"
+				p$ = _arg1 + "|" + _arg2
+				' AutoFolder at 5
+				DllCall "UttC.dll",5, p$
+				Wait 500
+				SendKeys "\"
+				SendKeys "{End}{Left 4}"
+			}
+		}
+		COMMAND "<File List> <FPFP>" {
+			SCRIPT {
+				If _arg2 = "File Address" XOR _arg2 = "Address" THEN _arg2 = "Path"
+				p$ = _arg1 + "|" + _arg2
+				' AutoFile at 4
+				DllCall "UttC.dll",4, p$
+			}
+		}		
+		COMMAND "<File List> <FPFP> Bottom" {
+			SCRIPT {
+				If _arg2 = "File Address" XOR _arg2 = "Address" THEN _arg2 = "Path"
+				p$ = _arg1 + "|" + _arg2
+				' AutoFile at 4
+				DllCall "UttC.dll",4, p$
+				Wait 100
+				SendKeys "{Ctrl+End}"
+			}
+		}		
+		LIST "FPFP" {
+			"File"
+			"File Address"
+			"Address"
+		}
+		COMMAND "<Custom 1-7> <File>" {
+			SCRIPT {
+				IF _arg1 = "Custom One" THEN  _arg1 = "Custom 1"
+				p$ = _arg1 + "|" + _arg2
+				' AutoFile at 4
+				DllCall "UttC.dll",4, p$
+			}
+		}		
+		LIST "Custom 1-7" {
+			"C:#5CDocuments and Settings#5CAll Users#5CDocuments#5CUC Files#5CHelp#5CUC Custom 1.rtf\\Custom One"
+			"C:#5CDocuments and Settings#5CAll Users#5CDocuments#5CUC Files#5CHelp#5CUC Custom 1.rtf\\Custom 1"
+			"C:#5CDocuments and Settings#5CAll Users#5CDocuments#5CUC Files#5CHelp#5CUC Custom 2.rtf\\Custom 2"
+			"C:#5CDocuments and Settings#5CAll Users#5CDocuments#5CUC Files#5CHelp#5CUC Custom 3.rtf\\Custom 3"
+			"C:#5CDocuments and Settings#5CAll Users#5CDocuments#5CUC Files#5CHelp#5CUC Custom 4.rtf\\Custom 4"
+			"C:#5CDocuments and Settings#5CAll Users#5CDocuments#5CUC Files#5CHelp#5CUC Custom 5.rtf\\Custom 5"
+			"C:#5CDocuments and Settings#5CAll Users#5CDocuments#5CUC Files#5CHelp#5CUC Custom 6.rtf\\Custom 6"
+			"C:#5CDocuments and Settings#5CAll Users#5CDocuments#5CUC Files#5CHelp#5CUC Custom 7.rtf\\Custom 7"		
+			}
+		LIST "File" {
+			"File"
+		}
+ 
+# Add a target type (e.g., file, folder, etc.,) to a list container of same type.
+		COMMAND "Add <FileFolderSiteNNFindReminder>"{
+			SCRIPT {
+				IF _arg1 = "Files" THEN  _arg1 = "File"
+				IF _arg1 = "Folders" THEN  _arg1 = "Folder"
+				IF _arg1 = "Sites" THEN  _arg1 = "Site"
+				IF _arg1 = "Nicknames" THEN  _arg1 = "Nickname"
+				IF _arg1 = "Reminders" THEN  _arg1 = "Reminder"
+				IF _arg1 = "Enters" XOR _arg1 = "Enter Command" THEN  _arg1 = "Enter"
+				IF _arg1 = "Touches" XOR _arg1 = "Touch Command" THEN  _arg1 = "Touch"
+				IF _arg1 = "Local Command" XOR _arg1 = "Local" THEN  _arg1 = "Local Touch"
+					' AddToList at 2
+					DllCall "UttC.dll", 2, _arg1
+					IF _arg1 = "Nickname" XOR _arg1 = "Find" XOR _arg1 = "Reminder" THEN SendKeys "{Alt+c}"
+	 	 	} 
+		}
+		COMMAND "Add <FileFolderSiteNNFindReminder> <YesRestartDoNotYesRD>"{
+			SCRIPT {
+				IF _arg1 = "Files" THEN  _arg1 = "File"
+				IF _arg1 = "Folders" THEN  _arg1 = "Folder"
+				IF _arg1 = "Sites" THEN  _arg1 = "Site"
+				IF _arg1 = "Nicknames" THEN  _arg1 = "Nickname"
+				IF _arg1 = "Reminders" THEN  _arg1 = "Reminder"
+				IF _arg1 = "Enters" XOR _arg1 = "Enter Command" THEN  _arg1 = "Enter"
+				IF _arg1 = "Touches" XOR _arg1 = "Touch Command" THEN  _arg1 = "Touch"
+				IF _arg1 = "Local Command" XOR _arg1 = "Local" THEN  _arg1 = "Local Touch"
+				' AddToList at 2
+				DllCall "UttC.dll", 2, _arg1
+				Wait 1000
+				SendKeys "{Enter}"
+				IF _arg2 = "Enter" THEN 
+				SendKeys ""
+				ELSE
+				Wait 1000
+				SendKeys "{Alt+F4}"
+				Wait 500
+				IF _arg2 = "Restart" THEN SendKeys "{Alt+r}"
+				IF _arg2 = "Do Not" THEN SendKeys "{Alt+d}"
+				Wait 100
+				SendKeys "y"
+				Wait 500
+				SendKeys "{Shift+Tab}"
+				END IF
+				}
+		}		
+		COMMAND "<ThisLineWord> Add <FileFolderSiteNNFindReminder>"{
+			SCRIPT {
+				IF _arg2 = "Files" THEN  _arg2 = "File"
+				IF _arg2 = "Folders" THEN  _arg2 = "Folder"
+				IF _arg2 = "Sites" THEN  _arg2 = "Site"
+				IF _arg2 = "Nicknames" THEN  _arg2 = "Nickname"
+				IF _arg2 = "Reminders" THEN  _arg2 = "Reminder"
+				IF _arg2 = "Enters" XOR _arg2 = "Enter Command" THEN  _arg2 = "Enter"
+				IF _arg2 = "Touches" XOR _arg2 = "Touch Command" THEN  _arg2 = "Touch"
+				IF _arg2 = "Local Command" XOR _arg2 = "Local" THEN  _arg2 = "Local Touch"
+				IF _arg1 = "Line" THEN SendKeys "{Home}{Shift+End}"
+				IF _arg1 = "Word" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}"
+				SendKeys "{Ctrl+c}"
+				IF _arg1 = "Word" THEN SendKeys "{Ctrl+Left}{Shift+Ctrl+Right}"
+				IF _arg2 = "File" THEN  _arg2 = "CFile"
+				IF _arg2 = "Folder" THEN  _arg2 = "CFolder"
+				IF _arg2 = "Site" THEN  _arg2 = "CSite"
+				' AddToList at 2
+				DllCall "UttC.dll", 2, _arg2
+			}
+		}
+		LIST "ThisLineWord" {
+			"This"  "Line"  "Word"
+		}
+		COMMAND "<1-20> <BeforesAftersWords> Add <FileFolderSiteNNFindReminder>"{
+			SCRIPT {
+				IF _arg3 = "Files" THEN  _arg3 = "File"
+				IF _arg3 = "Folders" THEN  _arg3 = "Folder"
+				IF _arg3 = "Sites" THEN  _arg3 = "Site"
+				IF _arg3 = "Nicknames" THEN  _arg3 = "Nickname"
+				IF _arg3 = "Reminders" THEN  _arg3 = "Reminder"
+				IF _arg3 = "Enters" XOR _arg3 = "Enter Command" THEN  _arg3 = "Enter"
+				IF _arg3 = "Touches" XOR _arg3 = "Touch Command" THEN  _arg3 = "Touch"
+				IF _arg3 = "Local Command" XOR _arg3 = "Local" THEN  _arg3 = "Local Touch"
+ 				p$ = _arg1 + "|" + _arg2
+				' GLLWDUABUSs at 46
+				DllCall "UttC.dll", 46, p$
+				SendKeys "{Ctrl+c}"
+				Wait 200
+				' AddToList at 2
+				DllCall "UttC.dll", 2, _arg3
+			}
+		}
+		LIST "BeforesAftersWords" {
+			"Befores"  "Afters"  "Words"
+		}
+		COMMAND "<0-10> <0-10> <Words> Add <FileFolderSiteNNFindReminder>"{
+			SCRIPT {
+				IF _arg3 = "Files" THEN  _arg3 = "File"
+				IF _arg3 = "Folders" THEN  _arg3 = "Folder"
+				IF _arg3 = "Sites" THEN  _arg3 = "Site"
+				IF _arg3 = "Nicknames" THEN  _arg3 = "Nickname"
+				IF _arg3 = "Reminders" THEN  _arg3 = "Reminder"
+				IF _arg3 = "Enters" XOR _arg3 = "Enter Command" THEN  _arg3 = "Enter"
+				IF _arg3 = "Touches" XOR _arg3 = "Touch Command" THEN  _arg3 = "Touch"
+				IF _arg3 = "Local Command" XOR _arg3 = "Local" THEN  _arg3 = "Local Touch"
+				p$ = _arg1 + "|" + _arg2 + "|" + _arg3
+				' GGSLLWSSUs at 45
+				DllCall "UttC.dll", 45, p$
+				SendKeys "{Ctrl+c}"
+				Wait 200
+				' AddToList at 2
+				DllCall "UttC.dll", 2, _arg4
+				}
+		}
+		LIST "0-10" {
+			"0" "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+		}
+		LIST "1-20" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+			"11" "12" "13" "14" "15" "16" "17" "18" "19" "20"
+		}
+		LIST "Words" {
+			"Words"
+		}
+		LIST "NNReminder" {
+			"Nickname"  "Reminder"  
+			"Nicknames"  "Reminders"
+		}
+		LIST "FileFolderSiteNNFindReminder" {
+			"File"  "Folder"  "Site"  "Nickname"  "Find"  "Reminder"
+				"Tab"  "Enter"  "Touch"  "Local"  "Local Command"  "Local Touch"
+			"Files"  "Folders"  "Sites"  "Nicknames"  "Reminders"
+				"Enters"  "Touches"    
+		}
+		LIST "YesRestartDoNotYesRD" {
+			"Yes" "Restart" "Do Not" "Yes Restart"  "Yes Do Not" "Enter"
+		}
+################## Section 7: Text -- in UttC2##################
+################## Section 8: Email -- in UttC2################
+################## Section 9: Web in -- UttC2###################
+################## Section 10: Utilities -- in UttC2#############
+ 
+################## UttC1 List Lists ######################
+ 
+LIST "File List" {
+			"C:#5CProgram Files (x86)#5CRedstart Systems#5CUtter Command#5CDemo#5CDemo One.rtf\\Demo One"
+			"C:#5CProgram Files (x86)#5CRedstart Systems#5CUtter Command#5CDemo#5CDemo Two.html\\Demo Two"
+			"C:#5CProgram Files (x86)#5CRedstart Systems#5CUtter Command#5CDemo#5CDemo Three.doc\\Demo Three"
+			"C:#5CProgram Files (x86)#5CRedstart Systems#5CUtter Command#5CDemo#5CDemo Four.doc\\Demo Four"
+			"C:#5CProgram Files (x86)#5CRedstart Systems#5CUtter Command#5CDemo#5CDemo Five.xls\\Demo Five"
+			"C:#5CProgram Files (x86)#5CRedstart Systems#5CUtter Command#5CDemo#5CDemo Six.txt\\Demo Six"
+			"C:#5CProgram Files (x86)#5CRedstart Systems#5CUtter Command#5CDemo#5CDemo Seven.txt\\Demo Seven"
+			"C:#5CProgram Files (x86)#5CRedstart Systems#5CUtter Command#5CDemo#5CDemo Eight.rtf\\Demo Eight"
+			"C:#5CProgram Files (x86)#5CRedstart Systems#5CUtter Command#5CDemo#5CDemo Nine.doc\\Demo Nine"
+			"C:#5CProgram Files (x86)#5CRedstart Systems#5CUtter Command#5CDemo#5CDemo Ten.doc\\Demo Ten"
+			"C:#5CDocuments and Settings#5CAll Users#5CDocuments#5CUC Files#5CLogs#5CUC.log\\UC Log"
+			"C:#5CProgram Files (x86)#5CRedstart Systems#5CUtter Command#5CUCReadme.txt\\UC Readme"
+			"C:#5CProgram Files (x86)#5CRedstart Systems#5CUtter Command#5CDemo#5CBird Pictures#5CPainted Redstart Singing Small.jpeg\\Painted"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim#5CDaily Writing.scriv#5CDaily Writing.scrivx\\Daily"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim#5CChelsea.scriv#5CChelsea.scrivx\\Chelsea"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim#5CGR.scriv#5CGR.scrivx\\GR"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim#5CInfo.scriv#5CInfo.scrivx\\Info"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim#5CScriven.scriv#5CScriven.scrivx\\Scriven"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim#5CWords.scriv#5CWords.scrivx\\Words"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim Work#5CMusic.scriv#5CMusic.scrivx\\Music"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Redstart#5CRedstart Users.scriv#5CRedstart Users.scrivx\\Redstart Users"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Redstart#5CRedstart Writing.scriv#5CRedstart Writing.scrivx\\Redstart Writing"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Redstart#5CRedstart Dev.scriv#5CRedstart Dev.scrivx\\Redstart Dev"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Redstart#5CPatch on Speech.scriv#5CPatch on Speech.scrivx\\Patch on Speech"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Redstart#5CRedstart Site.scriv#5CRedstart Site.scrivx\\Redstart Site"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Redstart#5CRedstart Biz.scriv#5CRedstart Biz.scrivx\\Redstart Biz"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5CScratch.scriv#5CScratch.scrivx\\Scratch"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim Work#5CConsulting.scriv#5CConsulting.scrivx\\Consulting"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim Work#5CNonfiction.scriv#5CNonfiction.scrivx\\Nonfiction"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim Work#5CScience Editing.scriv#5CScience Editing.scrivx\\Science Editing"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim Work#5CSocial Media.scriv#5CSocial Media.scrivx\\Social Media"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim Work#5CSpeech Commands.scriv#5CSpeech Commands.scrivx\\Speech Commands"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim Work#5CTesting Speech.scriv#5CTesting Speech.scrivx\\Testing Speech"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim Work#5CTesting.scriv#5CTesting.scrivx\\Testing"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim Work#5CW3C.scriv#5CW3C.scrivx\\W3C"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim Work#5C- Duke.scriv#5C- Duke.scrivx\\Duke"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim Work#5C- Patch on Tech.scriv#5C- Patch on Tech.scrivx\\Patch on Tech"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim Work#5C- Pearson.scriv#5C- Pearson.scrivx\\Pearson"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5C- Kim Fiction#5CWriting Fiction.scriv\\Fiction"
+}
+LIST "Folder List" {
+			"C:#5C\\C Drive"
+			"C:#5C\\Charlie Drive"
+			"D:#5C\\D Drive"
+			"D:#5C\\Delta Drive"
+			"E:#5C\\E Drive"
+			"E:#5C\\Echo Drive"
+			"F:#5C\\F Drive"
+			"F:#5C\\Foxtrot Drive"
+			"G:#5C\\G Drive"
+			"G:#5C\\Golf Drive"
+			"H:#5C\\H Drive"
+			"H:#5C\\Hotel Drive"
+			"I:#5C\\I Drive"
+			"I:#5C\\India Drive"
+			"J:#5C\\J Drive"
+			"J:#5C\\Juliet Drive"
+			"K:#5C\\K Drive"
+			"K:#5C\\Kilo Drive"
+			"Shared Documents\\Shared Documents"
+			"C:#5CUsers#5CKim#5CDocuments\\Documents"
+			"C:#5CProgram Files #28x86#29#5CRedstart Systems\\Redstart Systems"
+			"C:#5CProgram Files (x86)#5CRedstart Systems#5CUtter Command#5CHelp\\UC Help"
+			"C:#5CProgram Files (x86)#5CRedstart Systems#5CUtter Command#5CDemo\\UC Demo"
+			"C:#5CDocuments and Settings#5CAll Users#5CDocuments#5CUC Files#5CSpeechClipboard\\UC Clipboard"
+			"C:#5CDocuments and Settings#5CAll Users#5CDocuments#5CUC Files#5CHelp\\UC Custom"
+			"C:#5CDocuments and Settings#5CAll Users#5CDocuments#5CUC Files#5CNotes\\UC Notes"
+			"C:#5CProgram Files #28x86#29#5CRedstart Systems#5CUtter Command#5CDemo#5CBird Pictures\\Bird Pictures"
+			"C:#5CProgram Files #28x86#29#5CRedstart Systems#5CUtter Command#5CDemo#5CArizona Trip\\Arizona Trip"
+			"C:#5CUsers#5CKim#5CDocuments#5CMy Documents#5CRedstart\\Redstart"
+			"C:#5CDocuments and Settings#5CAll Users#5CDocuments#5CUC Files#5CLogs\\UC Log"
+			"C:#5CBuild#5Cbuild#5CUC2#5Ctrunk\\Trunk"
+			"C:#5CBuild#5Cbuild\\Build"
+			"C:#5CBuild#5Cbuild#5CUC2#5Ctrunk#5Cinstaller#5Csandbox#5Cpackage\\Package"
+			"C:#5CDocuments and Settings#5CAll Users#5CDocuments#5CUC Files\\UC Files"
+			"C:#5CUsers#5CKim#5CGoogle Drive\\Google Drive"
+			"C:#5CUsers#5CKim#5CDropbox\\Dropbox"
+			"C:#5CUsers#5CKim#5CDocuments#5CMy Documents#5COther People#5CDennis\\Dennis"
+			"C:#5CUsers\\Users"
+			"C:#5CUsers#5CKim#5CMusic\\Music"
+			"C:#5CUsers#5CKim#5CPictures\\Pictures"
+			"C:#5CUsers#5CKim#5CMy Images\\Images"
+			"C:#5CUsers#5CKim#5CDocuments#5CMy Documents\\Doc Doc"
+			"C:#5CUsers#5CKim#5CDocuments#5CMy Documents#5C- EK Life\\E K Life"
+			"C:#5CUsers#5CKim#5CDocuments#5CMy Documents#5C- EK Work\\E K Work"
+			"C:#5CUsers#5CKim#5CDocuments#5CMy Documents#5C- EK Work#5CDuke Kim\\Duke Kim"
+			"K:#5Czp - Redstart#5C- Redstart Users\\Redstart Users"
+			"C:#5CUsers#5CKim#5CDocuments#5CMy Documents#5C- EK Work#5CRedstart Users#5CInvoices\\Invoices"
+			"C:#5CUsers#5CKim#5CDocuments#5CMy Documents#5C- Greening Rozzie\\Greening Rozzie"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener\\Kim Scrivener Folder"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5CArchive\\Archive"
+			"C:#5CUsers#5CKim#5CDropbox#5C- Data\\Dropbox Data"
+			"C:#5CUsers#5CKim#5CDocuments#5CQuickVoice#5CQuickVoice Recordings\\QuickVoice Recordings"
+			"C:#5CUsers#5CKim#5CDropbox#5CEric Scrivener\\Eric Scrivener"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener#5CKim Fiction\\Kim Fiction"
+			"C:#5CUsers#5CKim#5CDropbox#5CKim Scrivener\\Kim Scrivener"
+			"C:#5CProgram Files #28x86#29#5CRedstart Systems#5CUtter Command\\UC"
+			"C:#5CProgramData#5CNuance#5CNaturallySpeaking13#5CData#5Cenx#5Cdvcu#5Cgeneral\\General"
+			"C:#5CUsers#5CKim\\Kim"
+			"C:#5CProgram Files #28x86#29\\Program Files X"
+			"C:#5CProgram Files\\Program Files"
+			"C:#5CzBackup\\Z Backup"
+			"C:#5CProgramData#5CNuance#5CNaturallySpeaking13#5CData#5Cenx#5Cdvcu#5Cgeneral#5CChanges\\Changes"
+			"K:#5Czp - Redstart#5C- Redstart Users#5CInvoices\\Redstart Invoices"
+}
+   }
+}

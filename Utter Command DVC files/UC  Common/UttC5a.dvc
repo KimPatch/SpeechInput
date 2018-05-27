@@ -1,0 +1,2618 @@
+MENU "Global Commands" {
+ 
+############################## Copyright #################################################
+#        This file is part of Redstart Systems' Utter Command Speech Interface			 #
+#        for NaturallySpeaking Professional. Utter Command uses Human-Machine 			 #
+#	     Grammar. 						     				    						 #
+#        Go to www.redstartsystems.com for more information about Utter command 	     #
+#	     and Human-Machine Grammar.	     												 #
+#          © Copyright Redstart Systems 2005-2008. All rights reserved.				     #
+############################## Copyright #################################################
+ 
+	STATE "Global Commands" GLOBAL {
+ 
+#6s 2-4 Non-alphabet Keys, Another, Insert, Paste, Undo, including repeat
+#6t 1-10 key combinations
+#6u 1-10 Key Combinations Repeat
+#6v 1-10 Key Combinations Wait
+#6w 1-10 plus 1-3 
+#6x KeyALPaste plus Function 1-12
+#6y 1-10 plus Function 1-12
+#6z 1-10 Keys plus Alph0-9
+#6aa 1-10 Keys plus 2 Alph0-9
+#6ab Key and 1-10 Keys plus Cap Alph
+################## 		
+ 
+#6s. 2-4 Non-alphabet Keys, Another, Insert, Paste, Undo, including repeat
+ 		COMMAND "<KeyALIPasteCharUndo> <KeyALIPasteChar>" {
+			SCRIPT {
+				IF _arg1 = "Grave" THEN  _arg1 = "`"
+				IF _arg1 = "Pipe" THEN  _arg1 = "|"
+				IF _arg1 = "Plus" THEN  _arg1 = "+"
+				IF _arg1 = "Equals" THEN  _arg1 = "="
+				IF _arg1 = "Minus" XOR _arg1 = "Hyphen" THEN  _arg1 = "-"
+				IF _arg1 = "Exclamation" THEN  _arg1 = "!"										
+				IF _arg1 = "Dollar" THEN  _arg1 = "$"										
+				IF _arg1 = "Number" THEN  _arg1 = "#"										
+				IF _arg1 = "Question" THEN  _arg1 = "?"										
+				IF _arg1 = "Single Quote" THEN  _arg1 = "'"										
+				IF _arg1 = "Quote" THEN  _arg1 = """"										
+				IF _arg1 = "Ampersand" THEN  _arg1 = "&"
+				IF _arg1 = "Percent" THEN _arg1 = "%"												
+				IF _arg1 = "Star" THEN  _arg1 = "*"
+				IF _arg1 = "At Sign" THEN  _arg1 = "@"
+				IF _arg1 = "Open Angle" THEN _arg1 = "<"
+				IF _arg1 = "Close Angle" THEN _arg1 = ">"
+				IF _arg1 = "Undo" THEN  _arg1 = "Ctrl+z"
+'				IF _arg1 = "Go Top" XOR _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+'				IF _arg1 = "Go Bottom" XOR _arg1 = "Bottom" THEN  _arg1 = "Ctrl+End"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+				if _arg1 = "Delete" then  _arg1 = "Del"
+				if _arg1 = "Escape" then  _arg1 = "Esc"
+				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Shift Tab" THEN  _arg1 = "Shift+Tab"
+ 
+				IF _arg2 = "Grave" THEN  _arg2 = "`"
+				IF _arg2 = "Pipe" THEN  _arg2 = "|"
+				IF _arg2 = "Plus" THEN  _arg2 = "+"
+				IF _arg2 = "Equals" THEN  _arg2 = "="
+				IF _arg2 = "Minus" xOR _arg2 = "Hyphen" THEN  _arg2 = "-"
+				IF _arg2 = "Exclamation" THEN  _arg2 = "!"										
+				IF _arg2 = "Dollar" THEN  _arg2 = "$"										
+				IF _arg2 = "Number" THEN  _arg2 = "#"										
+				IF _arg2 = "Question" THEN  _arg2 = "?"										
+				IF _arg2 = "Single Quote" THEN  _arg2 = "'"										
+				IF _arg2 = "Quote" THEN  _arg2 = """"										
+				IF _arg2 = "Ampersand" THEN  _arg2 = "&"
+				IF _arg2 = "Percent" THEN _arg2 = "%"												
+				IF _arg2 = "Star" THEN  _arg2 = "*"
+				IF _arg2 = "At Sign" THEN  _arg2 = "@"
+				IF _arg2 = "Open Angle" THEN _arg2 = "<"
+				IF _arg2 = "Close Angle" THEN _arg2 = ">"
+				IF _arg2 = "Paste" THEN  _arg2 = "Ctrl+v"
+				if _arg2 = "Delete" then  _arg2 = "Del"
+				if _arg2 = "Escape" then  _arg2 = "Esc"
+'				IF _arg2 = "Another" THEN  _arg2 = "End}{Enter"
+'				IF _arg2 = "Insert" THEN  _arg2 = "Home}{Enter}{Up"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg2 + "}"
+				
+			}
+		}
+		COMMAND "<KeyALIPasteCharUndo> <KeyALIPasteChar> <KeyALIPasteChar>" {
+			SCRIPT {
+				IF _arg1 = "Grave" THEN  _arg1 = "`"
+				IF _arg1 = "Pipe" THEN  _arg1 = "|"
+				IF _arg1 = "Plus" THEN  _arg1 = "+"
+				IF _arg1 = "Equals" THEN  _arg1 = "="
+				IF _arg1 = "Minus" XOR _arg1 = "Hyphen" THEN  _arg1 = "-"
+				IF _arg1 = "Exclamation" THEN  _arg1 = "!"										
+				IF _arg1 = "Dollar" THEN  _arg1 = "$"										
+				IF _arg1 = "Number" THEN  _arg1 = "#"										
+				IF _arg1 = "Question" THEN  _arg1 = "?"										
+				IF _arg1 = "Single Quote" THEN  _arg1 = "'"										
+				IF _arg1 = "Quote" THEN  _arg1 = """"										
+				IF _arg1 = "Ampersand" THEN  _arg1 = "&"
+				IF _arg1 = "Percent" THEN _arg1 = "%"												
+				IF _arg1 = "Star" THEN  _arg1 = "*"
+				IF _arg1 = "At Sign" THEN  _arg1 = "@"
+				IF _arg1 = "Open Angle" THEN _arg1 = "<"
+				IF _arg1 = "Close Angle" THEN _arg1 = ">"
+				IF _arg1 = "Undo" THEN  _arg1 = "Ctrl+z"
+'				IF _arg1 = "Go Top" XOR _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+'				IF _arg1 = "Go Bottom" XOR _arg1 = "Bottom" THEN  _arg1 = "Ctrl+End"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+				if _arg1 = "Delete" then  _arg1 = "Del"
+				if _arg1 = "Escape" then  _arg1 = "Esc"
+				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Shift Tab" THEN  _arg1 = "Shift+Tab"
+ 
+				IF _arg2 = "Grave" THEN  _arg2 = "`"
+				IF _arg2 = "Pipe" THEN  _arg2 = "|"
+				IF _arg2 = "Plus" THEN  _arg2 = "+"
+				IF _arg2 = "Equals" THEN  _arg2 = "="
+				IF _arg2 = "Minus" XOR _arg2 = "Hyphen" THEN  _arg2 = "-"
+				IF _arg2 = "Exclamation" THEN  _arg2 = "!"										
+				IF _arg2 = "Dollar" THEN  _arg2 = "$"										
+				IF _arg2 = "Number" THEN  _arg2 = "#"										
+				IF _arg2 = "Question" THEN  _arg2 = "?"										
+				IF _arg2 = "Single Quote" THEN  _arg2 = "'"										
+				IF _arg2 = "Quote" THEN  _arg2 = """"										
+				IF _arg2 = "Ampersand" THEN  _arg2 = "&"
+				IF _arg2 = "Percent" THEN _arg2 = "%"												
+				IF _arg2 = "Star" THEN  _arg2 = "*"
+				IF _arg2 = "At Sign" THEN  _arg2 = "@"
+				IF _arg2 = "Open Angle" THEN _arg2 = "<"
+				IF _arg2 = "Close Angle" THEN _arg2 = ">"
+				IF _arg2 = "Paste" THEN  _arg2 = "Ctrl+v"
+				if _arg2 = "Delete" then  _arg2 = "Del"
+				if _arg2 = "Escape" then  _arg2 = "Esc"
+'				IF _arg2 = "Another" THEN  _arg2 = "End}{Enter"
+'				IF _arg2 = "Insert" THEN  _arg2 = "Home}{Enter}{Up"
+ 
+				IF _arg3 = "Grave" THEN  _arg3 = "`"
+				IF _arg3 = "Pipe" THEN  _arg3 = "|"								
+				IF _arg3 = "Plus" THEN  _arg3 = "+"
+				IF _arg3 = "Equals" THEN  _arg3 = "="
+				IF _arg3 = "Minus" XOR _arg3 = "Hyphen" THEN  _arg3 = "-"
+				IF _arg3 = "Exclamation" THEN  _arg3 = "!"										
+				IF _arg3 = "Dollar" THEN  _arg3 = "$"										
+				IF _arg3 = "Number" THEN  _arg3 = "#"										
+				IF _arg3 = "Question" THEN  _arg3 = "?"										
+				IF _arg3 = "Single Quote" THEN  _arg3 = "'"										
+				IF _arg3 = "Quote" THEN  _arg3 = """"										
+				IF _arg3 = "Ampersand" THEN  _arg3 = "&"
+				IF _arg3 = "Percent" THEN _arg3 = "%"												
+				IF _arg3 = "Star" THEN  _arg3 = "*"
+				IF _arg3 = "At Sign" THEN  _arg3 = "@"
+				IF _arg3 = "Open Angle" THEN _arg3 = "<"
+				IF _arg3 = "Close Angle" THEN _arg3 = ">"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+				if _arg3 = "Delete" then  _arg3 = "Del"
+				if _arg3 = "Escape" then  _arg3 = "Esc"
+'				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+'				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg2 + "}"
+				SendKeys "{" + _arg3 + "}"
+			}
+		}
+		COMMAND "<KeyALIPasteCharUndo> <KeyALIPasteChar> <KeyALIPasteChar> <KeyALIPasteChar>" {
+			SCRIPT {
+				IF _arg1 = "Grave" THEN  _arg1 = "`"
+				IF _arg1 = "Pipe" THEN  _arg1 = "|"
+				IF _arg1 = "Plus" THEN  _arg1 = "+"
+				IF _arg1 = "Equals" THEN  _arg1 = "="
+				IF _arg1 = "Minus" XOR _arg1 = "Hyphen" THEN  _arg1 = "-"
+				IF _arg1 = "Exclamation" THEN  _arg1 = "!"										
+				IF _arg1 = "Dollar" THEN  _arg1 = "$"										
+				IF _arg1 = "Number" THEN  _arg1 = "#"										
+				IF _arg1 = "Question" THEN  _arg1 = "?"										
+				IF _arg1 = "Single Quote" THEN  _arg1 = "'"										
+				IF _arg1 = "Quote" THEN  _arg1 = """"										
+				IF _arg1 = "Ampersand" THEN  _arg1 = "&"
+				IF _arg1 = "Percent" THEN _arg1 = "%"												
+				IF _arg1 = "Star" THEN  _arg1 = "*"
+				IF _arg1 = "At Sign" THEN  _arg1 = "@"
+				IF _arg1 = "Open Angle" THEN _arg1 = "<"
+				IF _arg1 = "Close Angle" THEN _arg1 = ">"
+				IF _arg1 = "Undo" THEN  _arg1 = "Ctrl+z"
+'				IF _arg1 = "Go Top" XOR _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+'				IF _arg1 = "Go Bottom" XOR _arg1 = "Bottom"  THEN  _arg1 = "Ctrl+End"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+				if _arg1 = "Delete" then  _arg1 = "Del"
+				if _arg1 = "Escape" then  _arg1 = "Esc"
+				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Shift Tab" THEN  _arg1 = "Shift+Tab"
+ 
+				IF _arg2 = "Grave" THEN  _arg2 = "`"
+				IF _arg2 = "Pipe" THEN  _arg2 = "|"
+				IF _arg2 = "Plus" THEN  _arg2 = "+"
+				IF _arg2 = "Equals" THEN  _arg2 = "="
+				IF _arg2 = "Minus" XOR _arg2 = "Hyphen" THEN  _arg2 = "-"
+				IF _arg2 = "Exclamation" THEN  _arg2 = "!"										
+				IF _arg2 = "Dollar" THEN  _arg2 = "$"										
+				IF _arg2 = "Number" THEN  _arg2 = "#"										
+				IF _arg2 = "Question" THEN  _arg2 = "?"										
+				IF _arg2 = "Single Quote" THEN  _arg2 = "'"										
+				IF _arg2 = "Quote" THEN  _arg2 = """"										
+				IF _arg2 = "Ampersand" THEN  _arg2 = "&"
+				IF _arg2 = "Percent" THEN _arg2 = "%"												
+				IF _arg2 = "Star" THEN  _arg2 = "*"
+				IF _arg2 = "At Sign" THEN  _arg2 = "@"
+				IF _arg2 = "Open Angle" THEN _arg2 = "<"
+				IF _arg2 = "Close Angle" THEN _arg2 = ">"
+				IF _arg2 = "Paste" THEN  _arg2 = "Ctrl+v"
+				if _arg2 = "Delete" then  _arg2 = "Del"
+				if _arg2 = "Escape" then  _arg2 = "Esc"
+'				IF _arg2 = "Another" THEN  _arg2 = "End}{Enter"
+'				IF _arg2 = "Insert" THEN  _arg2 = "Home}{Enter}{Up"
+ 
+				IF _arg3 = "Grave" THEN  _arg3 = "`"
+				IF _arg3 = "Pipe" THEN  _arg3 = "|"								
+				IF _arg3 = "Plus" THEN  _arg3 = "+"
+				IF _arg3 = "Equals" THEN  _arg3 = "="
+				IF _arg3 = "Minus" XOR _arg3 = "Hyphen" THEN  _arg3 = "-"
+				IF _arg3 = "Exclamation" THEN  _arg3 = "!"										
+				IF _arg3 = "Dollar" THEN  _arg3 = "$"										
+				IF _arg3 = "Number" THEN  _arg3 = "#"										
+				IF _arg3 = "Question" THEN  _arg3 = "?"										
+				IF _arg3 = "Single Quote" THEN  _arg3 = "'"										
+				IF _arg3 = "Quote" THEN  _arg3 = """"										
+				IF _arg3 = "Ampersand" THEN  _arg3 = "&"
+				IF _arg3 = "Percent" THEN _arg3 = "%"												
+				IF _arg3 = "Star" THEN  _arg3 = "*"
+				IF _arg3 = "At Sign" THEN  _arg3 = "@"
+				IF _arg3 = "Open Angle" THEN _arg3 = "<"
+				IF _arg3 = "Close Angle" THEN _arg3 = ">"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+				if _arg3 = "Delete" then  _arg3 = "Del"
+				if _arg3 = "Escape" then  _arg3 = "Esc"
+'				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+'				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+ 
+				IF _arg4 = "Grave" THEN  _arg4 = "`"
+				IF _arg4 = "Pipe" THEN  _arg4 = "|"							
+				IF _arg4 = "Plus" THEN  _arg4 = "+"
+				IF _arg4 = "Equals" THEN  _arg4 = "="
+				IF _arg4 = "Minus" XOR _arg4 = "Hyphen" THEN  _arg4 = "-"
+				IF _arg4 = "Exclamation" THEN  _arg4 = "!"										
+				IF _arg4 = "Dollar" THEN  _arg4 = "$"										
+				IF _arg4 = "Number" THEN  _arg4 = "#"										
+				IF _arg4 = "Question" THEN  _arg4 = "?"										
+				IF _arg4 = "Single Quote" THEN  _arg4 = "'"										
+				IF _arg4 = "Quote" THEN  _arg4 = """"										
+				IF _arg4 = "Ampersand" THEN  _arg4 = "&"
+				IF _arg4 = "Percent" THEN _arg4 = "%"												
+				IF _arg4 = "Star" THEN  _arg4 = "*"
+				IF _arg4 = "At Sign" THEN  _arg4 = "@"
+				IF _arg4 = "Open Angle" THEN _arg4 = "<"
+				IF _arg4 = "Close Angle" THEN _arg4 = ">"
+				IF _arg4 = "Paste" THEN  _arg4 = "Ctrl+v"
+				if _arg4 = "Delete" then  _arg4 = "Del"
+				if _arg4 = "Escape" then  _arg4 = "Esc"
+'				IF _arg4 = "Another" THEN  _arg4 = "End}{Enter"
+'				IF _arg4 = "Insert" THEN  _arg4 = "Home}{Enter}{Up"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg2 + "}"
+				SendKeys "{" + _arg3 + "}"
+				SendKeys "{" + _arg4 + "}"
+			}
+		}
+		COMMAND "<KeyALIPasteCharUndo> <KeyALIPasteChar> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg1 = "Grave" THEN  _arg1 = "`"
+				IF _arg1 = "Pipe" THEN  _arg1 = "|"
+				IF _arg1 = "Plus" THEN  _arg1 = "+"
+				IF _arg1 = "Equals" THEN  _arg1 = "="
+				IF _arg1 = "Minus" XOR _arg1 = "Hyphen" THEN  _arg1 = "-"
+				IF _arg1 = "Exclamation" THEN  _arg1 = "!"										
+				IF _arg1 = "Dollar" THEN  _arg1 = "$"										
+				IF _arg1 = "Number" THEN  _arg1 = "#"										
+				IF _arg1 = "Question" THEN  _arg1 = "?"										
+				IF _arg1 = "Single Quote" THEN  _arg1 = "'"										
+				IF _arg1 = "Quote" THEN  _arg1 = """"										
+				IF _arg1 = "Ampersand" THEN  _arg1 = "&"
+				IF _arg1 = "Percent" THEN _arg1 = "%"												
+				IF _arg1 = "Star" THEN  _arg1 = "*"
+				IF _arg1 = "At Sign" THEN  _arg1 = "@"
+				IF _arg1 = "Open Angle" THEN _arg1 = "<"
+				IF _arg1 = "Close Angle" THEN _arg1 = ">"
+				IF _arg1 = "Undo" THEN  _arg1 = "Ctrl+z"
+'				IF _arg1 = "Go Top" XOR _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+'				IF _arg1 = "Go Bottom" XOR _arg1 = "Bottom" THEN  _arg1 = "Ctrl+End"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+				if _arg1 = "Delete" then  _arg1 = "Del"
+				if _arg1 = "Escape" then  _arg1 = "Esc"
+				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Shift Tab" THEN  _arg1 = "Shift+Tab"
+ 
+				IF _arg2 = "Grave" THEN  _arg2 = "`"
+				IF _arg2 = "Pipe" THEN  _arg2 = "|"
+				IF _arg2 = "Plus" THEN  _arg2 = "+"
+				IF _arg2 = "Equals" THEN  _arg2 = "="
+				IF _arg2 = "Minus" XOR _arg2 = "Hyphen" THEN  _arg2 = "-"
+				IF _arg2 = "Exclamation" THEN  _arg2 = "!"										
+				IF _arg2 = "Dollar" THEN  _arg2 = "$"										
+				IF _arg2 = "Number" THEN  _arg2 = "#"										
+				IF _arg2 = "Question" THEN  _arg2 = "?"										
+				IF _arg2 = "Single Quote" THEN  _arg2 = "'"										
+				IF _arg2 = "Quote" THEN  _arg2 = """"										
+				IF _arg2 = "Ampersand" THEN  _arg2 = "&"
+				IF _arg2 = "Percent" THEN _arg2 = "%"												
+				IF _arg2 = "Star" THEN  _arg2 = "*"
+				IF _arg2 = "At Sign" THEN  _arg2 = "@"
+				IF _arg2 = "Open Angle" THEN _arg2 = "<"
+				IF _arg2 = "Close Angle" THEN _arg2 = ">"
+				IF _arg2 = "Paste" THEN  _arg2 = "Ctrl+v"
+				if _arg2 = "Delete" then  _arg2 = "Del"
+				if _arg2 = "Escape" then  _arg2 = "Esc"
+'				IF _arg2 = "Another" THEN  _arg2 = "End}{Enter"
+'				IF _arg2 = "Insert" THEN  _arg2 = "Home}{Enter}{Up"
+ 
+				loop& = Val(_arg3)
+				while ( loop& )
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg2 + "}"
+				Wait 100
+				loop& = loop& - 1
+				wend
+ 
+			}
+		}
+		COMMAND "<KeyALIPasteCharUndo> <KeyALIPasteChar> <KeyALIPasteChar> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg1 = "Grave" THEN  _arg1 = "`"
+				IF _arg1 = "Pipe" THEN  _arg1 = "|"
+				IF _arg1 = "Plus" THEN  _arg1 = "+"
+				IF _arg1 = "Equals" THEN  _arg1 = "="
+				IF _arg1 = "Minus" XOR _arg1 = "Hyphen" THEN  _arg1 = "-"
+				IF _arg1 = "Exclamation" THEN  _arg1 = "!"										
+				IF _arg1 = "Dollar" THEN  _arg1 = "$"										
+				IF _arg1 = "Number" THEN  _arg1 = "#"										
+				IF _arg1 = "Question" THEN  _arg1 = "?"										
+				IF _arg1 = "Single Quote" THEN  _arg1 = "'"										
+				IF _arg1 = "Quote" THEN  _arg1 = """"										
+				IF _arg1 = "Ampersand" THEN  _arg1 = "&"
+				IF _arg1 = "Percent" THEN _arg1 = "%"												
+				IF _arg1 = "Star" THEN  _arg1 = "*"
+				IF _arg1 = "At Sign" THEN  _arg1 = "@"
+				IF _arg1 = "Open Angle" THEN _arg1 = "<"
+				IF _arg1 = "Close Angle" THEN _arg1 = ">"
+				IF _arg1 = "Undo" THEN  _arg1 = "Ctrl+z"
+'				IF _arg1 = "Go Top" XOR _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+'				IF _arg1 = "Go Bottom" XOR _arg1 = "Bottom" THEN  _arg1 = "Ctrl+End"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+				if _arg1 = "Delete" then  _arg1 = "Del"
+				if _arg1 = "Escape" then  _arg1 = "Esc"
+				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Shift Tab" THEN  _arg1 = "Shift+Tab"
+ 
+				IF _arg2 = "Grave" THEN  _arg2 = "`"
+				IF _arg2 = "Pipe" THEN  _arg2 = "|"
+				IF _arg2 = "Plus" THEN  _arg2 = "+"
+				IF _arg2 = "Equals" THEN  _arg2 = "="
+				IF _arg2 = "Minus" XOR _arg2 = "Hyphen" THEN  _arg2 = "-"
+				IF _arg2 = "Exclamation" THEN  _arg2 = "!"										
+				IF _arg2 = "Dollar" THEN  _arg2 = "$"										
+				IF _arg2 = "Number" THEN  _arg2 = "#"										
+				IF _arg2 = "Question" THEN  _arg2 = "?"										
+				IF _arg2 = "Single Quote" THEN  _arg2 = "'"										
+				IF _arg2 = "Quote" THEN  _arg2 = """"										
+				IF _arg2 = "Ampersand" THEN  _arg2 = "&"
+				IF _arg2 = "Percent" THEN _arg2 = "%"												
+				IF _arg2 = "Star" THEN  _arg2 = "*"
+				IF _arg2 = "At Sign" THEN  _arg2 = "@"
+				IF _arg2 = "Open Angle" THEN _arg2 = "<"
+				IF _arg2 = "Close Angle" THEN _arg2 = ">"
+				IF _arg2 = "Paste" THEN  _arg2 = "Ctrl+v"
+				if _arg2 = "Delete" then  _arg2 = "Del"
+				if _arg2 = "Escape" then  _arg2 = "Esc"
+'				IF _arg2 = "Another" THEN  _arg2 = "End}{Enter"
+'				IF _arg2 = "Insert" THEN  _arg2 = "Home}{Enter}{Up"
+ 
+				IF _arg3 = "Grave" THEN  _arg3 = "`"
+				IF _arg3 = "Pipe" THEN  _arg3 = "|"								
+				IF _arg3 = "Plus" THEN  _arg3 = "+"
+				IF _arg3 = "Equals" THEN  _arg3 = "="
+				IF _arg3 = "Minus" XOR _arg3 = "Hyphen" THEN  _arg3 = "-"
+				IF _arg3 = "Exclamation" THEN  _arg3 = "!"										
+				IF _arg3 = "Dollar" THEN  _arg3 = "$"										
+				IF _arg3 = "Number" THEN  _arg3 = "#"										
+				IF _arg3 = "Question" THEN  _arg3 = "?"										
+				IF _arg3 = "Single Quote" THEN  _arg3 = "'"										
+				IF _arg3 = "Quote" THEN  _arg3 = """"										
+				IF _arg3 = "Ampersand" THEN  _arg3 = "&"
+				IF _arg3 = "Percent" THEN _arg3 = "%"												
+				IF _arg3 = "Star" THEN  _arg3 = "*"
+				IF _arg3 = "At Sign" THEN  _arg3 = "@"
+				IF _arg3 = "Open Angle" THEN _arg3 = "<"
+				IF _arg3 = "Close Angle" THEN _arg3 = ">"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+				if _arg3 = "Delete" then  _arg3 = "Del"
+				if _arg3 = "Escape" then  _arg3 = "Esc"
+'				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+'				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+ 
+				loop& = Val(_arg4)
+				while ( loop& )
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg2 + "}"
+				SendKeys "{" + _arg3 + "}"
+				Wait 100
+				loop& = loop& - 1
+				wend
+			}
+		}
+		LIST "KeyALIPasteCharUndo" {
+			"Another"  "Insert"  "Paste"  "Undo"
+#			"Up"  
+			"Down"  "Left"  "Right"  "Home"  "End"
+			"Delete"  "Backspace"  "Space"  "Enter"  "Tab"  "Shift Tab" "Escape"
+            "At Sign"  "^"  "Ampersand"  "("  ")"
+			"~"  "Hyphen"  "Minus"  "_"  "Equals" 
+			"Plus"  "Pipe" "Grave" "["  "{"
+			"]"  "}"  ";"  ":"  "\""  ","  "."	"/" 
+			"Exclamation"  "Dollar"  "Number"  "Question"  "Single Quote"  "Quote"  "Star"  "Percent"
+			"Open Angle"  "Close Angle"  
+#			"Top"  "Bottom"
+			
+		}
+		LIST "KeyALIPasteChar" {
+#			"Another"  "Insert"  
+			"Paste"
+#			"Up"  
+			"Down"  "Left"  "Right"  "Home"  "End"
+			"Delete"  "Backspace"  "Space"  "Enter"  "Tab"  "Escape"
+            "At Sign"  "^"  "Ampersand"  "("  ")"
+			"~"  "Hyphen"  "Minus"   "_"  "Equals"  
+			"Plus"  "Pipe" "Grave" "["  "{"
+			"]"  "}"  ";"  ":"  "\""  "," "."	"/" 
+			"Exclamation"  "Dollar"  "Number"  "Question"  "Single Quote"  "Quote"  "Star"  "Percent"
+			"Open Angle"  "Close Angle"
+		}
+		COMMAND "<KeyALIPasteCharSmallUndo> <KeyALIPasteCharSmall> <KeyALIPasteCharSmall> <KeyALIPasteCharSmall> Repeat <1-10>"{
+			SCRIPT {
+				IF _arg1 = "Shift Tab" THEN  _arg1 = "Shift+Tab"
+				IF _arg1 = "Pipe" THEN  _arg1 = "|"
+				IF _arg2 = "Pipe" THEN  _arg2 = "|"
+				IF _arg3 = "Pipe" THEN  _arg3 = "|"
+				IF _arg4 = "Pipe" THEN  _arg3 = "|"
+				IF _arg1 = "Plus" THEN  _arg1 = "+"
+				IF _arg1 = "Equals" THEN  _arg1 = "="
+				IF _arg1 = "Minus" THEN  _arg1 = "-"
+				IF _arg1 = "Exclamation" THEN  _arg1 = "!"										
+				IF _arg1 = "Dollar" THEN  _arg1 = "$"										
+				IF _arg1 = "Number" THEN  _arg1 = "#"										
+				IF _arg1 = "Question" THEN  _arg1 = "?"										
+				IF _arg1 = "Single Quote" THEN  _arg1 = "'"										
+				IF _arg1 = "Quote" THEN  _arg1 = """"										
+				IF _arg2 = "Plus" THEN  _arg2 = "+"
+				IF _arg2 = "Equals" THEN  _arg2 = "="
+				IF _arg2 = "Minus" THEN  _arg2 = "-"
+				IF _arg2 = "Exclamation" THEN  _arg2 = "!"										
+				IF _arg2 = "Dollar" THEN  _arg2 = "$"										
+				IF _arg2 = "Number" THEN  _arg2 = "#"										
+				IF _arg2 = "Question" THEN  _arg2 = "?"										
+				IF _arg2 = "Single Quote" THEN  _arg2 = "'"										
+				IF _arg2 = "Quote" THEN  _arg2 = """"										
+				IF _arg3 = "Plus" THEN  _arg3 = "+"
+				IF _arg3 = "Equals" THEN  _arg3 = "="
+				IF _arg3 = "Minus" THEN  _arg3 = "-"
+				IF _arg3 = "Exclamation" THEN  _arg3 = "!"										
+				IF _arg3 = "Dollar" THEN  _arg3 = "$"										
+				IF _arg3 = "Number" THEN  _arg3 = "#"										
+				IF _arg3 = "Question" THEN  _arg3 = "?"										
+				IF _arg3 = "Single Quote" THEN  _arg3 = "'"										
+				IF _arg3 = "Quote" THEN  _arg3 = """"										
+				IF _arg4 = "Plus" THEN  _arg4 = "+"
+				IF _arg4 = "Equals" THEN  _arg4 = "="
+				IF _arg4 = "Minus" THEN  _arg4 = "-"
+				IF _arg4 = "Exclamation" THEN  _arg4 = "!"										
+				IF _arg4 = "Dollar" THEN  _arg4 = "$"										
+				IF _arg4 = "Number" THEN  _arg4 = "#"										
+				IF _arg4 = "Question" THEN  _arg4 = "?"										
+				IF _arg4 = "Single Quote" THEN  _arg4 = "'"										
+				IF _arg4 = "Quote" THEN  _arg4 = """"										
+				IF _arg1 = "Ampersand" THEN  _arg1 = "&"
+				IF _arg2 = "Ampersand" THEN  _arg2 = "&"
+				IF _arg3 = "Ampersand" THEN  _arg3 = "&"
+				IF _arg4 = "Ampersand" THEN  _arg4 = "&"
+				IF _arg1 = "Percent" THEN _arg1 = "%"												
+				IF _arg1 = "Star" THEN  _arg1 = "*"
+				IF _arg2 = "Percent" THEN _arg2 = "%"												
+				IF _arg2 = "Star" THEN  _arg2 = "*"
+				IF _arg3 = "Percent" THEN _arg3 = "%"												
+				IF _arg3 = "Star" THEN  _arg3 = "*"
+				IF _arg4 = "Percent" THEN _arg4 = "%"												
+				IF _arg4 = "Star" THEN  _arg4 = "*"
+				IF _arg1 = "Undo" THEN SendKeys "Ctrl+z"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+				if _arg1 = "Delete" then  _arg1 = "Del"
+				if _arg1 = "Escape" then  _arg1 = "Esc"
+				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg2 = "Insert" THEN  _arg2 = "Home}{Enter}{Up"
+				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+				IF _arg4 = "Insert" THEN  _arg4 = "Home}{Enter}{Up"
+				IF _arg2 = "Paste" THEN  _arg2 = "Ctrl+v"
+				if _arg2 = "Delete" then  _arg2 = "Del"
+				if _arg2 = "Escape" then  _arg2 = "Esc"
+				IF _arg2 = "Another" THEN  _arg2 = "End}{Enter"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+				if _arg3 = "Delete" then  _arg3 = "Del"
+				if _arg3 = "Escape" then  _arg3 = "Esc"
+				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+				IF _arg4 = "Paste" THEN  _arg4 = "Ctrl+v"
+				if _arg4 = "Delete" then  _arg4 = "Del"
+				if _arg4 = "Escape" then  _arg4 = "Esc"
+				IF _arg4 = "Another" THEN  _arg4 = "End}{Enter"
+				loop& = Val(_arg5)
+				while ( loop& )
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{" + _arg2 + "}"
+				SendKeys "{" + _arg3 + "}"
+				SendKeys "{" + _arg4 + "}"
+				Wait 100
+				loop& = loop& - 1
+				wend
+			}
+		}
+		LIST "KeyALIPasteCharSmallUndo" {
+			"Another"  "Insert"  "Paste"  "Undo"
+			"Down"  "Up"  "Left"  "Right"  "Home"  "End"
+			"Delete"  "Backspace"  "Space"  "Enter"  "Tab"  "Escape"
+             "^" "~"  "-"  "Minus"  "_"  "Equals"  
+			"Plus"  "Pipe" ":"   ","  "."
+			"/"  "?"
+			"Exclamation"  "Dollar"  "Number"  "Question"  "Single Quote"  "Quote" "Star"  "Percent"  "Divided By"
+			"Greater Than"  "Less Than"   
+		}
+		LIST "KeyALIPasteCharSmall" {
+			"Another"  "Insert"  "Paste"
+			"Down"  "Up"  "Left"  "Right"  "Home"  "End"
+			"Delete"  "Backspace"  "Space"  "Enter"  "Tab"  "Escape"
+             "^"  "~"  "-"  "Minus"  "_"  "Equals"  
+			"Plus"  "Pipe"  ":"   "\""  ","  "."
+			"/"  "?"
+			"Exclamation"  "Dollar"  "Number"  "Question"  "Single Quote"  "Quote" "Star"  "Percent"  "Divided By"
+			"Greater Than"  "Less Than"   
+		}
+ 
+#6t. 1-10 key combinations
+		COMMAND "<KeyALPasteTBUndoTouchTTw> <1-10> <DULRBkDelSpTbEs>" {
+			SCRIPT {				
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				IF _arg1 = "Escape" THEN  _arg1 = "Esc"
+				IF _arg3 = "Escape" THEN  _arg2 = "Esc"
+				IF _arg1 = "Undo" THEN _arg1 = "Ctrl+z"
+				IF _arg1 = "Enter" THEN Wait 500
+				IF _arg1 = "Touch" XOR _arg1 = "Touch Twice" THEN 
+				IF _arg1 = "Touch" THEN ButtonClick
+				IF _arg1 = "Touch Twice" THEN ButtonClick 1, 2
+				ELSE
+				SendKeys "{" + _arg1 + "}"
+				END IF
+				IF _arg3 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg3 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				Wait 100
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				END IF
+				END IF
+			}
+		}
+		COMMAND "<1-10> <DULRBkDelSpTbEs> <KeyALPasteTB>" {
+			SCRIPT {
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape" THEN  _arg2 = "Esc"
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				IF _arg3 = "Bottom" THEN _arg3 = "Ctrl+End"
+				IF _arg3 = "Top" THEN  _arg3 = "Ctrl+Home"
+				IF _arg3 = "Delete"  THEN  _arg3 = "Del"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+				IF _arg3 = "Escape" THEN  _arg3 = "Esc"
+				IF _arg3 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg3 + "}"
+			}
+		}
+		LIST "KeyALPasteTB" {
+			"Another"   "Insert" "Paste"
+			"Down"  "Up"  "Left"  "Right"  "Home"  "End"  "Top"  "Bottom" 
+			"Delete"  "Backspace"  "Space"  "Enter"  "Tab"  "Shift Tab"
+		}
+		COMMAND "<1-10> <DULRBkDelSpTbEs> <1-10> <DULRBkDelSpTbEs>" {
+			SCRIPT {
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+				IF _arg2 = "Escape" THEN  _arg2 = "Esc"
+				IF _arg4 = "Escape" THEN  _arg4 = "Esc"
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				IF _arg4 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg3 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg4 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg3 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+				END IF
+				END IF
+			}
+		}
+		COMMAND "<KeyALPasteTBUndoTouchTTw> <KeyALPaste> <1-10> <DULRBkDelSpTbEs>" {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg1 = "Escape"  THEN  _arg1 = "Esc"
+'				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+'				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+'				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+'				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				IF _arg1 = "Undo" THEN _arg1 = "Ctrl+z"
+				IF _arg1 = "Enter" THEN Wait 500
+				IF _arg1 = "Touch" XOR _arg1 = "Touch Twice" THEN 
+				IF _arg1 = "Touch" THEN ButtonClick
+				IF _arg1 = "Touch Twice" THEN ButtonClick 1, 2
+				ELSE
+				SendKeys "{" + _arg1 + "}"
+				END IF
+				IF _arg2 = "Delete"  THEN  _arg2 = "Del"
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+				IF _arg2 = "Escape"  THEN  _arg2 = "Esc"
+				IF _arg4 = "Escape"  THEN  _arg4 = "Esc"
+'				IF _arg2 = "Another" THEN  _arg2 = "End}{Enter"
+'				IF _arg2 = "Insert" THEN  _arg2 = "Home}{Enter}{Up"
+				IF _arg2 = "Paste" THEN  _arg2 = "Ctrl+v"				
+'				IF _arg2 = "Top" THEN  _arg2 = "Ctrl+Home"
+'				IF _arg2 = "Bottom" THEN  _arg2 = "Ctrl+End"
+				IF _arg2 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg2 + "}"
+				IF _arg4 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg3 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg4 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg3 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+				END IF
+				END IF
+			}
+		}
+		COMMAND "<KeyALPasteTBUndoTouchTTw> <1-10> <DULRBkDelSpTbEs> <1-10> <DULRBkDelSpTbEs>" {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Escape"  THEN  _arg1 = "Esc"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+'				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+'				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+'				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+'				IF _arg1 = "Undo" THEN _arg1 = "Ctrl+z"
+				IF _arg1 = "Enter" THEN Wait 500
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg5 = "Shift Tab"  THEN  _arg5 = "Shift+Tab"
+				IF _arg5 = "Escape"  THEN  _arg5 = "Esc"
+				IF _arg1 = "Touch" XOR _arg1 = "Touch Twice" THEN 
+				IF _arg1 = "Touch" THEN ButtonClick
+				IF _arg1 = "Touch Twice" THEN ButtonClick 1, 2
+				ELSE
+				SendKeys "{" + _arg1 + "}"
+				END IF
+				IF _arg3 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg3 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				END IF
+				END IF
+				IF _arg5 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg4 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg5 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg4 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg5 + " " + _arg4 + "}"
+				END IF
+				END IF
+			}
+		}
+		COMMAND "<KeyALPasteTBUndoTouchTTw> <1-10> <DULRBkDelSpTbEs> <1-10> <DULRBkDelSpTbEs> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg5 = "Shift Tab"  THEN  _arg5 = "Shift+Tab"
+				IF _arg1 = "Escape"  THEN  _arg1 = "Esc"
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+				IF _arg5 = "Escape"  THEN  _arg5 = "Esc"
+'				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+'				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+'				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+'				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				IF _arg1 = "Undo" THEN _arg1 = "Ctrl+z"
+				loop& = Val(_arg6)
+				while ( loop& )
+				IF _arg1 = "Enter" THEN Wait 500
+				IF _arg1 = "Touch" XOR _arg1 = "Touch Twice" THEN 
+				IF _arg1 = "Touch" THEN ButtonClick
+				IF _arg1 = "Touch Twice" THEN ButtonClick 1, 2
+				Wait 1000
+				ELSE
+				SendKeys "{" + _arg1 + "}"
+				END IF
+				IF _arg3 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg2 + "}"
+				Wait 100
+				SendKeys "{Del}"
+				ELSE
+				IF _arg3 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg2 + "}"
+				Wait 100
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				END IF
+				END IF
+				IF _arg5 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg4 + "}"
+				Wait 100
+				SendKeys "{Del}"
+				ELSE
+				IF _arg5 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg4 + "}"
+				Wait 100
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg5 + " " + _arg4 + "}"
+				END IF
+				END IF
+				loop& = loop& - 1
+				wend
+ 
+			}
+		}
+		COMMAND "<KeyALPasteTBUndoTouchTTw> <1-10> <DULRBkDelSpTbEs> <KeyALPaste>" {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg1 = "Escape"  THEN  _arg1 = "Esc"
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+'				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+'				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+'				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+'				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				IF _arg1 = "Undo" THEN _arg1 = "Ctrl+z"
+				IF _arg1 = "Enter" THEN Wait 500
+				IF _arg1 = "Touch" XOR _arg1 = "Touch Twice" THEN 
+				IF _arg1 = "Touch" THEN ButtonClick
+				IF _arg1 = "Touch Twice" THEN ButtonClick 1, 2
+				ELSE
+				SendKeys "{" + _arg1 + "}"
+				END IF
+				IF _arg3 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg3 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				END IF
+				END IF
+				IF _arg4 = "Delete"  THEN  _arg4 = "Del"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+'				IF _arg4 = "Another" THEN  _arg4 = "End}{Enter"
+'				IF _arg4 = "Insert" THEN  _arg4 = "Home}{Enter}{Up"
+				IF _arg4 = "Paste" THEN  _arg4 = "Ctrl+v"
+				IF _arg4 = "Bottom" THEN _arg4 = "Ctrl+End"
+'				IF _arg4 = "Top" THEN  _arg4 = "Ctrl+Home"
+'				IF _arg4 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg4 + "}"
+			}
+		}
+  		COMMAND "<1-10> <DULRBkDelSpTbEs> <KeyALPaste> <KeyALPaste>" {
+			SCRIPT {
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape"  THEN  _arg2 = "Esc"
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				IF _arg3 = "Delete"  THEN  _arg3 = "Del"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+'				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+'				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+'				IF _arg3 = "Bottom" THEN _arg3 = "Ctrl+End"
+'				IF _arg3 = "Top" THEN  _arg3 = "Ctrl+Home"
+				IF _arg3 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg3 + "}"
+				IF _arg4 = "Delete"  THEN  _arg4 = "Del"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+				IF _arg4 = "Escape"  THEN  _arg4 = "Esc"
+'				IF _arg4 = "Another" THEN  _arg4 = "End}{Enter"
+'				IF _arg4 = "Insert" THEN  _arg4 = "Home}{Enter}{Up"
+				IF _arg4 = "Paste" THEN  _arg4 = "Ctrl+v"
+'				IF _arg4 = "Bottom" THEN _arg4 = "Ctrl+End"
+'				IF _arg4 = "Top" THEN  _arg4 = "Ctrl+Home"
+				IF _arg4 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg4 + "}"
+			}
+		}
+		COMMAND "<1-10> <DULRBkDelSpTbEs> <KeyALPaste> <1-10> <DULRBkDelSpTbEs>" {
+			SCRIPT {
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape"  THEN  _arg2 = "Esc"
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				IF _arg3 = "Delete"  THEN  _arg3 = "Del"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg5 = "Shift Tab"  THEN  _arg5 = "Shift+Tab"
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+				IF _arg5 = "Escape"  THEN  _arg5 = "Esc"
+'				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+'				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+				IF _arg3 = "Bottom" THEN _arg3 = "Ctrl+End"
+'				IF _arg3 = "Top" THEN  _arg3 = "Ctrl+Home"
+'				IF _arg3 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg3 + "}"
+				IF _arg5 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg4 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg5 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg4 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg5 + " " + _arg4 + "}"
+				END IF
+				END IF
+			}
+		}		
+		COMMAND "<1-10> <DULRBkDelSpTbEs> <1-10> <DULRBkDelSpTbEs> <KeyALPaste>" {
+			SCRIPT {
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape"  THEN  _arg2 = "Esc"
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				IF _arg4 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg3 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg4 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg3 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+				END IF
+				END IF
+				IF _arg5 = "Delete"  THEN  _arg5 = "Del"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+				IF _arg5 = "Shift Tab"  THEN  _arg5 = "Shift+Tab"
+				IF _arg4 = "Escape"  THEN  _arg4 = "Esc"
+				IF _arg5 = "Escape"  THEN  _arg5 = "Esc"
+'				IF _arg5 = "Another" THEN  _arg5 = "End}{Enter"
+'				IF _arg5 = "Insert" THEN  _arg5 = "Home}{Enter}{Up"
+				IF _arg5 = "Paste" THEN  _arg5 = "Ctrl+v"
+'				IF _arg5 = "Bottom" THEN _arg5 = "Ctrl+End"
+'				IF _arg5 = "Top" THEN  _arg5 = "Ctrl+Home"
+				IF _arg5 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg5 + "}"
+			}
+		}
+		COMMAND "<1-10> <DULRBkDelSpTbEs> <1-10> <DULRBkDelSpTbEs> <1-10> <DULRBkDelSpTbEs>" {
+			SCRIPT {
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+				IF _arg6 = "Shift Tab"  THEN  _arg6 = "Shift+Tab"
+				IF _arg2 = "Escape"  THEN  _arg2 = "Esc"
+				IF _arg4 = "Escape"  THEN  _arg4 = "Esc"
+				IF _arg6 = "Escape"  THEN  _arg6 = "Esc"
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				IF _arg4 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg3 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg4 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg3 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+				END IF
+				END IF
+				IF _arg6 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg5 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg6 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg5 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg6 + " " + _arg5 + "}"
+				END IF
+				END IF
+			}
+		}
+ 
+#6u. 1-10 Key Combinations Repeat
+		COMMAND "<KeyALPasteTBUndoTouchTTw> <1-10> <DULRBkDelSpTbEs> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg1 = "Escape" THEN  _arg1 = "Esc"
+				IF _arg3 = "Escape" THEN  _arg3 = "Esc"
+'				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+'				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+'				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+'				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				IF _arg1 = "Undo" THEN _arg1 = "Ctrl+z"
+				IF _arg1 = "Enter" THEN Wait 500
+				loop& = Val(_arg4)
+				while ( loop& )
+				IF _arg1 = "Touch" XOR _arg1 = "Touch Twice" THEN 
+				IF _arg1 = "Touch" THEN ButtonClick
+				IF _arg1 = "Touch Twice" THEN ButtonClick 1, 2
+				Wait 1000
+				ELSE
+				SendKeys "{" + _arg1 + "}"
+				END IF
+				IF _arg3 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg2 + "}"
+				Wait 100
+				SendKeys "{Del}"
+				ELSE
+				IF _arg3 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg2 + "}"
+				Wait 100
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				END IF
+				END IF
+				loop& = loop& - 1
+				wend
+ 
+			}
+		}
+		COMMAND "<1-10> <DULRBkDelSpTbEs> <KeyALPaste> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg2 = "Escape" THEN  _arg2 = "Esc"
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg3 = "Delete"  THEN  _arg3 = "Del"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+'				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+'				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+				loop& = Val(_arg4)
+				while ( loop& )
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 100
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 100
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				IF _arg3 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg3 + "}"
+				loop& = loop& - 1
+				wend
+ 
+			}
+		}
+		COMMAND "<1-10> <DULRBkDelSpTbEs> <1-10> <DULRBkDelSpTbEs> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+				IF _arg2 = "Escape" THEN  _arg2 = "Esc"
+				IF _arg4 = "Escape" THEN  _arg4 = "Esc"
+				loop& = Val(_arg5)
+				while ( loop& )
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 100
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 100
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				IF _arg4 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg3 + "}"
+				Wait 100
+				SendKeys "{Del}"
+				ELSE
+				IF _arg4 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg3 + "}"
+				Wait 100
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+				END IF
+				END IF
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<KeyALPasteTBUndoTouchTTw> <KeyALPaste> <1-10> <DULRBkDelSpTbEs> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg1 = "Escape"  THEN  _arg1 = "Escape"
+'				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+'				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+'				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+'				IF _arg2 = "Bottom" THEN _arg1 = "Ctrl+End"
+'				IF _arg2 = "Top" THEN  _arg2 = "Ctrl+Home"
+'				IF _arg1 = "Top" THEN  _arg2 = "Ctrl+Home"
+				IF _arg1 = "Undo" THEN _arg1 = "Ctrl+z"
+				IF _arg2 = "Delete"  THEN  _arg2 = "Del"
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+				IF _arg2 = "Escape"  THEN  _arg2 = "Esc"
+				IF _arg4 = "Escape"  THEN  _arg4 = "Esc"
+				IF _arg2 = "Another" THEN  _arg2 = "End}{Enter"
+				IF _arg2 = "Insert" THEN  _arg2 = "Home}{Enter}{Up"
+				IF _arg2 = "Paste" THEN  _arg2 = "Ctrl+v"
+				loop& = Val(_arg5)
+				while ( loop& )
+				IF _arg1 = "Enter" THEN Wait 500
+				IF _arg1 = "Touch" XOR _arg1 = "Touch Twice" THEN 
+				IF _arg1 = "Touch" THEN ButtonClick
+				IF _arg1 = "Touch Twice" THEN ButtonClick 1, 2
+				Wait 1000
+				ELSE
+				SendKeys "{" + _arg1 + "}"
+				END IF
+				IF _arg2 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg2 + "}"
+				IF _arg4 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg3 + "}"
+				Wait 100
+				SendKeys "{Del}"
+				ELSE
+				IF _arg4 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg3 + "}"
+				Wait 100
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+				END IF
+				END IF
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<KeyALPasteTBUndoTouchTTw> <1-10> <DULRBkDelSpTbEs> <KeyALPaste> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg1 = "Escape"  THEN  _arg1 = "Esc"
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+'				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+'				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+'				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+'				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				IF _arg1 = "Undo" THEN _arg1 = "Ctrl+z"
+				IF _arg4 = "Delete"  THEN  _arg4 = "Del"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+				IF _arg4 = "Escape"  THEN  _arg4 = "Esc"
+'				IF _arg4 = "Another" THEN  _arg4 = "End}{Enter"
+'				IF _arg4 = "Insert" THEN  _arg4 = "Home}{Enter}{Up"
+'				IF _arg4 = "Bottom" THEN _arg4 = "Ctrl+End"
+'				IF _arg4 = "Top" THEN  _arg4 = "Ctrl+Home"
+				IF _arg4 = "Paste" THEN  _arg4 = "Ctrl+v"
+				loop& = Val(_arg5)
+				while ( loop& )
+				IF _arg1 = "Enter" THEN Wait 500
+				IF _arg1 = "Touch" XOR _arg1 = "Touch Twice" THEN 
+				IF _arg1 = "Touch" THEN ButtonClick
+				IF _arg1 = "Touch Twice" THEN ButtonClick 1, 2
+				Wait 1000
+				ELSE
+				SendKeys "{" + _arg1 + "}"
+				END IF
+				IF _arg3 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg2 + "}"
+				Wait 100
+				SendKeys "{Del}"
+				ELSE
+				IF _arg3 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg2 + "}"
+				Wait 100
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				END IF
+				END IF
+				IF _arg4 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg4 + "}"
+				loop& = loop& - 1
+				wend
+			}
+		}		
+		COMMAND "<1-10> <DULRBkDelSpTbEs> <KeyALPaste> <KeyALPaste> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg2 = "Escape"  THEN  _arg2 = "Esc"
+ 
+				loop& = Val(_arg5)
+				while ( loop& )
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 100
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 100
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				IF _arg3 = "Delete"  THEN  _arg3 = "Del"
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+'				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+'				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+'				IF _arg3 = "Bottom" THEN _arg3 = "Ctrl+End"
+'				IF _arg3 = "Top" THEN  _arg3 = "Ctrl+Home"
+				IF _arg3 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg3 + "}"
+				IF _arg4 = "Delete"  THEN  _arg4 = "Del"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+'				IF _arg4 = "Another" THEN  _arg4 = "End}{Enter"
+'				IF _arg4 = "Insert" THEN  _arg4 = "Home}{Enter}{Up"
+				IF _arg4 = "Paste" THEN  _arg4 = "Ctrl+v"
+'				IF _arg4 = "Bottom" THEN _arg4 = "Ctrl+End"
+'				IF _arg4 = "Top" THEN  _arg4 = "Ctrl+Home"
+				IF _arg4 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg4 + "}"
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<1-10> <DULRBkDelSpTbEs> <KeyALPaste> <1-10> <DULRBkDelSpTbEs> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape"  THEN  _arg2 = "Esc"
+				IF _arg3 = "Delete"  THEN  _arg3 = "Del"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg5 = "Shift Tab"  THEN  _arg5 = "Shift+Tab"
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+				IF _arg5 = "Escape"  THEN  _arg5 = "Esc"
+'				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+'				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+'				IF _arg3 = "Bottom" THEN _arg3 = "Ctrl+End"
+'				IF _arg3 = "Top" THEN  _arg3 = "Ctrl+Home"
+				loop& = Val(_arg6)
+				while ( loop& )
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 100
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 100
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				IF _arg3 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg3 + "}"
+				IF _arg5 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg4 + "}"
+				Wait 100
+				SendKeys "{Del}"
+				ELSE
+				IF _arg5 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg4 + "}"
+				Wait 100
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg5 + " " + _arg4 + "}"
+				END IF
+				END IF
+				loop& = loop& - 1
+				wend
+			}
+		}		
+		COMMAND "<1-10> <DULRBkDelSpTbEs> <1-10> <DULRBkDelSpTbEs> <KeyALPaste> Repeat <1-10>" {
+			SCRIPT {
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape"  THEN  _arg2 = "Escape"
+				IF _arg5 = "Delete"  THEN  _arg5 = "Del"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+				IF _arg5 = "Shift Tab"  THEN  _arg5 = "Shift+Tab"
+				IF _arg4 = "Escape"  THEN  _arg4 = "Esc"
+				IF _arg5 = "Escape"  THEN  _arg5 = "Esc"
+'				IF _arg5 = "Another" THEN  _arg5 = "End}{Enter"
+'				IF _arg5 = "Insert" THEN  _arg5 = "Home}{Enter}{Up"
+				IF _arg5 = "Paste" THEN  _arg5 = "Ctrl+v"
+'				IF _arg5 = "Bottom" THEN _arg5 = "Ctrl+End"
+'				IF _arg5 = "Top" THEN  _arg5 = "Ctrl+Home"
+				loop& = Val(_arg6)
+				while ( loop& )
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 100
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 100
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				IF _arg4 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg3 + "}"
+				Wait 100
+				SendKeys "{Del}"
+				ELSE
+				IF _arg4 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg3 + "}"
+				Wait 100
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg4 + " " + _arg3 + "}"
+				END IF
+				END IF
+				IF _arg5 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg5 + "}"
+				loop& = loop& - 1
+				wend
+			}
+		}
+#6v. 1-10 Key Combinations Wait
+ 
+		COMMAND "<1-40> Enter Wait" {
+ 			SCRIPT {
+				loop& = Val(_arg1)
+				while ( loop& )
+				SendKeys "{Enter}"
+				Wait 500
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<1-40> Enter Wait <1-10>" {
+ 			SCRIPT {
+				loop& = Val(_arg1)
+				while ( loop& )
+				SendKeys "{Enter}"
+				Wait Val(_arg2)*1000
+				loop& = loop& - 1
+				wend
+			}
+		}
+		LIST "1-40" {
+			 "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+			 "10" "11" "12" "13" "14" "15" "16" "17" "18" "19"
+			 "20" "21" "22" "23" "24" "25" "26" "27" "28" "29"
+			 "30" "31" "32" "33" "34" "35" "36" "37" "38" "39" "40"
+		}
+ 
+		COMMAND "<KeyALPasteTBUndoTouchTTw> Wait <1-10> <DULRBkDelSpTbEs>" {
+			SCRIPT {				
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+'				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+'				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+'				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+'				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				IF _arg1 = "Escape" THEN  _arg1 = "Esc"
+				IF _arg3 = "Escape" THEN  _arg2 = "Esc"
+				IF _arg1 = "Undo" THEN _arg1 = "Ctrl+z"
+				IF _arg1 = "Enter" THEN Wait 500
+				IF _arg1 = "Touch" XOR _arg1 = "Touch Twice" THEN 
+				IF _arg1 = "Touch" THEN ButtonClick
+				IF _arg1 = "Touch Twice" THEN ButtonClick 1, 2
+				ELSE
+				SendKeys "{" + _arg1 + "}"
+				END IF
+				Wait 500
+				IF _arg3 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg3 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				Wait 100
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				END IF
+				END IF
+			}
+		}
+		COMMAND "<KeyALPasteTBUndoTouchTTw> Wait <1-10> <DULRBkDelSpTbEs> <1-10> <DULRBkDelSpTbEs>" {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Escape"  THEN  _arg1 = "Esc"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+'				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+'				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+'				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+'				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				IF _arg1 = "Undo" THEN _arg1 = "Ctrl+z"
+				IF _arg1 = "Enter" THEN Wait 500
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg5 = "Shift Tab"  THEN  _arg5 = "Shift+Tab"
+				IF _arg5 = "Escape"  THEN  _arg5 = "Esc"
+				IF _arg1 = "Touch" XOR _arg1 = "Touch Twice" THEN 
+				IF _arg1 = "Touch" THEN ButtonClick
+				IF _arg1 = "Touch Twice" THEN ButtonClick 1, 2
+				ELSE
+				SendKeys "{" + _arg1 + "}"
+				END IF
+				Wait 500
+				IF _arg3 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg3 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				END IF
+				END IF
+				Wait 500
+				IF _arg5 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg4 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg5 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg4 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg5 + " " + _arg4 + "}"
+				END IF
+				END IF
+			}
+		}
+		COMMAND "<KeyALPasteTBUndoTouchTTw> Wait <1-10> <DULRBkDelSpTbEs> <KeyALPaste>" {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg1 = "Escape"  THEN  _arg1 = "Esc"
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+'				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+'				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+'				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+'				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				IF _arg1 = "Undo" THEN _arg1 = "Ctrl+z"
+				IF _arg1 = "Enter" THEN Wait 500
+				IF _arg1 = "Touch" XOR _arg1 = "Touch Twice" THEN 
+				IF _arg1 = "Touch" THEN ButtonClick
+				IF _arg1 = "Touch Twice" THEN ButtonClick 1, 2
+				ELSE
+				SendKeys "{" + _arg1 + "}"
+				END IF
+				Wait 500
+				IF _arg3 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg3 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				END IF
+				END IF
+				Wait 500
+				IF _arg4 = "Delete"  THEN  _arg4 = "Del"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+'				IF _arg4 = "Another" THEN  _arg4 = "End}{Enter"
+'				IF _arg4 = "Insert" THEN  _arg4 = "Home}{Enter}{Up"
+				IF _arg4 = "Paste" THEN  _arg4 = "Ctrl+v"
+'				IF _arg4 = "Bottom" THEN _arg4 = "Ctrl+End"
+'				IF _arg4 = "Top" THEN  _arg4 = "Ctrl+Home"
+				IF _arg4 = "Enter" THEN Wait 500
+				SendKeys "{" + _arg4 + "}"
+			}
+		}
+		LIST "KeyALPasteTBUndoTouchTTw" {
+			"Another"   "Insert" "Paste"
+			"Down"  "Up"  "Left"  "Right"  "Home"  "End"  "Top"  "Bottom" "Undo"
+			"Delete"  "Backspace"  "Space"  "Enter"  "Tab"  "Shift Tab" "Touch"  "Touch Twice"
+		}
+ 
+#6w. 1-10 plus 1-3 
+		COMMAND "<1-10> <DULRBkDelSpTbEs> <1-3AltUnderCtrlSh> <AlphChar0-9>" {
+			SCRIPT {
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape" THEN  _arg2 = "Esc"
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				
+				IF _arg4 = "Zero" THEN  _arg4 = "0"				
+				IF _arg4 = "Minus" XOR _arg4 = "Hyphen" THEN  _arg4 = "-"										
+				IF _arg4 = "Plus" THEN  _arg4 = "+"										
+				IF _arg4 = "Equals" THEN  _arg4 = "="										
+				IF _arg4 = "Percent" THEN _arg4 = "%"												
+				IF _arg4 = "Star" THEN  _arg4 = "*"
+				IF _arg4 = "Ampersand" THEN  _arg4 = "&"							
+				IF _arg4 = "Exclamation" THEN  _arg4 = "!"										
+				IF _arg4 = "Dollar" THEN  _arg4 = "$"										
+				IF _arg4 = "Number" THEN  _arg4 = "#"										
+				IF _arg4 = "Question" THEN  _arg4 = "?"										
+				IF _arg4 = "Single Quote" THEN  _arg4 = "'"
+				_var1 = "{"				
+				if Instr(_arg3, "Control") > 0 then _var1 = _var1 + "Ctrl+"
+				if Instr(_arg3, "Alternate") XOR Instr (_arg3, "Under") > 0 then _var1 = _var1 + "Alt+"
+				if Instr(_arg3, "Shift") > 0 then _var1 = _var1 + "Shift+"
+				SendKeys _var1 + MID$(_arg4,0,1) +"}"
+			}
+		}
+		LIST "1-3AltUnderCtrlSh" {
+			"Shift"  "Control"  "Alternate"  "Under"
+			"Shift Control"  "Shift Alternate" "Control Alternate"
+			"Shift Control Alternate"  "Shift Under" "Control Under"  "Shift Control Under"
+		}
+ 
+#6x. KeyALPaste plus Function 1-12
+ 		COMMAND "Function <1-12> <KeyALPaste>" {
+			SCRIPT {
+				SendKeys "{F"+ _arg1 +"}"
+				Wait 200
+				IF _arg2 = "Delete"  THEN  _arg2 = "Del"
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape"  THEN  _arg2 = "Esc"
+'				IF _arg2 = "Another" THEN  _arg2 = "End}{Enter"
+'				IF _arg2 = "Insert" THEN  _arg2 = "Home}{Enter}{Up"
+				IF _arg2 = "Paste" THEN  _arg2 = "Ctrl+v"
+'				IF _arg2 = "Bottom" THEN _arg2 = "Ctrl+End"
+'				IF _arg2 = "Top" THEN  _arg2 = "Ctrl+Home"
+				Wait 200
+				SendKeys "{" + _arg2 + "}"
+			}
+		}
+
+  		COMMAND "Function <1-12> <KeyALPaste> <KeyALPaste>" {
+			SCRIPT {
+				SendKeys "{F"+ _arg1 +"}"
+				Wait 200
+				IF _arg2 = "Delete"  THEN  _arg2 = "Del"
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape"  THEN  _arg2 = "Esc"
+'				IF _arg2 = "Another" THEN  _arg2 = "End}{Enter"
+'				IF _arg2 = "Insert" THEN  _arg2 = "Home}{Enter}{Up"
+				IF _arg2 = "Paste" THEN  _arg2 = "Ctrl+v"
+'				IF _arg2 = "Bottom" THEN _arg2 = "Ctrl+End"
+3				IF _arg2 = "Top" THEN  _arg2 = "Ctrl+Home"
+				IF _arg3 = "Delete"  THEN  _arg3 = "Del"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+				IF _arg3 = "Bottom" THEN _arg3 = "Ctrl+End"
+				IF _arg3 = "Top" THEN  _arg3 = "Ctrl+Home"
+				Wait 200
+ 				SendKeys "{" + _arg2 + "}"
+				Wait 200
+ 				SendKeys "{" + _arg3 + "}"
+			}
+		}
+  		COMMAND "Function <1-12> <KeyALPaste> <KeyALPaste> <KeyALPaste>" {
+			SCRIPT {
+				SendKeys "{F"+ _arg1 +"}"
+				Wait 200
+				IF _arg2 = "Delete"  THEN  _arg2 = "Del"
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape"  THEN  _arg2 = "Esc"
+'				IF _arg2 = "Another" THEN  _arg2 = "End}{Enter"
+'				IF _arg2 = "Insert" THEN  _arg2 = "Home}{Enter}{Up"
+				IF _arg2 = "Paste" THEN  _arg2 = "Ctrl+v"
+'				IF _arg2 = "Bottom" THEN _arg2 = "Ctrl+End"
+'				IF _arg2 = "Top" THEN  _arg2 = "Ctrl+Home"
+				IF _arg3 = "Delete"  THEN  _arg3 = "Del"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+'				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+'				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+'				IF _arg3 = "Bottom" THEN _arg3 = "Ctrl+End"
+'				IF _arg3 = "Top" THEN  _arg3 = "Ctrl+Home"
+				IF _arg4 = "Delete"  THEN  _arg4 = "Del"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+				IF _arg4 = "Escape"  THEN  _arg4 = "Esc"
+'				IF _arg4 = "Another" THEN  _arg4 = "End}{Enter"
+'				IF _arg4 = "Insert" THEN  _arg4 = "Home}{Enter}{Up"
+				IF _arg4 = "Paste" THEN  _arg4 = "Ctrl+v"
+'				IF _arg4 = "Bottom" THEN _arg4 = "Ctrl+End"
+'				IF _arg4 = "Top" THEN  _arg4 = "Ctrl+Home"
+				Wait 200
+ 				SendKeys "{" + _arg2 + "}"
+				Wait 200
+ 				SendKeys "{" + _arg3 + "}"
+				Wait 200
+ 				SendKeys "{" + _arg4 + "}"
+			}
+		}
+		COMMAND "<KeyALPaste> Function <1-12>" {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg1 = "Escape"  THEN  _arg1 = "Esc"
+'				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+'				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+'				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				Wait 200
+				SendKeys "{" + _arg1 + "}"
+				Wait 200
+				SendKeys "{F"+ _arg2 +"}"
+			}
+		}
+		COMMAND "<KeyALPaste> <KeyALPaste> Function <1-12> " {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg1 = "Escape"  THEN  _arg1 = "Esc"
+				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				IF _arg2 = "Delete"  THEN  _arg2 = "Del"
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape"  THEN  _arg2 = "Esc"
+				IF _arg2 = "Another" THEN  _arg2 = "End}{Enter"
+				IF _arg2 = "Insert" THEN  _arg2 = "Home}{Enter}{Up"
+				IF _arg2 = "Paste" THEN  _arg2 = "Ctrl+v"
+				IF _arg2 = "Bottom" THEN _arg2 = "Ctrl+End"
+				IF _arg2 = "Top" THEN  _arg2 = "Ctrl+Home"
+				Wait 200
+				SendKeys "{" + _arg1 + "}"
+				Wait 200
+				SendKeys "{" + _arg2 + "}"
+				Wait 200
+				SendKeys "{F"+ _arg3 +"}"
+			}
+		}
+		COMMAND "<KeyALPaste> <KeyALPaste> <KeyALPaste> Function <1-12> " {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg1 = "Escape"  THEN  _arg1 = "Esc"
+				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				IF _arg2 = "Delete"  THEN  _arg2 = "Del"
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape"  THEN  _arg2 = "Esc"
+				IF _arg2 = "Another" THEN  _arg2 = "End}{Enter"
+				IF _arg2 = "Insert" THEN  _arg2 = "Home}{Enter}{Up"
+				IF _arg2 = "Paste" THEN  _arg2 = "Ctrl+v"
+				IF _arg2 = "Bottom" THEN _arg2 = "Ctrl+End"
+				IF _arg2 = "Top" THEN  _arg2 = "Ctrl+Home"
+				IF _arg3 = "Delete"  THEN  _arg3 = "Del"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+				IF _arg3 = "Bottom" THEN _arg3 = "Ctrl+End"
+				IF _arg3 = "Top" THEN  _arg3 = "Ctrl+Home"
+				Wait 200
+				SendKeys "{" + _arg1 + "}"
+				Wait 200
+				SendKeys "{" + _arg2 + "}"
+				Wait 200
+				SendKeys "{" + _arg3 + "}"
+				Wait 200
+				SendKeys "{F"+ _arg4 +"}"
+			}
+		}
+		COMMAND "<KeyALPaste> Function <1-12> <KeyALPaste>" {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg1 = "Escape"  THEN  _arg1 = "Esc"
+				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				IF _arg3 = "Delete"  THEN  _arg3 = "Del"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+				IF _arg3 = "Bottom" THEN _arg3 = "Ctrl+End"
+				IF _arg3 = "Top" THEN  _arg3 = "Ctrl+Home"
+				Wait 200
+				SendKeys "{" + _arg1 + "}"
+				Wait 200
+				SendKeys "{F"+ _arg2 +"}"
+				Wait 200
+				SendKeys "{" + _arg3 + "}"
+			}
+		}
+		COMMAND "<KeyALPaste> Function <1-12> <KeyALPaste> <KeyALPaste>" {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg1 = "Escape"  THEN  _arg1 = "Esc"
+				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				IF _arg3 = "Delete"  THEN  _arg3 = "Del"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+				IF _arg3 = "Bottom" THEN _arg3 = "Ctrl+End"
+				IF _arg3 = "Top" THEN  _arg3 = "Ctrl+Home"
+				IF _arg4 = "Delete"  THEN  _arg4 = "Del"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+				IF _arg4 = "Escape"  THEN  _arg4 = "Esc"
+				IF _arg4 = "Another" THEN  _arg4 = "End}{Enter"
+				IF _arg4 = "Insert" THEN  _arg4 = "Home}{Enter}{Up"
+				IF _arg4 = "Paste" THEN  _arg4 = "Ctrl+v"
+				IF _arg4 = "Bottom" THEN _arg4 = "Ctrl+End"
+				IF _arg4 = "Top" THEN  _arg4 = "Ctrl+Home"
+				Wait 200
+				SendKeys "{" + _arg1 + "}"
+				Wait 200
+				SendKeys "{F"+ _arg2 +"}"
+				Wait 200
+				SendKeys "{" + _arg3 + "}"
+				Wait 200
+				SendKeys "{" + _arg3 + "}"
+			}
+		}
+		COMMAND "<KeyALPaste> <KeyALPaste> Function <1-12> <KeyALPaste>" {
+			SCRIPT {
+				IF _arg1 = "Delete"  THEN  _arg1 = "Del"
+				IF _arg1 = "Shift Tab"  THEN  _arg1 = "Shift+Tab"
+				IF _arg1 = "Escape"  THEN  _arg1 = "Esc"
+				IF _arg1 = "Another" THEN  _arg1 = "End}{Enter"
+				IF _arg1 = "Insert" THEN  _arg1 = "Home}{Enter}{Up"
+				IF _arg1 = "Paste" THEN  _arg1 = "Ctrl+v"
+				IF _arg1 = "Bottom" THEN _arg1 = "Ctrl+End"
+				IF _arg1 = "Top" THEN  _arg1 = "Ctrl+Home"
+				IF _arg2 = "Delete"  THEN  _arg2 = "Del"
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape"  THEN  _arg2 = "Esc"
+				IF _arg2 = "Another" THEN  _arg2 = "End}{Enter"
+				IF _arg2 = "Insert" THEN  _arg2 = "Home}{Enter}{Up"
+				IF _arg2 = "Paste" THEN  _arg2 = "Ctrl+v"
+				IF _arg2 = "Bottom" THEN _arg2 = "Ctrl+End"
+				IF _arg2 = "Top" THEN  _arg2 = "Ctrl+Home"
+				IF _arg3 = "Delete"  THEN  _arg3 = "Del"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+				IF _arg3 = "Bottom" THEN _arg3 = "Ctrl+End"
+				IF _arg3 = "Top" THEN  _arg3 = "Ctrl+Home"
+				Wait 200
+				SendKeys "{" + _arg1 + "}"
+				Wait 200
+				SendKeys "{" + _arg2 + "}"
+				Wait 200
+				SendKeys "{F"+ _arg3 +"}"
+				Wait 200
+				SendKeys "{" + _arg3 + "}"
+			}
+		}
+#6y. 1-10 plus Function 1-12
+ 
+		COMMAND "Function <1-12> <1-10> <DULRBkDelSpTbEs>" {
+			SCRIPT {
+				SendKeys "{F"+ _arg1 +"}"
+				Wait 200
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg3 = "Escape" THEN  _arg3 = "Esc"
+				IF _arg3 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg3 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				END IF
+				END IF
+			}
+		}
+		COMMAND "Function <1-12> <1-10> <DULRBkDelSpTbEs> <KeyALPaste>" {
+			SCRIPT {
+				SendKeys "{F"+ _arg1 +"}"
+				Wait 200
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg3 = "Escape" THEN  _arg3 = "Esc"				
+				IF _arg4 = "Delete"  THEN  _arg4 = "Del"
+				IF _arg4 = "Shift Tab"  THEN  _arg4 = "Shift+Tab"
+				IF _arg4 = "Escape"  THEN  _arg4 = "Esc"
+				IF _arg4 = "Another" THEN  _arg4 = "End}{Enter"
+				IF _arg4 = "Insert" THEN  _arg4 = "Home}{Enter}{Up"
+				IF _arg4 = "Paste" THEN  _arg4 = "Ctrl+v"
+				IF _arg4 = "Bottom" THEN _arg4 = "Ctrl+End"
+				IF _arg4 = "Top" THEN  _arg4 = "Ctrl+Home"
+				IF _arg3 = "Delete" THEN 
+				SendKeys "{Shift+Right " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg3 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg2 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg3 + " " + _arg2 + "}"
+				END IF
+				END IF
+				Wait 200
+				SendKeys "{" + _arg4 + "}"
+			}
+		}
+		COMMAND "<1-10> <DULRBkDelSpTbEs> Function <1-12>" {
+			SCRIPT {
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape" THEN  _arg2 = "Esc"
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				Wait 100
+				SendKeys "{F"+ _arg3 +"}"
+			}
+		}
+		COMMAND "<1-10> <DULRBkDelSpTbEs> <KeyALPaste> Function <1-12>" {
+			SCRIPT {
+				IF _arg2 = "Shift Tab"  THEN  _arg2 = "Shift+Tab"
+				IF _arg2 = "Escape" THEN  _arg2 = "Esc"
+				IF _arg2 = "Delete" THEN
+				IF _arg3 = "Delete"  THEN  _arg3 = "Del"
+				IF _arg3 = "Shift Tab"  THEN  _arg3 = "Shift+Tab"
+				IF _arg3 = "Escape"  THEN  _arg3 = "Esc"
+				IF _arg3 = "Another" THEN  _arg3 = "End}{Enter"
+				IF _arg3 = "Insert" THEN  _arg3 = "Home}{Enter}{Up"
+				IF _arg3 = "Paste" THEN  _arg3 = "Ctrl+v"
+				IF _arg3 = "Bottom" THEN _arg3 = "Ctrl+End"
+				IF _arg3 = "Top" THEN  _arg3 = "Ctrl+Home"
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				Wait 200
+				SendKeys "{" + _arg3 + "}"
+				Wait 100
+				SendKeys "{F"+ _arg4 +"}"
+			}
+		}
+		LIST "DULRBkDelSpTbEs" {
+			"Down"  "Up"  "Left"  "Right"
+			"Delete"  "Backspace" "Enter" "Space"  "Tab" "Escape" "Shift Tab"
+		}
+		LIST "KeyALPaste" {
+			"Another"   "Insert" "Paste"
+			"Down"  "Up"  "Left"  "Right"  "Home"  "End"   "Top"  "Bottom"
+			"Delete"  "Backspace" "Enter" "Space"  "Tab" "Escape" "Shift Tab"
+		}
+ 		LIST "1-12" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10"
+			"11" "12"
+		}
+ 
+#6z. 1-10 Keys plus Alph0-9
+		COMMAND "<LRHomeEndBkDelSp> <Alph>" {
+			SCRIPT {
+				
+				IF _arg1 = "Delete" THEN _arg1 = "Del"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys MID$(_arg2,0,1)
+			}
+		}
+		COMMAND "<LRHomeEndBkDelSp> <Alph> Repeat <1-10>" {
+			SCRIPT {
+				loop& = Val(_arg3)
+				while ( loop& )
+				SendKeys "{" + _arg1 + "}" 
+				Wait 200
+				
+				SendKeys MID$(_arg2,0,1)
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<DULRHomeEndDelSp> <0-9>" {
+			SCRIPT {
+				IF _arg2 = "Zero" THEN  _arg2 = "0"
+				IF _arg1 = "Delete" THEN _arg1 = "Del"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys MID$(_arg2,0,1)
+			}
+		}
+		LIST "DULRHomeEndDelSp" {
+			"Down"  "Up"  "Left"  "Right"  "Home"  "End"
+			"Delete"  "Space"
+		}
+ 		LIST "0-9" {
+			"0"  "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  
+		}
+		COMMAND "<DULRHomeEndBkDelSpTouchTTwiceUndo> <DULRHomeEndBkDelSp> <Alph0-9>" {
+			SCRIPT {
+				IF _arg1 = "Undo" THEN _arg1 = "Ctrl+z"
+				
+				IF _arg3 = "Zero" THEN  _arg3 = "0"
+				IF _arg1 = "Delete" THEN  _arg1 = "Del"
+				IF _arg1 = "Touch" XOR _arg1 = "Touch Twice" THEN 
+				IF _arg1 = "Touch" THEN ButtonClick
+				IF _arg1 = "Touch Twice" THEN ButtonClick 1, 2
+				ELSE
+				SendKeys "{" + _arg1 + "}"
+				END IF
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + "}"
+				END IF
+				END IF
+				SendKeys MID$(_arg3,0,1)
+			}
+		}
+		COMMAND "<1-10> <DULRBkDelSpTab> <AlphChar0-9>" {
+			SCRIPT {
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				
+				IF _arg3 = "Zero" THEN  _arg3 = "0"				
+				IF _arg3 = "Minus" XOR _arg3 = "Hyphen" THEN  _arg3 = "-"										
+				IF _arg3 = "Plus" THEN  _arg3 = "+"										
+				IF _arg3 = "Equals" THEN  _arg3 = "="										
+				IF _arg3 = "Percent" THEN _arg3 = "%"												
+				IF _arg3 = "Star" THEN  _arg3 = "*"
+				IF _arg3 = "Ampersand" THEN  _arg3 = "&"							
+				IF _arg3 = "Pipe" THEN  _arg3 = "|"							
+				IF _arg3 = "Exclamation" THEN  _arg3 = "!"										
+				IF _arg3 = "Dollar" THEN  _arg3 = "$"										
+				IF _arg3 = "Number" THEN  _arg3 = "#"										
+				IF _arg3 = "Question" THEN  _arg3 = "?"										
+				IF _arg3 = "Single Quote" THEN  _arg3 = "'"
+				SendKeys MID$(_arg3,0,1)
+			}
+		}
+		COMMAND "<1-10> <DULRBkDelSp> <AlphChar0-9> Repeat <1-10>" {
+			SCRIPT {
+				
+				IF _arg3 = "Zero" THEN  _arg3 = "0"				
+				IF _arg3 = "Minus" XOR _arg3 = "Hyphen" THEN  _arg3 = "-"										
+				IF _arg3 = "Plus" THEN  _arg3 = "+"										
+				IF _arg3 = "Equals" THEN  _arg3 = "="										
+				IF _arg3 = "Percent" THEN _arg3 = "%"												
+				IF _arg3 = "Star" THEN  _arg3 = "*"
+				IF _arg3 = "Ampersand" THEN  _arg3 = "&"							
+				IF _arg3 = "Pipe" THEN  _arg3 = "|"							
+				IF _arg3 = "Exclamation" THEN  _arg3 = "!"										
+				IF _arg3 = "Dollar" THEN  _arg3 = "$"										
+				IF _arg3 = "Number" THEN  _arg3 = "#"										
+				IF _arg3 = "Question" THEN  _arg3 = "?"										
+				IF _arg3 = "Single Quote" THEN  _arg3 = "'"
+				loop& = Val(_arg3)
+				while ( loop& )
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				SendKeys MID$(_arg3,0,1)
+				SendKeys MID$(_arg2,0,1)
+				loop& = loop& - 1
+				wend
+			}
+		}
+		COMMAND "<1-10> <LRBkDelSp> <DULRHomeEndBkDelSp> <AlphChar0-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				
+				IF _arg4 = "Zero" THEN  _arg4 = "0"				
+				IF _arg4 = "Minus" XOR _arg4 = "Hyphen" THEN  _arg4 = "-"										
+				IF _arg4 = "Plus" THEN  _arg4 = "+"										
+				IF _arg4 = "Equals" THEN  _arg4 = "="										
+				IF _arg4 = "Percent" THEN _arg4 = "%"												
+				IF _arg4 = "Star" THEN  _arg4 = "*"
+				IF _arg4 = "Ampersand" THEN  _arg4 = "&"							
+				IF _arg4 = "Exclamation" THEN  _arg4 = "!"										
+				IF _arg4 = "Dollar" THEN  _arg4 = "$"										
+				IF _arg4 = "Number" THEN  _arg4 = "#"										
+				IF _arg4 = "Question" THEN  _arg4 = "?"										
+				IF _arg4 = "Single Quote" THEN  _arg4 = "'"
+				SendKeys MID$(_arg4,0,1)
+			}
+		}
+		COMMAND "<DULRHomeEndBkDelSpTouchTTwiceUndo> <1-10> <LRBkDelSp> <AlphChar0-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				
+				IF _arg4 = "Zero" THEN  _arg4 = "0"				
+				IF _arg4 = "Minus" XOR _arg4 = "Hyphen" THEN  _arg4 = "-"										
+				IF _arg4 = "Plus" THEN  _arg4 = "+"										
+				IF _arg4 = "Equals" THEN  _arg4 = "="										
+				IF _arg4 = "Percent" THEN _arg4 = "%"												
+				IF _arg4 = "Star" THEN  _arg4 = "*"
+				IF _arg4 = "Ampersand" THEN  _arg4 = "&"							
+				IF _arg4 = "Exclamation" THEN  _arg4 = "!"										
+				IF _arg4 = "Dollar" THEN  _arg4 = "$"										
+				IF _arg4 = "Number" THEN  _arg4 = "#"										
+				IF _arg4 = "Question" THEN  _arg4 = "?"										
+				IF _arg4 = "Single Quote" THEN  _arg4 = "'"
+				SendKeys MID$(_arg4,0,1)
+			}
+		}
+		COMMAND "<1-10> <LRBkDelSp> <1-10> <LRBkDelSp> <AlphChar0-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				
+				IF _arg5 = "Zero" THEN  _arg5 = "0"				
+				IF _arg5 = "Minus" XOR _arg5 = "Hyphen" THEN  _arg5 = "-"										
+				IF _arg5 = "Plus" THEN  _arg5 = "+"										
+				IF _arg5 = "Equals" THEN  _arg5 = "="
+				IF _arg5 = "Percent" THEN _arg5 = "%"												
+				IF _arg5 = "Divided By" THEN _arg5 = "/"								
+				IF _arg5 = "Star" XOR _arg5 = "Times" THEN  _arg5 = "*"
+				IF _arg5 = "Ampersand" THEN  _arg5 = "&"							
+				IF _arg5 = "Pipe" THEN  _arg5 = "|"							
+				IF _arg5 = "Grave" THEN  _arg5 = "`"							
+				IF _arg5 = "Exclamation" THEN  _arg5 = "!"										
+				IF _arg5 = "Dollar" THEN  _arg5 = "$"										
+				IF _arg5 = "Number" THEN  _arg5 = "#"										
+				IF _arg5 = "Question" THEN  _arg5 = "?"										
+				IF _arg5 = "Single Quote" THEN  _arg5 = "'"
+				SendKeys MID$(_arg5,0,1)
+			}
+		}
+		COMMAND "<DULRHomeEndBkDelSp> <DULRHomeEndBkDelSp> <LRBkDelSp> <AlphChar0-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				
+				IF _arg4 = "Zero" THEN  _arg4 = "0"				
+				IF _arg4 = "Minus" XOR _arg4 = "Hyphen" THEN  _arg4 = "-"										
+				IF _arg4 = "Plus" THEN  _arg4 = "+"										
+				IF _arg4 = "Equals" THEN  _arg4 = "="										
+				IF _arg4 = "Percent" THEN _arg4 = "%"												
+				IF _arg4 = "Divided By" THEN _arg4 = "/"								
+				IF _arg4 = "Star" XOR _arg4 = "Times" THEN  _arg4 = "*"
+				IF _arg4 = "Ampersand" THEN  _arg4 = "&"							
+				IF _arg4 = "Pipe" THEN  _arg4 = "|"							
+				IF _arg4 = "Exclamation" THEN  _arg4 = "!"										
+				IF _arg4 = "Dollar" THEN  _arg4 = "$"										
+				IF _arg4 = "Number" THEN  _arg4 = "#"										
+				IF _arg4 = "Question" THEN  _arg4 = "?"										
+				IF _arg4 = "Single Quote" THEN  _arg4 = "'"
+				SendKeys MID$(_arg4,0,1)
+			}
+		}
+		COMMAND "<1-10> <LRBkDelSp> <DULRHomeEndBkDelSp> <LRBkDelSp> <AlphChar0-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				
+				IF _arg5 = "Zero" THEN  _arg5 = "0"				
+				IF _arg5 = "Minus" XOR _arg5 = "Hyphen" THEN  _arg5 = "-"										
+				IF _arg5 = "Plus" THEN  _arg5 = "+"										
+				IF _arg5 = "Equals" THEN  _arg5 = "="
+				IF _arg5 = "Percent" THEN _arg5 = "%"												
+				IF _arg5 = "Star" THEN  _arg5 = "*"
+				IF _arg5 = "Ampersand" THEN  _arg5 = "&"							
+				IF _arg5 = "Exclamation" THEN  _arg5 = "!"										
+				IF _arg5 = "Dollar" THEN  _arg5 = "?"										
+				IF _arg5 = "Number" THEN  _arg5 = "#"										
+				IF _arg5 = "Question" THEN  _arg5 = "?"										
+				IF _arg5 = "Single Quote" THEN  _arg5 = "'"
+			SendKeys MID$(_arg5,0,1)
+			}
+		}
+		COMMAND "<DULRHomeEndBkDelSpTouchTTwiceUndo> <1-10> <LRBkDelSp> <LRBkDelSp> <AlphChar0-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				
+				IF _arg5 = "Zero" THEN  _arg5 = "0"				
+				IF _arg5 = "Minus" XOR _arg5 = "Hyphen" THEN  _arg5 = "-"										
+				IF _arg5 = "Plus" THEN  _arg5 = "+"										
+				IF _arg5 = "Equals" THEN  _arg5 = "="
+				IF _arg5 = "Percent" THEN _arg5 = "%"												
+				IF _arg5 = "Star" THEN  _arg5 = "*"
+				IF _arg5 = "Ampersand" THEN  _arg5 = "&"							
+				IF _arg5 = "Exclamation" THEN  _arg5 = "!"										
+				IF _arg5 = "Dollar" THEN  _arg5 = "?"										
+				IF _arg5 = "Number" THEN  _arg5 = "#"										
+				IF _arg5 = "Question" THEN  _arg5 = "?"										
+				IF _arg5 = "Single Quote" THEN  _arg5 = "'"
+				SendKeys MID$(_arg5,0,1)
+			}
+		}
+		COMMAND "<DULRHomeEndBkDelSpTouchTTwiceUndo> <LRBkDelSp> <1-10> <LRBkDelSp> <AlphChar0-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				
+				IF _arg5 = "Zero" THEN  _arg5 = "0"				
+				IF _arg5 = "Minus" XOR _arg5 = "Hyphen" THEN  _arg5 = "-"										
+				IF _arg5 = "Plus" THEN  _arg5 = "+"										
+				IF _arg5 = "Equals" THEN  _arg5 = "="
+				IF _arg5 = "Percent" THEN _arg5 = "%"												
+				IF _arg5 = "Star" THEN  _arg5 = "*"
+				IF _arg5 = "Ampersand" THEN  _arg5 = "&"							
+				IF _arg5 = "Exclamation" THEN  _arg5 = "!"										
+				IF _arg5 = "Dollar" THEN  _arg5 = "?"										
+				IF _arg5 = "Number" THEN  _arg5 = "#"										
+				IF _arg5 = "Question" THEN  _arg5 = "?"										
+				IF _arg5 = "Single Quote" THEN  _arg5 = "'"
+				SendKeys MID$(_arg5,0,1)
+			}
+		}
+		COMMAND "<1-10> <LRBkDelSp> <1-10> <LRBkDelSp> <LRBkDelSp> <AlphChar0-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				
+				IF _arg6 = "Zero" THEN  _arg6 = "0"				
+				IF _arg6 = "Minus" XOR _arg6 = "Hyphen" THEN  _arg6 = "-"										
+				IF _arg6 = "Plus" THEN  _arg6 = "+"										
+				IF _arg6 = "Equals" THEN  _arg6 = "="
+				IF _arg6 = "Percent" THEN _arg6 = "%"												
+				IF _arg6 = "Star" THEN  _arg6 = "*"
+				IF _arg6 = "Ampersand" THEN  _arg5 = "&"							
+				IF _arg6 = "Exclamation" THEN  _arg6 = "!"										
+				IF _arg6 = "Dollar" THEN  _arg6 = "?"										
+				IF _arg6 = "Number" THEN  _arg5 = "#"										
+				IF _arg6 = "Question" THEN  _arg6 = "?"										
+				IF _arg6 = "Single Quote" THEN  _arg6 = "'"
+				SendKeys MID$(_arg5,0,1)
+			}
+		}
+		COMMAND "<1-10> <LRBkDelSp> <LRBkDelSp> <1-10> <LRBkDelSp> <AlphChar0-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				
+				IF _arg6 = "Zero" THEN  _arg6 = "0"				
+				IF _arg6 = "Minus" XOR _arg6 = "Hyphen" THEN  _arg6 = "-"										
+				IF _arg6 = "Plus" THEN  _arg6 = "+"										
+				IF _arg6 = "Equals" THEN  _arg6 = "="
+				IF _arg6 = "Percent" THEN _arg6 = "%"												
+				IF _arg6 = "Star" THEN  _arg6 = "*"
+				IF _arg6 = "Ampersand" THEN  _arg5 = "&"							
+				IF _arg6 = "Exclamation" THEN  _arg6 = "!"										
+				IF _arg6 = "Dollar" THEN  _arg6 = "?"										
+				IF _arg6 = "Number" THEN  _arg5 = "#"										
+				IF _arg6 = "Question" THEN  _arg6 = "?"										
+				IF _arg6 = "Single Quote" THEN  _arg6 = "'"
+				SendKeys MID$(_arg5,0,1)
+			}
+		}
+		COMMAND "<DULRHomeEndBkDelSpTouchTTwiceUndo> <1-10> <LRBkDelSp> <1-10> <LRBkDelSp> <AlphChar0-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				
+				IF _arg6 = "Zero" THEN  _arg6 = "0"				
+				IF _arg6 = "Minus" XOR _arg6 = "Hyphen" THEN  _arg6 = "-"													
+				IF _arg6 = "Plus" THEN  _arg6 = "+"										
+				IF _arg6 = "Equals" THEN  _arg6 = "="
+				IF _arg6 = "Percent" THEN _arg6 = "%"												
+				IF _arg6 = "Star" THEN  _arg6 = "*"
+				IF _arg6 = "Ampersand" THEN  _arg5 = "&"							
+				IF _arg6 = "Exclamation" THEN  _arg6 = "!"										
+				IF _arg6 = "Dollar" THEN  _arg6 = "?"										
+				IF _arg6 = "Number" THEN  _arg5 = "#"										
+				IF _arg6 = "Question" THEN  _arg6 = "?"										
+				IF _arg6 = "Single Quote" THEN  _arg6 = "'"
+				SendKeys MID$(_arg5,0,1)
+			}
+		}
+		LIST "AlphChar0-9" {
+			"Zero" "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"   
+#			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+#			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"  "@"  "^" "Ampersand"  "("  ")"    
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+			"~"  "Hyphen"  "Minus"  "_"  "Equals"  "Plus"  ";"  ":"  "\""  ","  "."  "/"  
+			"Dollar" "Exclamation"  "Number" "Single Quote" "Question"  "Star"  		  
+		}
+ 
+#6aa. 1-10 Keys plus 2 Alph0-9
+ 
+		COMMAND "<LRHomeEndBkDelSp> <Alph0-9> <Alph0-9>" {
+			SCRIPT {
+				
+				
+				IF _arg2 = "Zero" THEN  _arg2 = "0"
+				IF _arg3 = "Zero" THEN  _arg3 = "0"
+				IF _arg1 = "Delete" THEN _arg1 = "Del"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys MID$(_arg2,0,1)
+				SendKeys MID$(_arg3,0,1)
+			}
+		}
+		COMMAND "<1-10> <DULRBkDelSpTab> <Alph0-9> <Alph0-9>" {
+			SCRIPT {
+				
+				
+				IF _arg3 = "Zero" THEN  _arg3 = "0"
+				IF _arg4 = "Zero" THEN  _arg4 = "0"
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				SendKeys MID$(_arg3,0,1)
+				SendKeys MID$(_arg4,0,1)
+			}
+		}
+		LIST "DULRBkDelSpTab" {
+			"Down"  "Up"  "Left"  "Right"  "Tab"
+			"Delete"  "Backspace"  "Space"
+		}
+		#Thunderbird going to folder
+		COMMAND "<1-5> Tab <Alph> <Alph> <Alph> " {
+			SCRIPT {
+				
+				
+				IF _arg3 = "Zero" THEN  _arg3 = "0"
+				IF _arg4 = "Zero" THEN  _arg4 = "0"
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				SendKeys MID$(_arg3,0,1)
+				SendKeys MID$(_arg4,0,1)
+			}
+		}
+		LIST "1-5" {
+			"1"  "2"  "3"  "4"  "5"
+		}
+		COMMAND "<DULRHomeEndBkDelSpTouchTTwiceUndo> <DULRHomeEndBkDelSp> <Alph0-9> <Alph0-9>" {
+			SCRIPT {
+				IF _arg1 = "Undo" THEN _arg1 = "Ctrl+z"
+				
+				
+				IF _arg3 = "Zero" THEN  _arg3 = "0"
+				IF _arg4 = "Zero" THEN  _arg4 = "0"
+				IF _arg1 = "Delete" THEN  _arg1 = "Del"
+				IF _arg1 = "Touch" XOR _arg1 = "Touch Twice" THEN 
+				IF _arg1 = "Touch" THEN ButtonClick
+				IF _arg1 = "Touch Twice" THEN ButtonClick 1, 2
+				ELSE
+				SendKeys "{" + _arg1 + "}"
+				END IF
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + "}"
+				END IF
+				END IF
+				SendKeys MID$(_arg3,0,1)
+				SendKeys MID$(_arg4,0,1)
+			}
+		}
+		COMMAND "<1-10> <LRBkDelSp> <DULRHomeEndBkDelSp> <Alph0-9> <Alph0-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				
+				IF _arg4 = "Zero" THEN  _arg4 = "0"				
+				IF _arg4 = "Minus" THEN  _arg4 = "-"										
+				IF _arg4 = "Plus" THEN  _arg4 = "+"										
+				IF _arg4 = "Equals" THEN  _arg4 = "="										
+				IF _arg4 = "Percent" THEN _arg4 = "%"												
+				IF _arg4 = "Divided By" THEN _arg4 = "/"								
+				IF _arg4 = "Star" XOR _arg4 = "Times" THEN  _arg4 = "*"
+				IF _arg4 = "Ampersand" THEN  _arg4 = "&"							
+				IF _arg4 = "Pipe" THEN  _arg4 = "|"							
+				IF _arg4 = "Exclamation" THEN  _arg4 = "!"										
+				IF _arg4 = "Dollar" THEN  _arg4 = "$"										
+				IF _arg4 = "Number" THEN  _arg4 = "#"										
+				IF _arg4 = "Question" THEN  _arg4 = "?"										
+				IF _arg4 = "Single Quote" THEN  _arg4 = "'"
+				IF _arg4 = "Open Angle" XOR _arg4 = "Less Than" THEN _arg4 = "<"
+				IF _arg4 = "Close Angle" XOR _arg4 = "Greater Than" THEN _arg4 = ">"
+				IF _arg4 = "Grave" XOR _arg4 = "Accent Grave" XOR _arg4 = "Grave" THEN _arg4 = "`"																						
+				SendKeys MID$(_arg4,0,1)
+				SendKeys MID$(_arg5,0,1)
+			}
+		}
+		COMMAND "<DULRHomeEndBkDelSpTouchTTwiceUndo> <1-10> <LRBkDelSp> <Alph0-9> <Alph0-9>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				
+				IF _arg4 = "Zero" THEN  _arg4 = "0"				
+				IF _arg4 = "Minus" XOR _arg4 = "Hyphen" THEN  _arg6 = "-"										
+				IF _arg4 = "Plus" THEN  _arg4 = "+"										
+				IF _arg4 = "Equals" THEN  _arg4 = "="										
+				IF _arg4 = "Percent" THEN _arg4 = "%"												
+				IF _arg4 = "Divided By" THEN _arg4 = "/"								
+				IF _arg4 = "Star" XOR _arg4 = "Times" THEN  _arg4 = "*"
+				IF _arg4 = "Ampersand" THEN  _arg4 = "&"							
+				IF _arg4 = "Pipe" THEN  _arg4 = "|"							
+				IF _arg4 = "Exclamation" THEN  _arg4 = "!"										
+				IF _arg4 = "Dollar" THEN  _arg4 = "$"										
+				IF _arg4 = "Number" THEN  _arg4 = "#"										
+				IF _arg4 = "Question" THEN  _arg4 = "?"										
+				IF _arg4 = "Single Quote" THEN  _arg4 = "'"
+				SendKeys MID$(_arg4,0,1)
+				SendKeys MID$(_arg5,0,1)
+			}
+		}
+ 
+		LIST "Alph0-9" {
+#			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+#			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9" "Zero"
+		}
+ 
+#6ab. Key and 1-10 Keys plus Cap Alph
+		COMMAND "<LRHomeEndBkDelSp> Cap <Alph>" {
+			SCRIPT {
+				
+				IF _arg1 = "Delete" THEN _arg1 = "Del"
+				SendKeys "{" + _arg1 + "}"
+				SendKeys "{Shift+"+MID$(_arg2,0,1)+"}"
+			}
+		}
+		LIST "LRHomeEndBkDelSp" {
+			"Left"  "Right"  "Home"  "End"
+			"Delete"  "Backspace"  "Space"
+		}
+		COMMAND "<1-10> <DULRBkDelSp> Cap <Alph>" {
+			SCRIPT {
+				
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left " + _arg1 + "}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + " " + _arg1 + "}"
+				END IF
+				END IF
+				SendKeys "{Shift+"+MID$(_arg3,0,1)+"}"
+			}
+		}
+		LIST "DULRBkDelSp" {
+			"Down"  "Up"  "Left"  "Right"
+			"Delete"  "Backspace"  "Space"
+		}
+		COMMAND "<DULRHomeEndBkDelSpTouchTTwiceUndo> <DULRHomeEndBkDelSp> Cap <Alph>" {
+			SCRIPT {
+				IF _arg1 = "Undo" THEN _arg1 = "Ctrl+z"
+				
+				IF _arg1 = "Delete" THEN
+				SendKeys "{Shift+Right}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg1 = "Backspace" THEN 
+				SendKeys "{Shift+Left}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				IF _arg1 = "Touch" XOR _arg1 = "Touch Twice" THEN 
+				IF _arg1 = "Touch" THEN ButtonClick
+				IF _arg1 = "Touch Twice" THEN ButtonClick 1, 2
+				ELSE
+				SendKeys "{" + _arg1 + "}"
+				END IF
+				END IF
+				END IF
+				IF _arg2 = "Delete" THEN
+				SendKeys "{Shift+Right}"
+				Wait 200
+				SendKeys "{Del}"
+				ELSE
+				IF _arg2 = "Backspace" THEN 
+				SendKeys "{Shift+Left}"
+				Wait 200
+				SendKeys "{Backspace}"
+				ELSE
+				SendKeys "{" + _arg2 + "}"
+				END IF
+				END IF
+				SendKeys "{Shift+"+MID$(_arg3,0,1)+"}"
+			}
+		}
+		COMMAND "<1-10> <LRBkDelSp> <DULRHomeEndBkDelSp> Cap <Alph>" {
+				SCRIPT {
+				
+				HeardWord _arg1, _arg2, _arg3
+				SendKeys "{Shift+"+MID$(_arg4,0,1)+"}"
+			}
+		}
+		COMMAND "<DULRHomeEndBkDelSpTouchTTwiceUndo> <1-10> <LRBkDelSp> Cap <Alph>" {
+			SCRIPT {
+				
+				HeardWord _arg1, _arg2, _arg3
+				SendKeys "{Shift+"+MID$(_arg4,0,1)+"}"
+			}
+		}
+		COMMAND "<1-10> <LRBkDelSp> <1-10> <LRBkDelSp> Cap <Alph>" {
+			SCRIPT {
+				
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				SendKeys "{Shift+"+MID$(_arg5,0,1)+"}"
+			}
+		}
+		COMMAND "<LRBkDelSp> <DULRHomeEndBkDelSp> <LRBkDelSp> Cap <Alph>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3
+				
+				SendKeys "{Shift+"+MID$(_arg4,0,1)+"}"
+			}
+		}
+		COMMAND "<1-10> <LRBkDelSp> <DULRHomeEndBkDelSp> <LRBkDelSp> Cap <Alph>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				
+				SendKeys "{Shift+"+MID$(_arg5,0,1)+"}"
+			}
+		}
+		LIST "DULRHomeEndBkDelSp" {
+			"Down"  "Up"  "Left"  "Right"  "Home"  "End"
+			"Delete"  "Backspace"  "Space"
+		}
+		COMMAND "<DULRHomeEndBkDelSpTouchTTwiceUndo> <1-10> <LRBkDelSp> <LRBkDelSp> Cap <Alph>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				
+				SendKeys "{Shift+"+MID$(_arg5,0,1)+"}"
+			}
+		}
+		COMMAND "<DULRHomeEndBkDelSpTouchTTwiceUndo> <LRBkDelSp> <1-10> <LRBkDelSp> Cap <Alph>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4
+				
+				SendKeys "{Shift+"+MID$(_arg5,0,1)+"}"
+			}
+		}
+		COMMAND "<1-10> <LRBkDelSp> <1-10> <LRBkDelSp> <LRBkDelSp> Cap <Alph>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4, _arg5
+				SendKeys "{Shift+"+MID$(_arg6,0,1)+"}"
+			}
+		}
+		COMMAND "<1-10> <LRBkDelSp> <LRBkDelSp> <1-10> <LRBkDelSp> Cap <Alph>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4, _arg5
+				
+				SendKeys "{Shift+"+MID$(_arg6,0,1)+"}"
+			}
+		}
+		COMMAND "<DULRHomeEndBkDelSpTouchTTwiceUndo> <1-10> <LRBkDelSp> <1-10> <LRBkDelSp> Cap <Alph>" {
+			SCRIPT {
+				HeardWord _arg1, _arg2, _arg3, _arg4, _arg5
+				
+				SendKeys "{Shift+"+MID$(_arg6,0,1)+"}"
+			}
+		}
+		LIST "DULRHomeEndBkDelSpTouchTTwiceUndo" {
+			"Down"  "Up"  "Left"  "Right"  "Home"  "End"
+			"Delete"  "Backspace"  "Space"  "Touch"  "Touch Twice" "Undo"
+		}
+		LIST "LRBkDelSp" {
+			"Left"  "Right"
+			"Delete"  "Backspace"  "Space"
+		}
+		LIST "1-10" {
+			"1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" 
+		}
+		LIST "Alph" {
+#			"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+#			"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+			"alpha"  "bravo"  "charlie"  "delta"  "echo"  "foxtrot"  "golf"  "hotel"  "india"  "juliett"  "kilo"  "lima"  "mike"  "november"  "oscar"  "papa"  "quebec"  "romeo"  "sierra"  "tango"  "uniform"  "victor"  "whiskey"  "xray"  "yankee"  "zulu"  
+		}
+	}
+}
