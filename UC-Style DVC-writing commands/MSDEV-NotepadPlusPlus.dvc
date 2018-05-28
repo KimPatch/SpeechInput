@@ -1,3 +1,7 @@
+#UC-Style DVC-writing commands 
+# Kim Patch, PatchonTech.com 2018-05-28
+
+
 MENU "Notepad++" {
 	STATE "Notepad++" {
 		COMMAND "<SetWinHelpWinHelp>" {
