@@ -1,8 +1,8 @@
 This folder contains two versions of Utter Command DVC files. These are the files that contain all the UC speech input commands. 
 
-<STRONG>UC Common</STRONG> is the up-to-date and practical version. It leaves out some of the compute-intensive advanced commands that most people don’t need. I usually start people out with this, and add advanced commands from UC Extended if necessary. The UC Common files contain notes that show which Extended commands were left out.
+UC Common is the up-to-date and practical version. It leaves out some of the compute-intensive advanced commands that most people don’t need. I usually start people out with this, and add advanced commands from UC Extended if necessary. The UC Common files contain notes that show which Extended commands were left out.
 
-<STRONG>UC Extended</STRONG> contains all the UC commands. It ncludes advanced commands that can be added as needed to the UC Common set.
+UC Extended contains all the UC commands. It ncludes advanced commands that can be added as needed to the UC Common set.
 
 Install the updated UC Common files by replacing the files of the same name in C:\ProgramData\Nuance\NaturallySpeaking15\Data\enx\dvcu\general folder
 
