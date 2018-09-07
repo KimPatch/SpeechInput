@@ -6,4 +6,6 @@ UC Extended contains all the UC commands. It ncludes advanced commands that can 
 
 Install the updated UC Common files by replacing the files of the same name in C:\ProgramData\Nuance\NaturallySpeaking15\Data\enx\dvcu\general folder
 
+This folder also contains a list of Utter Command DLL calls, which is an explanation of the DLL calls UC uses to expand Dragon Functionality.
+
 - Kim Patch updated 2018-05-27
