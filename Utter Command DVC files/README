@@ -1,6 +1,6 @@
 This folder contains two versions of Utter Command DVC files. These are the files that contain all the UC speech input commands. 
 
-It also contains a list of Utter Command DLL calls, which is an explanation of the DLL calls UC uses to expand Dragon Functionality.
+It also contains a list of Utter Command DLL calls, which is an explanation of the DLL calls that UC uses to expand Dragon Functionality.
 
 UC Common is the up-to-date and practical version of the Utter Command DVC files. It leaves out some of the compute-intensive advanced commands that most people don’t need. I usually start people out with this, and add advanced commands from UC Extended if necessary. The UC Common files contain notes that show which Extended commands were left out.
 
