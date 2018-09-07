@@ -14,7 +14,7 @@ I’m looking for help making Utter Command open source and more portable. Pleas
 
 - Kim Patch updated 2018-09-07
 
-This goes At the top of the  Options.ini file, under the existing [Options] heading. Note that the last three lines have bbeen updated – thanks Jole for the catch
+This goes At the top of the  Options.ini file, under the existing [Options] heading. Note that the last three lines have been updated – thanks Jole for the catch
 
 [Options]
 enx Correct XYZ Command=Nope %1
