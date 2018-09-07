@@ -1,13 +1,264 @@
 This folder contains two versions of Utter Command DVC files. These are the files that contain all the UC speech input commands. 
 
-It also contains Utter Command DLL calls, a list of the DLL calls that UC uses to expand Dragon Functionality.
-
 UC Common is the up-to-date and practical version of the Utter Command DVC files. It leaves out some of the compute-intensive advanced commands that most people don’t need. I usually start people out with this, and add advanced commands from UC Extended if necessary. The UC Common files contain notes that show which Extended commands were left out.
 
 UC Extended contains all the UC commands. It includes advanced commands that can be added as needed to the UC Common set.
 
 Install the updated UC Common files by replacing the files of the same name in C:\ProgramData\Nuance\NaturallySpeaking15\Data\enx\dvcu\general folder
 
+Utter Command contains some Dll calls, which extend Dragon functionality. A list of calls, including calls we were just experimenting with, follows.
+
+- Kim Patch updated 2018-09-07
 
 
-- Kim Patch updated 2018-05-27
+Utter Command DLL calls
+
+Used across several types of commands:
+
+SClipFile		@222: uses the clipboard to return a value (speech clipboard macros...)
+UttCShell		@198: used to call up files directly. Handles spaces in the path.
+OSVersion 	@184: tests to see what version of the operating system is in use.
+
+PasteFromClipboard@103: pastes value from clipboard. Used to pass a result to DLL. Returns clipboard to original state. 
+CopyToClipboard	@104: copies value to clipboard. Used to pass a result to DLL. Returns clipboard to original state.
+
+GetTheButtonText	@239: senses on-screen button text
+GetTheWindowText @122
+GetTheForegroundWindow	@154
+
+
+1a) Controlling NatSpeak
+
+DNS8Menu	@236
+NatspeakExitNo	@130
+NatspeakExitYes	@131
+NatspeakLoad	@115
+NatspeakRestartNo	@140
+NatspeakRestart	@141
+NatspeakExit	@114
+CompPower	@142
+
+UttCSleep	@183
+MicAsleep 	@015
+
+
+1b) Correcting, training and vocabulary
+
+ThisTrainVocabularyVT	@237
+
+
+2a) Controlling Windows 
+
+ShowDesktop	@121
+Window1to20	@227 taskbar items
+SelectATask	@041 early version of Window1to20
+
+
+2b) Accessing the system tray, system menus, and menu items
+
+Tray1to20a	@228
+Tray1to20R	@225
+Tray1to20	@224
+
+SystemMenus	@238
+
+
+2c) Moving and sizing Windows
+
+MoveAWindow	@018
+SizeAWindow @019
+MoveAWindowByOneDirection	@029
+MoveAWindowByOneCoord @032
+SizeAWindowByOneCoord @031
+SizeAWindowByOneDirection	@030
+
+SeamAcross	@080
+SeamAcross2	@081
+SeamWindow	@053
+SeamWindow2	@057
+SeamWindowAcross	@056
+SeamWindowAcross2	@058
+SeamWindows	@040
+SeamWindows2	@059
+SeamWindowsAcross	@055
+SeamWindowsAcross2	@060
+
+
+Section 4: Arrow Command
+
+RulersOn	@223
+RulersOff		@120
+
+Touch	@004
+CursorNoTouch	@061
+DragArrowByOneCoord	@028
+GetArrowPosition	@023
+MoveArrowByOneDirection	@021
+DragArrowByOneDirection	@025
+MoveArrowByPercentages @017
+SetArrowByPercentages @016
+DragArrowByPercentages	@020
+
+SetArrowByOneCoord	@027
+SetArrowByPercentagesWiggle	@034
+MoveArrowByOneCoord	@026
+MoveArrowByOneDirectionPixels	@051
+MoveArrowByPercentagesLocal	@054
+
+
+Section 5: File Command
+
+DLL calls:
+Controlling lists that users can add to
+
+AutoSite	@235
+AutoFolder	@234
+AutoFile	@233
+AutoApply	@232
+AutoSave	@231
+AutoList	@230
+AddToList	@229
+
+SetAutoList	@197
+SetSiteList	@196
+GetAutoList	@195
+GetSiteList	@194
+GetFolderList	@192
+
+AddFile		@174
+AddFolder	@172
+
+Folders1	@042
+Folders2	@043
+Folders3	@173
+
+IsExplorer2		@170
+
+
+Section 6: Key Command
+
+SendKeys		@112
+LWinPlusAKey	@033
+CapsLock   @002
+
+Find3Spells	@219
+Find2Spells	@218
+Find1Spells	@217
+DULRHomeEndBackspaceDeleteHomeEndAlph0to9	@226
+
+_0to9PtTabEnterShiftTEAltEShort	@216
+
+ThisCommand	@191
+HoldAKey	@189
+ReleaseAKey	@190
+
+6g) Keying by speech: moving the cursor, deleting, and typing a character
+
+DULR1to10BackspaceDeleteHomeEndAlphChar0to9	@209
+DULRHomeEndBackspaceDelete1to10AlphChar0to9	@213
+DULR1to10BackspaceDelete1to10AlphChar0to9		@210
+
+DULRHomeEndBackspaceDeleteHomeEndCapAlph 	@215
+DULR1to10BackspaceDeleteHomeEndCapAlph		@212
+DULRHomeEndBackspaceDelete1to10CapAlph		@214
+DULR1to10BackspaceDelete1to10CapAlph		@211
+
+
+Section 7: Text command
+
+GLWthisAllDuplicate	@208
+GLLWUDUsbf		@207
+GLLWUDUs		@206
+GLRLWBALUSBALeftRtSSU	@205
+StayGLLWDUABUSs	@204
+GGSLLWSSUs		@203
+GLLWDUABUSs		@202
+
+backforward1to20GLLWSPs	@221
+GoTop_PartChapterSectionActScene_1to40	@220
+
+GetTime			@105
+GetDate			@106
+
+
+Section 8:  Email Command
+
+DefaultMail	@117
+
+
+Section 9:  Web Command
+
+DefaultBrowser	@116
+
+
+Section 10:  Utilities and timers
+
+10g) Sound system commands
+
+N5Audio		@113
+VolumeAbsolute	@024
+Volume		@008
+Media		@005
+
+Development Dvc:
+
+Command	@006
+MakeMessageBox	@022
+
+Sample		@014
+
+SaveDll		@007
+GetDLLCalls 	 @187
+UttCSystem	@240
+
+
+Under development:
+
+GetCommands  	@150: scrapes menu commands from any program
+MenuToCommand	@156: 
+
+
+BeginScroll  	@009: scrolls mouse -- show-stopper real-world problem with delay 
+ScrollStop  	@013: stops scrolling mouse -- show-stopper real-world problem with delay
+
+SelectPause8  	@111: attempt to automate pauses in commands so they can be adjusted by the user depending on processor speed
+SelectPause7	@110: attempt to automate pauses in commands so they can be adjusted by the user depending on processor speed
+
+GetCurPos	@102: attempt to get cursor position in order to do a mouse-to-cursor command
+GetScreenHeight	@100
+GetScreenWidth	@101
+IsWaiting		@171
+
+
+SetDVCList	@119: grabs information from dvc files
+SetDVCList1	@176
+SetDVCList2	@168
+GetDVCList2	@157
+GetDVCList1	@175
+GetDVCList	@118
+GetFileDataByLine	@188
+
+SetFileData	@241
+GetFileData	@200
+GetLists		@151
+
+SetFileDataByLine	@186
+SetFolderList	@193
+
+SetTheForegroundWindow	@155
+SetTitle    	@001
+
+Under development: Searching for characters and strings
+
+StringThroughString		@166
+StringAfter		@167
+StringBackThroughString	@180
+StringBackThroughStringShort@181
+StringBefore		@68
+StringPair			@003
+StringThroughStringShort	@178
+ThroughString		@177
+ThroughStringPair		@165
+BackThroughString		@179
+BackThroughStringPair	@182
+
