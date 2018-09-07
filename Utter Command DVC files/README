@@ -6,9 +6,38 @@ UC Extended contains all the UC commands. It includes advanced commands that can
 
 Install the updated UC Common files by replacing the files of the same name in C:\ProgramData\Nuance\NaturallySpeaking15\Data\enx\dvcu\general folder
 
+Utter Command also switches some Dragon commands via the Dragon options.ini file. The code to add to the options.ini file follows.
+
 Utter Command contains some Dll calls, which extend Dragon functionality. A list of calls, including calls we were just experimenting with, follows.
 
+I’m looking for help making Utter Command open source and more portable. Please contact me via patchontech.com if you’re interested.
+
 - Kim Patch updated 2018-09-07
+
+This goes At the top of the  Options.ini file, under the existing [Options] heading. Note that the last three lines have bbeen updated – thanks Jole for the catch
+
+[Options]
+enx Correct XYZ Command=Nope %1
+enx Correct That Command=Nope
+enx Select XYZ Command=Words %1
+enx Copy XYZ Command=Words Copy %1
+enx Cut XYZ Command=Words Cut %1
+enx Delete XYZ Command=Words Delete %1
+enx Bold XYZ Command=Words Bold %1
+enx Italicize XYZ Command=Words Italic %1
+enx Underline XYZ Command=Words Underline %1
+enx Select XYZ Through XYZ Command=Words %1 Through %1
+enx Cut XYZ Through XYZ Command=Words Cut %1 Through %1
+enx Copy XYZ Through XYZ Command=Words Copy %1 Through %1
+enx Delete XYZ Through XYZ Command=Words Delete %1 Through %1
+enx Bold XYZ Through XYZ Command=Words Bold %1 Through %1
+enx Italicize XYZ Through XYZ Command=Words italic %1 Through %1
+enx Underline XYZ Through XYZ Command=Words Underline %1 Through %1
+enx Insert Before XYZ Command=Go Before %1
+enx Insert After XYZ Command=Go After %1
+enx Cap That Command=Add Caps
+enx No Caps That Command=Add No-Caps
+enx All Caps That Command=Add All-Caps
 
 
 Utter Command DLL calls
