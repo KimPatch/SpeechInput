@@ -6,7 +6,7 @@ UC Extended contains all the UC commands. It includes advanced commands that can
 
 Install the updated UC Common files by replacing the files of the same name in C:\ProgramData\Nuance\NaturallySpeaking15\Data\enx\dvcu\general folder
 
-Utter Command also switches some Dragon commands via the Dragon options.ini file. The code to add to the options.ini file follows.
+Utter Command also switches some Dragon commands via the Dragon options.ini file. The code to add to the options.ini file follows. Note that these Dragon commands, including the UC rewordings, don't work in every program.
 
 Utter Command contains some Dll calls, which extend Dragon functionality. A list of calls, including calls we were just experimenting with, follows.
 
