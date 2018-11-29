@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<menus>
+  <menu name="Position1" type="normal">
+      <requires>
+    </requires>
+    <commands>
+      <command type="legacy-script">
+        <name><![CDATA[<maximize1>]]></name>
+        <actions>
+          <action><![CDATA[WAIT 20]]></action>
+          <action><![CDATA[ShellExecute "XXYYZZscripts\Open_vp1.exe $*#*$b1x2y2z2e6"]]></action>
+        </actions>
+        <runtime_changes>
+          <replace>XXYYZZ, rootpath</replace>
+          <replace>x2y2z2, vtpath2transfer</replace>
+        </runtime_changes>
+      </command>
+      <command type="vp-script">
+        <name>
+          <![CDATA[<place1> <window1> <leftright1>]]>
+        </name>
+        <actions>
+          <place align="_value3" resizeRatioX="1/2" resizeRatioY="1/1" />
+          <bringtofront/>
+        </actions>
+      </command>
+      <command type="legacy-script">
+        <name><![CDATA[place this monitorone]]></name>
+        <actions>
+          <action><![CDATA[WAIT 20]]></action>
+          <action><![CDATA[ShellExecute "XXYYZZscripts\Open_vp1.exe $*#*$a1x2y2z2c3M1"]]></action>
+        </actions>
+        <runtime_changes>
+          <replace>XXYYZZ, rootpath</replace>
+          <replace>x2y2z2, vtpath2transfer</replace>
+        </runtime_changes>
+      </command>
+     <command type="legacy-script">
+        <name><![CDATA[place this monitor two]]></name>
+        <actions>
+          <action><![CDATA[WAIT 20]]></action>
+          <action><![CDATA[ShellExecute "XXYYZZscripts\Open_vp1.exe $*#*$a1x2y2z2c3M2"]]></action>
+        </actions>
+        <runtime_changes>
+          <replace>XXYYZZ, rootpath</replace>
+          <replace>x2y2z2, vtpath2transfer</replace>
+        </runtime_changes>
+      </command>
+     <command type="legacy-script">
+        <name><![CDATA[place this window left]]></name>
+        <actions>
+          <action><![CDATA[WAIT 20]]></action>
+          <action><![CDATA[ShellExecute "XXYYZZscripts\Open_vp1.exe $*#*$a1x2y2z2c3L1"]]></action>
+        </actions>
+        <runtime_changes>
+          <replace>XXYYZZ, rootpath</replace>
+          <replace>x2y2z2, vtpath2transfer</replace>
+        </runtime_changes>
+      </command>
+     <command type="legacy-script">
+        <name><![CDATA[place this window upper left]]></name>
+        <actions>
+          <action><![CDATA[WAIT 20]]></action>
+          <action><![CDATA[ShellExecute "XXYYZZscripts\Open_vp1.exe $*#*$a1x2y2z2c3LU"]]></action>
+        </actions>
+        <runtime_changes>
+          <replace>XXYYZZ, rootpath</replace>
+          <replace>x2y2z2, vtpath2transfer</replace>
+        </runtime_changes>
+      </command>
+     <command type="legacy-script">
+        <name><![CDATA[place this window lower left]]></name>
+        <actions>
+          <action><![CDATA[WAIT 20]]></action>
+          <action><![CDATA[ShellExecute "XXYYZZscripts\Open_vp1.exe $*#*$a1x2y2z2c3LB"]]></action>
+        </actions>
+        <runtime_changes>
+          <replace>XXYYZZ, rootpath</replace>
+          <replace>x2y2z2, vtpath2transfer</replace>
+        </runtime_changes>
+      </command>
+     <command type="legacy-script">
+        <name><![CDATA[place this window right]]></name>
+        <actions>
+          <action><![CDATA[WAIT 20]]></action>
+          <action><![CDATA[ShellExecute "XXYYZZscripts\Open_vp1.exe $*#*$a1x2y2z2c3R1"]]></action>
+        </actions>
+        <runtime_changes>
+          <replace>XXYYZZ, rootpath</replace>
+          <replace>x2y2z2, vtpath2transfer</replace>
+        </runtime_changes>
+      </command>
+     <command type="legacy-script">
+        <name><![CDATA[place this window upper right]]></name>
+        <actions>
+          <action><![CDATA[WAIT 20]]></action>
+          <action><![CDATA[ShellExecute "XXYYZZscripts\Open_vp1.exe $*#*$a1x2y2z2c3RU"]]></action>
+        </actions>
+        <runtime_changes>
+          <replace>XXYYZZ, rootpath</replace>
+          <replace>x2y2z2, vtpath2transfer</replace>
+        </runtime_changes>
+      </command>
+     <command type="legacy-script">
+        <name><![CDATA[place this window lower right]]></name>
+        <actions>
+          <action><![CDATA[WAIT 20]]></action>
+          <action><![CDATA[ShellExecute "XXYYZZscripts\Open_vp1.exe $*#*$a1x2y2z2c3RB"]]></action>
+        </actions>
+        <runtime_changes>
+          <replace>XXYYZZ, rootpath</replace>
+          <replace>x2y2z2, vtpath2transfer</replace>
+        </runtime_changes>
+      </command>
+     <command type="legacy-script">
+        <name><![CDATA[place this window center]]></name>
+        <actions>
+          <action><![CDATA[WAIT 20]]></action>
+          <action><![CDATA[ShellExecute "XXYYZZscripts\Open_vp1.exe $*#*$a1x2y2z2c3CE"]]></action>
+        </actions>
+        <runtime_changes>
+          <replace>XXYYZZ, rootpath</replace>
+          <replace>x2y2z2, vtpath2transfer</replace>
+        </runtime_changes>
+      </command>
+       <command type="vp-script">
+        <name>
+          <![CDATA[<place1> <window1> center]]>
+        </name>
+        <actions>
+          <wait ms="100"/>
+          <place align="center" resizeRatioX="2/3" resizeRatioY="1/1" />
+          <bringtofront/>
+        </actions>
+      </command>
+      <command type="vp-script">
+      <name>
+        <![CDATA[<place1> <window1> <maxmin1>]]>
+      </name>
+      <actions>
+        <sendkeys mode="sync" string="% "/>
+        <wait ms="100"/>
+        <sendkeys mode="sync" string="_value3"/>
+        <bringtofront/>
+      </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+          <![CDATA[backspace <1TO20>]]>
+        </name>
+        <actions>
+          <sendkeys mode="sync" string="{bksp _value1}"/>
+        </actions>
+      </command>
+<!--
+Commented out commands
+      <command type="vp-script">
+        <name>
+          <![CDATA[intag <window1> <leftright1>]]>
+        </name>
+        <actions>
+          <wait ms="100"/>
+          <place align="_value2" resizeRatioX="1/2" resizeRatioY="1/1" />
+          <wait ms="500"/>
+          <wait ms="500"/>
+            <numbers action="display" />
+        </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+          <![CDATA[intag <window1> center]]>
+        </name>
+        <actions>
+          <numbers action="close" />
+          <wait ms="100"/>
+          <place align="center" resizeRatioX="2/3" resizeRatioY="1/1" />
+          <wait ms="500"/>
+          <wait ms="500"/>
+            <numbers action="display" />
+          <bringtofront/>
+        </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+          <![CDATA[<place1><window1><topbottom3>]]>
+        </name>
+        <actions>
+          <place align="_value3" resizeRatioX="1/1" resizeRatioY="1/2" />
+          <bringtofront/>
+        </actions>
+      </command>
+      <command type="vp-script">
+        <name>
+          <![CDATA[<place1> <window1> <topbottomleftright1>]]>
+        </name>
+        <actions>
+          <place align="_value3" resizeRatioX="1/2" resizeRatioY="1/2" />
+          <bringtofront/>
+        </actions>
+      </command>
+-->
+    </commands >
+      <lists>
+        <List>
+          <name>1TO20</name>
+          <items>
+          <item>02\two</item>
+          <item>03\three</item>
+          <item>04\four</item>
+          <item>05\five</item>
+          <item>06\six</item>
+          <item>07\seven</item>
+          <item>08\eight</item>
+          <item>09\nine</item>
+          <item>10\ten</item>
+          <item>11\eleven</item>
+          <item>12\twelve</item>
+          <item>13\thirteen</item>
+          <item>14\fourteen</item>
+          <item>15\fifteen</item>
+          <item>16\sixteen</item>
+          <item>17\seventeen</item>
+          <item>18\eighteen</item>
+          <item>19\nineteen</item>
+          <item>20\twenty</item>
+          </items>
+        </List>
+        <List>
+          <name>maximize1</name>
+          <items>
+            <item>maximize</item>
+            <item>maximize this</item>
+            <item>maximize this window</item>
+            <item>maximize thiswindow</item>
+          </items>
+        </List>
+        <List>
+          <name>place1</name>
+          <items>
+            <item>place</item>
+            <item>position</item>
+            <item>place position</item>
+          </items>
+        </List>
+        <List>
+          <name>window1</name>
+          <items>
+            <item>window</item>
+            <item>program</item>
+            <item>application</item>
+          </items>
+        </List>
+        <List>
+          <name>topbottom3</name>
+          <items>
+            <item>topleft\top half</item>
+            <item>topleft\upper half</item>
+            <item>lowerleft\bottom half</item>
+            <item>lowerleft\lower half</item>
+         <item>lowerleft\lowerhalf</item>
+          </items>
+        </List>
+        <List>
+          <name>leftright1</name>
+          <items>
+            <item>topleft\left</item>
+            <item>topright\right</item>
+            <item>topright\place right</item>
+          </items>
+        </List>
+    <List>
+      <name>topbottomleftright1</name>
+      <items>
+        <item>topleft\top left</item>
+        <item>topleft\upper left</item>
+        <item>topright\top right</item>
+        <item>topright\upper right</item>
+        <item>lowerleft\bottom left</item>
+        <item>lowerleft\lower left</item>
+        <item>lowerright\bottom right</item>
+        <item>lowerright\lower right</item>
+        <item>lowerright\lowered right</item>
+      </items>
+    </List>
+        <List>
+          <name>maxmin1</name>
+          <items>
+        <item>x\maximized</item>
+        <item>n\minimized</item>
+        <item>c\close</item>
+        <item>r\normal</item>
+        <item>r\restore</item>
+        <item>x\full screen</item>
+        <item>x\complete screen</item>
+          </items>
+        </List>
+      </lists >
+    </menu>
+</menus >
