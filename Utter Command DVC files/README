@@ -1,13 +1,16 @@
-This folder contains two versions of Utter Command.
+This folder contains he DVC files for the two versions of Utter Command.
 
-UC Common.msi is the up-to-date and practical version of the Utter Command DVC files. It leaves out some of the compute-intensive advanced commands that most people don’t need. I usually start people out with this, and add advanced commands from UC Extended if necessary. The UC Common files contain notes that show which Extended commands were left out.
+UC Common is the up-to-date and practical version of the Utter Command DVC files. It leaves out some of the compute-intensive advanced commands that most people don’t need. I usually start people out with this, and add advanced commands from UC Extended if necessary. The UC Common files contain notes that show which Extended commands were left out.
 
-UC Extended.msi contains all the UC commands. It includes advanced commands that can be added as needed to the UC Common set.
+UC Extended contains all the UC commands. It includes advanced commands that can be added as needed to the UC Common set.
 
 You can find lots of documentation in the UC Knowledge Base Documents, including Installation instructions, Getting Started, cheat sheets and a full manual: 
 https://docs.google.com/document/d/1CZNvIjI7vxTFdx0IrsKJLaFDKpJODCsMWD2Zh3JC5Rg/edit
 
-That's all you need to know to use UC, but if you want to get more in the weeds… this repository also contains 
+If you want a copy of the MSI files to install UC let me know.
+
+And if you want to get more in the weeds… this repository also contains 
+
 - The individual UC DVC files from UC Common and UC Extended. These are the files that contain all the UC speech input commands 
 
 - Updated DVC Common files
