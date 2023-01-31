@@ -1,10 +1,21 @@
-This folder contains two versions of Utter Command DVC files. These are the files that contain all the UC speech input commands. 
+This folder contains he DVC files for the two versions of Utter Command.
 
 UC Common is the up-to-date and practical version of the Utter Command DVC files. It leaves out some of the compute-intensive advanced commands that most people don’t need. I usually start people out with this, and add advanced commands from UC Extended if necessary. The UC Common files contain notes that show which Extended commands were left out.
 
 UC Extended contains all the UC commands. It includes advanced commands that can be added as needed to the UC Common set.
 
-Install the updated UC Common files by replacing the files of the same name in C:\ProgramData\Nuance\NaturallySpeaking15\Data\enx\dvcu\general folder
+You can find lots of documentation in the UC Knowledge Base Documents, including Installation instructions, Getting Started, cheat sheets and a full manual: 
+https://docs.google.com/document/d/1CZNvIjI7vxTFdx0IrsKJLaFDKpJODCsMWD2Zh3JC5Rg/edit
+
+If you want a copy of the MSI files to install UC let me know.
+
+And if you want to get more in the weeds… this repository also contains 
+
+- The individual UC DVC files from UC Common and UC Extended. These are the files that contain all the UC speech input commands 
+
+- Updated DVC Common files
+
+To install the updated UC Common files replace the files of the same name in C:\ProgramData\Nuance\NaturallySpeaking15\Data\enx\dvcu\general folder
 
 Utter Command also switches some Dragon commands via the Dragon options.ini file. The code to add to the options.ini file follows. Note that these Dragon commands, including the UC rewordings, don't work in every program.
 
@@ -12,7 +23,10 @@ Utter Command contains some Dll calls, which extend Dragon functionality. A list
 
 I’m looking for help making Utter Command open source and more portable. Please contact me via patchontech.com if you’re interested.
 
-- Kim Patch updated 2018-09-07
+- Kim Patch 
+
+
+More weeds:
 
 This goes At the top of the  Options.ini file, under the existing [Options] heading. Note that the last three lines have been updated – thanks Jole for the catch
 
@@ -241,7 +255,7 @@ GetDLLCalls 	 @187
 UttCSystem	@240
 
 
-Under development:
+Unfinished:
 
 GetCommands  	@150: scrapes menu commands from any program
 MenuToCommand	@156: 
@@ -277,7 +291,7 @@ SetFolderList	@193
 SetTheForegroundWindow	@155
 SetTitle    	@001
 
-Under development: Searching for characters and strings
+Unfinished: Searching for characters and strings
 
 StringThroughString		@166
 StringAfter		@167
